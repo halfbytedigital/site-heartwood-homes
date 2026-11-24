@@ -1,6 +1,6 @@
 ---
 name: page-build
-description: Build the approved site plan as an Astro project on the site's tokens. Pick section archetypes per page from the library so sites differ, wire facts through the null config, build one trade-specific signature interaction, set up forms (Resend or GoHighLevel) and Cloudflare Pages deploy. Runs only after Jake approves plan.md.
+description: 'Build the approved site plan as an Astro project on the site''s tokens. Pick section archetypes per page from the library so sites differ, wire facts through the null config, build one trade-specific signature interaction, set up forms (Resend or GoHighLevel) and Cloudflare Pages deploy. Runs only after Jake approves plan.md.'
 ---
 
 # Page build
@@ -102,7 +102,7 @@ Pick the one approved in intake/plan from `signature-interactions.md` and build 
 
 ## Stop points during build
 
-Ask Jake (batched, one message) only when blocked:
-- a section needs an asset we don't have (offer: placeholder block with a clear label, skip the section, or stock with OK);
-- a fact is needed for a sentence to make sense (rewrite the sentence instead, if you can);
+Ask Jake only when blocked, **one question per message** (conversation rules in `skills/intake/SKILL.md`):
+- a section needs an asset we don't have (options: labeled placeholder block, skip the section, or stock with OK);
+- a fact is needed for a sentence to make sense (rewrite the sentence instead, if you can; otherwise the value stays `null`);
 - a third-party account is required (Resend domain, GHL webhook, Turnstile key).

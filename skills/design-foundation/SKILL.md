@@ -1,6 +1,6 @@
 ---
 name: design-foundation
-description: The "bare metal" UI/UX rules every Half Byte site follows (spacing, grid, type, contrast, touch, focus, motion, images, performance, mobile action bar, forms, nav, footer, SEO, accessibility, honesty), the expression knobs that make each site look different, and the CSS token contract. Read before writing any markup or CSS.
+description: 'The "bare metal" UI/UX rules every Half Byte site follows (spacing, grid, type, contrast, touch, focus, motion, images, performance, mobile action bar, forms, nav, footer, SEO, accessibility, honesty), the expression knobs that make each site look different, and the CSS token contract. Read before writing any markup or CSS.'
 ---
 
 # Design foundation

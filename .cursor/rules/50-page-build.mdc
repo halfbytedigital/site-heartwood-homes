@@ -1,5 +1,5 @@
 ---
-description: Use when building an approved plan into an Astro site: scaffold, null-config facts, archetype sections, one signature interaction, forms (Resend/GoHighLevel), SEO, Cloudflare Pages.
+description: 'Use when building an approved plan into an Astro site: scaffold, null-config facts, archetype sections, one signature interaction, forms (Resend/GoHighLevel), SEO, Cloudflare Pages.'
 globs: sites/**/src/**
 alwaysApply: false
 ---
@@ -105,9 +105,9 @@ Pick the one approved in intake/plan from `signature-interactions.md` and build 
 
 ## Stop points during build
 
-Ask Jake (batched, one message) only when blocked:
-- a section needs an asset we don't have (offer: placeholder block with a clear label, skip the section, or stock with OK);
-- a fact is needed for a sentence to make sense (rewrite the sentence instead, if you can);
+Ask Jake only when blocked, **one question per message** (conversation rules in `skills/intake/SKILL.md`):
+- a section needs an asset we don't have (options: labeled placeholder block, skip the section, or stock with OK);
+- a fact is needed for a sentence to make sense (rewrite the sentence instead, if you can; otherwise the value stays `null`);
 - a third-party account is required (Resend domain, GHL webhook, Turnstile key).
 
 Reference file (read when this rule applies): @skills/page-build/archetypes.md

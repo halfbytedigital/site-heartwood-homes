@@ -1,6 +1,6 @@
 ---
 name: review
-description: Self-QA before Jake sees anything. Headless Playwright screenshots of every page at 1440 and 390 (plus reduced motion), automated audits (overflow, type and spacing vs tokens, contrast, touch targets, images, headings, SEO/schema, console errors), Lighthouse, a manual visual pass, and a copy honesty check where every claim is sourced or null. Fix, re-run, then report with a checklist.
+description: 'Self-QA before Jake sees anything. Headless Playwright screenshots of every page at 1440 and 390 (plus reduced motion), automated audits (overflow, type and spacing vs tokens, contrast, touch targets, images, headings, SEO/schema, console errors), Lighthouse, a manual visual pass, and a copy honesty check where every claim is sourced or null. Fix, re-run, then report with a checklist.'
 ---
 
 # Review

@@ -1,5 +1,5 @@
 ---
-description: Use after intake answers: map a client brand kit (logo, colors, fonts, guidelines PDF) faithfully into tokens, derive missing pieces with contrast checks, or generate a kit from the chosen art direction.
+description: 'Use after intake answers: map a client brand kit (logo, colors, fonts, guidelines PDF) faithfully into tokens, derive missing pieces with contrast checks, or generate a kit from the chosen art direction.'
 globs: sites/**/brief/brand.md,sites/**/src/styles/tokens.css
 alwaysApply: false
 ---

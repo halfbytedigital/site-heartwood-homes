@@ -12,22 +12,35 @@ Jake starts a site with something like:
 
 > Let's build a website for a general contractor/custom home builder based in Chattanooga, TN called Heartwood Homes
 
-When you see a request like that, **do not start coding.** Run the workflow below from step 1.
+When you see a request like that, **do not start coding.** Run the workflow below from step 1, starting with
+question A (existing website), alone.
 
 ## Workflow (always in this order)
 
-| Step | Skill | Output file(s) | Stop and ask Jake? |
+| Step | Skill | Output file(s) | How Jake is involved |
 |---|---|---|---|
-| 1 | `skills/intake/SKILL.md` | `sites/<slug>/brief/intake.md`, `sources.md` | **Yes.** Send questions + 3 art directions. Wait. |
-| 2 | `skills/brand-kit/SKILL.md` | `brief/brand.md`, `src/styles/tokens.css` | **Yes** if a kit conflicts with the foundation (e.g. contrast fails). Otherwise show the palette and continue. |
-| 3 | `skills/site-plan/SKILL.md` | `brief/plan.md` | **Yes.** Sitemap + follow-up questions + per-page outline. Wait for "go". |
-| 4 | `skills/page-build/SKILL.md` | the Astro site in `sites/<slug>/` | Only if blocked (missing asset, unclear fact). |
+| 1 | `skills/intake/SKILL.md` | `sites/<slug>/brief/intake.md`, `sources.md` | A short conversation, **one question per message**: A existing website → B brand kit → C1 work mix → E art direction. Or **learn mode**: crawl the confirmed site, summarize, ask only the gaps. |
+| 2 | `skills/brand-kit/SKILL.md` | `brief/brand.md`, `src/styles/tokens.css` | Only asks if a brand kit has a real conflict (e.g. contrast fails). |
+| 3 | `skills/site-plan/SKILL.md` | `brief/plan.md` | Shows the sitemap, then walks page by page, asking page-specific questions and facts **one at a time, only when that page needs them**. Ends with "Good to build?" |
+| 4 | `skills/page-build/SKILL.md` | the Astro site in `sites/<slug>/` | Only if blocked (missing asset, account). |
 | 5 | `skills/review/SKILL.md` | `brief/review/` screenshots + `review.md` checklist | Fix everything you can, then show Jake. |
 
 `skills/design-foundation/SKILL.md` is not a step. It is the rulebook that applies to steps 2–5 all the time.
 Read it before you write any CSS or markup.
 
-Never skip a stop point because you "have enough to guess." A good first draft comes from good answers.
+### Conversation rules (intake, site-plan, and any question to Jake)
+
+- **One question per message.** Never a list of questions or a facts checklist.
+- **Just in time.** Ask only when the next step needs the answer; otherwise use the default and continue.
+- Each question has **3–5 short lettered options**, **"I'd pick X:"** with a one-line why, and "Or tell me something else."
+- **"use your recommendations"** → take the recommended picks for all remaining questions and move on; facts stay `null`.
+- **Batching:** if Jake answers several things at once, record them all and ask only the next unanswered question.
+- **Facts** (phone, license, years, team, area, reviews…) are asked only when a page/section needs them and default
+  to `null` (hidden).
+- Recommendations never rest on a site Jake hasn't confirmed. Never name a competitor unless it's in `sources.md` with a URL.
+- **Learn mode** triggers: "learn as much as you can from their existing site and ask me any outlying questions",
+  "pull everything from <URL> and just ask what's missing", "start from their current site", "crawl their site and
+  fill in what you can", "use their website as the source".
 
 ## Non-negotiables (short version)
 
@@ -55,8 +68,8 @@ CLAUDE.md                     ← you are here (entry point for Claude Code)
 README.md                     ← plain-English guide for Jake
 .cursor/rules/*.mdc           ← same content for Cursor (generated from skills/ by scripts/sync-rules.sh)
 skills/
-  intake/SKILL.md             ← questions, existing-site crawl, art directions
-  intake/question-bank.md     ← industry-specific questions (10 trades + fallback)
+  intake/SKILL.md             ← one-question-at-a-time intake, learn mode, art directions
+  intake/question-bank.md     ← reference menu of trade questions (10 trades + fallback), not a script
   design-foundation/SKILL.md  ← the "bare metal" rules + expression knobs + token contract
   brand-kit/SKILL.md          ← map a client kit to tokens, or generate one
   site-plan/SKILL.md          ← sitemap, extra-page questions, section outlines
@@ -79,6 +92,6 @@ sites/<client-slug>/          ← one Astro project per client (created in step 
 ## How to talk to Jake
 
 - Plain, direct language. Short paragraphs. No jargon without a one-line explanation.
-- Questions as numbered multiple choice with a **recommended** pick and why. Always allow "something else."
-- Batch questions. One message per stop point, not a drip of single questions.
+- One question per message, multiple choice, with your pick and why. Always allow "something else."
+- Keep messages short. Detail goes in the brief files, not the chat.
 - When you are unsure of a fact, say so and leave it `null`. Never paper over it.

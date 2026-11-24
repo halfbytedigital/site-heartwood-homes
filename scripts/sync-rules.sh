@@ -13,7 +13,7 @@ write_rule() { # file description globs alwaysApply source [extra refs...]
   local out=".cursor/rules/$1" desc="$2" globs="$3" always="$4" src="$5"; shift 5
   {
     echo "---"
-    echo "description: $desc"
+    echo "description: '${desc//\'/\'\'}'"
     echo "globs: $globs"
     echo "alwaysApply: $always"
     echo "---"
@@ -30,7 +30,7 @@ write_rule 00-halfbyte-workflow.mdc \
   "" true CLAUDE.md
 
 write_rule 10-intake.mdc \
-  "Use when Jake asks to build a new website for a business (\"let's build a website for …\"): trade-specific multiple-choice questions, existing-site check and crawl, brand kit question, real facts with nulls, 2-3 named art directions, then stop." \
+  "Use when Jake asks to build a new website (\"let's build a website for …\") or says \"learn from their existing site\": one question per message (existing site → brand kit → work mix → art direction), just-in-time, recommended picks, \"use your recommendations\" shortcut, or learn mode (crawl confirmed site, summarize, ask only gaps)." \
   "" false skills/intake/SKILL.md skills/intake/question-bank.md templates/intake-brief.md templates/sources.md
 
 write_rule 20-design-foundation.mdc \
@@ -43,7 +43,7 @@ write_rule 30-brand-kit.mdc \
   "sites/**/brief/brand.md,sites/**/src/styles/tokens.css" false skills/brand-kit/SKILL.md templates/tokens.css
 
 write_rule 40-site-plan.mdc \
-  "Use after brand kit: propose sitemap (core + industry pages), ask follow-up questions about extra pages and missing info, write per-page section outlines with archetype IDs, stop for approval." \
+  "Use after brand kit: propose sitemap, then walk page by page asking page-specific questions and facts one at a time only when that page needs them (unknowns null/hidden), write section outlines, get a go." \
   "sites/**/brief/plan.md" false skills/site-plan/SKILL.md skills/page-build/archetypes.md
 
 write_rule 50-page-build.mdc \

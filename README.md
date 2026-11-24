@@ -18,30 +18,39 @@ Think of it like this:
 
    > Let's build a website for a general contractor/custom home builder based in Chattanooga, TN called Heartwood Homes
 
-3. The agent will **not** start coding. It replies with:
-   - questions picked for that trade (a home builder gets asked about portfolio, process and price range;
-     a stump grinder gets asked about per-stump pricing and emergency calls),
-   - whether the client has an existing website (if yes, it pulls the logo, photos, copy, reviews and contact
-     info from it and lists where each thing came from),
-   - whether there is a brand kit (logo files, colors, fonts, guidelines PDF),
-   - three named "art directions" to choose from, each with its own fonts, colors, photo style, layout feel and
-     one signature interactive piece.
-4. Answer in plain words. Short is fine: "B, yes they have heartwoodhomes.com, no brand kit, go with direction 2."
-5. The agent proposes the page list and asks about extra pages (financing? careers? a page per town?). Say "go"
-   when it looks right.
+3. The agent will **not** start coding, and it won't send you a questionnaire. It asks **one question at a time**,
+   each with a few lettered options, its own pick and a one-line reason:
+   - A. Does the client have a website? (If it found one, it asks "Is this them?" and does nothing with it until you say yes.)
+   - B. Is there a brand kit?
+   - C. What mix of work do they do? (The question depends on the trade.)
+   - Then three short "art directions" to choose from.
+4. Answer with a letter ("b"), a few words, or several answers at once ("no site, no kit, custom + remodels").
+   It skips whatever you've already answered. Say **"use your recommendations"** any time to let it pick the rest.
+5. Next it shows the page list and walks through it page by page. It only asks things like phone number, license
+   or years in business when it reaches a section that would show them. "Unknown" is always fine; that item just
+   stays hidden until you fill it in.
 6. It builds the site, screenshots every page on desktop and phone, checks itself against the rules, fixes what it
    can, and then shows you the screenshots and a checklist.
 
-See `EXAMPLE-heartwood-intake.md` for exactly what step 3 looks like.
+**Already have their website?** Say something like:
+
+> Let's build a website for Heartwood Homes. Learn as much as you can from their existing site (heartwoodhomes.example) and ask me any outlying questions.
+
+Other phrasings work too: "pull everything from <URL> and just ask what's missing", "start from their current site",
+"crawl their site and fill in what you can". The agent confirms the URL (if you didn't give it), reads the whole
+site (pages, logo, photos, reviews, colors, fonts, contact details, social links), logs where every fact came from,
+sends you a short "What I learned" summary, and then asks only about the gaps, one at a time.
+
+See `EXAMPLE-heartwood-intake.md` for what the first few turns look like, in both modes.
 
 ## The six skills
 
 | Skill | What it does in one line |
 |---|---|
-| **intake** | Asks smart, trade-specific questions, crawls the old site, proposes 3 looks. |
+| **intake** | Asks one trade-specific question at a time (or learns from the old site and asks only the gaps), then offers 3 looks. |
 | **design-foundation** | The rules every site follows (spacing, type, contrast, mobile call bar, speed, honesty), plus the "knobs" that make each site look different. |
 | **brand-kit** | Uses the client's real brand exactly if they have one; builds one from the chosen look if they don't. |
-| **site-plan** | Proposes pages, asks about extras and missing info, outlines every page before building. |
+| **site-plan** | Proposes pages, then asks page-specific questions only as each page needs them, and outlines every page before building. |
 | **page-build** | Builds the Astro site, mixing section styles so no two sites look alike, plus one signature interactive piece. |
 | **review** | Screenshots and self-checks every page before you see it. |
 

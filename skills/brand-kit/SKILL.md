@@ -1,6 +1,6 @@
 ---
 name: brand-kit
-description: Turn the client's brand kit (logo files, colors, fonts, guidelines PDF) into the site's tokens faithfully, derive only what's missing with contrast checks, and never override the brand. If there's no kit, generate one from the art direction Jake picked. Runs after intake answers, before site-plan.
+description: 'Turn the client''s brand kit (logo files, colors, fonts, guidelines PDF) into the site''s tokens faithfully, derive only what''s missing with contrast checks, and never override the brand. If there''s no kit, generate one from the art direction Jake picked. Runs after intake answers, before site-plan.'
 ---
 
 # Brand kit

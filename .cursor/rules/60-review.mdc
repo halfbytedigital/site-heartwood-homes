@@ -1,5 +1,5 @@
 ---
-description: Use before showing Jake any site or change: Playwright screenshots 1440/390 of every page, token/spacing/contrast/overflow audits, Lighthouse, copy honesty check, checklist report.
+description: 'Use before showing Jake any site or change: Playwright screenshots 1440/390 of every page, token/spacing/contrast/overflow audits, Lighthouse, copy honesty check, checklist report.'
 globs: sites/**/brief/review/**
 alwaysApply: false
 ---

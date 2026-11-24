@@ -1,5 +1,5 @@
 ---
-description: Bare-metal UI/UX rules, expression knobs and token contract for every Half Byte site. Apply whenever writing or editing markup, CSS, components or pages in sites/.
+description: 'Bare-metal UI/UX rules, expression knobs and token contract for every Half Byte site. Apply whenever writing or editing markup, CSS, components or pages in sites/.'
 globs: sites/**/*.astro,sites/**/*.css,sites/**/*.ts,sites/**/*.tsx,sites/**/*.js,sites/**/*.mjs,sites/**/*.md
 alwaysApply: false
 ---

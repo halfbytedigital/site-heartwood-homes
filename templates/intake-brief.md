@@ -6,16 +6,21 @@
 - Trade(s) matched: <question-bank entries>
 - Location: <city, state>
 
-## Light research (unconfirmed)
-- Possible existing site / profiles: <URLs, "needs Jake's confirmation">
-- Competitors looked at: <name — one line on what works / doesn't>
+- Mode: normal / learn (trigger phrase: "<…>")
 
-## Questions sent
-<paste the message>
+## Unconfirmed candidates (do not use until Jake says yes)
+- Possible existing site / profiles: <URL>, status: unconfirmed / confirmed <date> / rejected
 
-## Answers (Jake, <date>)
-| # | Question | Answer |
-|---|---|---|
+## Conversation log (one question per message)
+| # | Step (A/B/C1/E/page) | Question | Recommended | Answer (or "used recommendation") |
+|---|---|---|---|---|
+
+## Learn mode: what I learned (if used)
+- <≤ 10 bullets, each pointing to sources.md>
+
+## Gaps and low-confidence items (ask one at a time, most build-blocking first)
+| Priority | Item | Why it matters | Current value / confidence |
+|---|---|---|---|
 
 ## Confirmed facts
 | Field (site.ts) | Value | Source |
