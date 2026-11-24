@@ -1,0 +1,162 @@
+---
+description: Use when Jake asks to build a new website for a business ("let's build a website for …"): trade-specific multiple-choice questions, existing-site check and crawl, brand kit question, real facts with nulls, 2-3 named art directions, then stop.
+globs: 
+alwaysApply: false
+---
+<!-- GENERATED from skills/intake/SKILL.md by scripts/sync-rules.sh. Edit the source, not this file. -->
+
+
+# Intake
+
+Goal: get everything needed for a first draft that needs very little tweaking, in **one** well-built message,
+then stop and wait for Jake.
+
+Duda asks generic questions. We ask the questions a good designer who knows that trade would ask.
+
+## Step 1 — Parse the prompt
+
+From Jake's message, pull out what is stated. Write nothing else as fact.
+
+- Business name → also make a slug (`heartwood-homes`).
+- Trade(s) → map to a question-bank entry in `question-bank.md`. A business can match two
+  (e.g. "general contractor/custom home builder" → GC + Custom home builder; "land clearing and stump grinding"
+  → Land clearing + Tree service). If nothing fits, use the generic fallback and adapt it.
+- Location (city, state).
+- Anything else stated: website URL, phone, owner name, brand kit, existing photos.
+
+Create `sites/<slug>/brief/` and start `intake.md` from `templates/intake-brief.md`. Record the prompt verbatim.
+
+## Step 2 — Light research (before asking anything)
+
+Do this quietly so your questions are sharper. Do not present findings as confirmed facts.
+
+1. **Existing website.** If Jake gave a URL, go to Step 3. If not, do a quick web search for
+   `"<business name>" <city>` to see if a site, Google Business Profile, Facebook page or BBB listing shows up.
+   - If you find a likely match, **ask** Jake to confirm it ("Is this them: heartwoodhomes.com?"). Do not crawl
+     a site Jake hasn't confirmed, and do not use anything from it yet.
+   - If you find nothing, still ask (Step 4, question A).
+2. **Local competitors.** Look at 3–5 competitors in the same trade and metro. Note what their sites do well and
+   badly (one line each). This feeds the art directions and the "how to stand out" recommendation. Never copy
+   their copy or photos.
+
+## Step 3 — Crawl the existing site (only once confirmed)
+
+If the client has a site and Jake confirms it (or gave it directly), crawl it. Use Playwright or fetch; stay on
+that domain; respect robots.txt; max ~40 pages.
+
+Pull, and save into `sites/<slug>/brief/assets/` + log in `sources.md`:
+
+| Item | How | Notes |
+|---|---|---|
+| Logo | `<header> img`, `link[rel=icon]`, `og:image`, SVG in header | Prefer SVG; else largest PNG. Note if it's low-res. |
+| Photos | all `img`/`srcset`/CSS backgrounds ≥ 800px wide | Keep originals. Flag stock photos (watermarks, known stock filenames, reverse-image hits). |
+| Copy | headings, service descriptions, about text | Treat as source material. We rewrite, but facts in it are citable. |
+| Services | nav + service pages | List them exactly as named. |
+| Reviews / testimonials | testimonial blocks, embedded Google reviews | Keep name + text + source exactly. Never edit wording. |
+| Colors | computed styles of header, buttons, links; logo palette | Report hex values and where they appear. |
+| Fonts | `font-family` of headings/body, Google Fonts / Typekit links | |
+| Contact | phone (`tel:` links), email, address, hours | |
+| Socials | links to Facebook, Instagram, Google, Houzz, Nextdoor, YouTube, LinkedIn | |
+| Licensing / years / area | footer, about page, schema JSON-LD | Cite the exact page and sentence. |
+| SEO | titles, meta descriptions, current URLs | Needed for redirects so we don't lose rankings. |
+
+Every fact in `sources.md` gets: value, URL, the quoted text, date pulled. If a page says "Over 20 years of
+experience", record exactly that, not "Since 2004".
+
+Also check the Google Business Profile if findable (rating, review count, categories, hours). Mark these
+"seen on <date>, must be confirmed before showing on the site", because they change.
+
+## Step 4 — Build the question message
+
+Rules for questions:
+
+- Numbered, grouped, **multiple choice** with letters. Each group has a **Recommended** pick with a one-line
+  reason. Always offer "Something else: ___".
+- Pick questions from the question bank for the matched trade(s). Don't ask what you already know.
+  Don't ask more than ~15 questions total. Prefer the ones that change the design or the page list.
+- Include alternatives Jake may not have thought of (e.g. for a builder: "Show price ranges" vs "Starting at"
+  vs "No pricing, explain the process instead").
+- Facts you need are asked as a short fill-in list, with "unknown is fine, it stays hidden" stated clearly.
+
+The message always contains these sections, in this order:
+
+**A. Existing website** (always, unless Jake already said)
+"Does Heartwood Homes have a website now?" a) yes: <URL?> → I'll pull logo, photos, copy, reviews and contact info,
+and plan redirects; b) no; c) only a Facebook/Google profile → I'll pull what's public there.
+If you found a likely match, show it here for confirmation.
+
+**B. Brand kit** (always)
+a) full kit (logo files, colors, fonts, guidelines PDF) → send it, I'll follow it exactly;
+b) logo only → I'll build colors/fonts around it; c) nothing → pick an art direction below.
+
+**C. Goals and audience** (trade-specific; from the question bank)
+Main action (call / quote form / book consult / text), who the ideal customer is, job size, service area.
+
+**D. Offer and proof** (trade-specific)
+Services, pricing stance, financing, warranties, certifications, portfolio depth, reviews.
+
+**E. Look and feel**
+Show the 3 art directions (Step 5). Ask: pick one, mix two ("1's fonts with 3's colors"), or describe.
+
+**F. Facts checklist** (fill-in, any can be "unknown")
+Phone, email, address or "service-area business (no public address)", hours, year founded, license numbers
+(TN contractor license, etc.), insurance, owner/team names, service area towns, Google review link,
+photo availability, form destination (Resend email address or GoHighLevel).
+
+**G. Anything else**
+"Any pages you already know you want? Anything you hate on other sites in this trade?"
+
+End with: what happens next (brand kit → page plan for approval → build → review screenshots).
+
+## Step 5 — Propose 2–3 named art directions
+
+Base them on the trade, the audience, the competitors (stand out from them) and anything pulled from an
+existing site or logo. If a full brand kit exists, the directions vary **layout, imagery and motion only**,
+not the brand colors and fonts.
+
+Each direction must differ concretely on every line below. Use real font names (Google Fonts or self-hostable)
+and real hex values (all passing the contrast rules in design-foundation).
+
+```
+### Direction N — "<Evocative name>"
+One sentence: the feeling and who it speaks to.
+- Type: <Display font> (headings) + <Text font> (body). Heading style: e.g. uppercase condensed / serif sentence case.
+- Palette: bg #…, surface #…, text #…, accent #… (+ one support color). Light or dark base.
+- Imagery: photo treatment (e.g. warm full-bleed, duotone, framed with offset border), what to shoot.
+- Layout rhythm: hero archetype + 2–3 signature section archetypes from page-build/archetypes.md; density; corner radius.
+- Motion personality: calm / crisp / bold (see design-foundation knobs).
+- Signature interaction: one idea from page-build/signature-interactions.md, adapted.
+- Best if: <when to pick this>. Watch out: <trade-off>.
+```
+
+Give a **Recommended** direction with a one-line reason. Directions should feel like they came from three
+different designers, not three colorways of the same page.
+
+## Step 6 — STOP
+
+Send the message. Save it into `brief/intake.md` under "Questions sent". Do not create the Astro project,
+tokens, or pages yet.
+
+## Step 7 — Process the answers
+
+When Jake answers:
+
+1. Record every answer in `intake.md`. Jake's short answers ("B, 2, unknown") map back to the letters.
+2. Facts → `templates/site.ts` shape in `sites/<slug>/src/data/site.ts` later; for now list them in
+   `intake.md` → "Confirmed facts" with source "Jake, <date>". Unknowns are listed as `null`.
+3. If Jake confirmed an existing site, run Step 3 now if not done.
+4. If anything critical is still missing (main action, phone, chosen direction), ask once more, briefly.
+   Otherwise move to `skills/brand-kit/SKILL.md`.
+
+## What never happens in intake
+
+- Inventing a fact, a review, a team member, a number, a town list, or a license.
+- Using photos from competitors or random web searches. Stock is allowed only when Jake approves, and it's
+  flagged in `sources.md`.
+- Picking the art direction for Jake.
+
+Reference file (read when this rule applies): @skills/intake/question-bank.md
+
+Reference file (read when this rule applies): @templates/intake-brief.md
+
+Reference file (read when this rule applies): @templates/sources.md

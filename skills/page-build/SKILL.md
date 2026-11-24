@@ -1,0 +1,108 @@
+---
+name: page-build
+description: Build the approved site plan as an Astro project on the site's tokens. Pick section archetypes per page from the library so sites differ, wire facts through the null config, build one trade-specific signature interaction, set up forms (Resend or GoHighLevel) and Cloudflare Pages deploy. Runs only after Jake approves plan.md.
+---
+
+# Page build
+
+Inputs: `brief/intake.md`, `brief/sources.md`, `brief/brand.md`, `brief/plan.md`, `src/styles/tokens.css`.
+Rules: `skills/design-foundation/SKILL.md` applies to every line you write.
+
+## Step 1 — Scaffold (fresh, never a copy of another client)
+
+```
+cd sites
+npm create astro@latest <slug> -- --template minimal --typescript strict --no-git --install
+cd <slug>
+npx astro add sitemap --yes
+npm i -D @playwright/test
+```
+
+- `astro.config.mjs`: `site: 'https://<domain>'`, `output: 'static'`, `trailingSlash: 'always'`, sitemap integration.
+- Fonts: `@fontsource/<family>` (or files in `public/fonts/`), imported once in the base layout.
+- Structure:
+
+```
+src/
+  styles/tokens.css        ← from brand-kit
+  styles/base.css          ← reset, typography, utilities (container, section, visually-hidden), focus, reduced motion
+  data/site.ts             ← facts (null-config, from templates/site.ts)
+  data/services.ts, reviews.ts, projects.ts, nav.ts
+  layouts/Base.astro       ← <head> (SEO, OG, JSON-LD, preloads), header, main, footer, action bar
+  components/              ← Header, MobileNav, Footer, ActionBar, Eyebrow, Button, Photo, CtaStrip, ReviewCards,
+                             GoogleBadge, QuoteForm, SectionHeading, Schema, + archetype components
+  components/signature/    ← the one signature interaction
+  pages/                   ← per plan.md
+public/ _redirects, robots.txt, og-default.jpg, favicon.svg
+functions/api/quote.ts     ← only if Resend
+```
+
+Shared components may be adapted from earlier sites only if restyled through tokens. Never copy page layouts or copy.
+
+## Step 2 — Facts and content
+
+- Copy `templates/site.ts` to `src/data/site.ts`; fill confirmed values from `intake.md`/`sources.md`; everything
+  else stays `null`.
+- Every component that shows a fact checks it: `{site.yearFounded && <span>Since {site.yearFounded}</span>}`.
+  No fallbacks like "XX", "Since 20__", "100+".
+- Copy: write in the chosen voice from intake answers and the crawl. Short sentences, concrete nouns, the customer's
+  words. Headlines say an outcome or a difference, not "Welcome to …". Each service page answers: what it is, who it's
+  for, how it works with them, what it costs or how pricing works (if agreed), proof, next step.
+- Reviews: verbatim from `sources.md`, with source link.
+- Put any copy you wrote that contains a claim on the honesty list in `brief/review/claims.md` (review checks it).
+
+## Step 3 — Build pages from archetypes
+
+- Use the archetypes listed in `plan.md` (IDs from `archetypes.md`). Each archetype is a component with props,
+  styled only through tokens and the knob settings in `brand.md`.
+- Variation rules:
+  - No two adjacent sections share an archetype or the same surface color.
+  - Home uses ≥ 5 different archetypes.
+  - Don't reuse the hero archetype from either of the two most recent sites.
+- Mobile first. Build each section at 390, then widen. Check 768 and 1024 for awkward in-betweens.
+- Images: `<Image>`/`<Picture>` from `src/assets/`, explicit `sizes`, LCP rules from design-foundation A8.
+- Add `data-reveal` only where motion helps (section headings, card groups), not on everything.
+
+## Step 4 — The signature interaction (exactly one per site)
+
+Pick the one approved in intake/plan from `signature-interactions.md` and build it as one island:
+
+- Plain TypeScript in an Astro component `<script>` or a tiny island; no framework unless it needs one; ≤ 30KB gzip.
+- **Default HTML = meaningful final state** (works without JS, prints well, readable by search engines).
+- Native controls first (`<input type="range">`, buttons, radio cards) with labels, keyboard support,
+  `aria-valuetext`, and `aria-live="polite"` for results (announce on meaningful change, not every frame).
+- Touch: only the control area uses `touch-action: none`; the rest of the page scrolls normally.
+- Reduced motion: no intro animation; the control still works.
+- Starts animating only when ≥ 60% visible, plays once.
+- Numbers shown never exceed real claims; unknown math (`null` in its data file) hides the result and shows a CTA.
+- Ends in an action: pass its values into the quote form via query params / hidden fields.
+- Loaded only on the page that uses it.
+
+## Step 5 — Forms
+
+- `QuoteForm.astro` per design-foundation A11, with fields from intake.
+- **Resend:** `functions/api/quote.ts` (Cloudflare Pages Function) validates input, checks Turnstile, sends with
+  Resend to the client's address (`RESEND_API_KEY`, `QUOTE_TO`, `QUOTE_FROM` env vars), returns JSON. From-address on
+  a verified domain.
+- **GoHighLevel:** use the client's GHL form embed (lazy-loaded facade) or post to their inbound webhook from a Pages
+  Function. Ask Jake for the embed/webhook if not in intake.
+- Never commit keys. List required env vars in the site's `README.md`.
+
+## Step 6 — SEO, schema, deploy setup
+
+- Base layout: title/description/canonical/OG per page; JSON-LD from `site.ts` (null fields omitted).
+- `public/_redirects` for old URLs (from plan.md). `robots.txt` with sitemap URL.
+- Cloudflare Pages: build command `npm run build`, output `dist`, Node 20+. Note env vars. Don't connect domains or
+  change DNS. That's Jake's call.
+
+## Step 7 — Self-check, then review
+
+- `npm run build` passes with no warnings you can fix.
+- Run through `skills/review/SKILL.md` before telling Jake anything is ready.
+
+## Stop points during build
+
+Ask Jake (batched, one message) only when blocked:
+- a section needs an asset we don't have (offer: placeholder block with a clear label, skip the section, or stock with OK);
+- a fact is needed for a sentence to make sense (rewrite the sentence instead, if you can);
+- a third-party account is required (Resend domain, GHL webhook, Turnstile key).

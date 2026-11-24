@@ -1,0 +1,99 @@
+/* tokens.css — the token contract (see skills/design-foundation/SKILL.md, Section C).
+   Copy to sites/<slug>/src/styles/tokens.css and replace every value marked CHANGE with the brand-kit output.
+   Keep every name. Components read only these. */
+:root {
+  /* Color: CHANGE all, then record contrast in brief/brand.md */
+  --color-bg: #ffffff;
+  --color-surface: #f5f4f0;
+  --color-surface-2: #ebe9e2;
+  --color-text: #1b1c1e;
+  --color-muted: #5b5e63;            /* ≥ 4.5:1 on bg and surface */
+  --color-line: #dcd9d1;             /* dividers; input borders use --color-line-strong */
+  --color-line-strong: #8a8d92;      /* ≥ 3:1 */
+  --color-primary: #c2410c;
+  --color-primary-strong: #9a3412;   /* button fill if on-primary fails on primary */
+  --color-on-primary: #ffffff;       /* ≥ 4.5:1 on the button fill */
+  --color-primary-tint: #fdf1ea;
+  --color-accent-2: #1f4d3a;         /* optional support color */
+  --color-focus: #1d4ed8;            /* ≥ 3:1 vs bg and surface */
+  --color-success: #15803d;
+  --color-warning: #b45309;
+  --color-danger: #b91c1c;
+  --scrim: linear-gradient(180deg, rgb(0 0 0 / 0) 30%, rgb(0 0 0 / .65) 100%);
+
+  /* Type: CHANGE families and weights */
+  --font-display: "Display Family", ui-serif, Georgia, serif;
+  --font-body: "Text Family", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --weight-body: 400;
+  --weight-bold: 650;
+  --weight-display: 700;
+
+  /* Fluid scale: 390px → 1440px. Default = mobile 1.2 / desktop 1.333. Regenerate for calm (1.25) or bold (1.5). */
+  --step--1: clamp(0.8125rem, 0.789rem + 0.095vw, 0.875rem);
+  --step-0:  clamp(1rem, 0.954rem + 0.190vw, 1.125rem);
+  --step-1:  clamp(1.1875rem, 1.071rem + 0.476vw, 1.5rem);
+  --step-2:  clamp(1.4375rem, 1.229rem + 0.857vw, 2rem);
+  --step-3:  clamp(1.75rem, 1.402rem + 1.429vw, 2.6875rem);
+  --step-4:  clamp(2.0625rem, 1.505rem + 2.286vw, 3.5625rem);
+  --step-5:  clamp(2.5rem, 1.664rem + 3.429vw, 4.75rem);
+  --step-display: var(--step-5);     /* hero H1; bold sites may go larger */
+  --leading-tight: 1.0;
+  --leading-snug: 1.2;
+  --leading-body: 1.6;
+  --tracking-eyebrow: 0.12em;
+  --tracking-display: -0.01em;
+  --measure: 65ch;
+
+  /* Space (8pt) */
+  --space-3xs: 4px;  --space-2xs: 8px;  --space-xs: 12px; --space-s: 16px;
+  --space-m: 24px;   --space-l: 32px;   --space-xl: 40px; --space-2xl: 48px;
+  --space-3xl: 64px; --space-4xl: 80px; --space-5xl: 96px; --space-6xl: 128px; --space-7xl: 160px;
+
+  /* Layout */
+  --container: 1152px;
+  --container-narrow: 720px;
+  --container-wide: 1344px;
+  --gutter: 16px;
+  --section-pad: 64px;
+  --section-pad-tight: 48px;
+  --section-pad-loose: 80px;
+  --header-h: 64px;
+  --actionbar-h: 64px;
+
+  /* Shape: CHANGE per radius knob */
+  --radius-s: 4px;
+  --radius-m: 8px;
+  --radius-l: 16px;
+  --radius-pill: 999px;
+  --border-w: 1px;
+  --shadow-1: 0 1px 2px rgb(0 0 0 / .06), 0 2px 8px rgb(0 0 0 / .06);
+  --shadow-2: 0 8px 24px rgb(0 0 0 / .10);
+
+  /* Controls */
+  --btn-h: 52px;
+  --btn-pad-x: 32px;
+  --input-h: 48px;
+
+  /* Motion: CHANGE per motion knob (calm / crisp / bold) */
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 320ms;
+  --dur-reveal: 600ms;
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --ease-in-out: cubic-bezier(.65, 0, .35, 1);
+}
+
+@media (min-width: 640px)  { :root { --gutter: 24px; } }
+@media (min-width: 1024px) {
+  :root {
+    --gutter: 48px;
+    --section-pad: 96px;
+    --section-pad-tight: 64px;
+    --section-pad-loose: 128px;
+    --header-h: 80px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-fast: 0ms; --dur-base: 0ms; --dur-slow: 0ms; --dur-reveal: 0ms; }
+}

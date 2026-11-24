@@ -1,0 +1,324 @@
+---
+name: design-foundation
+description: The "bare metal" UI/UX rules every Half Byte site follows (spacing, grid, type, contrast, touch, focus, motion, images, performance, mobile action bar, forms, nav, footer, SEO, accessibility, honesty), the expression knobs that make each site look different, and the CSS token contract. Read before writing any markup or CSS.
+---
+
+# Design foundation
+
+Two layers:
+
+1. **Invariants.** Rules every site follows. They are why our sites look professional and "pop" right away.
+   Breaking one needs Jake's OK, written down in `brief/brand.md`.
+2. **Expression knobs.** Choices each site makes differently. They are why our sites don't all look the same.
+
+Every value in CSS comes from a token (Section C). No raw hex, px font sizes or magic spacing in components.
+
+---
+
+## A. Invariants
+
+### A1. Spacing: 8pt system
+
+- Scale (px): `4, 8, 12, 16, 24, 32, 40, 48, 64, 80, 96, 128, 160` → `--space-3xs … --space-4xl` (see tokens).
+- All margins, paddings and gaps come from the scale. 4 and 12 are only for tight UI (icon gaps, chips).
+- Spacing shows relationships: space inside a group < space between groups < space between sections.
+  Typical: eyebrow → heading 12–16, heading → lede 16–24, lede → content 40–48, card padding 24–32,
+  grid gap 24 (mobile 16) to 64 for two-column splits.
+- Vertical rhythm comes from the scale, not from line-height hacks or `<br>`.
+
+### A2. Layout grid and containers
+
+- Containers (max-width, centred, with side gutters):
+  - `--container` = **1152px** default content width (316 default).
+  - `--container-narrow` = **720px** for text-heavy pages, forms, legal.
+  - `--container-wide` = **1344px** for galleries and full-width media.
+  - Full-bleed is allowed for hero, image bands and section backgrounds; text inside still aligns to `--container`.
+- Gutters: 16px under 640, 24px 640–1023, 48px at 1024+ (`--gutter`).
+- 12-column mental grid on desktop; common splits 6/6, 7/5, 5/7, 8/4. Collapse to 1 column under 768.
+- Breakpoints: 640, 768, 1024, 1280. Design and verify at **390** and **1440**; check 320, 768 and 1024 too.
+- Nothing ever causes horizontal scroll at any width ≥ 320px.
+
+### A3. Section rhythm
+
+- Section padding: **96px desktop / 64px mobile** default (`--section-pad`). Variants: tight 64/48, loose 128/80.
+  CTA strips: 64/48. Closing CTA may go loose.
+- Alternate section surfaces deliberately (bg → surface → bg) or use dividers. Never two identical-looking sections
+  in a row with different content.
+- Each section has one job and one primary action at most.
+- Order on a home page follows the visitor's questions: What do you do? → Can I trust you? → Show me →
+  What would my job take? → What do others say? → How do I start?
+
+### A4. Typography
+
+- Max **2 families** (display + text), self-hosted woff2, `font-display: swap`, preload the display face.
+  A third face only for a logo-matched accent, and only with Jake's OK.
+- Body: 16px mobile, 17–18px desktop. Line height: body 1.55–1.7, headings 0.95–1.2 (tighter as size grows).
+- **Fluid type scale.** Mobile ratio 1.2 at 390px; desktop ratio per the "type contrast" knob at 1440px.
+  Formula for each step: `clamp(MIN, calc(MIN - SLOPE*390px) + SLOPE*100vw, MAX)` where
+  `SLOPE = (MAX - MIN) / 1050`. Default (desktop ratio 1.333):
+
+  | Token | 390px | 1440px | CSS |
+  |---|---|---|---|
+  | `--step--1` | 13 | 14 | `clamp(0.8125rem, 0.789rem + 0.095vw, 0.875rem)` |
+  | `--step-0` | 16 | 18 | `clamp(1rem, 0.954rem + 0.190vw, 1.125rem)` |
+  | `--step-1` | 19 | 24 | `clamp(1.1875rem, 1.071rem + 0.476vw, 1.5rem)` |
+  | `--step-2` | 23 | 32 | `clamp(1.4375rem, 1.229rem + 0.857vw, 2rem)` |
+  | `--step-3` | 28 | 43 | `clamp(1.75rem, 1.402rem + 1.429vw, 2.6875rem)` |
+  | `--step-4` | 33 | 57 | `clamp(2.0625rem, 1.505rem + 2.286vw, 3.5625rem)` |
+  | `--step-5` | 40 | 76 | `clamp(2.5rem, 1.664rem + 3.429vw, 4.75rem)` |
+
+  Calm sites use desktop ratio 1.25 (step-5 ≈ 55px). Bold sites use 1.5 (step-5 ≈ 137px; 316's hero H1 was 144px).
+  The hero H1 may use a separate `--step-display` that is larger than step-5.
+- Map: H1 = step-5 (or display), H2 = step-4, H3 = step-2, H4/card title = step-1, body = step-0, small/meta = step--1.
+  Readouts or stats must never be bigger than the section heading above them.
+- **Line length:** body 45–75 characters (`max-width: 65ch`), lede ≤ 55ch, headings ≤ ~20ch with `text-wrap: balance`;
+  paragraphs `text-wrap: pretty`.
+- One H1 per page. Heading levels never skip. Eyebrows are not headings (use `<p>`).
+- Uppercase only for eyebrows, short labels and (if the knob says so) display headings, with letter-spacing
+  0.04–0.16em. Never uppercase body copy.
+- No widows on hero headings at 390 and 1440 (check screenshots).
+
+### A5. Color and contrast (WCAG 2.2 AA)
+
+- Text ≥ **4.5:1** against its background; large text (≥ 24px, or ≥ 18.66px bold) ≥ **3:1**.
+- UI components, icons that carry meaning, input borders and focus rings ≥ **3:1** against adjacent colors.
+- Text on the accent (button labels) must hit 4.5:1. If neither white nor near-black passes on the brand accent,
+  use a darker `--color-primary-strong` for the button fill and keep the brand accent for decoration.
+- Text over photos: guarantee contrast with a scrim/gradient token (`--scrim`), checked on the actual photo at
+  both breakpoints.
+- **One accent** carries action (buttons, links, key highlights). A support color is allowed for status or a
+  secondary surface, never competing with the primary CTA.
+- Never use color alone to signal state (add text or an icon).
+- Status colors: `--color-success`, `--color-warning`, `--color-danger`, each passing 3:1 on its background.
+
+### A6. Touch targets and interactive states
+
+- Min touch target **44×44px**. Standard buttons are **52px tall** (316 default), inputs 48px+, min 8px between targets.
+- Every interactive element has: default, hover (pointer devices only, `@media (hover:hover)`), `:focus-visible`,
+  active/pressed, disabled (where it applies), and loading (for submit buttons).
+- Focus: `outline: 2px solid var(--color-focus); outline-offset: 3px;` ≥ 3:1 contrast. Never `outline: none`
+  without a visible replacement.
+- Buttons: primary (filled accent), secondary (outline or ghost), text link. Max one primary button per view.
+  Labels are verbs that say what happens: "Get a free quote", "Call (423) …". No "Submit", no "Click here".
+- Links in body text are underlined (offset 0.15em, thickness 1–2px). Nav links may drop the underline but need
+  a clear current state (`aria-current="page"`).
+- Cursor pointer only on actual links and buttons.
+
+### A7. Motion
+
+- Durations: `--dur-fast` 120ms (hover/press), `--dur-base` 200ms (UI state), `--dur-slow` 320ms (panels, menus),
+  `--dur-reveal` 600ms (scroll reveals). Signature interactions may run up to 1.4s once.
+- Easing: `--ease-out: cubic-bezier(.2,.7,.2,1)` for entering; `--ease-in-out: cubic-bezier(.65,0,.35,1)` for moving;
+  never linear for UI.
+- Animate only `transform` and `opacity` (and `clip-path` for wipes). No layout-shifting animation.
+- Scroll reveals: content is visible without JS. Gate with `html.js [data-reveal]`; IntersectionObserver adds `.is-in`;
+  translate ≤ 16–24px; run once; stagger ≤ 80ms per item, max 6 items.
+- `@media (prefers-reduced-motion: reduce)`: no reveals, no parallax, no auto-playing motion; final states shown
+  immediately. Interactions still work.
+- No autoplaying carousels. Background video only if muted, short, with a poster, paused under reduced motion,
+  and under the performance budget.
+
+### A8. Images and media
+
+- Use Astro `<Image>`/`<Picture>` (AVIF + WebP, responsive `widths`, `sizes`). Always width/height or aspect-ratio
+  so nothing shifts.
+- **LCP image** (usually the hero): a real `<img>`, `loading="eager"`, `fetchpriority="high"`, not a CSS background,
+  not hidden behind an animation. Everything else `loading="lazy" decoding="async"`.
+- Fixed aspect ratios per role (set by the photo knob): hero 16:9 or 3:2 desktop and 4:5 or 1:1 mobile (use
+  `<Picture>` art direction when the crop changes), cards 4:3 or 3:2, portraits 4:5, galleries one consistent ratio.
+- `object-fit: cover` with deliberate `object-position` per image so subjects aren't cropped out.
+- Alt text describes what's shown and why it matters ("Finished cedar porch on a hillside home in Signal Mountain"
+  only if the location is confirmed). Decorative images: `alt=""`.
+- Real photos over stock. Stock only with Jake's OK, logged in `sources.md`, never presented as the client's work.
+- Logos: SVG preferred; never stretch; clear space ≥ the logo's x-height.
+
+### A9. Performance budgets (mobile, Lighthouse "Mobile" profile)
+
+| Metric | Budget |
+|---|---|
+| LCP | ≤ 2.5s (target 2.0s) |
+| CLS | ≤ 0.05 |
+| TBT / INP | ≤ 150ms / ≤ 200ms |
+| JS per page | ≤ 50KB gzip (signature interaction may add ≤ 30KB, loaded only on its page) |
+| CSS | ≤ 40KB gzip |
+| Fonts | ≤ 2 families, ≤ 4 woff2 files, subset to Latin |
+| Hero image | ≤ 200KB mobile, ≤ 350KB desktop |
+| Page weight | ≤ 1.2MB mobile first load |
+| Lighthouse | Performance ≥ 90, Accessibility ≥ 95, Best Practices ≥ 95, SEO ≥ 95 |
+
+No jQuery, no carousel libraries, no animation libraries unless Jake approves. Third-party embeds (maps, review
+widgets, chat) load on interaction or below the fold with a facade.
+
+### A10. Mobile action bar
+
+- Under 768px, a fixed bottom bar with 2–3 actions from intake (e.g. **Call · Text · Quote**). Icons + labels.
+- Height 64px + `env(safe-area-inset-bottom)`; body gets matching `padding-bottom` so nothing hides behind it.
+- Uses `tel:` and `sms:` links with the confirmed number; if the phone is `null`, the bar shows only the
+  quote action.
+- Hide it while the on-page quote form is in view and while the mobile menu is open. Never stack it with a chat
+  bubble (move the bubble up or drop it).
+
+### A11. Forms
+
+- Visible labels (never placeholder-only). Correct `type`, `autocomplete`, `inputmode`. Inputs ≥ 16px text (iOS zoom).
+- Short: 4–6 fields by default (name, phone, email, service, message, optional photos). Trade-specific fields
+  (acreage, budget, timeline) only if intake chose them.
+- Inline validation on blur, error text tied with `aria-describedby`, error summary on submit, focus moves to the
+  first error. Don't clear fields on error.
+- Spam: honeypot + Cloudflare Turnstile. No CAPTCHA puzzles.
+- Submit button shows loading, then a real success state that says what happens next and when.
+- Delivery: Resend via a Cloudflare Pages Function (`functions/api/quote.ts`, key in env vars), or GoHighLevel
+  (form embed or webhook), per intake. No API keys in client code.
+- Query params can pre-fill fields (e.g. from an estimator) through hidden inputs.
+
+### A12. Navigation
+
+- Header 64–80px, sticky or reveal-on-scroll-up. Logo left (links home), ≤ 6 primary items, primary CTA button right,
+  phone number visible at ≥ 1024px when calls matter.
+- Dropdowns only when needed (e.g. Services); open on click and on hover-with-delay, work with the keyboard.
+- Mobile: menu button with `aria-expanded`/`aria-controls`, full-height sheet, focus trapped, Esc and backdrop close it,
+  body scroll locked, large tap rows (≥ 48px), CTA and phone at the bottom.
+- Skip link "Skip to content" as the first focusable element.
+
+### A13. Footer
+
+- NAP (name, address or "Serving <area>", phone) identical to the schema and Google profile.
+- Hours, service area, license/insured line (only confirmed values), socials, key page links, privacy link,
+  © year (auto), "Website by Half Byte Digital".
+- Repeat a compact CTA above or inside the footer.
+
+### A14. SEO and schema
+
+- Unique `<title>` ≤ 60 chars ("Custom Homes in Chattanooga, TN | Brand"); meta description ≤ 155 chars; canonical;
+  Open Graph + Twitter image 1200×630 per page or site default.
+- `@astrojs/sitemap`, `robots.txt`, clean URLs (`/services/roof-repair/`), breadcrumbs on deep pages (+ BreadcrumbList).
+- JSON-LD `LocalBusiness`, using the most specific subtype (e.g. `GeneralContractor`, `RoofingContractor`,
+  `HVACBusiness`, `Plumber`, `Electrician`, `HousePainter`, otherwise `HomeAndConstructionBusiness` or `LocalBusiness`):
+  name, url, logo, image, telephone, address or `areaServed`, `openingHoursSpecification`, `sameAs` socials.
+  Fields that are `null` in `site.ts` are omitted, never guessed. No `aggregateRating` unless Jake asks and the
+  reviews are shown on the site itself.
+- `Service` schema on service pages; `FAQPage` only for real FAQs on the page.
+- Existing site: map every old URL to a new one in `public/_redirects` (Cloudflare Pages format, 301).
+- Area pages must have real, different content (projects there, specifics). No doorway pages with swapped town names.
+
+### A15. Accessibility
+
+- Landmarks: `header`, `nav`, `main`, `footer`; `lang="en"`; one `main`.
+- Everything works with keyboard only, in a sensible order. Custom controls use native elements first
+  (`<input type="range">`, `<button>`, `<details>`), ARIA only when needed.
+- Dynamic results announce with `aria-live="polite"` (debounced).
+- Works at 200% zoom and 320px width without loss. No text baked into images.
+- Video: captions; no audio autoplay.
+
+### A16. Scrolling and controls
+
+- **No visible scrollbars inside components.** Horizontal rails/galleries hide their scrollbar
+  (`scrollbar-width: none; &::-webkit-scrollbar { display: none }`), use scroll-snap, and stay operable with
+  buttons, keyboard and swipe. The page itself never scrolls sideways. (Don't hide the browser's main scrollbar.)
+- **One selector per gallery.** A gallery or slider gets exactly one way to navigate: arrows, *or* thumbnails,
+  *or* filter chips, *or* dots. Never two competing controls on the same gallery.
+- No scroll-jacking. Smooth scrolling only for same-page anchors, off under reduced motion.
+
+### A17. Honesty (hard rule)
+
+- No invented facts, stats, years, counts, ratings, awards, licenses, team members, testimonials, prices,
+  guarantees or service areas.
+- Every claim on the site traces to `brief/sources.md` (URL or "Jake, date") or comes from `src/data/site.ts`
+  where unconfirmed values are `null` and the component renders nothing (no "XX+", no lorem ipsum, no "Coming soon").
+- Copy may describe the trade in general ("Steep lots need different equipment") but must not imply specifics
+  about this business that aren't confirmed.
+- Reviews are quoted verbatim with name/initials and source as given.
+
+---
+
+## B. Expression knobs (set per site in `brief/brand.md`)
+
+Pick a value for every knob. **Variation guard:** a new site must differ from each of the two most recent sites
+in `sites/*/brief/brand.md` on at least **4** knobs (font pairing and hero archetype must be two of them,
+unless a client brand kit forces fonts).
+
+| Knob | Options (examples, not limits) |
+|---|---|
+| Font pairing | Condensed grotesk + neutral sans (rugged); serif display + humanist sans (editorial); geometric sans only (modern); slab + sans (workmanlike); rounded sans (friendly) |
+| Heading case/weight | uppercase heavy / sentence-case light / sentence-case bold |
+| Type contrast | calm 1.25 / default 1.333 / bold 1.5 + display step |
+| Base | light / dark / mixed (dark hero + light body) |
+| Accent | one hue from brand or direction; plus optional support color |
+| Corner radius | 0 (sharp) / 4–8 (crisp) / 12–20 (soft) / pill buttons only |
+| Density | airy (loose sections, big media) / balanced / compact (service-heavy, info-dense) |
+| Photo treatment | full-bleed natural / warm grade / duotone / framed with offset border / masked shapes / B&W with accent overlay |
+| Texture | none / subtle grain / topo or blueprint lines / paper / diagonal hatch (always ≤ 6% opacity, no contrast loss) |
+| Section styles | dividers vs. alternating surfaces vs. color blocks; numbered sections; oversized eyebrows |
+| Motion personality | calm (fades only, 600ms) / crisp (short slides, 320ms) / bold (wipes, counters, one hero moment) |
+| Iconography | none / line icons 1.5px / solid / custom trade glyphs |
+| Layout archetypes | which hero, services, proof, gallery and CTA archetypes (see `page-build/archetypes.md`) |
+| Signature interaction | one per site, tied to the trade (see `page-build/signature-interactions.md`) |
+| Voice | plain-spoken / warm and personal / polished and premium / technical and exact |
+
+---
+
+## C. Token contract
+
+Every site defines all of these in `src/styles/tokens.css` (start from `templates/tokens.css`). Components only read
+tokens. Adding site-specific tokens is fine; removing or renaming these is not.
+
+```
+/* Color */
+--color-bg  --color-surface  --color-surface-2  --color-text  --color-muted  --color-line
+--color-primary  --color-primary-strong  --color-on-primary  --color-primary-tint
+--color-accent-2 (optional support)  --color-focus
+--color-success  --color-warning  --color-danger
+--scrim (gradient for text over photos)
+
+/* Type */
+--font-display  --font-body  --font-mono (optional)
+--weight-body  --weight-bold  --weight-display
+--step--1 --step-0 --step-1 --step-2 --step-3 --step-4 --step-5 --step-display
+--leading-tight  --leading-snug  --leading-body
+--tracking-eyebrow  --tracking-display
+--measure (65ch)
+
+/* Space and layout */
+--space-3xs(4) --space-2xs(8) --space-xs(12) --space-s(16) --space-m(24) --space-l(32)
+--space-xl(40) --space-2xl(48) --space-3xl(64) --space-4xl(80) --space-5xl(96) --space-6xl(128) --space-7xl(160)
+--container(1152px) --container-narrow(720px) --container-wide(1344px) --gutter
+--section-pad --section-pad-tight --section-pad-loose
+--header-h  --actionbar-h
+
+/* Shape and depth */
+--radius-s  --radius-m  --radius-l  --radius-pill  --border-w
+--shadow-1  --shadow-2
+
+/* Controls */
+--btn-h(52px)  --btn-pad-x(32px)  --input-h(48px)
+
+/* Motion */
+--dur-fast --dur-base --dur-slow --dur-reveal --ease-out --ease-in-out
+```
+
+---
+
+## D. Defaults learned on 316 Land Clearing (starting points, not mandates)
+
+Use these unless the art direction gives a reason to change them, and write the reason in `brand.md`.
+
+- **Container 1152**, gutters 16/48, section padding **96 / 64**, CTA strip 64.
+- **Eyebrow component** (`<Eyebrow>`): small uppercase label in the accent, letter-spaced, sits 12–16px above
+  the heading. Use it on most sections but not every one (it turns into noise). It is a `<p>`, not a heading.
+- **`.photo` treatment**: one shared wrapper for all content photos (same radius, aspect ratio per role,
+  `object-fit: cover`, optional grade/overlay from the photo knob) so photos look like one set.
+- **`.cta-strip` (+ `.is-card`)**: reusable call-to-action band; the card variant sits inside the container with a
+  surface fill. Don't stack more than one CTA strip in a row, and keep at least one content section between
+  CTA strips and the closing CTA.
+- **52px buttons**, 32px horizontal padding, transition 150ms.
+- **`data-reveal`**: opt-in scroll reveal that adds `.is-in`; visible without JS; off for reduced motion.
+- **`<ReviewCards>` + `<GoogleBadge>`**: real reviews only, verbatim, with a link to the Google profile. The badge
+  shows rating/count only from `site.ts`; null → badge shows "Read our reviews on Google" without numbers.
+- **Null config pattern**: facts live in `src/data/site.ts`; `null` hides the element (see `templates/site.ts`).
+  Same for estimator math (`src/data/estimator.ts` with null values → output hidden, CTA shown instead).
+- Signature interaction lessons (slope dial): the default HTML state is the final state; animate only when the
+  element itself is ≥ 60% visible; never show a number past the real claim, even during overshoot; let the user
+  drive it; on touch, only the control area captures the gesture so vertical swipes still scroll the page;
+  messages change by range, not every step, with `aria-live="polite"`.
+- Estimator placement lesson: put tools after the proof that makes people want them (Services → Recent work →
+  Estimator → Reviews), within the top half of the page on mobile.

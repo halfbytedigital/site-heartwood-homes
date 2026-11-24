@@ -1,0 +1,116 @@
+---
+description: Use before showing Jake any site or change: Playwright screenshots 1440/390 of every page, token/spacing/contrast/overflow audits, Lighthouse, copy honesty check, checklist report.
+globs: sites/**/brief/review/**
+alwaysApply: false
+---
+<!-- GENERATED from skills/review/SKILL.md by scripts/sync-rules.sh. Edit the source, not this file. -->
+
+
+# Review
+
+Output: `sites/<slug>/brief/review/` with screenshots, `audit.md`/`audit.json` (from the script), `lighthouse/`,
+`claims.md` and `review.md` (the checklist you show Jake).
+
+Never tell Jake a site, page or change is ready without running this. Small changes: re-run for affected pages
+(`--pages /,/about/`).
+
+## Step 1 — Build and serve
+
+```
+cd sites/<slug>
+npm run build && npx astro preview --port 4321 &     # review the production build, not the dev server
+```
+
+If a page 404s or the build warns, fix first.
+
+## Step 2 — Automated audit + screenshots
+
+```
+npx playwright install chromium                       # first time only
+node ../../scripts/review.mjs --base http://localhost:4321 --out brief/review
+```
+
+The script finds every page (sitemap + link crawl) and for each one, at **1440×900** and **390×844**
+(and 390 with reduced motion), saves full-page and above-the-fold screenshots and checks:
+horizontal overflow, visible inner scrollbars, font sizes off the token scale, section padding off tokens, adjacent
+sections with the same background, text contrast (solid backgrounds; text over images is flagged for a manual look),
+touch targets under 44px, image issues (alt, dimensions, upscaled, not AVIF/WebP, eager first image),
+heading order and single H1, placeholder text, console/network errors, missing tokens from the contract,
+title/description/canonical/OG/lang/skip link/schema, claim-like sentences, and `[data-reveal]` stuck hidden under
+reduced motion.
+
+## Step 3 — Lighthouse (mobile)
+
+```
+npx lighthouse http://localhost:4321/ --preset=perf --form-factor=mobile --quiet --chrome-flags="--headless=new" \
+  --output=json --output=html --output-path=brief/review/lighthouse/home
+```
+
+Run for Home + one service page + Contact (at minimum). Compare with the budgets in design-foundation A9
+(Perf ≥ 90, A11y ≥ 95, BP ≥ 95, SEO ≥ 95, LCP ≤ 2.5s, CLS ≤ 0.05, TBT ≤ 150ms). Also check total JS/CSS/font
+bytes from `dist/` (`find dist -name '*.js' | xargs gzip -c | wc -c`).
+
+## Step 4 — Look at every screenshot (manual pass)
+
+Open the images. The script can't judge taste, so check:
+
+- **First impression at the fold** (desktop and mobile): clear H1, one obvious primary action, strong image, no clutter.
+- Alignment to the container edges; consistent gutters; nothing hugging the screen edge on mobile.
+- Section rhythm: generous, consistent spacing; no cramped or empty bands; surfaces alternate sensibly.
+- Type: no widows/orphans in headings, no overly long lines, hierarchy obvious at a glance, readouts not bigger than H2s.
+- Photos look like one set (`.photo` treatment), subjects not cropped out, no stretched logos, no blurry images.
+- Mobile action bar visible and not covering content or the footer; hides over the form and open menu.
+- Mobile menu opens/closes; keyboard Tab order through the header makes sense; focus ring visible (take a
+  screenshot with `page.keyboard.press('Tab')` a few times if unsure).
+- Text over images is readable (scrim) on both crops.
+- **Variation check:** compare Home with the two most recent sites' Home screenshots (`sites/*/brief/review/home-desktop.png`).
+  If it looks like a sibling (same hero layout + same type feel), fix before showing Jake.
+- Signature interaction: works with mouse, touch (390 emulation, vertical swipe still scrolls), keyboard, screen reader
+  text (`aria-valuetext`, live region), reduced motion; numbers never exceed real claims; CTA carries values to the form.
+- Forms: required/invalid states, success state, submission reaches the endpoint (use a test address / GHL test
+  contact; don't spam the client).
+
+## Step 5 — Copy honesty check
+
+1. Collect every claim: the script's "claims to verify" + anything in `brief/review/claims.md` + manual read of each page
+   (numbers, years, ratings, licenses, insured/bonded, certifications, awards, warranties, guarantees, prices,
+   "best/#1/top-rated", areas served, team names, review quotes).
+2. For each one, find the source in `sources.md` (URL + quote) or a confirmed value in `src/data/site.ts`.
+3. Any claim without a source → remove or rewrite it, or move the value into `site.ts` as `null`.
+4. Reviews: compare to source text character by character.
+5. Write `claims.md`: claim | page | source | status (✔ sourced / ✘ removed / ⚠ needs client confirmation).
+
+## Step 6 — Fix and re-run
+
+Fix everything you can (overflow, contrast, spacing, sizes, alt text, schema, claims). Re-run Steps 2–5 until the
+automated checks pass or each remaining item has a reason.
+
+## Step 7 — Report to Jake (`review.md`)
+
+Keep it short. Lead with the result, then show the evidence:
+
+```
+## <Site> review — <date>
+Result: Ready for your look / Needs your input on 2 things
+
+Screenshots: brief/review/home-desktop.png, home-mobile.png, … (attach the 4–6 most useful)
+
+Checklist
+- [x] Every page screenshotted at 1440 and 390 (N pages)
+- [x] No horizontal overflow or inner scrollbars
+- [x] Type and spacing on tokens
+- [x] Contrast AA (manual check on hero text over photos)
+- [x] Touch targets ≥ 44px; mobile action bar OK
+- [x] Reduced motion: everything visible, interactions work
+- [x] Lighthouse mobile: Perf 96 / A11y 100 / BP 100 / SEO 100; LCP 1.8s; CLS 0.01
+- [x] SEO: titles, descriptions, canonical, OG, sitemap, LocalBusiness schema (null fields omitted)
+- [x] Honesty: 14 claims checked, all sourced; 3 facts hidden until confirmed (list)
+- [ ] Needs Jake: <e.g. client photos for Process page; license number>
+
+Facts hidden until confirmed: year founded, license #, review count…
+What I fixed during review: …
+```
+
+Then stop and wait for Jake's feedback.
+
+Reference file (read when this rule applies): @scripts/review.mjs
