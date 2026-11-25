@@ -1,0 +1,13 @@
+{
+  "routes": [
+    {
+      "routePath": "/api/quote",
+      "mountPath": "/api",
+      "method": "POST",
+      "module": [
+        "api/quote.ts:onRequestPost"
+      ]
+    }
+  ],
+  "baseURL": "/"
+}

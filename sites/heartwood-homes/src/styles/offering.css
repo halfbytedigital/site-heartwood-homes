@@ -10,6 +10,7 @@
 .path-choices {
   display: grid;
   gap: var(--space-xs);
+  margin-top: var(--space-s);
 }
 .path-choices button {
   min-height: 52px;
@@ -150,7 +151,11 @@ html.js .trade-card[aria-pressed="true"] .trade-why {
 
 .ask-split { align-items: start; }
 
-.process-open { padding-bottom: var(--section-pad); }
+.process-open {
+  display: grid;
+  gap: var(--space-s);
+  padding-bottom: var(--section-pad);
+}
 .process-track { display: grid; gap: var(--space-m); }
 .process-frame {
   position: relative;
