@@ -5,6 +5,7 @@ import { site } from '../data/site';
 import { getProject } from '../data/projects';
 import CloseBand from '../components/CloseBand.astro';
 import AskProof from '../components/AskProof.astro';
+import crew from '../assets/projects/east-brainard-tornado-rebuild/06-Tornado-1.jpg';
 
 const photo = getProject('spring-city-lake-house');
 const founders = site.team?.map((person) => person.name).join(' and ');
@@ -22,7 +23,7 @@ const founders = site.team?.map((person) => person.name).join(' and ');
             <p>{founders} founded {site.legalName ?? site.name} in {site.yearFounded}. The company builds homes with a high value on quality work and integrity.</p>
           )}
           <p>We are a Chattanooga-based, family-owned company built on Christian values.</p>
-          <p>Our focus is building relationships, and serving a family through the home building process with honesty, clear communication, and quality craftsmanship.</p>
+          <p>Our focus is building relationships, and serving a family through the home building process with honesty and clear communication.</p>
           <p>Daniel and his crew would love to work with you and your family on the home construction you need.</p>
           {founders && <p class="sign">{founders}</p>}
         </div>
@@ -34,6 +35,14 @@ const founders = site.team?.map((person) => person.name).join(' and ');
           {photo.credit && <figcaption>{photo.credit}</figcaption>}
         </figure>
       )}
+    </div>
+  </section>
+  <section class="section">
+    <div class="container stack">
+      <figure class="shot" style="max-width:756px">
+        <Image src={crew} alt="The crew on the East Brainard tornado rebuild." widths={[756]} sizes="(min-width: 800px) 756px, 100vw" />
+        <figcaption>The crew on the East Brainard tornado rebuild.</figcaption>
+      </figure>
     </div>
   </section>
   <CloseBand />

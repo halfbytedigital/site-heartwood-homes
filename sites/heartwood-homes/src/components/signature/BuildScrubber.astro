@@ -2,43 +2,59 @@
 import { Image } from 'astro:assets';
 import { getProject } from '../../data/projects';
 import AskProof from '../AskProof.astro';
+import lot from '../../assets/projects/flat-top-mountain/03-DJI_0960.jpg';
+import foundation from '../../assets/projects/flat-top-mountain/04-IMG_0263.jpg';
+import frame from '../../assets/projects/flat-top-mountain/08-DJI_0080-HDR.jpg';
+import finish from '../../assets/projects/flat-top-mountain/11-DJI_0205-HDR.jpg';
 
-const house = getProject('ten-mile-lake-house');
-if (!house) throw new Error('Ten Mile Lake House is missing from projects.');
+const house = getProject('flat-top-mountain');
+if (!house) throw new Error('Flat Top Mountain is missing from projects.');
 
 const chapters = [
   {
-    id: 'cleared-lot',
-    label: 'Cleared lot',
-    text: 'The story starts on the land. Clearing, excavation, and the pad the house will sit on. There isn’t a photo of this lot at that stage, so this chapter stays in words.',
+    id: 'lot',
+    label: 'The lot',
+    text: 'The lot opened up, with the foundation lines laid out on the dirt.',
+    image: lot,
+    alt: 'Flat Top Mountain, the lot opened up with foundation lines on the dirt.',
   },
   {
     id: 'foundation',
     label: 'Foundation',
-    text: 'Footings and the foundation, before any frame goes up. No photo of this house at that stage is on file.',
+    text: 'Footings and the concrete pour, before the frame.',
+    image: foundation,
+    alt: 'Flat Top Mountain, the foundation pour.',
   },
   {
     id: 'frame',
     label: 'Frame',
-    text: 'The frame goes up. Framing is work the Heartwood crew does in house. No frame photo of this house is on file.',
+    text: 'The frame goes up. Framing is work the Heartwood crew does in house.',
+    image: frame,
+    alt: 'Flat Top Mountain, the frame with the roof started.',
   },
   {
-    id: 'finished-home',
-    label: 'Finished home',
-    text: 'The finished Ten Mile Lake House. The homeowners call it Mermaid Landing.',
+    id: 'finish',
+    label: 'Finish',
+    text: 'The house closed in. Inside, finish work was still underway.',
+    image: finish,
+    alt: 'Flat Top Mountain, the house closed in.',
   },
 ];
 ---
-<section class="scrub" data-scrubber data-showing="finished-home" aria-labelledby="scrubber-title">
+<section class="scrub" data-scrubber data-showing="finish" aria-labelledby="scrubber-title">
   <div class="scrub-stage">
     <figure class="scrub-photo" data-animate="img-reveal">
-      <Image
-        src={house.image}
-        alt={house.imageAlt}
-        widths={[960, 1400, 2000]}
-        sizes="100vw"
-        loading="lazy"
-      />
+      {chapters.map((chapter, index) => (
+        <Image
+          src={chapter.image}
+          alt={chapter.alt}
+          widths={[960, 1400]}
+          sizes="100vw"
+          loading="lazy"
+          class:list={[{ 'is-on': index === chapters.length - 1 }]}
+          data-frame={chapter.id}
+        />
+      ))}
       {house.credit && <figcaption>{house.credit}</figcaption>}
     </figure>
     <ol class="chapters">
@@ -52,7 +68,7 @@ const chapters = [
   </div>
   <div class="container scrub-panel">
     <div class="stack-s">
-      <p class="muted">Ten Mile Lake House</p>
+      <p class="muted">Flat Top Mountain</p>
       <h2 id="scrubber-title">From the lot to the finished home</h2>
     </div>
     <div class="scrub-control">
@@ -67,14 +83,14 @@ const chapters = [
         aria-valuemin={1}
         aria-valuemax={chapters.length}
         aria-valuenow={chapters.length}
-        aria-valuetext="Finished home"
+        aria-valuetext="Finish"
       />
       <div class="ticks" aria-hidden="true">
         {chapters.map((chapter) => <span>{chapter.label}</span>)}
       </div>
     </div>
-    <p class="scrubber-live visually-hidden" aria-live="polite">Finished home. {chapters[3].text}</p>
-    <a class="btn" href={`/contact/?project=${house.slug}&chapter=finished-home&work=custom-home`} data-scrubber-cta>
+    <p class="scrubber-live visually-hidden" aria-live="polite">Finish. {chapters[3].text}</p>
+    <a class="btn" href={`/contact/?project=${house.slug}&chapter=finish&work=custom-home`} data-scrubber-cta>
       Start your home
     </a>
     <AskProof />
@@ -93,6 +109,9 @@ const chapters = [
 
     const show = (index: number) => {
       items.forEach((item, i) => item.classList.toggle('is-active', i === index));
+      root.querySelectorAll<HTMLImageElement>('[data-frame]').forEach((img) => {
+        img.classList.toggle('is-on', img.dataset.frame === items[index]?.dataset.chapter);
+      });
       const id = items[index]?.dataset.chapter ?? '';
       root.dataset.showing = id;
       const label = labels[index] ?? '';

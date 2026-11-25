@@ -9,12 +9,8 @@ interface Props {
 const { projects, title } = Astro.props;
 ---
 <section class="section" data-work>
-  {title && (
-    <div class="container">
-      <h2>{title}</h2>
-    </div>
-  )}
   <div class="container work">
+    {title && <h2 class="work-title">{title}</h2>}
     <ol class="work-list">
       {projects.map((project) => (
         <li>

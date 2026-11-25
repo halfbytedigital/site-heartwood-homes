@@ -1,0 +1,344 @@
+{
+  "slug": "project-videos",
+  "name": "Project Videos",
+  "source_page": "https://www.heartwoodchatt.com/projects",
+  "source_gallery_component": "comp-mw2etjq93",
+  "source_item_count": 4,
+  "status": null,
+  "dates": null,
+  "project_type": null,
+  "location": null,
+  "size": null,
+  "style": null,
+  "description": null,
+  "photo_credit": null,
+  "external_link": null,
+  "notes": [],
+  "photos": [],
+  "videos": [
+    {
+      "item_id": "a37a13bd-c5ad-4a54-bcbe-1b05845c2134",
+      "origin": "gallery",
+      "caption": null,
+      "alt": null,
+      "original_filename": "Hixson Marina- concrete pour video.mp4",
+      "media_url_id": "d30ad0_0e48fc4b4881402bb4b20f8d6ee07dc3",
+      "listed_width": 1920,
+      "listed_height": 1080,
+      "created": "2026-11-04T18:32:32.000Z",
+      "kind": "video",
+      "posters": [
+        {
+          "height": 2160,
+          "width": 3840,
+          "url": "d30ad0_0e48fc4b4881402bb4b20f8d6ee07dc3f000.jpg"
+        },
+        {
+          "height": 2160,
+          "width": 3840,
+          "url": "d30ad0_0e48fc4b4881402bb4b20f8d6ee07dc3f001.jpg"
+        },
+        {
+          "height": 2160,
+          "width": 3840,
+          "url": "d30ad0_0e48fc4b4881402bb4b20f8d6ee07dc3f002.jpg"
+        },
+        {
+          "height": 2160,
+          "width": 3840,
+          "url": "d30ad0_0e48fc4b4881402bb4b20f8d6ee07dc3f003.jpg"
+        }
+      ],
+      "video_meta": {
+        "type": "video",
+        "qualities": [
+          {
+            "formats": [
+              "mp4"
+            ],
+            "height": 1080,
+            "quality": "1080p",
+            "width": 1920
+          },
+          {
+            "formats": [
+              "mp4"
+            ],
+            "height": 720,
+            "quality": "720p",
+            "width": 1280
+          },
+          {
+            "formats": [
+              "mp4"
+            ],
+            "height": 480,
+            "quality": "480p",
+            "width": 854
+          },
+          {
+            "formats": [
+              "mp4"
+            ],
+            "height": 360,
+            "quality": "360p",
+            "width": 640
+          }
+        ],
+        "duration": 100266
+      },
+      "file": "01-video-poster-Hixson-Marina--concrete-pour-video.mp4.jpg",
+      "poster_id": "d30ad0_0e48fc4b4881402bb4b20f8d6ee07dc3f000.jpg",
+      "width": 3840,
+      "height": 2160,
+      "format": "JPEG",
+      "bytes": 884434,
+      "downloaded_from": "https://static.wixstatic.com/media/d30ad0_0e48fc4b4881402bb4b20f8d6ee07dc3f000.jpg",
+      "content_type": "image/jpeg"
+    },
+    {
+      "item_id": "154ceaf0-40c0-4b8a-9013-fe0e2c40cedc",
+      "origin": "gallery",
+      "caption": null,
+      "alt": null,
+      "original_filename": "1466 Indian Shadows Fixed.mp4",
+      "media_url_id": "d30ad0_b909bcf010a64cf08880a9442f998601",
+      "listed_width": 1080,
+      "listed_height": 1920,
+      "created": "2026-11-04T18:32:32.000Z",
+      "kind": "video",
+      "posters": [
+        {
+          "height": 1920,
+          "width": 1080,
+          "url": "d30ad0_b909bcf010a64cf08880a9442f998601f000.jpg"
+        },
+        {
+          "height": 1920,
+          "width": 1080,
+          "url": "d30ad0_b909bcf010a64cf08880a9442f998601f001.jpg"
+        },
+        {
+          "height": 1920,
+          "width": 1080,
+          "url": "d30ad0_b909bcf010a64cf08880a9442f998601f002.jpg"
+        },
+        {
+          "height": 1920,
+          "width": 1080,
+          "url": "d30ad0_b909bcf010a64cf08880a9442f998601f003.jpg"
+        }
+      ],
+      "video_meta": {
+        "type": "video",
+        "qualities": [
+          {
+            "formats": [
+              "mp4"
+            ],
+            "height": 1920,
+            "quality": "1080p",
+            "width": 1080
+          },
+          {
+            "formats": [
+              "mp4"
+            ],
+            "height": 720,
+            "quality": "720p",
+            "width": 406
+          },
+          {
+            "formats": [
+              "mp4"
+            ],
+            "height": 480,
+            "quality": "480p",
+            "width": 270
+          },
+          {
+            "formats": [
+              "mp4"
+            ],
+            "height": 360,
+            "quality": "360p",
+            "width": 202
+          }
+        ],
+        "duration": 59708
+      },
+      "file": "02-video-poster-1466-Indian-Shadows-Fixed.mp4.jpg",
+      "poster_id": "d30ad0_b909bcf010a64cf08880a9442f998601f000.jpg",
+      "width": 1080,
+      "height": 1920,
+      "format": "JPEG",
+      "bytes": 269928,
+      "downloaded_from": "https://static.wixstatic.com/media/d30ad0_b909bcf010a64cf08880a9442f998601f000.jpg",
+      "content_type": "image/jpeg"
+    },
+    {
+      "item_id": "a492b8c7-92be-4e99-84d1-6f023d5df595",
+      "origin": "gallery",
+      "caption": null,
+      "alt": null,
+      "original_filename": "Heartwood Homes Framing.mp4",
+      "media_url_id": "d30ad0_1a5f09a525764754847bbee8de694e84",
+      "listed_width": 1920,
+      "listed_height": 1080,
+      "created": "2026-11-04T18:32:32.000Z",
+      "kind": "video",
+      "posters": [
+        {
+          "height": 2160,
+          "width": 3840,
+          "url": "d30ad0_1a5f09a525764754847bbee8de694e84f000.jpg"
+        },
+        {
+          "height": 2160,
+          "width": 3840,
+          "url": "d30ad0_1a5f09a525764754847bbee8de694e84f001.jpg"
+        },
+        {
+          "height": 2160,
+          "width": 3840,
+          "url": "d30ad0_1a5f09a525764754847bbee8de694e84f002.jpg"
+        },
+        {
+          "height": 2160,
+          "width": 3840,
+          "url": "d30ad0_1a5f09a525764754847bbee8de694e84f003.jpg"
+        }
+      ],
+      "video_meta": {
+        "type": "video",
+        "qualities": [
+          {
+            "formats": [
+              "mp4"
+            ],
+            "height": 1080,
+            "quality": "1080p",
+            "width": 1920
+          },
+          {
+            "formats": [
+              "mp4"
+            ],
+            "height": 720,
+            "quality": "720p",
+            "width": 1280
+          },
+          {
+            "formats": [
+              "mp4"
+            ],
+            "height": 480,
+            "quality": "480p",
+            "width": 854
+          },
+          {
+            "formats": [
+              "mp4"
+            ],
+            "height": 360,
+            "quality": "360p",
+            "width": 640
+          }
+        ],
+        "duration": 31798
+      },
+      "file": "03-video-poster-Heartwood-Homes-Framing.mp4.jpg",
+      "poster_id": "d30ad0_1a5f09a525764754847bbee8de694e84f000.jpg",
+      "width": 3840,
+      "height": 2160,
+      "format": "JPEG",
+      "bytes": 3186210,
+      "downloaded_from": "https://static.wixstatic.com/media/d30ad0_1a5f09a525764754847bbee8de694e84f000.jpg",
+      "content_type": "image/jpeg"
+    },
+    {
+      "item_id": "5503349b-e091-43d0-a219-75e94f265fb9",
+      "origin": "gallery",
+      "caption": null,
+      "alt": null,
+      "original_filename": "Heartwood homes foundation.mp4",
+      "media_url_id": "d30ad0_97297dd03b5d47649f3a58b90cac0303",
+      "listed_width": 1920,
+      "listed_height": 1080,
+      "created": "2026-11-04T18:32:32.000Z",
+      "kind": "video",
+      "posters": [
+        {
+          "height": 2160,
+          "width": 3840,
+          "url": "d30ad0_97297dd03b5d47649f3a58b90cac0303f000.jpg"
+        },
+        {
+          "height": 2160,
+          "width": 3840,
+          "url": "d30ad0_97297dd03b5d47649f3a58b90cac0303f001.jpg"
+        },
+        {
+          "height": 2160,
+          "width": 3840,
+          "url": "d30ad0_97297dd03b5d47649f3a58b90cac0303f002.jpg"
+        },
+        {
+          "height": 2160,
+          "width": 3840,
+          "url": "d30ad0_97297dd03b5d47649f3a58b90cac0303f003.jpg"
+        }
+      ],
+      "video_meta": {
+        "type": "video",
+        "qualities": [
+          {
+            "formats": [
+              "mp4"
+            ],
+            "height": 1080,
+            "quality": "1080p",
+            "width": 1920
+          },
+          {
+            "formats": [
+              "mp4"
+            ],
+            "height": 720,
+            "quality": "720p",
+            "width": 1280
+          },
+          {
+            "formats": [
+              "mp4"
+            ],
+            "height": 480,
+            "quality": "480p",
+            "width": 854
+          },
+          {
+            "formats": [
+              "mp4"
+            ],
+            "height": 360,
+            "quality": "360p",
+            "width": 640
+          }
+        ],
+        "duration": 61694
+      },
+      "file": "04-video-poster-Heartwood-homes-foundation.mp4.jpg",
+      "poster_id": "d30ad0_97297dd03b5d47649f3a58b90cac0303f000.jpg",
+      "width": 3840,
+      "height": 2160,
+      "format": "JPEG",
+      "bytes": 97421,
+      "downloaded_from": "https://static.wixstatic.com/media/d30ad0_97297dd03b5d47649f3a58b90cac0303f000.jpg",
+      "content_type": "image/jpeg"
+    }
+  ],
+  "contact_sheet": null,
+  "downloaded_photo_count": 0,
+  "failed_photo_count": 0,
+  "downloaded_video_poster_count": 4
+}
