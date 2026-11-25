@@ -1,0 +1,144 @@
+---
+import { Image } from 'astro:assets';
+import LineIcon from './LineIcon.astro';
+import lot from '../assets/projects/flat-top-mountain/03-DJI_0960.jpg';
+import trench from '../assets/projects/flat-top-mountain/05-IMG_0296.jpg';
+import foundation from '../assets/projects/flat-top-mountain/04-IMG_0263.jpg';
+import frame from '../assets/projects/flat-top-mountain/08-DJI_0080-HDR.jpg';
+import closed from '../assets/projects/flat-top-mountain/11-DJI_0205-HDR.jpg';
+import finish from '../assets/projects/flat-top-mountain/12-IMG_7531-HDR.jpg';
+
+const stages = [
+  {
+    id: 'lot',
+    icon: 'stake',
+    label: 'The lot',
+    text: 'The lot opened up, with the foundation lines laid out on the dirt.',
+    image: lot,
+    alt: 'Flat Top Mountain, the lot opened up with foundation lines on the dirt.',
+  },
+  {
+    id: 'excavation',
+    icon: 'excavator',
+    label: 'Excavation',
+    text: 'The trench is dug, and the footings go in.',
+    image: trench,
+    alt: 'A footing trench at Flat Top Mountain, with concrete in the trench.',
+  },
+  {
+    id: 'foundation',
+    icon: 'foundation',
+    label: 'Foundation',
+    text: 'Footings and the concrete pour, before the frame.',
+    image: foundation,
+    alt: 'Flat Top Mountain, the foundation pour.',
+  },
+  {
+    id: 'frame',
+    icon: 'framing',
+    label: 'Framing',
+    text: 'The frame goes up. Framing is work the Heartwood crew does in house.',
+    image: frame,
+    alt: 'Flat Top Mountain, the frame with the roof started.',
+  },
+  {
+    id: 'roof',
+    icon: 'roof',
+    label: 'Roof',
+    text: 'The house closed in.',
+    image: closed,
+    alt: 'Flat Top Mountain, the house closed in.',
+  },
+  {
+    id: 'walkthrough',
+    icon: 'keys',
+    label: 'Walkthrough',
+    text: 'Inside, finish work was still underway.',
+    image: finish,
+    alt: 'An unfinished room at Flat Top Mountain, with finish work still underway.',
+  },
+];
+---
+<div class="process-track" data-process id="the-build">
+  <figure class="process-frame">
+    {stages.map((stage, index) => (
+      <Image
+        src={stage.image}
+        alt={stage.alt}
+        widths={[720, 1200, 1600]}
+        sizes="(min-width: 800px) 1240px, 100vw"
+        class:list={[{ 'is-on': index === 0 }]}
+        data-process-photo={stage.id}
+        loading={index === 0 ? 'eager' : 'lazy'}
+      />
+    ))}
+    <figcaption>Flat Top Mountain. Photo by Wes Holland (@DroneLogix)</figcaption>
+  </figure>
+  <p class="process-line" data-process-line>{stages[0].text}</p>
+  <div class="process-icons" role="tablist" aria-label="Build stages">
+    {stages.map((stage, index) => (
+      <button
+        type="button"
+        role="tab"
+        data-process-stage={stage.id}
+        data-line={stage.text}
+        aria-pressed={index === 0 ? 'true' : 'false'}
+        aria-selected={index === 0 ? 'true' : 'false'}
+      >
+        <LineIcon name={stage.icon} />
+        <span>{stage.label}</span>
+      </button>
+    ))}
+  </div>
+</div>
+
+<script>
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll<HTMLElement>('[data-process]').forEach((root) => {
+    const stages = [...root.querySelectorAll<HTMLButtonElement>('[data-process-stage]')];
+    const photos = [...root.querySelectorAll<HTMLImageElement>('[data-process-photo]')];
+    const line = root.querySelector<HTMLElement>('[data-process-line]');
+    if (reduced) root.dataset.reduced = 'true';
+
+    const show = (id: string) => {
+      stages.forEach((stage) => {
+        const on = stage.dataset.processStage === id;
+        stage.setAttribute('aria-pressed', String(on));
+        stage.setAttribute('aria-selected', String(on));
+      });
+      photos.forEach((photo) => photo.classList.toggle('is-on', photo.dataset.processPhoto === id));
+      const match = stages.find((stage) => stage.dataset.processStage === id);
+      if (line && match?.dataset.line) line.textContent = match.dataset.line;
+    };
+
+    stages.forEach((stage) => {
+      stage.addEventListener('click', () => show(stage.dataset.processStage || ''));
+    });
+
+    root.querySelector('.process-icons')?.addEventListener('keydown', (event) => {
+      const key = (event as KeyboardEvent).key;
+      if (key !== 'ArrowRight' && key !== 'ArrowLeft') return;
+      event.preventDefault();
+      const current = stages.findIndex((stage) => stage.getAttribute('aria-pressed') === 'true');
+      const next = key === 'ArrowRight'
+        ? (current + 1) % stages.length
+        : (current - 1 + stages.length) % stages.length;
+      stages[next]?.focus();
+      show(stages[next]?.dataset.processStage || '');
+    });
+
+    const frame = root.querySelector<HTMLElement>('.process-frame');
+    let startX = 0;
+    frame?.addEventListener('pointerdown', (event) => { startX = event.clientX; });
+    frame?.addEventListener('pointerup', (event) => {
+      const delta = event.clientX - startX;
+      if (Math.abs(delta) < 48) return;
+      const current = Math.max(0, stages.findIndex((stage) => stage.getAttribute('aria-pressed') === 'true'));
+      const next = delta < 0
+        ? Math.min(stages.length - 1, current + 1)
+        : Math.max(0, current - 1);
+      show(stages[next]?.dataset.processStage || '');
+    });
+  });
+</script>

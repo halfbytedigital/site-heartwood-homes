@@ -41,17 +41,17 @@ const chapters = [
   },
 ];
 ---
-<section class="scrub" data-scrubber data-showing="finish" aria-labelledby="scrubber-title">
+<section class="scrub" data-scrubber data-showing="lot" aria-labelledby="scrubber-title">
   <div class="scrub-stage">
-    <figure class="scrub-photo" data-animate="img-reveal">
+    <figure class="scrub-photo">
       {chapters.map((chapter, index) => (
         <Image
           src={chapter.image}
           alt={chapter.alt}
           widths={[960, 1400]}
           sizes="100vw"
-          loading="lazy"
-          class:list={[{ 'is-on': index === chapters.length - 1 }]}
+          loading={index === 0 ? 'eager' : 'lazy'}
+          class:list={[{ 'is-on': index === 0 }]}
           data-frame={chapter.id}
         />
       ))}
@@ -59,7 +59,7 @@ const chapters = [
     </figure>
     <ol class="chapters">
       {chapters.map((chapter, index) => (
-        <li class:list={['chapter', { 'is-active': index === chapters.length - 1 }]} data-chapter={chapter.id}>
+        <li class:list={['chapter', { 'is-active': index === 0 }]} data-chapter={chapter.id}>
           <h3>{chapter.label}</h3>
           <p>{chapter.text}</p>
         </li>
@@ -78,18 +78,18 @@ const chapters = [
         type="range"
         min="1"
         max={chapters.length}
-        value={chapters.length}
+        value={1}
         step="1"
         aria-valuemin={1}
         aria-valuemax={chapters.length}
-        aria-valuenow={chapters.length}
-        aria-valuetext="Finish"
+        aria-valuenow={1}
+        aria-valuetext="The lot"
       />
       <div class="ticks" aria-hidden="true">
         {chapters.map((chapter) => <span>{chapter.label}</span>)}
       </div>
     </div>
-    <p class="scrubber-live visually-hidden" aria-live="polite">Finish. {chapters[3].text}</p>
+    <p class="scrubber-live visually-hidden" aria-live="polite">The lot. {chapters[0].text}</p>
     <a class="btn" href={`/contact/?project=${house.slug}&chapter=finish&work=custom-home`} data-scrubber-cta data-start-cta>
       <span data-start-cta-label>Start your home</span>
     </a>

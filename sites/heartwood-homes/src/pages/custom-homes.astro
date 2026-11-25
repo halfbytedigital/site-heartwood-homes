@@ -1,85 +1,197 @@
 ---
-import { getImage } from 'astro:assets';
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import { site } from '../data/site';
-import { customProjects, getProject } from '../data/projects';
-import { inHouseTrades, budgetSteps } from '../data/services';
+import { customProjects, getProject, projectPath } from '../data/projects';
 import Button from '../components/Button.astro';
 import ProjectIndex from '../components/ProjectIndex.astro';
 import CloseBand from '../components/CloseBand.astro';
 import AskProof from '../components/AskProof.astro';
+import Qualifier from '../components/Qualifier.astro';
+import PathPicker from '../components/PathPicker.astro';
+import LineIcon from '../components/LineIcon.astro';
+import lot from '../assets/projects/flat-top-mountain/03-DJI_0960.jpg';
+import trench from '../assets/projects/flat-top-mountain/05-IMG_0296.jpg';
+import footings from '../assets/projects/flat-top-mountain/04-IMG_0263.jpg';
+import frame from '../assets/projects/flat-top-mountain/08-DJI_0080-HDR.jpg';
+import finish from '../assets/projects/flat-top-mountain/13-IMG_7525-HDR.jpg';
+import hardwood from '../assets/projects/a-frame-cabin-airbnb/06-Window-Rock-A-frame-11.jpg';
+import phaseFinish from '../assets/projects/flat-top-mountain/11-DJI_0205-HDR.jpg';
 
-const photo = getProject('hixson-new-build');
-const heroMobile = photo ? await getImage({ src: photo.image, width: 720, quality: 64 }) : null;
-const heroDesktop = photo ? await getImage({ src: photo.image, width: 1400, quality: 70 }) : null;
+const house = getProject('ten-mile-lake-house');
+const flatTop = getProject('flat-top-mountain');
+
+const trades = [
+  { icon: 'clearing', name: 'Land clearing', why: 'The lot is cleared before the house is laid out.', image: lot, alt: 'Flat Top Mountain, the lot opened up.' },
+  { icon: 'trench', name: 'Excavation', why: 'The ground is opened up for the footings.', image: trench, alt: 'A footing trench at Flat Top Mountain.' },
+  { icon: 'footings', name: 'Sitework and footings', why: 'The house sits on footings the crew pours.', image: footings, alt: 'The foundation pour at Flat Top Mountain.' },
+  { icon: 'framing', name: 'Framing', why: 'The crew frames the house.', image: frame, alt: 'The frame at Flat Top Mountain, with the roof started.' },
+  { icon: 'hardwood', name: 'Hardwood', why: 'Wood floors go in with the same crew.', image: hardwood, alt: 'Living room in the A-frame, with wood floors.' },
+  { icon: 'carpentry', name: 'Finish carpentry', why: 'Trim and the last of the woodwork, done in house.', image: finish, alt: 'Finish work inside the Flat Top Mountain house.' },
+];
+
+const beats = [
+  { icon: 'dream', name: 'Dream', text: 'The first conversation, and the plans.', href: '/our-process/#after-you-reach-out' },
+  { icon: 'build', name: 'Build', text: 'From the lot to the closed-in house.', href: '/our-process/#the-build' },
+  { icon: 'move', name: 'Move-in', text: 'A walkthrough, the drawings, and a warranty.', href: '/our-process/#after-you-move-in' },
+];
+
+const phases = [
+  { image: lot, alt: 'Flat Top Mountain, the lot.' },
+  { image: footings, alt: 'Flat Top Mountain, the foundation.' },
+  { image: frame, alt: 'Flat Top Mountain, the frame.' },
+  { image: phaseFinish, alt: 'Flat Top Mountain, the house closed in.' },
+];
+
+const questions = [
+  {
+    q: 'How does design-build work?',
+    a: 'We work with you, and with your architect and engineer when you have them. Some houses are design-build. Some start from plans you already have. Both are welcome.',
+  },
+  {
+    q: 'What do you do yourselves?',
+    a: 'Land clearing, excavation, sitework and footings, framing, hardwood, and finish carpentry. Heartwood is also a licensed septic installer.',
+  },
+  {
+    q: 'When does the budget come?',
+    a: 'The budget comes after the plans. The estimate is built from those plans. Then we build.',
+  },
+  {
+    q: 'What happens after I reach out?',
+    a: "A few questions first. Then we'll call or write you back.",
+  },
+];
 ---
 <Base
   title="Custom Home Builder in Chattanooga | Heartwood Homes"
   description="Heartwood Homes builds custom homes in Chattanooga, with the owners and their architect, from the plans to the finished house."
 >
-  <section class="edge-split">
-    <div class="edge-copy">
-      <h1>The house you plan to stay in.</h1>
-      <p class="lede">A new home from the ground up, with the owners, the architect, and the engineer.</p>
-      <div class="btn-row">
-        <Button href="/contact/?work=custom-home" cta>Start your home</Button>
-        {site.phone && site.phoneE164 && <Button href={`tel:${site.phoneE164}`} variant="ghost">{site.phone}</Button>}
-      </div>
-      <AskProof />
-    </div>
-    {photo && (
-      <figure class="bleed-photo">
-        <picture>
-          <source media="(min-width: 800px)" srcset={heroDesktop?.src} />
-          <img src={heroMobile?.src} alt={photo.imageAlt} width={heroMobile?.attributes.width} height={heroMobile?.attributes.height} loading="eager" fetchpriority="high" decoding="async" />
-        </picture>
-        {photo.credit && <figcaption>{photo.credit}</figcaption>}
-      </figure>
+  <section class="hero-full" data-hero>
+    {house && (
+      <Image
+        src={house.image}
+        alt={house.imageAlt}
+        widths={[960, 1400, 2000]}
+        sizes="100vw"
+        loading="eager"
+        fetchpriority="high"
+      />
     )}
+    <div class="container hero-full-copy">
+      <div class="hero-panel">
+        <div class="stack">
+          <h1 data-hero-step>The house you plan to stay in.</h1>
+          <p class="lede" data-hero-step>A new home from the ground up, with you, your architect, and your engineer.</p>
+          {house?.credit && <p class="muted">{house.credit}</p>}
+        </div>
+        <div class="stack" data-hero-step>
+          <Button href="/contact/?work=custom-home" cta>Start your home</Button>
+          {site.phone && site.phoneE164 && <Button href={`tel:${site.phoneE164}`} variant="ghost">{site.phone}</Button>}
+          <AskProof />
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section class="band">
+  <section class="section">
     <div class="container stack">
-      <h2>Design-build, or your plans.</h2>
-      <p class="measure">Heartwood works with owners, architects, and engineers. Some houses are design-build. Some start from plans that already exist. Both are welcome.</p>
-      <p class="measure">The budget comes after the plans. This page does not list a price.</p>
+      <PathPicker />
     </div>
   </section>
 
-  <section class="band band-mist">
-    <div class="container">
-      <h2>In the house</h2>
-      <p class="measure">These are the trades the crew keeps in house.</p>
-      <ol class="numeral-list ruled">
-        {inHouseTrades.map((trade, index) => (
-          <li>
-            <span class="numeral">{String(index + 1).padStart(2, '0')}</span>
-            <span>{trade}</span>
-          </li>
+  <section class="section band-mist">
+    <div class="container stack">
+      <h2>What we do ourselves</h2>
+      <p class="measure">Work the crew does themselves.</p>
+      <div class="trade-grid">
+        {trades.map((trade) => (
+          <button class="trade-card" type="button" aria-pressed="false">
+            <span class="trade-face">
+              <Image src={trade.image} alt={trade.alt} widths={[480, 800]} sizes="(min-width: 800px) 400px, 100vw" />
+              <span class="trade-name"><LineIcon name={trade.icon} />{trade.name}</span>
+            </span>
+            <span class="trade-why">{trade.why}</span>
+          </button>
         ))}
-      </ol>
+      </div>
+      <p class="measure">Heartwood is a licensed septic installer. That work is on <a href="/site-prep-landwork/">site prep and landwork</a>.</p>
     </div>
   </section>
 
-  <ProjectIndex projects={customProjects} title="New houses" />
-
-  <section class="band">
-    <div class="container">
-      <h2>How a budget gets built</h2>
-      <ol class="numeral-list">
-        {budgetSteps.map((step, index) => (
-          <li>
-            <span class="numeral">{index + 1}</span>
-            <div>
-              <h3>{step.title}</h3>
-              <p>{step.text}</p>
-            </div>
-          </li>
+  <section class="section">
+    <div class="container stack">
+      <h2>Dream, build, move in</h2>
+      <div class="beat-row">
+        {beats.map((beat) => (
+          <a class="beat" href={beat.href}>
+            <LineIcon name={beat.icon} />
+            <span class="beat-name">{beat.name}</span>
+            <span>{beat.text}</span>
+          </a>
         ))}
-      </ol>
-      <p><a class="text-link" href="/our-process/">The rest of the process</a></p>
+      </div>
     </div>
   </section>
 
-  <CloseBand href="/contact/?work=custom-home" line="Plans, then an estimate, then the build. A few questions come first. Then Heartwood calls or writes you back." />
+  <ProjectIndex projects={customProjects} title="Houses we've built" />
+
+  {flatTop && (
+    <section class="section band-mist">
+      <div class="container stack">
+        <h2>One house, from the lot</h2>
+        <div class="phase-row">
+          {phases.map((phase) => (
+            <a href={projectPath(flatTop.slug)}>
+              <Image src={phase.image} alt={phase.alt} widths={[480, 800]} sizes="(min-width: 800px) 280px, 70vw" />
+            </a>
+          ))}
+        </div>
+        <p><a class="text-link" href={projectPath(flatTop.slug)}>Flat Top Mountain</a></p>
+        {flatTop.credit && <p class="muted">{flatTop.credit}</p>}
+      </div>
+    </section>
+  )}
+
+  <section class="section">
+    <div class="container stack">
+      <h2>Plans, then an estimate, then we build.</h2>
+      <p class="measure">The budget comes after the plans. The estimate is built from those plans.</p>
+    </div>
+  </section>
+
+  <section class="section band-mist">
+    <div class="container">
+      <h2>Questions we hear</h2>
+      <div class="faq">
+        {questions.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split ask-split">
+      <div class="stack">
+        <h2>Tell us about the house.</h2>
+        <p class="measure">A few questions first. Then we'll call or write you back.</p>
+        <AskProof />
+      </div>
+      <Qualifier />
+    </div>
+  </section>
+
+  <CloseBand href="/contact/?work=custom-home" title="When you want to talk." line="Plans, then an estimate, then we build." />
 </Base>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.trade-card').forEach((card) => {
+    card.addEventListener('click', () => {
+      const next = card.getAttribute('aria-pressed') !== 'true';
+      card.setAttribute('aria-pressed', String(next));
+    });
+  });
+</script>

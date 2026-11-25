@@ -7,6 +7,9 @@ const params = Astro.url.searchParams;
 const work = params.get('work') ?? '';
 const project = params.get('project') ?? '';
 const chapter = params.get('chapter') ?? '';
+const path = params.get('path') ?? '';
+const landChoice = params.get('land') ?? (path === 'have-land' ? 'Yes' : path === 'find-land' ? 'Not yet' : '');
+const timelineChoice = params.get('timeline') ?? (path === 'dreaming' ? 'Just looking' : '');
 ---
 <form class="qualifier" method="post" action="/api/quote" data-qualifier novalidate>
   <p data-progress>Step 1 of 5</p>
@@ -32,17 +35,17 @@ const chapter = params.get('chapter') ?? '';
   <div class="step" data-step="2">
     <h2>Do you have land?</h2>
     <div class="choice-list">
-      <label class="choice"><input type="radio" name="land" value="Yes" /> Yes</label>
-      <label class="choice"><input type="radio" name="land" value="Not yet" /> Not yet</label>
-      <label class="choice"><input type="radio" name="land" value="Not sure" /> Not sure</label>
+      <label class="choice"><input type="radio" name="land" value="Yes" checked={landChoice === 'Yes'} /> Yes</label>
+      <label class="choice"><input type="radio" name="land" value="Not yet" checked={landChoice === 'Not yet'} /> Not yet</label>
+      <label class="choice"><input type="radio" name="land" value="Not sure" checked={landChoice === 'Not sure'} /> Not sure</label>
     </div>
   </div>
   <div class="step" data-step="3">
     <h2>When are you hoping to start?</h2>
     <div class="choice-list">
-      <label class="choice"><input type="radio" name="timeline" value="Ready to start" /> Ready to start</label>
-      <label class="choice"><input type="radio" name="timeline" value="This year" /> This year</label>
-      <label class="choice"><input type="radio" name="timeline" value="Just looking" /> Just looking</label>
+      <label class="choice"><input type="radio" name="timeline" value="Ready to start" checked={timelineChoice === 'Ready to start'} /> Ready to start</label>
+      <label class="choice"><input type="radio" name="timeline" value="This year" checked={timelineChoice === 'This year'} /> This year</label>
+      <label class="choice"><input type="radio" name="timeline" value="Just looking" checked={timelineChoice === 'Just looking'} /> Just looking</label>
     </div>
   </div>
   <div class="step" data-step="4">
@@ -59,7 +62,7 @@ const chapter = params.get('chapter') ?? '';
       Email
       <input name="email" type="email" autocomplete="email" />
     </label>
-    <p class="muted">A phone number or an email is enough. We don’t publish prices, and we don’t ask for a budget range until Heartwood sets one.</p>
+    <p class="muted">A phone number or an email is enough. We'll talk through the budget once we know the house.</p>
     <label class="field">
       Houses you liked
       <input name="houses" data-saved-houses-field readonly />
@@ -70,6 +73,7 @@ const chapter = params.get('chapter') ?? '';
   </p>
   {project && <input type="hidden" name="project" value={project} />}
   {chapter && <input type="hidden" name="chapter" value={chapter} />}
+  <input type="hidden" name="path" value={path} />
   <div class="btn-row">
     <button class="btn btn-ghost" type="button" data-back hidden>Back</button>
     <button class="btn" type="button" data-next>Continue</button>
@@ -141,7 +145,7 @@ const chapter = params.get('chapter') ?? '';
       }
       if (String(new FormData(form).get('company') ?? '').trim()) return;
       const areaNote = value('area-note');
-      const area = [value('area'), areaNote].filter(Boolean).join(' — ');
+      const area = [value('area'), areaNote].filter(Boolean).join(', ');
       const payload = new FormData(form);
       if (area) payload.set('area', area);
       let sent = false;

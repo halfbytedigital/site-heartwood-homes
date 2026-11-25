@@ -1,0 +1,85 @@
+---
+const paths = [
+  {
+    id: 'have-land',
+    label: 'I have land',
+    href: '/contact/?work=custom-home&path=have-land',
+    steps: [
+      'We walk the lot with you.',
+      'The house is drawn, or you bring plans you already have.',
+      'The estimate is built from those plans.',
+    ],
+  },
+  {
+    id: 'find-land',
+    label: 'I need help finding land',
+    href: '/contact/?work=custom-home&path=find-land',
+    steps: [
+      'Tell us the house you want, and the part of town you have in mind.',
+      'When a lot comes up, we look at the clearing, the excavation, and the septic before a house goes on it.',
+      'Once you have the land, we draw the plans and the estimate.',
+    ],
+  },
+  {
+    id: 'dreaming',
+    label: "I'm just dreaming",
+    href: '/contact/?work=custom-home&path=dreaming',
+    steps: [
+      'Look through the houses we have built.',
+      'When you want to talk, we start with the plans.',
+      'The estimate comes after the plans.',
+    ],
+  },
+];
+---
+<div class="path-picker" data-path-picker>
+  <h2>Build your path</h2>
+  <div class="path-choices" role="group" aria-label="Build your path">
+    {paths.map((item) => (
+      <button type="button" data-path={item.id} aria-pressed="false">{item.label}</button>
+    ))}
+  </div>
+  {paths.map((item) => (
+    <div class="path-panel" data-path-panel={item.id}>
+      <ol>
+        {item.steps.map((step) => <li>{step}</li>)}
+      </ol>
+      <a class="btn" href={item.href} data-start-cta><span data-start-cta-label>Start your home</span></a>
+    </div>
+  ))}
+  <p class="path-fallback">Or <a href="/contact/?work=custom-home">start your home</a> and tell us where you are.</p>
+</div>
+
+<script>
+  import { track } from '../scripts/analytics';
+
+  document.querySelectorAll<HTMLElement>('[data-path-picker]').forEach((root) => {
+    const buttons = [...root.querySelectorAll<HTMLButtonElement>('[data-path]')];
+    const panels = [...root.querySelectorAll<HTMLElement>('[data-path-panel]')];
+    const show = (id: string) => {
+      buttons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.path === id)));
+      panels.forEach((panel) => { panel.hidden = panel.dataset.pathPanel !== id; });
+    };
+    panels.forEach((panel) => { panel.hidden = true; });
+    root.addEventListener('click', (event) => {
+      const button = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-path]');
+      if (!button || !root.contains(button)) return;
+      const id = button.dataset.path || '';
+      show(id);
+      track('path_select', { path: id });
+      const form = document.querySelector<HTMLFormElement>('[data-qualifier]');
+      const field = form?.querySelector<HTMLInputElement>('[name="path"]');
+      if (field) field.value = id;
+      const land = id === 'have-land' ? 'Yes' : id === 'find-land' ? 'Not yet' : '';
+      const timeline = id === 'dreaming' ? 'Just looking' : '';
+      if (land) {
+        const radio = form?.querySelector<HTMLInputElement>(`input[name="land"][value="${land}"]`);
+        if (radio) radio.checked = true;
+      }
+      if (timeline) {
+        const radio = form?.querySelector<HTMLInputElement>(`input[name="timeline"][value="${timeline}"]`);
+        if (radio) radio.checked = true;
+      }
+    });
+  });
+</script>

@@ -1,0 +1,218 @@
+/* Custom Homes path, trades, and the Our Process track. */
+
+.line-icon {
+  width: 36px;
+  height: 36px;
+  color: var(--color-primary);
+  display: block;
+}
+
+.path-choices {
+  display: grid;
+  gap: var(--space-xs);
+}
+.path-choices button {
+  min-height: 52px;
+  padding: var(--space-s);
+  border: 1px solid var(--color-line-strong);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font: inherit;
+  font-weight: var(--weight-bold);
+  text-align: left;
+  cursor: pointer;
+}
+.path-choices button[aria-pressed="true"] {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  border-color: var(--color-primary);
+}
+.path-panel {
+  display: grid;
+  gap: var(--space-m);
+  margin-top: var(--space-l);
+}
+.path-panel ol {
+  margin: 0;
+  padding-left: 1.2em;
+  display: grid;
+  gap: var(--space-s);
+}
+.path-fallback { margin: var(--space-m) 0 0; }
+@media (min-width: 800px) {
+  .path-choices { grid-template-columns: repeat(3, 1fr); }
+}
+
+.trade-grid {
+  display: grid;
+  gap: var(--space-m);
+}
+.trade-card {
+  position: relative;
+  display: grid;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  min-height: 44px;
+}
+.trade-face { display: grid; gap: var(--space-xs); }
+.trade-face img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  background: var(--color-surface-2);
+}
+.trade-name {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-weight: var(--weight-bold);
+  min-height: 44px;
+}
+.trade-why {
+  margin-top: var(--space-2xs);
+}
+html.js .trade-card .trade-why {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-m);
+  background: color-mix(in srgb, var(--color-primary) 88%, transparent);
+  color: var(--color-on-primary);
+  opacity: 0;
+  transition: opacity 180ms var(--ease-out);
+}
+html.js .trade-card:hover .trade-why,
+html.js .trade-card:focus-visible .trade-why,
+html.js .trade-card[aria-pressed="true"] .trade-why {
+  opacity: 1;
+}
+@media (min-width: 700px) {
+  .trade-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.beat-row {
+  display: grid;
+  gap: var(--space-m);
+}
+.beat {
+  display: grid;
+  gap: var(--space-2xs);
+  justify-items: start;
+  color: var(--color-text);
+  text-decoration: none;
+  min-height: 52px;
+  padding-block: var(--space-s);
+  border-top: 1px solid var(--color-text);
+}
+.beat-name {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+}
+@media (min-width: 800px) {
+  .beat-row { grid-template-columns: repeat(3, 1fr); }
+}
+
+.phase-row {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(180px, 1fr);
+  gap: var(--space-s);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+.phase-row a { scroll-snap-align: start; }
+.phase-row img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.faq { border-top: 1px solid var(--color-text); }
+.faq details { border-bottom: 1px solid var(--color-line); }
+.faq summary {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: var(--weight-bold);
+  font-size: var(--step-1);
+}
+.faq details p { margin-top: 0; padding-bottom: var(--space-m); }
+
+.ask-split { align-items: start; }
+
+.process-open { padding-bottom: var(--section-pad); }
+.process-track { display: grid; gap: var(--space-m); }
+.process-frame {
+  position: relative;
+  margin: 0;
+  background: var(--color-surface-2);
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+.process-frame img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 280ms var(--ease-out);
+}
+.process-frame img.is-on { opacity: 1; }
+.process-frame figcaption {
+  position: absolute;
+  left: var(--space-s);
+  bottom: var(--space-s);
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-muted);
+  font-size: var(--step--1);
+  padding: 8px 12px;
+  z-index: 1;
+}
+.process-line { margin: 0; max-width: 42rem; }
+.process-icons {
+  display: flex;
+  gap: var(--space-xs);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: var(--space-xs);
+  scroll-margin-top: calc(var(--header-h) + 8px);
+  scroll-margin-bottom: calc(var(--actionbar-h) + 8px);
+}
+.process-icons button {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  min-height: 52px;
+  min-width: 88px;
+  padding: var(--space-xs) var(--space-s);
+  border: 1px solid var(--color-line);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font: inherit;
+  font-size: var(--step--1);
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+.process-icons button[aria-pressed="true"] {
+  border-color: var(--color-primary);
+  background: var(--color-tint);
+}
+html:not(.js) .process-frame { aspect-ratio: auto; display: grid; gap: var(--space-s); }
+html:not(.js) .process-frame img { position: static; opacity: 1; height: auto; }
+@media (prefers-reduced-motion: reduce) {
+  .process-frame img,
+  html.js .trade-card .trade-why { transition: none; }
+}

@@ -10,7 +10,7 @@ import CloseBand from '../components/CloseBand.astro';
   <section class="section edge-rule">
     <div class="container stack">
       <h1>Privacy</h1>
-      <p class="measure">The start-your-home form collects your name, a phone number or email, and whatever you choose to say about the work, the place, the land, and the timing. Heartwood uses that to reply about the job. It does not ask for a price.</p>
+      <p class="measure">The start-your-home form collects your name, a phone number or email, and whatever you choose to say about the work, the place, the land, and the timing. Heartwood uses that to reply about the job.</p>
       <p class="measure">Heartwood does not sell that information. If the form cannot be delivered, the page asks you to call.</p>
       {site.email && <p>Questions: <a href={`mailto:${site.email}`}>{site.email}</a></p>}
       {site.phone && site.phoneE164 && <p>Phone: <a href={`tel:${site.phoneE164}`}>{site.phone}</a></p>}

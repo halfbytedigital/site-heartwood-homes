@@ -1,0 +1,108 @@
+---
+interface Props {
+  name: string;
+}
+const { name } = Astro.props;
+---
+<svg class="line-icon" viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+  {name === 'stake' && (
+    <g>
+      <path d="M18 42 V8" />
+      <path d="M18 10 h16 l-3 5 3 5 H18" />
+      <path d="M12 42 h12" />
+    </g>
+  )}
+  {name === 'excavator' && (
+    <g>
+      <path d="M8 34 h18" />
+      <path d="M10 34 v-6 h12 v6" />
+      <circle cx="13" cy="37" r="2.2" />
+      <circle cx="21" cy="37" r="2.2" />
+      <path d="M22 30 l8-8 6 2" />
+      <path d="M36 24 l4 6 h-6 z" />
+    </g>
+  )}
+  {name === 'foundation' && (
+    <g>
+      <path d="M8 30 h32" />
+      <path d="M12 30 v8 h24 v-8" />
+      <path d="M16 30 v8 M24 30 v8 M32 30 v8" />
+      <path d="M14 22 h20 v8 H14 z" />
+    </g>
+  )}
+  {name === 'framing' && (
+    <g>
+      <path d="M8 40 V20 L24 8 l16 12 v20" />
+      <path d="M8 40 h32" />
+      <path d="M16 40 V24 M24 40 V18 M32 40 V24" />
+    </g>
+  )}
+  {name === 'roof' && (
+    <g>
+      <path d="M6 22 L24 8 l18 14" />
+      <path d="M10 20 v16 h28 V20" />
+      <path d="M22 36 v-8 h6 v8" />
+    </g>
+  )}
+  {name === 'keys' && (
+    <g>
+      <circle cx="16" cy="20" r="6" />
+      <path d="M21 23 l16 12" />
+      <path d="M32 31 v5 M37 34 v4" />
+    </g>
+  )}
+  {name === 'clearing' && (
+    <g>
+      <path d="M24 40 V22" />
+      <path d="M24 24 c-8 0-12-6-8-12 6 2 10 2 16 0 2 8-2 12-8 12 z" />
+      <path d="M10 40 h28" />
+    </g>
+  )}
+  {name === 'trench' && (
+    <g>
+      <path d="M8 18 h32" />
+      <path d="M12 18 l6 16 h12 l6-16" />
+      <path d="M18 28 h12" />
+    </g>
+  )}
+  {name === 'footings' && (
+    <g>
+      <path d="M10 16 h28 v6 H10 z" />
+      <path d="M14 22 v12 M24 22 v12 M34 22 v12" />
+      <path d="M8 34 h32" />
+    </g>
+  )}
+  {name === 'hardwood' && (
+    <g>
+      <path d="M8 14 h32 v6 H8 z M8 22 h32 v6 H8 z M8 30 h32 v6 H8 z" />
+    </g>
+  )}
+  {name === 'carpentry' && (
+    <g>
+      <path d="M12 10 v28" />
+      <path d="M12 14 h22" />
+      <path d="M16 14 v6 M22 14 v6 M28 14 v6" />
+      <path d="M12 34 h22" />
+    </g>
+  )}
+  {name === 'dream' && (
+    <g>
+      <path d="M14 12 h16 l4 6 v18 H10 V18 z" />
+      <path d="M18 36 V24 h8 v12" />
+    </g>
+  )}
+  {name === 'build' && (
+    <g>
+      <path d="M14 34 l16-16" />
+      <path d="M28 14 l4 4" />
+      <path d="M10 38 h12" />
+    </g>
+  )}
+  {name === 'move' && (
+    <g>
+      <path d="M14 10 h16 v28 H14 z" />
+      <path d="M26 24 h2" />
+      <path d="M10 38 h28" />
+    </g>
+  )}
+</svg>

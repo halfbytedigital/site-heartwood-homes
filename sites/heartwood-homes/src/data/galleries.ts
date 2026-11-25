@@ -340,6 +340,7 @@ function voice(text: string | null) {
   return text
     .replace(/AirBnb/g, 'Airbnb')
     .replace('re- sold', 're-sold')
+    .replace(/Find out more here and book your stay via Airbnb\s*-?\s*/i, '')
     .replace(/(?:https?:\/\/)?(?:www\.)?thewindowrock\.com\/?/gi, '')
     .replace(/\s*-\s*$/, '')
     .replace(/\s{2,}/g, ' ')

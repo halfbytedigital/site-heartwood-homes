@@ -365,8 +365,9 @@ a:hover { color: var(--color-primary-strong); }
 }
 
 /* Scrubber */
-.scrub-photo { margin: 0; position: relative; background: var(--color-surface-2); overflow: hidden; aspect-ratio: 3 / 2; }
-html.js .scrub-photo[data-animate="img-reveal"] { animation-name: hb-fade; }
+.scrub { opacity: 1; animation: none; padding-top: var(--section-pad); }
+.scrub-stage { opacity: 1; animation: none; }
+.scrub-photo { margin: 0; position: relative; background: var(--color-surface-2); overflow: hidden; aspect-ratio: 3 / 2; opacity: 1; animation: none; }
 .scrub-photo img {
   position: absolute;
   inset: 0;

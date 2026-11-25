@@ -78,10 +78,13 @@ p a, .letter a, .measure a { text-decoration: underline; text-underline-offset: 
 @media (min-width: 800px) {
   .hero-panel { grid-template-columns: minmax(0, 1fr) auto; align-items: end; }
 }
+@media (max-width: 767px) {
+  .hero-full-copy { padding-bottom: calc(var(--actionbar-h) + var(--space-m)); }
+}
 @media (max-width: 699px) {
-  .hero-full { min-height: 100svh; }
+  .hero-full { min-height: calc(100svh - var(--actionbar-h)); }
   .hero-full img { object-position: center 28%; }
-  .hero-full-copy { padding-block: var(--space-m); }
+  .hero-full-copy { padding-top: var(--space-m); padding-bottom: calc(var(--actionbar-h) + var(--space-m)); }
   .hero-panel { padding-block: var(--space-m); gap: var(--space-s); }
   .hero-full h1 { font-size: 2.75rem; max-width: 12ch; }
 }
@@ -105,7 +108,7 @@ p a, .letter a, .measure a { text-decoration: underline; text-underline-offset: 
 }
 
 /* C16 */
-.feature-home { padding-block: var(--section-pad); }
+.feature-home { padding-top: var(--section-pad); padding-bottom: 0; }
 .feature-frame { position: relative; background: var(--color-surface-2); }
 .feature-frame img {
   width: 100%;
@@ -136,7 +139,7 @@ p a, .letter a, .measure a { text-decoration: underline; text-underline-offset: 
   padding-top: var(--space-l);
   padding-bottom: var(--section-pad);
 }
-.work-title { grid-column: 1 / -1; margin: 0; }
+.work-title, .work .project-filters { grid-column: 1 / -1; margin: 0; }
 .work-link { scroll-margin-top: calc(var(--header-h) + var(--space-s)); }
 .work-item { position: relative; }
 .work-item .save-house {
@@ -162,6 +165,14 @@ p a, .letter a, .measure a { text-decoration: underline; text-underline-offset: 
 }
 @media (max-width: 699px) {
   .work-link img { aspect-ratio: auto; height: 200px; }
+  .index-lead { padding-bottom: var(--space-s); }
+  .index-list-section { padding-top: 0; }
+  .index-list-section .work { padding-top: 0; }
+  .index-list-section .work-link img { height: 132px; }
+  .index-list-section .work-name,
+  .index-list-section .work-link .muted {
+    scroll-margin-bottom: calc(var(--actionbar-h) + var(--space-s));
+  }
 }
 .work-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-l); }
 .work-link {

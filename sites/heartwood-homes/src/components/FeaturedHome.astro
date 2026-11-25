@@ -18,7 +18,7 @@ const house = getProject('a-frame-cabin-airbnb');
           <p class="muted">Featured home</p>
           <h2>{house.name}</h2>
           <p>Complete, 2022–2023. Built start to finish, including land clearing, excavation, sitework and footings, framing, hardwood, and finish carpentry.</p>
-          {house.href && <p><a href={house.href}>Book a stay at The Window Rock</a></p>}
+          {house.href && <p>You can book a stay at <a href={house.href}>The Window Rock</a>.</p>}
           {house.credit && <p class="muted">{house.credit}</p>}
           <a class="text-link" href={projectPath(house.slug)}>See the house</a>
         </aside>

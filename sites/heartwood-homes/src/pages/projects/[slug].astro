@@ -94,7 +94,15 @@ function pairs(shots: Shot[]) {
         <p class="lede measure">{gallery?.description ?? project.summary}</p>
         {gallery?.location && <p>{gallery.location}</p>}
         {gallery?.credit && <p class="muted">{gallery.credit}</p>}
-        {link && linkLabel && <p><a class="text-link" href={link}>{linkLabel}</a></p>}
+        {link && linkLabel && (
+          <p>
+            {link.includes('thewindowrock.com') ? (
+              <>You can book a stay at <a href={link}>{linkLabel}</a>.</>
+            ) : (
+              <a class="text-link" href={link}>{linkLabel}</a>
+            )}
+          </p>
+        )}
       </div>
     </section>
 

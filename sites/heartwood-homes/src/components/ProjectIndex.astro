@@ -1,20 +1,40 @@
 ---
 import { Image } from 'astro:assets';
-import { projectPath, type Project } from '../data/projects';
+import { jobFilters, projectPath, typesFor, type Project } from '../data/projects';
 import SaveHouse from './SaveHouse.astro';
 
 interface Props {
   projects: Project[];
   title?: string;
+  showFilters?: boolean;
 }
-const { projects, title } = Astro.props;
+const { projects, title, showFilters = false } = Astro.props;
+const counts = Object.fromEntries(
+  jobFilters.map((filter) => [
+    filter.slug,
+    filter.slug === 'all'
+      ? projects.length
+      : projects.filter((project) => typesFor(project.slug).includes(filter.slug)).length,
+  ]),
+);
 ---
-<section class="section" data-work>
+<section class:list={['section', showFilters && 'index-list-section']} data-work data-project-filters={showFilters ? '' : undefined}>
   <div class="container work">
     {title && <h2 class="work-title">{title}</h2>}
+    {showFilters && (
+      <div class="project-filters">
+        <div class="filter-chips" role="group" aria-label="Filter projects by type">
+          {jobFilters.map((filter) => (
+            <button type="button" data-filter={filter.slug} aria-pressed={filter.slug === 'all' ? 'true' : 'false'}>
+              {filter.label} <span class="filter-count">{counts[filter.slug]}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    )}
     <ol class="work-list">
       {projects.map((project) => (
-        <li class="work-item">
+        <li class="work-item" data-types={showFilters ? typesFor(project.slug).join(' ') : undefined}>
           <a class="work-link" href={projectPath(project.slug)} data-shot={project.slug}>
             <Image src={project.image} alt="" widths={[480, 960, 1400]} sizes="(min-width: 900px) 96px, 100vw" />
             <span class="work-name">{project.name}</span>

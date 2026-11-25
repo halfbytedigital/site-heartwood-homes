@@ -282,6 +282,38 @@ export const projects: Project[] = [
   },
 ];
 
+/** Job types for the projects index. A house can sit in more than one. */
+const projectTypes: Record<string, string[]> = {
+  'a-frame-cabin-airbnb': ['new-builds', 'lake-cabin', 'short-term'],
+  'flat-top-mountain': ['new-builds'],
+  'hixson-new-build': ['new-builds'],
+  'incline-townhomes': ['new-builds', 'townhomes-investment'],
+  'layouts-on-market': ['new-builds', 'townhomes-investment'],
+  'pikeville-treehouses': ['new-builds', 'lake-cabin'],
+  'sewanee-airbnb': ['new-builds', 'short-term'],
+  'spec-house-pikeville': ['new-builds'],
+  'spring-city-lake-house': ['new-builds', 'lake-cabin'],
+  'ten-mile-lake-house': ['new-builds', 'lake-cabin'],
+  'crawlspace-renovation': ['renovations'],
+  'east-brainard-tornado-rebuild': ['renovations'],
+  'investment-property-flip': ['renovations', 'townhomes-investment'],
+  'red-bank-renovation': ['renovations'],
+  'signal-mountain-renovation': ['renovations'],
+};
+
+export const jobFilters = [
+  { slug: 'all', label: 'All' },
+  { slug: 'new-builds', label: 'New builds' },
+  { slug: 'lake-cabin', label: 'Lake & cabin homes' },
+  { slug: 'short-term', label: 'Short-term rentals' },
+  { slug: 'renovations', label: 'Renovations' },
+  { slug: 'townhomes-investment', label: 'Townhomes & investment' },
+] as const;
+
+export function typesFor(slug: string) {
+  return projectTypes[slug] ?? [];
+}
+
 /** A-frame leads because it is the most distinctive photo, not because of list order. */
 export function featuredFirst(list: Project[] = projects) {
   const lead = 'a-frame-cabin-airbnb';

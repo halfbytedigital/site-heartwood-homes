@@ -26,6 +26,7 @@ export async function onRequestPost(context: { request: Request; env: Env }) {
   const project = String(form.get('project') ?? '').trim();
   const chapter = String(form.get('chapter') ?? '').trim();
   const houses = String(form.get('houses') ?? '').trim().slice(0, 500);
+  const path = String(form.get('path') ?? '').trim().slice(0, 40);
 
   const allowed = ['custom-home', 'renovation', 'site-prep'];
   if (!name || (!phone && !email)) return json({ ok: false }, 400);
@@ -37,7 +38,7 @@ export async function onRequestPost(context: { request: Request; env: Env }) {
   const response = await fetch(webhook, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ name, phone, email, work, budget, message, project, chapter, area, land, timeline, houses }),
+    body: JSON.stringify({ name, phone, email, work, budget, message, project, chapter, area, land, timeline, houses, path }),
   });
 
   if (!response.ok) return json({ ok: false }, 502);

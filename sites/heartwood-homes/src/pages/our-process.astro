@@ -2,26 +2,33 @@
 import Base from '../layouts/Base.astro';
 import { processSteps } from '../data/services';
 import CloseBand from '../components/CloseBand.astro';
+import ProcessTrack from '../components/ProcessTrack.astro';
+
+const before = processSteps.filter((step) => ['Talk', 'Plans', 'Estimate'].includes(step.title));
 ---
 <Base
   title="Our Building Process | Heartwood Homes"
   description="How a Heartwood Homes custom build runs, from the first conversation through plans, estimate, construction, and walkthrough."
 >
-  <section class="section">
+  <section class="section process-open">
     <div class="container stack">
       <h1>From the first conversation to the walkthrough.</h1>
-      <p class="lede">This is the path for a new house.</p>
+      <p class="lede">This is the path for a new house. The photos are Flat Top Mountain.</p>
+    </div>
+    <div class="container">
+      <ProcessTrack />
     </div>
   </section>
 
-  <section class="band edge-rule">
-    <div class="container">
+  <section class="section band-mist" id="after-you-reach-out">
+    <div class="container stack">
+      <h2>After you reach out</h2>
       <ol class="numeral-list">
-        {processSteps.map((step, index) => (
+        {before.map((step, index) => (
           <li>
             <span class="numeral">{String(index + 1).padStart(2, '0')}</span>
             <div>
-              <h2>{step.title}</h2>
+              <h3>{step.title}</h3>
               <p class="measure">{step.text}</p>
             </div>
           </li>
@@ -30,17 +37,30 @@ import CloseBand from '../components/CloseBand.astro';
     </div>
   </section>
 
-  <section class="band band-mist">
+  <section class="section" id="keep-you-posted">
+    <div class="container stack">
+      <h2>While the house is going up</h2>
+      <p class="measure">An in-house crew, quality checks, jobsite safety, and the subcontractors the job needs. We tell you straight, from the first conversation through the last piece of trim.</p>
+    </div>
+  </section>
+
+  <section class="section band-mist" id="after-you-move-in">
+    <div class="container stack">
+      <h2>After you move in</h2>
+      <p class="measure">Certificate of occupancy, as-built drawings, and a warranty named at the end of the job.</p>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container">
-      <h2>What Heartwood already lists</h2>
+      <h2>What we take care of</h2>
       <div class="ruled">
-        <article><h3>Pre-construction</h3><p>Design-build, scheduling, estimating, and budgeting.</p></article>
-        <article><h3>Construction</h3><p>An in-house team, quality control, safety, and subcontractor management.</p></article>
-        <article><h3>After construction</h3><p>Certificate of occupancy and as-built drawings.</p></article>
-        <article><h3>Warranty</h3><p>Named at the end of the job.</p></article>
+        <article><h3>Before the build</h3><p>Design-build, scheduling, estimating, and budgeting.</p></article>
+        <article><h3>During the build</h3><p>An in-house team, quality control, safety, and subcontractor management.</p></article>
+        <article><h3>After you move in</h3><p>Certificate of occupancy and as-built drawings. A warranty named at the end of the job.</p></article>
       </div>
     </div>
   </section>
 
-  <CloseBand href="/contact/?work=custom-home" title="When you are ready." line="Start with a conversation. A few questions come first, then Heartwood calls or writes you back." />
+  <CloseBand href="/contact/?work=custom-home" title="When you are ready." line="Start with a conversation. A few questions first. Then we'll call or write you back." />
 </Base>
