@@ -20,7 +20,8 @@ const items = [...nav, ...moreNav];
       {site.phone && site.phoneE164 && (
         <a class="header-phone" href={`tel:${site.phoneE164}`} data-event="call_click" data-event-placement="header">{site.phone}</a>
       )}
-      <a class="header-start" href={contactHref}>{ctaLabel}</a>
+      <span data-saved-count hidden></span>
+      <a class="header-start" href={contactHref} data-start-cta><span data-start-cta-label>{ctaLabel}</span></a>
     </div>
     <button class="menu-toggle nav-mobile" type="button" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
   </div>
@@ -31,7 +32,7 @@ const items = [...nav, ...moreNav];
     {site.phone && site.phoneE164 && (
       <a href={`tel:${site.phoneE164}`} data-event="call_click" data-event-placement="menu">{site.phone}</a>
     )}
-    <a href={contactHref}>{ctaLabel}</a>
+    <a href={contactHref} data-start-cta><span data-start-cta-label>{ctaLabel}</span></a>
   </nav>
 </header>
 

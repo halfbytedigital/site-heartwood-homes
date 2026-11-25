@@ -75,3 +75,15 @@ export const site = {
     'socials.instagram': { by: 'url', ref: 'https://www.heartwoodchatt.com/', date: '2026-11-24' },
   } as Record<string, Source>,
 };
+
+/** A Google search is not a Business Profile. Numbers can show; the search does not. */
+export function googleProfileHref(url: string | null | undefined) {
+  if (!url) return null;
+  try {
+    const parsed = new URL(url);
+    if (parsed.hostname.endsWith('google.com') && parsed.pathname.startsWith('/search')) return null;
+  } catch {
+    return null;
+  }
+  return url;
+}

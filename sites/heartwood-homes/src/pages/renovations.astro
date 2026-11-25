@@ -6,7 +6,10 @@ import { getGallery } from '../data/galleries';
 import Button from '../components/Button.astro';
 import CloseBand from '../components/CloseBand.astro';
 import AskProof from '../components/AskProof.astro';
-import ProjectStory from '../components/ProjectStory.astro';
+import { Image } from 'astro:assets';
+import ProjectShot from '../components/ProjectShot.astro';
+import PhotoViewer from '../components/PhotoViewer.astro';
+import { shotWidths } from '../data/galleries';
 
 const bucket = getGallery('renovations');
 ---
@@ -20,11 +23,22 @@ const bucket = getGallery('renovations');
       <p class="lede">Major renovations, from kitchens and bathrooms through the exterior.</p>
       {bucket?.description && <p class="measure">{bucket.description}</p>}
       <p class="measure">The photos below are from more than one kitchen and bath, not a single house.</p>
-      <Button href="/contact/?work=renovation">Start your home</Button>
+      <Button href="/contact/?work=renovation" cta>Start your home</Button>
       <AskProof />
     </div>
   </section>
-  {bucket && <ProjectStory gallery={bucket} />}
+  {bucket && (
+    <section class="section">
+      <div class="container stack">
+        {bucket.shots.map((shot) => (
+          <ProjectShot alt={shot.alt}>
+            <Image src={shot.src} alt="" widths={shotWidths(shot)} sizes="(min-width: 800px) 1240px, 100vw" />
+          </ProjectShot>
+        ))}
+      </div>
+    </section>
+  )}
+  <PhotoViewer />
 
   <section class="band">
     <div class="container">

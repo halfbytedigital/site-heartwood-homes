@@ -127,6 +127,11 @@ Open the images. The script can't judge taste, so check:
   and do not show a fake count; next-house is a calm card, no door animation. A day/dusk or before/after
   slider is only a real drag reveal of a same-vantage pair. On the mobile work index, house names must clear
   the sticky call bar. Google ratings must not link to a search. Content patterns still match C22–C26.
+  With 8 or more projects, confirm C29 filters (chips, counts, `?type=`, keyboard / `aria-pressed`,
+  reduced-motion instant, mobile chip row clear of sticky bars).
+- **Empty runway (A25):** fail any vertical gap with no visible content over ~240px at 1440 or ~160px
+  at 390. A sticky or scroll-driven section (scrubber, pin, `view()` fade) must show its content on the
+  first frame — `review.mjs` reports `emptyGaps`. Do not leave an opacity-0 stage as blank page.
 
 ## Step 5 — Copy honesty check
 
@@ -137,6 +142,10 @@ Open the images. The script can't judge taste, so check:
 3. Any claim without a source → remove or rewrite it, or move the value into `site.ts` as `null`.
 4. Reviews: compare to source text character by character.
 5. Write `claims.md`: claim | page | source | status (✔ sourced / ✘ removed / ⚠ needs client confirmation).
+6. **Copy voice (A24):** run a read of every page against `templates/copy-voice.md`. `review.mjs` flags
+   banned and internal/meta phrases (`copyVoice`). Rewrite anything that talks about sources, what is
+   "listed" or "published," missing prices, or generic filler. Missing facts are omitted, not explained
+   to the visitor.
 
 ## Step 6 — Fix and re-run
 
@@ -163,7 +172,10 @@ Checklist
 - [x] Delight: 1–2 client-specific moments listed; not a sprinkle of generic ticks
 - [x] Motion plan followed (one hero load-in, one CSS signature, hovers; the rest still); Playwright scroll video or equivalent watched
 - [x] Anti-generic: no default eyebrow parade, card-grid indexes, fade-every-section, unjustified count-ups, or cream+serif+terracotta unless sampled and justified
-- [x] Project galleries: no project ships one photo when the source harvest had more; first viewport at 1440 and 390 shows a photo; C28 shell (rail, hearts, viewer, next-house) is present; C22–C26 match the photos
+- [x] Project galleries: no project ships one photo when the source harvest had more; first viewport at 1440 and 390 shows a photo; C28 shell (rail, hearts, viewer, next-house) is present; C22–C26 match the photos; C29 filters when 8+ projects
+- [x] Copy voice (A24): no banned or internal/meta phrases; missing facts omitted, not explained
+- [x] No empty runway (A25): no visible-content gap over ~240px at 1440 or ~160px at 390; sticky/scroll-driven sections show content on the first frame
+- [x] One widget, one page: a distinctive interactive widget is not repeated across pages
 - [x] Template smell test: not a Legacy boxed hero + tile grid, not Teton badge soup, not Hammond remodeler chrome
 - [x] Conversion: one primary CTA, trust beside the ask, contact last on tools/qualifiers, thank-you page, no banned patterns
 - [x] Measurement: events fired in preview, brief/measurement.md filled, 90-day baseline noted

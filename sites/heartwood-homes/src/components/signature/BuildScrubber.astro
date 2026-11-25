@@ -90,8 +90,8 @@ const chapters = [
       </div>
     </div>
     <p class="scrubber-live visually-hidden" aria-live="polite">Finish. {chapters[3].text}</p>
-    <a class="btn" href={`/contact/?project=${house.slug}&chapter=finish&work=custom-home`} data-scrubber-cta>
-      Start your home
+    <a class="btn" href={`/contact/?project=${house.slug}&chapter=finish&work=custom-home`} data-scrubber-cta data-start-cta>
+      <span data-start-cta-label>Start your home</span>
     </a>
     <AskProof />
   </div>

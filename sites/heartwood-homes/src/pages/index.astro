@@ -37,7 +37,7 @@ const founders = site.team?.map((person) => person.name).join(' and ');
           {house?.credit && <p class="muted">{house.credit}</p>}
         </div>
         <div class="stack" data-hero-step>
-          <a class="btn" href={contactHref}>{ctaLabel}</a>
+          <a class="btn" href={contactHref} data-start-cta><span data-start-cta-label>{ctaLabel}</span></a>
           {site.phone && site.phoneE164 && (
             <a class="btn btn-ghost" href={`tel:${site.phoneE164}`} data-event="call_click" data-event-placement="hero">{site.phone}</a>
           )}

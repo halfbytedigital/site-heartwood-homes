@@ -1,0 +1,27 @@
+---
+/**
+ * Save-this-house heart (C28d). Persists in localStorage; no account.
+ * Also drop one on each project index card. aria-pressed is synced in project-page.ts.
+ * Honest: no fake counts — only houses this visitor saved.
+ */
+interface Props {
+  slug: string;
+  name: string;
+}
+const { slug, name } = Astro.props;
+---
+
+<button
+  type="button"
+  class="save-house"
+  data-save-house
+  data-house-slug={slug}
+  data-house-name={name}
+  aria-pressed="false"
+  aria-label={`Save ${name}`}
+>
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21s-6.2-4.35-8.54-7.7C1.6 10.85 2.1 7.6 4.6 6.2c1.8-1 3.9-.5 5.15 1.1L12 9.7l2.25-2.4c1.25-1.6 3.35-2.1 5.15-1.1 2.5 1.4 3 4.65 1.14 7.1C18.2 16.65 12 21 12 21z" />
+  </svg>
+  <span class="visually-hidden">Save {name}</span>
+</button>

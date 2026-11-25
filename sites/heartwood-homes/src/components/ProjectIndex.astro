@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { projectPath, type Project } from '../data/projects';
+import SaveHouse from './SaveHouse.astro';
 
 interface Props {
   projects: Project[];
@@ -13,12 +14,13 @@ const { projects, title } = Astro.props;
     {title && <h2 class="work-title">{title}</h2>}
     <ol class="work-list">
       {projects.map((project) => (
-        <li>
+        <li class="work-item">
           <a class="work-link" href={projectPath(project.slug)} data-shot={project.slug}>
             <Image src={project.image} alt="" widths={[480, 960, 1400]} sizes="(min-width: 900px) 96px, 100vw" />
             <span class="work-name">{project.name}</span>
             <span class="muted">{project.dates}</span>
           </a>
+          <SaveHouse slug={project.slug} name={project.name} />
         </li>
       ))}
     </ol>

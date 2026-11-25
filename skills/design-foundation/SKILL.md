@@ -500,6 +500,31 @@ Hard rules Jake named:
 - One primary CTA per page (verb + outcome), proof next to the ask, a header phone and CTA, a sticky mobile call bar, a dark closing band, a thank-you page. City pages only with real local proof (Renewal).
 - Every site ships the event list, Plausible (default), a monthly one-page client report, and a 90-day baseline — not an industry conversion number.
 
+### A24. Copy voice (non-negotiable)
+
+Write like the owners talking to a customer: short, concrete, plain. For a Southern trades company,
+Southern-plain. Full rule and the banned-phrase list: `templates/copy-voice.md`. `review.mjs` flags
+those phrases in visible copy.
+
+- Never put internal kit or sourcing language on the public site ("what [Name] already lists,"
+  "sourced," "confirmed," "placeholder," "listed on the current site").
+- Never explain a missing fact to the visitor ("we don't publish a price," "we don't have a response
+  time," "a cost range needs numbers from us before it can be shown"). Omit it, or say what actually
+  happens ("Plans, then an estimate, then we build.").
+- No self-labels ("honest cost guidance"), generic filler ("seamless," "elevate," "nestled,"
+  "crafted with care"), stacked triads, or em-dash cadence in body copy.
+- Do not talk about the website when you should be talking about the work.
+
+### A25. No empty runway (sticky / scroll-driven sections)
+
+A sticky, pinned, or scroll-driven section cannot leave an empty vertical runway. The first frame
+of the section — including a lot-to-finish scrubber or a view-timeline photo — must show the content.
+Do not put `opacity: 0`, `data-animate`, `data-reveal`, or a `view()` fade with `animation-fill-mode: both`
+on a large stage, its photograph, or an ancestor, if that would hide the block until the visitor
+scrolls through hundreds of pixels of blank page.
+
+`review.mjs` flags any vertical gap with no visible content over **~240px at 1440** or **~160px at 390**.
+
 ---
 
 ## B. Expression knobs (set per site in `brief/brand.md`)

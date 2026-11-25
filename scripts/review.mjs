@@ -273,6 +273,108 @@ function audit() {
       }).slice(0, 8).map(sel);
     }
   }
+
+  // A24 copy voice: banned / internal / meta phrases in visible text.
+  const copyPatterns = [
+    [/already lists/i, "already lists"],
+    [/\bwhat (?:we|[A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+)?) (?:already )?lists\b/i, "what X lists"],
+    [/\bsourced\b/i, "sourced"],
+    [/\bconfirmed\b/i, "confirmed"],
+    [/\bplaceholder\b/i, "placeholder"],
+    [/not published/i, "not published"],
+    [/we don['’]?t have/i, "we don't have"],
+    [/we do not have/i, "we do not have"],
+    [/we don['’]?t publish/i, "we don't publish"],
+    [/do not publish/i, "do not publish"],
+    [/does not list a price/i, "does not list a price"],
+    [/do not list a price/i, "do not list a price"],
+    [/no prices? (?:are |is )?published/i, "no prices published"],
+    [/nothing on this site is a price/i, "nothing on this site is a price"],
+    [/nothing here is a published price/i, "nothing here is a published price"],
+    [/no prices are listed here/i, "no prices are listed here"],
+    [/listed together on the current site/i, "listed on the current site"],
+    [/\bthe current site\b/i, "the current site"],
+    [/cost range needs numbers/i, "cost range needs numbers"],
+    [/don['’]?t publish a response time/i, "don't publish a response time"],
+    [/honest(?:ly)? (?:cost|guidance|look|pricing)/i, "honest self-label"],
+    [/crafted with care/i, "crafted with care"],
+    [/quality craftsmanship/i, "quality craftsmanship"],
+    [/attention to detail/i, "attention to detail"],
+    [/\bseamless\b/i, "seamless"],
+    [/\belevat(?:e|ed|ing)\b/i, "elevate"],
+    [/\bnestled\b/i, "nestled"],
+    [/\bbespoke\b/i, "bespoke"],
+    [/\bunparalleled\b/i, "unparalleled"],
+    [/timeless elegance/i, "timeless elegance"],
+    [/\bdream homes?\b/i, "dream home"],
+    [/whether you(?:['’]re| are)\b.{0,80}\bor\b/i, "whether you're...or"],
+    [/every house is a page/i, "every house is a page"],
+  ];
+  const copyVoice = [];
+  const seenCopy = new Set();
+  for (const [re, label] of copyPatterns) {
+    re.lastIndex = 0;
+    const m = txt.match(re);
+    if (!m) continue;
+    // Grab a short surrounding sentence for the report.
+    const idx = txt.toLowerCase().indexOf(m[0].toLowerCase());
+    const slice = idx >= 0 ? txt.slice(Math.max(0, idx - 80), idx + m[0].length + 80) : m[0];
+    const line = slice.replace(/\s+/g, " ").trim();
+    const key = label + "|" + line;
+    if (seenCopy.has(key)) continue;
+    seenCopy.add(key);
+    copyVoice.push({ label, match: m[0], line: line.slice(0, 220) });
+  }
+  const emDashes = (txt.match(/—/g) || []).length;
+  if (emDashes) copyVoice.push({ label: "em-dash cadence", match: "—", line: `${emDashes} em dash(es) in visible copy` });
+  out.copyVoice = copyVoice;
+
+  // A25 empty runway: vertical gaps with no visible content.
+  const gapLimit = vw >= 1000 ? 240 : 160;
+  const main = document.querySelector("main") || document.body;
+  const y = window.scrollY || window.pageYOffset;
+  function visuallyHidden(el) {
+    let node = el;
+    let op = 1;
+    while (node && node !== document.documentElement) {
+      const cs = getComputedStyle(node);
+      if (cs.display === "none" || cs.visibility === "hidden") return true;
+      op *= parseFloat(cs.opacity);
+      if (cs.position === "fixed" || cs.position === "sticky") {
+        // Fixed chrome is not page flow; sticky items still occupy flow via their parent.
+        if (cs.position === "fixed") return true;
+      }
+      node = node.parentElement;
+    }
+    return op < 0.08;
+  }
+  const intervals = [];
+  const candidates = main.querySelectorAll("img, video, svg, canvas, picture, p, h1, h2, h3, h4, h5, li, figcaption, button, a, figure, [data-work]");
+  for (const el of candidates) {
+    if (visuallyHidden(el)) continue;
+    const r = el.getBoundingClientRect();
+    if (r.height < 8 || r.width < 20) continue;
+    const tag = el.tagName;
+    const hasText = (el.textContent || "").trim().length > 0 && !/^(SECTION|DIV|ARTICLE|MAIN|PICTURE)$/.test(tag);
+    const replaced = /^(IMG|VIDEO|SVG|CANVAS|PICTURE)$/.test(tag);
+    const bg = getComputedStyle(el).backgroundImage;
+    const hasBg = bg && bg !== "none";
+    if (!hasText && !replaced && !hasBg) continue;
+    intervals.push([r.top + y, r.bottom + y]);
+  }
+  intervals.sort((a, b) => a[0] - b[0]);
+  const merged = [];
+  for (const iv of intervals) {
+    if (!merged.length || iv[0] > merged[merged.length - 1][1] + 4) merged.push(iv.slice());
+    else merged[merged.length - 1][1] = Math.max(merged[merged.length - 1][1], iv[1]);
+  }
+  const emptyGaps = [];
+  for (let i = 0; i < merged.length - 1; i++) {
+    const hole = merged[i + 1][0] - merged[i][1];
+    if (hole >= gapLimit) emptyGaps.push({ after: Math.round(merged[i][1]), px: Math.round(hole) });
+  }
+  out.emptyGaps = emptyGaps.slice(0, 8);
+  out.emptyGapLimit = gapLimit;
   return out;
 }
 
@@ -351,6 +453,19 @@ for (const [key, pg] of Object.entries(report.pages)) {
     }
     if (r.actionBarCollisions && r.actionBarCollisions.length) {
       lines.push(`  - ✘ sticky call bar covers: ${r.actionBarCollisions.join(', ')}`);
+    }
+    if (r.emptyGaps && r.emptyGaps.length) {
+      lines.push(`  - ✘ empty vertical gaps (>${r.emptyGapLimit || 240}px, no visible content): ${r.emptyGaps.map((g) => g.px + 'px after y=' + g.after).join(', ')}`);
+    } else if (Array.isArray(r.emptyGaps)) {
+      lines.push(`  - ${flag(true)} no empty vertical gaps over ${r.emptyGapLimit || 240}px`);
+    }
+    if (r.copyVoice && r.copyVoice.length) {
+      lines.push(`  - ✘ copy-voice flags (${r.copyVoice.length}):`);
+      for (const c of r.copyVoice.slice(0, 12)) {
+        lines.push(`    - [${c.label}] "${(c.line || c.match || '').replace(/"/g, "'")}"`);
+      }
+    } else if (Array.isArray(r.copyVoice)) {
+      lines.push(`  - ${flag(true)} copy voice (no banned or internal/meta phrases)`);
     }
     if (vpName === 'desktop') {
       const s = r.seo;

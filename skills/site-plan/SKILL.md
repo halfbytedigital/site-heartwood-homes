@@ -106,12 +106,18 @@ question, leave all facts `null`, and jump to Step 5.
   never wandering.
 - **Work index:** default to a photo-forward, calm C15 / W7 (photo-led list or split list with a sticky
   crossfading image; large mobile thumbnails). Not a typographic cursor-follow, and not a card grid.
+  With 8 or more projects, plan job-type filters (C29): All plus types the harvest supports, counts,
+  `?type=` URLs, no empty categories.
 - **Project detail pages:** every project page uses the **C28 shell** (photo-first opening, Walk through rail,
   reactive photos, save heart, next-house card). Each project in `plan.md` also lists its harvested photo
   count and the compositions it can genuinely support from C22–C26 (build-story, room-by-room, editorial
   spreads, same-vantage before/after or day/dusk drag reveal, detail hotspots). Do not plan a single-hero or
   typography-first page when the crawl found a gallery. Fullscreen is a utility only. See
   `page-build/compositions.md` and `templates/project-page.md`.
+- **Primary service page:** the client's main offering (e.g. Custom Homes) uses C30 — photo-first, a
+  compact how-it-works widget unique to that page, sourced inclusions, featured work, cost only with
+  real numbers, FAQ, trust beside the ask. Our Process (or equivalent) gets the full timeline. Do not
+  plan the same distinctive widget on two pages.
 - **Anti-generic:** do not plan eyebrows on every heading, fade-up on every section, or a count-up stat row
   unless each is justified by name. Do not default the palette to cream + serif + terracotta.
   Home's feature is the trade-specific signature interaction.

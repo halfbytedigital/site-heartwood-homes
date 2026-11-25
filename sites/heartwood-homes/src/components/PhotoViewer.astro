@@ -1,0 +1,14 @@
+---
+/**
+ * Fullscreen photo utility (not the page). Close top-right, Prev/Next on the sides.
+ * Swipe, arrow keys, Esc, focus trap (native dialog), reduced motion.
+ */
+---
+
+<dialog class="photo-viewer" data-viewer aria-label="Photograph">
+  <button type="button" class="viewer-close" data-viewer-close>Close</button>
+  <button type="button" class="viewer-prev" data-viewer-prev>Previous</button>
+  <img alt="" data-viewer-frame />
+  <button type="button" class="viewer-next" data-viewer-next>Next</button>
+  <p class="viewer-count" data-viewer-count></p>
+</dialog>

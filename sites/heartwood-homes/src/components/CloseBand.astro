@@ -19,7 +19,7 @@ const {
     <h2>{title}</h2>
     <p class="measure">{line}</p>
     <div class="btn-row">
-      <a class="btn" href={href}>{ctaLabel}</a>
+      <a class="btn" href={href} data-start-cta><span data-start-cta-label>{ctaLabel}</span></a>
     </div>
     <AskProof />
     {site.phone && site.phoneE164 && (

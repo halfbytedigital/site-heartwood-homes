@@ -22,6 +22,7 @@ type Manifest = {
 };
 
 export type Shot = {
+  file: string;
   src: ImageMetadata;
   alt: string;
   label: string | null;
@@ -61,10 +62,10 @@ const manifestModules = import.meta.glob<Manifest>('../assets/projects/*/manifes
 /** Labels only where the filename or the picture itself is unambiguous. */
 const notes: Record<string, Record<string, { label?: string; role?: Shot['role']; phase?: string }>> = {
   'a-frame-cabin-airbnb': {
-    '01-Window-Rock-A-frame-55.jpg': { label: 'Dusk', role: 'dusk' },
+    '01-Window-Rock-A-frame-55.jpg': { label: 'Dusk' },
     '02-Window-Rock-A-frame-61.jpg': { label: 'The gable' },
     '03-Window-Rock-A-frame-25.jpg': { label: 'Exterior' },
-    '04-Window-Rock-A-frame-38.jpg': { label: 'Daytime', role: 'day' },
+    '04-Window-Rock-A-frame-38.jpg': { label: 'Daytime' },
     '05-Window-Rock-A-frame-33.jpg': { label: 'Deck' },
     '06-Window-Rock-A-frame-11.jpg': { label: 'Living room' },
     '07-Window-Rock-A-frame-3.jpg': { label: 'Kitchen' },
@@ -335,7 +336,30 @@ export function shotWidths(shot: Shot) {
 }
 
 function voice(text: string | null) {
-  return text ? text.replace(/AirBnb/g, 'Airbnb').replace('re- sold', 're-sold') : null;
+  if (!text) return null;
+  return text
+    .replace(/AirBnb/g, 'Airbnb')
+    .replace('re- sold', 're-sold')
+    .replace(/(?:https?:\/\/)?(?:www\.)?thewindowrock\.com\/?/gi, '')
+    .replace(/\s*-\s*$/, '')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+}
+
+const heroFile: Record<string, string> = {
+  'a-frame-cabin-airbnb': '01-Window-Rock-A-frame-55.jpg',
+  'pikeville-treehouses': '02-G81A3835.jpg',
+  'flat-top-mountain': '11-DJI_0205-HDR.jpg',
+  'incline-townhomes': '03-OldMtn-3.jpg',
+  'investment-property-flip': '02-Sims-3.jpg',
+  'crawlspace-renovation': '04-IMG_5778.jpeg',
+  'red-bank-renovation': '02-Red-Bank-1.jpg',
+};
+
+export function openingShot(gallery: Gallery): Shot | null {
+  const named = heroFile[gallery.slug];
+  const picked = named ? gallery.shots.find((shot) => shot.file === named) : undefined;
+  return picked ?? gallery.shots.find((shot) => shot.label === 'Exterior') ?? gallery.shots[0] ?? null;
 }
 
 function linkFor(raw: string | null) {
@@ -357,6 +381,7 @@ export function getGallery(slug: string): Gallery | null {
     const height = photo.height ?? imageModules[key].height;
     const label = note?.label ?? null;
     shots.push({
+      file: photo.file,
       src: imageModules[key],
       alt: `${manifest.name.replace(/AirBnb/g, 'Airbnb')}${label ? `. ${label}` : ''}`,
       label,

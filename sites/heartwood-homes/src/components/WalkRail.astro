@@ -1,0 +1,22 @@
+---
+/**
+ * Walk-through progress rail (C28b). Pair with <section id={id} data-walk-section>.
+ * Put scroll-margin on the sections (already in project-page.css).
+ */
+interface Props {
+  sections: { id: string; label: string }[];
+  label?: string;
+}
+const { sections, label = "Walk through" } = Astro.props;
+---
+
+<nav class="walk-rail" data-walk-rail aria-label={label}>
+  <div class="walk-rail-track" aria-hidden="true"><span class="walk-rail-fill" data-walk-fill></span></div>
+  <ol>
+    {sections.map((s) => (
+      <li>
+        <a href={`#${s.id}`} data-walk-dot={s.id}>{s.label}</a>
+      </li>
+    ))}
+  </ol>
+</nav>

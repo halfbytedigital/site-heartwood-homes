@@ -1,10 +1,15 @@
 ---
-import { site } from '../data/site';
+import { googleProfileHref, site } from '../data/site';
 const { rating, reviewCount, reviewUrl } = site.google;
-const show = rating != null && reviewCount != null && reviewUrl;
+const href = googleProfileHref(reviewUrl);
+const show = rating != null && reviewCount != null;
 ---
 {show && (
   <p class="ask-proof">
-    <a href={reviewUrl}>{rating.toFixed(1)} from {reviewCount} Google reviews</a>
+    {href ? (
+      <a href={href}>{rating.toFixed(1)} from {reviewCount} Google reviews</a>
+    ) : (
+      <span>{rating.toFixed(1)} from {reviewCount} Google reviews</span>
+    )}
   </p>
 )}

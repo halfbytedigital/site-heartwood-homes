@@ -91,6 +91,10 @@ show **large thumbnails** (full-width or two-up, not a 72px chip). Titles and th
 tucks under the bar. Keyboard and touch work without hover; reduced motion shows the selected photo immediately.
 Each card may include the save-this-house heart (C28d).
 
+**Filters (default when the index has 8 or more projects):** job-type pill chips at the top of the
+list, with counts and an All option — composition **C29**. A project may belong to more than one
+type. No empty categories. Keep the plan's intended first project first under All.
+
 **Not the default:** a type-first list whose photo is a studio-style cursor-follow or a sudden full-bleed
 takeover. That variant is allowed only when `brief/plan.md` justifies it for a more editorial audience. It is
 the wrong default for families hiring a local contractor.
@@ -159,6 +163,11 @@ Use only when the harvested photos (or video) actually show construction phases.
 cleared lot or site, foundation, frame, finishes, the lived-in house. Short captions in plain language. This
 can also fill a Home lot-to-finish scrubber — but only with photos of *that same house*. Never paste one
 project's foundation onto another project's finished shot. Missing chapters stay honest (words, no stock).
+
+Do not put an enter/reveal animation (`data-animate`, `data-reveal`, `hb-fade`, a `view()` fade with
+`fill: both`, or a parent at `opacity: 0`) on the scrubber section, its stage, or its first
+photograph. The first chapter must be visible as soon as the section enters the viewport. A sticky
+or scroll-driven scrubber cannot leave an empty runway (A25).
 
 ### C23 Room-by-room walkthrough
 
@@ -233,3 +242,46 @@ house names as a hidden or visible "Houses you liked" field. Fire `save_house` (
 count). Accessible: `aria-pressed`. Honest: no fake counts — only houses this visitor saved.
 
 **(e) Next-house card.** See C27. One calm card at the bottom, then the dark closing band.
+
+### C29 Job-type filters (portfolio index, 8+ projects)
+
+The default on a work or project index with **8 or more** projects. Pill chips at the top of the
+list: **All** plus one chip per job type the data actually supports (no empty categories). Show a
+count on each chip. A project may belong to more than one type. The shareable URL is `?type=slug`
+(All clears the param). Keyboard and `aria-pressed` on every chip. The reflow is a calm crossfade
+plus FLIP so cards keep their place; `prefers-reduced-motion` is instant. On mobile the chip row
+scrolls horizontally and stays clear of the sticky header and the sticky call bar.
+
+Derive types from the harvest and the plan — for a custom-home builder that often means New builds,
+Lake & cabin homes, Short-term rentals, Renovations, Townhomes & investment, trimmed to what the
+set actually contains. Templates: `templates/styles/project-filters.css`,
+`templates/scripts/project-filters.ts`.
+
+### C30 Primary service page
+
+The default for the client's **primary offering** (Custom Homes, the main trade, the page a
+homeowner hires from). It should feel as considered as Home and the project pages, not like a
+leftover service template.
+
+Ship, in this spirit:
+
+1. A photo-first hero from the harvest (first viewport is a photograph, title over or just under it).
+2. How this service works with this company — a compact, page-specific widget (a picker, a short
+   three-beat row), **not** a paste of the Home scrubber or the full Process timeline (see
+   "One widget, one page" below).
+3. What is included, and what the crew self-performs, only when those trades are sourced. A photo
+   grid beats a text list when we have the pictures.
+4. Featured examples pulled from real project pages (save hearts are welcome).
+5. Cost guidance only with numbers the client gave. If there is no range, say what happens next
+   ("Plans, then an estimate") and do not narrate the absence of a price (A24).
+6. A short FAQ or objections block, in the owner's voice.
+7. Trust beside the ask, then the same qualifier as the rest of the site.
+8. One or two delight touches that already belong to the site (C28-consistent), not a new gimmick.
+
+### One widget, one page
+
+A distinctive interactive widget — a lot-to-finish scrubber, a full process timeline, a
+design-build picker, a long sticky pin — lives on **one** page. Other pages may link to it or use
+a compact teaser (a three-step row, not the same component). Never ship the same widget on Custom
+Homes and Our Process, or paste the Home scrubber onto a service page.
+

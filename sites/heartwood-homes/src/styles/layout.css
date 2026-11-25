@@ -138,6 +138,31 @@ p a, .letter a, .measure a { text-decoration: underline; text-underline-offset: 
 }
 .work-title { grid-column: 1 / -1; margin: 0; }
 .work-link { scroll-margin-top: calc(var(--header-h) + var(--space-s)); }
+.work-item { position: relative; }
+.work-item .save-house {
+  position: absolute;
+  z-index: 1;
+  top: var(--space-2xs);
+  right: var(--space-2xs);
+  background: var(--color-bg);
+}
+@media (min-width: 900px) {
+  .work-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    border-bottom: 1px solid var(--color-line);
+  }
+  .work-item .work-link { border-bottom: 0; }
+  .work-item .save-house { position: static; background: transparent; }
+}
+@media (max-width: 1099px) {
+  .work-list { padding-bottom: calc(var(--actionbar-h) + var(--space-m)); }
+  .work-name { scroll-margin-bottom: calc(var(--actionbar-h) + var(--space-s)); }
+}
+@media (max-width: 699px) {
+  .work-link img { aspect-ratio: auto; height: 200px; }
+}
 .work-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-l); }
 .work-link {
   display: grid;

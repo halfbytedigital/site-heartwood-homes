@@ -3,8 +3,17 @@ interface Props {
   href?: string;
   type?: 'button' | 'submit';
   variant?: 'primary' | 'ghost';
+  cta?: boolean;
 }
-const { href, type = 'button', variant = 'primary' } = Astro.props;
+const { href, type = 'button', variant = 'primary', cta = false } = Astro.props;
 const cls = variant === 'ghost' ? 'btn btn-ghost' : 'btn';
 ---
-{href ? <a class={cls} href={href}><slot /></a> : <button class={cls} type={type}><slot /></button>}
+{href ? (
+  <a class={cls} href={href} data-start-cta={cta || undefined}>
+    {cta ? <span data-start-cta-label><slot /></span> : <slot />}
+  </a>
+) : (
+  <button class={cls} type={type} data-start-cta={cta || undefined}>
+    {cta ? <span data-start-cta-label><slot /></span> : <slot />}
+  </button>
+)}

@@ -88,8 +88,9 @@ skills/
   site-plan/SKILL.md          ← sitemap, funnel, tools, city pages, measurement, section outlines
   page-build/SKILL.md         ← how to build pages in Astro
   page-build/archetypes.md    ← section archetype library + recipes (layout, type, motion)
-  page-build/compositions.md  ← agency craft moves (C15–C28: photo-forward work, default project-page shell, …)
+  page-build/compositions.md  ← agency craft moves (C15–C30: photo-forward work, default project-page shell, index filters, primary service page, …)
   templates/project-page.md     ← per-project photo count + C28 shell + C22–C26 pattern plan
+  templates/copy-voice.md       ← public-site voice + banned-phrase list (A24)
   page-build/conversion.md    ← CTA, forms, tools, local pages, Jake's estimator rules (P1–P22)
   page-build/delight.md       ← 1–2 client-specific moments, with recipes
   page-build/signature-interactions.md ← one per trade, built prominently on Home
@@ -101,6 +102,8 @@ templates/
   scripts/analytics.ts        ← data-event adapter (Plausible / Umami / GA4)
   scripts/project-page.ts     ← C28 walk-rail, viewer, saved houses, next-house
   styles/project-page.css     ← C28 project-page shell styles
+  scripts/project-filters.ts  ← C29 job-type index filters (?type=, FLIP, aria-pressed)
+  styles/project-filters.css  ← C29 pill chips
   components/ProjectHero.astro, WalkRail.astro, ProjectShot.astro, SaveHouse.astro, NextHouse.astro, PhotoViewer.astro
   data/estimator.ts           ← null-safe pricing inputs for a quote tool
   material-board.md           ← shape of brief/material-board.md (write this before tokens)

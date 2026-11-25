@@ -1,9 +1,14 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import CloseBand from '../../components/CloseBand.astro';
-import ProjectStory from '../../components/ProjectStory.astro';
-import { getGallery } from '../../data/galleries';
-import { featuredFirst, projects } from '../../data/projects';
+import ProjectHero from '../../components/ProjectHero.astro';
+import WalkRail from '../../components/WalkRail.astro';
+import ProjectShot from '../../components/ProjectShot.astro';
+import NextHouse from '../../components/NextHouse.astro';
+import PhotoViewer from '../../components/PhotoViewer.astro';
+import { getGallery, openingShot, roomGroups, shotWidths, type Shot } from '../../data/galleries';
+import { featuredFirst, projectPath, projects } from '../../data/projects';
 
 export function getStaticPaths() {
   return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
@@ -11,29 +16,125 @@ export function getStaticPaths() {
 
 const { project } = Astro.props;
 const gallery = getGallery(project.slug);
+const hero = gallery ? openingShot(gallery) : null;
 const description = `${project.name}. ${project.type}. ${project.status}, ${project.dates}.`.slice(0, 155);
 const work = project.kind === 'renovation' ? 'renovation' : 'custom-home';
 const order = featuredFirst(projects.filter((item) => item.kind === project.kind));
-const index = order.findIndex((item) => item.slug === project.slug);
-const next = [1, 2].map((step) => order[(index + step) % order.length]).filter((item) => item && item.slug !== project.slug);
+const index = Math.max(0, order.findIndex((item) => item.slug === project.slug));
+const next = order.length > 1 ? order[(index + 1) % order.length] : undefined;
+const prev = order.length > 1 ? order[(index - 1 + order.length) % order.length] : undefined;
 const link = project.href ?? gallery?.link ?? null;
 const linkLabel = project.hrefLabel ?? (link ? 'The project site' : null);
+
+type Block = { id: string; label: string; text?: string; shots: Shot[] };
+
+function sectionId(label: string) {
+  return label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+function blocks(): Block[] {
+  if (!gallery || !hero) return [];
+  const rest = gallery.shots.filter((shot) => shot.file !== hero.file);
+  if (gallery.pattern === 'build') {
+    return gallery.phases
+      .map((phase) => ({
+        id: phase.id,
+        label: phase.label,
+        text: phase.text,
+        shots: rest.filter((shot) => shot.phase === phase.id),
+      }))
+      .filter((block) => block.shots.length > 0);
+  }
+  const { groups, unlabeled } = roomGroups(rest.map((shot) => ({ ...shot, role: 'spread' as const })));
+  const out: Block[] = groups.map((group) => ({
+    id: sectionId(group.label),
+    label: group.label,
+    shots: group.shots,
+  }));
+  if (unlabeled.length) out.push({ id: 'more', label: 'More photos', shots: unlabeled });
+  return out;
+}
+
+const sections = blocks();
+
+function pairs(shots: Shot[]) {
+  const rows: Shot[][] = [];
+  for (let i = 0; i < shots.length; i += 2) rows.push(shots.slice(i, i + 2));
+  return rows;
+}
 ---
 <Base title={`${project.name} | Heartwood Homes`} description={description}>
   <article>
-    <header class="section">
+    {hero && (
+      <ProjectHero
+        title={project.name}
+        slug={project.slug}
+        name={project.name}
+        kicker={gallery?.projectType ?? project.type}
+        dates={gallery?.dates ?? project.dates}
+        titlePlacement={gallery?.modest ? 'under' : 'over'}
+      >
+        <button type="button" class="project-hero-open" data-view data-alt={hero.alt} aria-label={`View ${hero.alt} fullscreen`}>
+          <Image
+            src={hero.src}
+            alt=""
+            widths={shotWidths(hero)}
+            sizes="100vw"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </button>
+      </ProjectHero>
+    )}
+
+    {sections.length > 0 && <WalkRail sections={sections.map((section) => ({ id: section.id, label: section.label }))} />}
+
+    <section class="section">
       <div class="container stack">
-        <h1>{project.name}</h1>
-        <p class="muted">{gallery?.projectType ?? project.type}</p>
-        <p>{gallery?.status ?? project.status}{gallery?.dates || project.dates ? ` · ${gallery?.dates ?? project.dates}` : ''}</p>
-        {gallery?.location && <p>{gallery.location}</p>}
         <p class="lede measure">{gallery?.description ?? project.summary}</p>
+        {gallery?.location && <p>{gallery.location}</p>}
+        {gallery?.credit && <p class="muted">{gallery.credit}</p>}
         {link && linkLabel && <p><a class="text-link" href={link}>{linkLabel}</a></p>}
       </div>
-    </header>
-    {gallery && gallery.shots.length > 0 ? (
-      <ProjectStory gallery={gallery} next={next} />
-    ) : null}
-    <CloseBand href={`/contact/?work=${work}`} />
+    </section>
+
+    {sections.map((section) => (
+      <section class="section" id={section.id} data-walk-section>
+        <div class="container stack">
+          <h2>{section.label}</h2>
+          {section.text && <p class="measure">{section.text}</p>}
+          {pairs(section.shots).map((row) => (
+            <div class:list={['spread', row.length > 1 ? 'spread-two' : 'spread-full']}>
+              {row.map((shot) => (
+                <ProjectShot alt={shot.alt} class={gallery?.modest ? 'shot-modest' : undefined}>
+                  <Image
+                    src={shot.src}
+                    alt=""
+                    widths={shotWidths(shot)}
+                    sizes={row.length > 1 ? '(min-width: 800px) 600px, 100vw' : '(min-width: 800px) 1240px, 100vw'}
+                    style={gallery?.modest ? `max-width:${shot.width}px` : undefined}
+                  />
+                </ProjectShot>
+              ))}
+            </div>
+          ))}
+        </div>
+      </section>
+    ))}
+
+    {next && (
+      <NextHouse
+        nextHref={projectPath(next.slug)}
+        nextName={next.name}
+        teaser={next.summary}
+        prevHref={prev ? projectPath(prev.slug) : undefined}
+        prevName={prev?.name}
+      >
+        <Image src={next.image} alt="" widths={[800, 1400]} sizes="(min-width: 800px) 1240px, 100vw" />
+      </NextHouse>
+    )}
+
+    <PhotoViewer />
+    <CloseBand href={`/contact/?work=${work}&project=${project.slug}`} />
   </article>
 </Base>

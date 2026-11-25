@@ -8,7 +8,7 @@ const quotePage = Astro.url.pathname.startsWith('/contact');
     {site.phone && site.phoneE164 && (
       <a href={`tel:${site.phoneE164}`} data-event="call_click" data-event-placement="bar">Call</a>
     )}
-    <a href={contactHref}>{ctaLabel}</a>
+    <a href={contactHref} data-start-cta><span data-start-cta-label>{ctaLabel}</span></a>
   </nav>
 )}
 

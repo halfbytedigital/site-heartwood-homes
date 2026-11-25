@@ -60,6 +60,10 @@ const chapter = params.get('chapter') ?? '';
       <input name="email" type="email" autocomplete="email" />
     </label>
     <p class="muted">A phone number or an email is enough. We don’t publish prices, and we don’t ask for a budget range until Heartwood sets one.</p>
+    <label class="field">
+      Houses you liked
+      <input name="houses" data-saved-houses-field readonly />
+    </label>
   </div>
   <p class="visually-hidden">
     <label>Company<input class="visually-hidden" name="company" tabindex="-1" autocomplete="off" /></label>
@@ -69,7 +73,7 @@ const chapter = params.get('chapter') ?? '';
   <div class="btn-row">
     <button class="btn btn-ghost" type="button" data-back hidden>Back</button>
     <button class="btn" type="button" data-next>Continue</button>
-    <button class="btn" type="submit" data-submit>{ctaLabel}</button>
+    <button class="btn" type="submit" data-submit data-start-cta><span data-start-cta-label>{ctaLabel}</span></button>
   </div>
   <AskProof />
   <p class="form-status" data-status hidden></p>

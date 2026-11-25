@@ -22,7 +22,7 @@ const heroDesktop = photo ? await getImage({ src: photo.image, width: 1400, qual
       <h1>The house you plan to stay in.</h1>
       <p class="lede">A new home from the ground up, with the owners, the architect, and the engineer.</p>
       <div class="btn-row">
-        <Button href="/contact/?work=custom-home">Start your home</Button>
+        <Button href="/contact/?work=custom-home" cta>Start your home</Button>
         {site.phone && site.phoneE164 && <Button href={`tel:${site.phoneE164}`} variant="ghost">{site.phone}</Button>}
       </div>
       <AskProof />

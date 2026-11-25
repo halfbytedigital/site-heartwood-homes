@@ -51,6 +51,9 @@ npm i -D @playwright/test
   Content must be visible without JS; never add a loader that hides the page.
 - **Project-page shell (C28):** copy `templates/styles/project-page.css`, `templates/scripts/project-page.ts`,
   and the components `ProjectHero`, `WalkRail`, `ProjectShot`, `SaveHouse`, `NextHouse`, `PhotoViewer`.
+- **Project index filters (C29):** when the index has 8 or more projects, copy
+  `templates/styles/project-filters.css` and `templates/scripts/project-filters.ts`, and put job-type
+  chips above the list (All + types the harvest supports, counts, `?type=`, `aria-pressed`).
   Import the CSS from Base (hearts also appear on the work index). Import the script once after `analytics.ts`.
   Mark the primary CTA with `data-start-cta` (optional inner `data-start-cta-label`) and add a
   `data-saved-count` element in the header. On the qualifier, include a `data-saved-houses-field` input
@@ -87,8 +90,11 @@ Shared components may be adapted from earlier sites only if restyled through tok
 - Every component that shows a fact checks it: `{site.yearFounded && <span>Since {site.yearFounded}</span>}`.
   No fallbacks like "XX", "Since 20__", "100+".
 - Copy: write in the chosen voice from intake answers and the crawl. Short sentences, concrete nouns, the customer's
-  words. Headlines say an outcome or a difference, not "Welcome to …". Each service page answers: what it is, who it's
-  for, how it works with them, what it costs or how pricing works (if agreed), proof, next step.
+  words. Follow `templates/copy-voice.md` (A24): no internal sourcing language, no narrating missing facts, no
+  generic filler. Headlines say an outcome or a difference, not "Welcome to …". Each service page answers: what it is, who it's
+  for, how it works with them, what it costs or how pricing works (if agreed), proof, next step. The primary
+  offering uses composition C30. Do not repeat a distinctive widget across pages (compositions.md,
+  "One widget, one page").
 - Reviews: verbatim from `sources.md`, with source link.
 - Put any copy you wrote that contains a claim on the honesty list in `brief/review/claims.md` (review checks it).
 
