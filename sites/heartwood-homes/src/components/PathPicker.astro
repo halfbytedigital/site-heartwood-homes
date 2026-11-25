@@ -68,18 +68,23 @@ const paths = [
       show(id);
       track('path_select', { path: id });
       const form = document.querySelector<HTMLFormElement>('[data-qualifier]');
-      const field = form?.querySelector<HTMLInputElement>('[name="path"]');
-      if (field) field.value = id;
-      const land = id === 'have-land' ? 'Yes' : id === 'find-land' ? 'Not yet' : '';
-      const timeline = id === 'dreaming' ? 'Just looking' : '';
-      if (land) {
-        const radio = form?.querySelector<HTMLInputElement>(`input[name="land"][value="${land}"]`);
-        if (radio) radio.checked = true;
+      if (!form) return;
+      const setRadio = (name: string, value: string) => {
+        form.querySelectorAll<HTMLInputElement>(`input[type="radio"][name="${name}"]`).forEach((radio) => {
+          radio.checked = value !== '' && radio.value === value;
+        });
+      };
+      let field = form.querySelector<HTMLInputElement>('input[type="hidden"][name="path"]');
+      if (!field) {
+        field = document.createElement('input');
+        field.type = 'hidden';
+        field.name = 'path';
+        form.append(field);
       }
-      if (timeline) {
-        const radio = form?.querySelector<HTMLInputElement>(`input[name="timeline"][value="${timeline}"]`);
-        if (radio) radio.checked = true;
-      }
+      field.value = id;
+      setRadio('work', 'custom-home');
+      setRadio('land', id === 'have-land' ? 'Yes' : id === 'find-land' ? 'Not yet' : '');
+      setRadio('timeline', id === 'dreaming' ? 'Just looking' : '');
     });
   });
 </script>

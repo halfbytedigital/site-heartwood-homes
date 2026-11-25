@@ -137,8 +137,9 @@ p a, .letter a, .measure a { text-decoration: underline; text-underline-offset: 
   display: grid;
   gap: var(--space-l);
   padding-top: var(--space-l);
-  padding-bottom: var(--section-pad);
+  padding-bottom: 0;
 }
+[data-work].section { padding-bottom: 0; }
 .work-title, .work .project-filters { grid-column: 1 / -1; margin: 0; }
 .work-link { scroll-margin-top: calc(var(--header-h) + var(--space-s)); }
 .work-item { position: relative; }

@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import { getProject } from '../../data/projects';
-import AskProof from '../AskProof.astro';
 import lot from '../../assets/projects/flat-top-mountain/03-DJI_0960.jpg';
 import foundation from '../../assets/projects/flat-top-mountain/04-IMG_0263.jpg';
 import frame from '../../assets/projects/flat-top-mountain/08-DJI_0080-HDR.jpg';
@@ -40,95 +39,163 @@ const chapters = [
     alt: 'Flat Top Mountain, the house closed in.',
   },
 ];
+
+const hrefFor = (id: string) => `/contact/?project=${house.slug}&chapter=${id}&work=custom-home`;
+const pad = (n: number) => String(n).padStart(2, '0');
 ---
 <section class="scrub" data-scrubber data-showing="lot" aria-labelledby="scrubber-title">
-  <div class="scrub-stage">
-    <figure class="scrub-photo">
+  <div class="scrub-fit">
+    <figure class="scrub-photo" tabindex="0" aria-label="Drag across the photo to move through the build">
       {chapters.map((chapter, index) => (
         <Image
           src={chapter.image}
           alt={chapter.alt}
-          widths={[960, 1400]}
+          widths={[960, 1400, 2000]}
           sizes="100vw"
           loading={index === 0 ? 'eager' : 'lazy'}
           class:list={[{ 'is-on': index === 0 }]}
           data-frame={chapter.id}
+          draggable="false"
         />
       ))}
-      {house.credit && <figcaption>{house.credit}</figcaption>}
-    </figure>
-    <ol class="chapters">
-      {chapters.map((chapter, index) => (
-        <li class:list={['chapter', { 'is-active': index === 0 }]} data-chapter={chapter.id}>
-          <h3>{chapter.label}</h3>
-          <p>{chapter.text}</p>
-        </li>
-      ))}
-    </ol>
-  </div>
-  <div class="container scrub-panel">
-    <div class="stack-s">
-      <p class="muted">Flat Top Mountain</p>
-      <h2 id="scrubber-title">From the lot to the finished home</h2>
-    </div>
-    <div class="scrub-control">
-      <label for="build-scrubber">Chapter</label>
-      <input
-        id="build-scrubber"
-        type="range"
-        min="1"
-        max={chapters.length}
-        value={1}
-        step="1"
-        aria-valuemin={1}
-        aria-valuemax={chapters.length}
-        aria-valuenow={1}
-        aria-valuetext="The lot"
-      />
-      <div class="ticks" aria-hidden="true">
-        {chapters.map((chapter) => <span>{chapter.label}</span>)}
+      {house.credit && <figcaption class="scrub-credit">{house.credit}</figcaption>}
+      <div class="scrub-glass">
+        <p class="scrub-kicker">Flat Top Mountain</p>
+        <h2 id="scrubber-title">From the lot to the finished home</h2>
+        <p class="scrub-readout" data-scrub-readout>{pad(1)} / {pad(chapters.length)} {chapters[0].label}</p>
+        <p class="scrub-caption" data-scrub-caption>{chapters[0].text}</p>
+        <div class="tape">
+          <div class="tape-rule" aria-hidden="true">
+            <span class="tape-fill" data-tape-fill></span>
+            <span class="tape-handle" data-tape-handle></span>
+          </div>
+          <div class="tape-stops">
+            {chapters.map((chapter, index) => (
+              <button type="button" data-stop={index} data-text={chapter.text} aria-pressed={index === 0 ? 'true' : 'false'}>{chapter.label}</button>
+            ))}
+          </div>
+          <label class="visually-hidden" for="build-scrubber">Chapter</label>
+          <input
+            id="build-scrubber"
+            class="tape-range"
+            type="range"
+            min="1"
+            max={chapters.length}
+            value={1}
+            step="1"
+            aria-valuemin={1}
+            aria-valuemax={chapters.length}
+            aria-valuenow={1}
+            aria-valuetext="The lot"
+          />
+        </div>
+        <a class="scrub-quiet" href={hrefFor('lot')} data-scrub-quiet>Start your home</a>
+        <a class="btn scrub-cta" href={hrefFor('finish')} data-scrubber-cta data-start-cta>
+          <span data-start-cta-label>Start your home</span>
+        </a>
       </div>
+    </figure>
+    <div class="scrub-cta-slot">
+      <a class="btn scrub-cta" href={hrefFor('finish')} data-scrubber-cta data-start-cta>
+        <span data-start-cta-label>Start your home</span>
+      </a>
     </div>
-    <p class="scrubber-live visually-hidden" aria-live="polite">The lot. {chapters[0].text}</p>
-    <a class="btn" href={`/contact/?project=${house.slug}&chapter=finish&work=custom-home`} data-scrubber-cta data-start-cta>
-      <span data-start-cta-label>Start your home</span>
-    </a>
-    <AskProof />
   </div>
+  <p class="scrubber-live visually-hidden" aria-live="polite">The lot. {chapters[0].text}</p>
 </section>
 
 <script>
   const root = document.querySelector<HTMLElement>('[data-scrubber]');
   if (root) {
-    root.dataset.enhanced = 'true';
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const input = root.querySelector<HTMLInputElement>('input[type="range"]');
     const live = root.querySelector<HTMLElement>('.scrubber-live');
-    const cta = root.querySelector<HTMLAnchorElement>('[data-scrubber-cta]');
-    const items = [...root.querySelectorAll<HTMLElement>('[data-chapter]')];
-    const labels = items.map((item) => item.querySelector('h3')?.textContent?.trim() ?? '');
+    const readout = root.querySelector<HTMLElement>('[data-scrub-readout]');
+    const caption = root.querySelector<HTMLElement>('[data-scrub-caption]');
+    const fill = root.querySelector<HTMLElement>('[data-tape-fill]');
+    const handle = root.querySelector<HTMLElement>('[data-tape-handle]');
+    const stops = [...root.querySelectorAll<HTMLButtonElement>('[data-stop]')];
+    const frames = [...root.querySelectorAll<HTMLImageElement>('[data-frame]')];
+    const ctas = [...root.querySelectorAll<HTMLAnchorElement>('[data-scrubber-cta], [data-scrub-quiet]')];
+    const labels = stops.map((stop) => stop.textContent?.trim() ?? '');
+    const lines = stops.map((stop) => stop.dataset.text ?? '');
+    const ids = frames.map((img) => img.dataset.frame ?? '');
+    const count = stops.length;
+    let index = 0;
 
-    const show = (index: number) => {
-      items.forEach((item, i) => item.classList.toggle('is-active', i === index));
-      root.querySelectorAll<HTMLImageElement>('[data-frame]').forEach((img) => {
-        img.classList.toggle('is-on', img.dataset.frame === items[index]?.dataset.chapter);
-      });
-      const id = items[index]?.dataset.chapter ?? '';
-      root.dataset.showing = id;
+    const roll = (el: HTMLElement | null) => {
+      if (!el || reduced) return;
+      el.classList.remove('is-rolling');
+      void el.offsetWidth;
+      el.classList.add('is-rolling');
+    };
+
+    const show = (next: number, animate = true) => {
+      index = Math.max(0, Math.min(count - 1, next));
+      const id = ids[index] ?? '';
       const label = labels[index] ?? '';
-      const text = items[index]?.querySelector('p')?.textContent?.trim() ?? '';
+      root.dataset.showing = id;
+      root.classList.toggle('is-finish', id === 'finish');
+      frames.forEach((img) => img.classList.toggle('is-on', img.dataset.frame === id));
+      stops.forEach((stop, i) => stop.setAttribute('aria-pressed', String(i === index)));
+      const progress = count === 1 ? 0 : index / (count - 1);
+      if (fill) fill.style.width = `${progress * 100}%`;
+      if (handle) handle.style.left = `${progress * 100}%`;
       if (input) {
         input.value = String(index + 1);
         input.setAttribute('aria-valuenow', String(index + 1));
         input.setAttribute('aria-valuetext', label);
       }
-      if (live) live.textContent = `${label}. ${text}`;
-      if (cta) {
-        const url = new URL(cta.href);
-        url.searchParams.set('chapter', id);
-        cta.href = `${url.pathname}${url.search}`;
+      if (readout) {
+        readout.textContent = `${String(index + 1).padStart(2, '0')} / ${String(count).padStart(2, '0')} ${label}`;
+        if (animate) roll(readout);
       }
+      if (caption) {
+        caption.textContent = lines[index] ?? '';
+        if (animate) roll(caption);
+      }
+      if (live) live.textContent = `${label}. ${lines[index] ?? ''}`;
+      ctas.forEach((cta) => {
+        const url = new URL(cta.href, location.origin);
+        url.searchParams.set('project', 'flat-top-mountain');
+        url.searchParams.set('chapter', id);
+        url.searchParams.set('work', 'custom-home');
+        cta.href = `${url.pathname}${url.search}`;
+      });
     };
 
+    show(0, false);
+
     input?.addEventListener('input', () => show(Number(input.value) - 1));
+    stops.forEach((stop) => stop.addEventListener('click', () => show(Number(stop.dataset.stop))));
+
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'ArrowRight') { event.preventDefault(); show(index + 1); }
+      if (event.key === 'ArrowLeft') { event.preventDefault(); show(index - 1); }
+    };
+    root.querySelector('.scrub-photo')?.addEventListener('keydown', onKey);
+    input?.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') event.stopPropagation();
+    });
+
+    const photo = root.querySelector<HTMLElement>('.scrub-photo');
+    let startX = 0;
+    let tracking = false;
+    photo?.addEventListener('dragstart', (event) => event.preventDefault());
+    photo?.addEventListener('pointerdown', (event) => {
+      if ((event.target as HTMLElement).closest('.scrub-glass, a, button, input')) return;
+      startX = event.clientX;
+      tracking = true;
+    });
+    window.addEventListener('pointerup', (event) => {
+      if (!tracking || !photo) return;
+      tracking = false;
+      const width = photo.getBoundingClientRect().width || 1;
+      const delta = event.clientX - startX;
+      if (Math.abs(delta) < 24) return;
+      const steps = Math.max(1, Math.round(Math.abs(delta) / (width / count)));
+      show(index + (delta < 0 ? steps : -steps));
+    });
+    photo?.addEventListener('pointercancel', () => { tracking = false; });
   }
 </script>

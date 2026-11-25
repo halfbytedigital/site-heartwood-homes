@@ -107,10 +107,12 @@ const questions = [
         {trades.map((trade) => (
           <button class="trade-card" type="button" aria-pressed="false">
             <span class="trade-face">
-              <Image src={trade.image} alt={trade.alt} widths={[480, 800]} sizes="(min-width: 800px) 400px, 100vw" />
+              <span class="trade-photo">
+                <Image src={trade.image} alt={trade.alt} widths={[480, 800]} sizes="(min-width: 800px) 400px, 100vw" />
+                <span class="trade-why">{trade.why}</span>
+              </span>
               <span class="trade-name"><LineIcon name={trade.icon} />{trade.name}</span>
             </span>
-            <span class="trade-why">{trade.why}</span>
           </button>
         ))}
       </div>

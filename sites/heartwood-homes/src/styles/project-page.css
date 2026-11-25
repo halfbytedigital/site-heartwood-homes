@@ -140,8 +140,6 @@
   [data-work] a {
     scroll-margin-bottom: calc(var(--actionbar-h, 64px) + var(--space-s));
   }
-  .work,
-  [data-work],
   .project-hero,
   main {
     padding-bottom: var(--actionbar-h, 64px);

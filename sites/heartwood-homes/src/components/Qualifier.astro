@@ -91,6 +91,33 @@ const timelineChoice = params.get('timeline') ?? (path === 'dreaming' ? 'Just lo
 
   const form = document.querySelector<HTMLFormElement>('[data-qualifier]');
   if (form) {
+    const params = new URLSearchParams(location.search);
+    const pathValue = params.get('path') ?? '';
+    const landValue = params.get('land') ?? (pathValue === 'have-land' ? 'Yes' : pathValue === 'find-land' ? 'Not yet' : '');
+    const timelineValue = params.get('timeline') ?? (pathValue === 'dreaming' ? 'Just looking' : '');
+
+    const setRadio = (name: string, value: string) => {
+      form.querySelectorAll<HTMLInputElement>(`input[type="radio"][name="${name}"]`).forEach((radio) => {
+        radio.checked = value !== '' && radio.value === value;
+      });
+    };
+    const setHidden = (name: string, value: string) => {
+      let field = form.querySelector<HTMLInputElement>(`input[type="hidden"][name="${name}"]`);
+      if (!field) {
+        field = document.createElement('input');
+        field.type = 'hidden';
+        field.name = name;
+        form.append(field);
+      }
+      field.value = value;
+    };
+
+    setRadio('work', params.get('work') ?? '');
+    setRadio('land', landValue);
+    setRadio('timeline', timelineValue);
+    setHidden('path', pathValue);
+    setHidden('project', params.get('project') ?? '');
+    setHidden('chapter', params.get('chapter') ?? '');
     const steps = [...form.querySelectorAll<HTMLElement>('[data-step]')];
     const progress = form.querySelector<HTMLElement>('[data-progress]');
     const status = form.querySelector<HTMLElement>('[data-status]');

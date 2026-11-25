@@ -1,19 +1,8 @@
 /**
- * C29 job-type filters for a portfolio index (8+ projects).
- *
- * Markup contract:
- *   <div class="project-filters" data-project-filters>
- *     <div class="filter-chips" role="group" aria-label="Filter projects by type">
- *       <button type="button" data-filter="all" aria-pressed="true">All <span class="filter-count">14</span></button>
- *       <button type="button" data-filter="new-builds" aria-pressed="false">New builds <span class="filter-count">8</span></button>
- *     </div>
- *     <ul>
- *       <li data-types="new-builds lake-cabin">…</li>
- *     </ul>
- *   </div>
- *
- * Shareable via ?type=new-builds. A project may belong to more than one type.
- * Reduced motion: the reflow is instant (no FLIP or crossfade).
+ * C29 job-type filters. Motion stays in place: survivors FLIP from their real
+ * previous box, entering cards fade and scale in their final cell, leaving
+ * cards fade out before they are removed. Never animate from 0,0.
+ * Reduced motion swaps instantly. Shareable via ?type=.
  */
 const reduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -27,37 +16,76 @@ function applyFilter(root: HTMLElement, type: string, push = true) {
     chip.setAttribute("aria-pressed", String(chip.dataset.filter === next));
   }
 
-  const first = new Map<HTMLElement, DOMRect>();
-  if (!reduced()) {
-    for (const el of items) first.set(el, el.getBoundingClientRect());
-  }
-
-  for (const el of items) {
+  const wants = (el: HTMLElement) => {
     const types = (el.dataset.types || "").trim().split(/\s+/);
-    const show = next === "all" || types.includes(next);
+    return next === "all" || types.includes(next);
+  };
+  const shown = (el: HTMLElement) => !el.hidden && !el.hasAttribute("data-filtered-out");
+
+  const place = (el: HTMLElement, show: boolean) => {
     el.hidden = !show;
     if (show) el.removeAttribute("data-filtered-out");
     else el.setAttribute("data-filtered-out", "");
-  }
+    el.style.transform = "";
+    el.style.opacity = "";
+  };
 
-  if (!reduced()) {
+  if (reduced() || !push) {
+    for (const el of items) place(el, wants(el));
+  } else {
+    const before = new Map<HTMLElement, DOMRect>();
     for (const el of items) {
-      if (el.hidden) continue;
-      const a = first.get(el);
-      if (!a) continue;
-      const b = el.getBoundingClientRect();
-      const dx = a.left - b.left;
-      const dy = a.top - b.top;
-      if (Math.abs(dx) < 1 && Math.abs(dy) < 1) {
-        el.animate([{ opacity: 0.4 }, { opacity: 1 }], { duration: 220, easing: "ease" });
-      } else {
-        el.animate(
-          [
-            { transform: `translate(${dx}px, ${dy}px)`, opacity: 0.85 },
-            { transform: "none", opacity: 1 },
-          ],
-          { duration: 280, easing: "cubic-bezier(0.2, 0.8, 0.2, 1)" },
-        );
+      if (!shown(el)) continue;
+      const rect = el.getBoundingClientRect();
+      if (rect.width > 1 && rect.height > 1) before.set(el, rect);
+    }
+    const leaving = items.filter((el) => shown(el) && !wants(el));
+    const entering = items.filter((el) => !shown(el) && wants(el));
+    const staying = items.filter((el) => shown(el) && wants(el));
+
+    const hideLeaving = () => {
+      for (const el of leaving) place(el, false);
+      for (const el of entering) {
+        place(el, true);
+        el.style.opacity = "0";
+      }
+      requestAnimationFrame(() => {
+        for (const el of staying) {
+          const start = before.get(el);
+          if (!start) continue;
+          const end = el.getBoundingClientRect();
+          const dx = start.left - end.left;
+          const dy = start.top - end.top;
+          if (Math.abs(dx) < 1 && Math.abs(dy) < 1) continue;
+          el.animate(
+            [{ transform: `translate(${dx}px, ${dy}px)` }, { transform: "none" }],
+            { duration: 230, easing: "ease-out" },
+          );
+        }
+        for (const el of entering) {
+          el.style.opacity = "";
+          el.animate(
+            [
+              { opacity: 0, transform: "scale(0.98)" },
+              { opacity: 1, transform: "none" },
+            ],
+            { duration: 180, easing: "ease-out" },
+          );
+        }
+      });
+    };
+
+    if (!leaving.length) {
+      hideLeaving();
+    } else {
+      let pending = leaving.length;
+      for (const el of leaving) {
+        const animation = el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 160, easing: "ease-out" });
+        const done = () => {
+          pending -= 1;
+          if (pending === 0) hideLeaving();
+        };
+        animation.finished.then(done).catch(done);
       }
     }
   }
