@@ -41,6 +41,10 @@ function setupRail(root: HTMLElement) {
   const sync = () => {
     const list = cards();
     const n = list.length;
+    list.forEach((el, nIndex) => {
+      const indexEl = el.querySelector<HTMLElement>(".index");
+      if (indexEl) indexEl.textContent = pad(nIndex + 1);
+    });
     const i = visibleIndex();
     if (count) count.textContent = `${pad(Math.min(i, Math.max(n, 1)) || 1)} / ${pad(n)}`;
     const max = maxScroll();

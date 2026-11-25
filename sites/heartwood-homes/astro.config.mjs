@@ -7,6 +7,7 @@ export default defineConfig({
   trailingSlash: 'always',
   integrations: [sitemap()],
   vite: {
+    build: { cssMinify: false },
     server: { allowedHosts: ['.trycloudflare.com'] },
     preview: { allowedHosts: ['.trycloudflare.com'] },
   },

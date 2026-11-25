@@ -66,12 +66,13 @@ const pad = (n: number) => String(n).padStart(2, '0');
         <p class="scrub-caption" data-scrub-caption>{chapters[0].text}</p>
         <div class="tape">
           <div class="tape-rule" aria-hidden="true">
+            {chapters.map((_, index) => <span class="tape-tick" style={`--i: ${index}`}></span>)}
             <span class="tape-fill" data-tape-fill></span>
             <span class="tape-handle" data-tape-handle></span>
           </div>
           <div class="tape-stops">
             {chapters.map((chapter, index) => (
-              <button type="button" data-stop={index} data-text={chapter.text} aria-pressed={index === 0 ? 'true' : 'false'}>{chapter.label}</button>
+              <button type="button" data-stop={index} data-text={chapter.text} style={`--i: ${index}`} aria-pressed={index === 0 ? 'true' : 'false'}>{chapter.label}</button>
             ))}
           </div>
           <label class="visually-hidden" for="build-scrubber">Chapter</label>
@@ -103,16 +104,6 @@ const pad = (n: number) => String(n).padStart(2, '0');
   </div>
   <p class="scrubber-live visually-hidden" aria-live="polite">The lot. {chapters[0].text}</p>
 </section>
-<style is:inline>
-  .scrub-glass { background: rgb(26 30 24 / 0.92); }
-  @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-    .scrub-glass {
-      background: rgb(26 30 24 / 0.6);
-      backdrop-filter: blur(18px) saturate(1.35);
-      -webkit-backdrop-filter: blur(18px) saturate(1.35);
-    }
-  }
-</style>
 
 <script>
   const root = document.querySelector<HTMLElement>('[data-scrubber]');
@@ -148,9 +139,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
       root.classList.toggle('is-finish', id === 'finish');
       frames.forEach((img) => img.classList.toggle('is-on', img.dataset.frame === id));
       stops.forEach((stop, i) => stop.setAttribute('aria-pressed', String(i === index)));
-      const progress = count === 1 ? 0 : index / (count - 1);
-      if (fill) fill.style.width = `${progress * 100}%`;
-      if (handle) handle.style.left = `${progress * 100}%`;
+      place(index);
       if (input) {
         input.value = String(index + 1);
         input.setAttribute('aria-valuenow', String(index + 1));
@@ -174,6 +163,13 @@ const pad = (n: number) => String(n).padStart(2, '0');
       });
     };
 
+    const place = (progress: number) => {
+      const t = count <= 1 ? 0 : Math.max(0, Math.min(count - 1, progress)) / (count - 1);
+      const left = `calc(var(--thumb) / 2 + (100% - var(--thumb)) * ${t})`;
+      if (handle) handle.style.left = left;
+      if (fill) fill.style.width = `calc((100% - var(--thumb)) * ${t})`;
+    };
+
     show(0, false);
 
     input?.addEventListener('input', () => show(Number(input.value) - 1));
@@ -182,7 +178,17 @@ const pad = (n: number) => String(n).padStart(2, '0');
     const photo = root.querySelector<HTMLElement>('.scrub-photo');
     let startX = 0;
     let lastX = 0;
+    let startIndex = 0;
     let tracking = false;
+    const along = (clientX: number) => {
+      const width = photo?.getBoundingClientRect().width || 1;
+      return startIndex + (startX - clientX) / (width / count);
+    };
+    const trackDrag = (on: boolean) => {
+      const value = on ? 'none' : '';
+      if (handle) handle.style.transition = value;
+      if (fill) fill.style.transition = value;
+    };
     const fromPhoto = (event: Event) => {
       const target = event.target as HTMLElement | null;
       return !!target && !target.closest('.scrub-glass, a, button, input');
@@ -192,20 +198,25 @@ const pad = (n: number) => String(n).padStart(2, '0');
     photo?.addEventListener('pointerdown', (event) => {
       if (!fromPhoto(event) || event.button > 0) return;
       startX = lastX = event.clientX;
+      startIndex = index;
       tracking = true;
+      trackDrag(true);
     });
     photo?.addEventListener('pointermove', (event) => {
       if (!tracking) return;
       lastX = event.clientX;
+      place(along(event.clientX));
     });
     const finishDrag = (clientX: number) => {
       if (!tracking || !photo) return;
       tracking = false;
+      trackDrag(false);
       const delta = clientX - startX;
-      if (Math.abs(delta) < 24) return;
-      const width = photo.getBoundingClientRect().width || 1;
-      const steps = Math.max(1, Math.round(Math.abs(delta) / (width / count)));
-      show(index + (delta < 0 ? steps : -steps));
+      if (Math.abs(delta) < 24) {
+        show(startIndex, false);
+        return;
+      }
+      show(Math.round(along(clientX)));
     };
     window.addEventListener('pointerup', (event) => finishDrag(event.clientX));
     photo?.addEventListener('pointercancel', () => finishDrag(lastX));

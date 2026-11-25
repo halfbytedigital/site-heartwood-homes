@@ -89,7 +89,6 @@ p a, .letter a, .measure a { text-decoration: underline; text-underline-offset: 
   .hero-full img { object-position: center 28%; }
   .hero-full-copy { padding-top: var(--space-m); padding-bottom: calc(var(--actionbar-h) + var(--space-m)); }
   .hero-panel { padding: var(--space-m); gap: var(--space-s); }
-  .hero-full .hero-keep { white-space: nowrap; }
 }
 .ask-proof { margin: 0; font-size: var(--step--1); }
 .ask-proof a { color: inherit; }
