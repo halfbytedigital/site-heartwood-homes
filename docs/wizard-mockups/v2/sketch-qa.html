@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Walkout QA — Heartwood sketch</title>
+<style>
+  @font-face{font-family:Newsreader;src:url("fonts/Newsreader[opsz,wght].woff2") format("woff2");font-weight:200 800;font-display:swap}
+  @font-face{font-family:"Source Sans 3";src:url("fonts/SourceSans3[wght].woff2") format("woff2");font-weight:200 900;font-display:swap}
+  body{margin:0;background:#E7EBE7;color:#1A1E18;font-family:"Source Sans 3",sans-serif}
+  h1{font-family:Newsreader,serif;font-weight:700;letter-spacing:-0.02em;margin:0 0 8px;font-size:2rem}
+  h2{font-family:Newsreader,serif;font-weight:600;margin:28px 0 12px;font-size:1.35rem}
+  .wrap{padding:24px 32px 64px;max-width:1500px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  figure{margin:0;border:1px solid #B7BEB4;background:#E4E8DD;padding:8px 10px 10px}
+  figcaption{font-size:12px;color:#545C4E;margin:0 0 4px}
+  svg{width:100%;height:auto;display:block;color:#1A1E18}
+  .house-part{opacity:0}
+  .house-part.is-on{opacity:1}
+  [data-house]{display:none}
+  [data-house].is-on{display:block}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Walkout and slope QA</h1>
+  <p>Every type, all options on, on flat, gentle, and waterfront. The walkout should step into the bank; no grade through the porch, deck, garage, trees, septic, or well.</p>
+  <div id="root"></div>
+</div>
+<script type="module">
+  import { houseSVG, syncSketch } from './sketch-lib.js';
+  const types = ['family','lake','cabin','aframe','rental','townhome','else'];
+  const typeName = {family:'Family',lake:'Lake',cabin:'Cabin',aframe:'A-frame',rental:'Rental',townhome:'Townhomes',else:'Something else'};
+  const terrains = [
+    { terrain: 'flat', label: 'Flat (walkout still cuts a bank)' },
+    { terrain: 'gentle', label: 'Gentle slope' },
+    { terrain: 'water', label: 'Waterfront' },
+  ];
+  const allOn = {
+    cover: 'partly',
+    stories: 2,
+    needs: ['porch','garage','basement','shop'],
+    access: 'gravel',
+    power: 'yes',
+    water: 'well',
+    sewer: 'septic',
+    structure: 'no',
+  };
+  const root = document.getElementById('root');
+  for (const terr of terrains) {
+    const h = document.createElement('h2');
+    h.textContent = terr.label;
+    root.appendChild(h);
+    const grid = document.createElement('div');
+    grid.className = 'grid';
+    for (const type of types) {
+      const fig = document.createElement('figure');
+      fig.innerHTML = `<figcaption>${typeName[type]} — all options</figcaption><div class="stage">${houseSVG()}</div>`;
+      syncSketch(fig, { ...allOn, type, terrain: terr.terrain, structure: 'no' });
+      grid.appendChild(fig);
+    }
+    root.appendChild(grid);
+  }
+  // Extra: lake final-state (the hero) and lake without shop, with structure
+  const h = document.createElement('h2');
+  h.textContent = 'Hero lake house, final brief state (no shop)';
+  root.appendChild(h);
+  const grid = document.createElement('div');
+  grid.className = 'grid';
+  const hero = {
+    type: 'lake', terrain: 'water', cover: 'partly', stories: 2,
+    needs: ['porch','garage','basement'], access: 'gravel',
+    power: 'yes', water: 'well', sewer: 'unsure', structure: 'no'
+  };
+  const fig = document.createElement('figure');
+  fig.innerHTML = `<figcaption>Lake — porch, 2 story, garage, walkout, waterfront</figcaption><div class="stage">${houseSVG()}</div>`;
+  syncSketch(fig, hero);
+  grid.appendChild(fig);
+  const fig2 = document.createElement('figure');
+  fig2.innerHTML = `<figcaption>Lake — same, plus a structure to take down</figcaption><div class="stage">${houseSVG()}</div>`;
+  syncSketch(fig2, { ...hero, structure: 'yes' });
+  grid.appendChild(fig2);
+  const fig3 = document.createElement('figure');
+  fig3.innerHTML = `<figcaption>Family — walkout on gentle, no lake deck</figcaption><div class="stage">${houseSVG()}</div>`;
+  syncSketch(fig3, { ...hero, type: 'family', terrain: 'gentle', sewer: 'septic' });
+  grid.appendChild(fig3);
+  root.appendChild(grid);
+</script>
+</body>
+</html>

@@ -145,6 +145,17 @@ Open the images. The script can't judge taste, so check:
   solid fallback; the track is a branded material line, not a second icon timeline; the primary CTA
   appears prominently only on the last chapter; reduced motion is an instant swap; the photo credit
   is visible; query params on the CTA are honored by the qualifier.
+- **Build-brief wizard (C33):** if the site has a `/plan/` brief, confirm the branched flow (land
+  details only when they have land; one qualitative money screen with **no dollar figures**); the
+  sketch follows sketch-lib (walkout is a stepped grade, no lines through the porch or deck, garage
+  on grade, no overlaps with trees, septic, or well); "Rather just talk?" carries answers into the
+  Contact qualifier; the path picker's "Start your home" goes to `/plan/` and `?path=` / `?work=` /
+  `?land=` / `?timeline=` are applied on load; localStorage resumes a draft (no contact fields
+  stored); the brief can be printed / saved as PDF, copied as a link, and sent through the existing
+  contact endpoint as a formatted email; look-at-first is rule-driven and capped at five; events
+  `wizard_start`, `wizard_step`, `wizard_complete`, `brief_save`, `brief_send`, and
+  `wizard_exit_contact` fire; radios / fieldsets, focus moves to the step heading, reduced motion
+  is instant, and the mobile sketch dock is clear of the sticky call bar. Copy is A24.
 - **Hero card padding (A27):** light cards or panels over a photograph (`.hero-panel`, `.info-card`,
   equivalents) have at least 32px padding on all sides at desktop and 24px under 800px. Fail a flush
   `padding-inline: 0` or any inner padding under 24px.
@@ -196,6 +207,7 @@ Checklist
 - [x] No empty runway (A25): no visible-content gap over ~240px at 1440 or ~160px at 390; sticky/scroll-driven sections show content on the first frame
 - [x] One widget, one page: a distinctive interactive widget is not repeated across pages
 - [x] Overlay scrubber (C31, if present): photo + controls share the viewport at 1440 and 390; photo drag/swipe (including above the glass) changes chapters; arrow keys work when the stage or slider is focused; unprefixed + `-webkit-` backdrop-filter with a solid fallback; no scroll-jacking; CTA at the last chapter; reduced motion instant
+- [x] Build-brief wizard (C33, if present): 10/7 branched steps, no dollar figures, stepped walkout sketch, path-picker deep links applied, "Rather just talk?" carries answers, localStorage resume, brief print / copy-link / send (formatted email), look-at-first rules, wizard events fire, radios / fieldsets, focus per step, reduced motion, mobile sketch dock, A24
 - [x] Hero card padding (A27): light photo-over cards have ≥ 32px padding on all sides at desktop, 24px under 800px, never under 24px
 - [x] Type (A26, trades and builders): warm serif display 56–72px at 1440, two-line hero breaks, no giant one-line sans; sans UI for body/buttons/filters; self-hosted, swap, preload, license files
 - [x] Template smell test: not a Legacy boxed hero + tile grid, not Teton badge soup, not Hammond remodeler chrome

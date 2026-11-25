@@ -127,6 +127,10 @@ question, leave all facts `null`, and jump to Step 5.
 - **Home lot-to-finish scrubber:** when same-house phase photos exist, plan C31 (overlay scrubber:
   photo-as-control, glass bar on the media, branded track, no pinned or scroll-jacked scroll, primary
   CTA only at the last chapter). Not a tall photo with the range input and CTA in a panel below it.
+- **Build-brief wizard:** for a custom-home builder, plan C33 on `/plan/` when the intake should
+  produce a brief (sketch, look-at-first, similar houses) rather than only a short qualifier. The
+  path picker's "Start your home" goes to `/plan/` with `?path=` / `?work=` / `?land=` / `?timeline=`.
+  Keep the short qualifier on `/contact/`. Do not plan the wizard on Home or Custom Homes.
 - **Anti-generic:** do not plan eyebrows on every heading, fade-up on every section, or a count-up stat row
   unless each is justified by name. Do not default the palette to cream + serif + terracotta.
   Home's feature is the trade-specific signature interaction.
@@ -142,7 +146,7 @@ question, leave all facts `null`, and jump to Step 5.
 Also write, in the same `plan.md`:
 
 - **Funnel map (P6):** every page has a stage, one primary action (verb + outcome), a secondary, and its trust elements.
-- **Tool evaluation (P7):** score candidates and apply Jake's rule — a quote or estimator only when the client can supply real pricing inputs; otherwise an Adair/Schumacher multi-step qualifier, contact last. List the data Jake must get if a tool is a placeholder.
+- **Tool evaluation (P7):** score candidates and apply Jake's rule — a quote or estimator only when the client can supply real pricing inputs; otherwise a C33 build-brief wizard on `/plan/` (when a brief is the point) or an Adair/Schumacher multi-step qualifier, contact last. List the data Jake must get if a tool is a placeholder.
 - **Top objections (P8):** the client's top five, each assigned to a section or the FAQ. Ask Jake if they aren't in intake.
 - **City pages (P9):** only towns with local proof. Skip if there is none.
 - **Measurement plan (P10):** copy `templates/measurement-plan.md` to `brief/measurement.md` and fill the chosen analytics tool and the event list. Note the 90-day baseline and the monthly report template.

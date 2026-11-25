@@ -34,6 +34,12 @@ and confirm each one in the dashboard before launch.
 | `qualifier_complete` | Qualifier submitted | form | Primary conversion |
 | `directions_click`, `email_click` | Map or mailto tapped | page | Minor |
 | `save_house` | Visitor saves or unsaves a house (heart) | slug, name, saved (`true`/`false`), count | Engagement |
+| `wizard_start` | First meaningful engagement on the C33 build-brief wizard | path, work, land, source | Engagement |
+| `wizard_step` | A wizard step is shown | step, index | Diagnostic |
+| `wizard_complete` | The brief is shown | path, type, land | Engagement |
+| `brief_save` | Brief printed / saved as PDF, or copy-link | method (`print`, `pdf`, `link`) | Engagement |
+| `brief_send` | Brief submitted successfully through the contact endpoint | form, type, land, path | Primary conversion |
+| `wizard_exit_contact` | "Rather just talk?" used | step left, path | Lead intent |
 
 ## Call tracking
 

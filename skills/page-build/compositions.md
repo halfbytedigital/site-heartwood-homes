@@ -289,9 +289,10 @@ Ship, in this spirit:
 ### One widget, one page
 
 A distinctive interactive widget — a lot-to-finish scrubber, a full process timeline, a
-design-build picker, a long sticky pin — lives on **one** page. Other pages may link to it or use
+design-build picker, a long sticky pin, a build-brief wizard — lives on **one** page. Other pages may link to it or use
 a compact teaser (a three-step row, not the same component). Never ship the same widget on Custom
-Homes and Our Process, or paste the Home scrubber (C31) onto a service page. The widget's controls and
+Homes and Our Process, or paste the Home scrubber (C31) onto a service page, or paste the C33 wizard
+onto Home or Custom Homes (it lives on `/plan/`; the path picker stays on Custom Homes and deep-links in). The widget's controls and
 the media they change must remain visible together in that section's viewport at 1440 and at 390
 (don't put a 3/2 or 4:3 photo so tall that the track or a stage control is left with only a sliver
 of the picture). A Home overlay scrubber must also stay visually distinct from an Our Process icon
@@ -370,4 +371,51 @@ overlay scrubber or an Our Process icon timeline onto this page (One widget, one
 Templates: `templates/styles/project-rail.css`, `templates/scripts/project-rail.ts`, plus the C29
 filter templates when chips are present.
 
-- C31 handle alignment: the handle, ticks, labels and fill all use one formula, stop i at calc(thumb/2 + (100% - thumb) * i/(n-1)). The range min/max matches the chapter count. Review checks that the handle center is within 2px of each label center at 1440 and 390.
+### C33 Build-brief wizard (custom-home intake)
+
+The default richer intake for a custom-home builder when we want a **build brief** instead of stretching
+the short Contact qualifier. Value before contact: easy questions, a sketch that grows with the
+answers, a scannable brief, then contact last. Lives only on **`/plan/`** (One widget, one page).
+The short Contact qualifier stays on `/contact/` for people who just want to talk, and for other
+services (renovation, site prep).
+
+**Flow.** About 8–10 branched steps (10 with land, 7 without). Land details (place, terrain, cover,
+access, utilities, a structure to remove) only if they have land. House type, size, who it's for,
+plans status, **one** money screen, timing, then the brief. Optional extra details after the brief
+are skippable. A quiet "Rather just talk? Contact Heartwood" (or the client's name) exit on every
+question step carries answers so far into the Contact qualifier.
+
+**Money.** Qualitative only — modest / mid-range / higher-end / not sure, and cash / construction
+loan / not sure. **No dollar figures**, no ranges, no invented prices. If the client later supplies
+real cost-per-sq-ft ranges, that belongs in a separate budget planner, not in this wizard.
+
+**Sketch.** A line-drawn house that reacts to terrain, cover, utilities, type, stories, and
+must-haves, using `templates/scripts/sketch-lib.js` and `templates/styles/sketch-lib.css`. Types
+must stay visually distinct. When a walkout or basement is on, the house sits on a high pad and
+the grade **steps** down after the right wall to a lower patio — a hard step, not a curve through
+the porch or deck. The garage stays on the high pad. Trees, septic, and the well must not overlap
+the walkout, the patio, or each other. Water is drawn only to the right of the bank. The
+first-floor lake deck is hidden when the walkout is on. `prefers-reduced-motion`: the sketch
+appears instantly, no draw-in. On small screens the sketch sits in a bottom dock on question
+steps and is hidden on the brief.
+
+**The brief.** A summary of what they told us, the finished sketch, "What [the builder] will look
+at first" (rule-driven, capped at five), a couple of similar houses from the harvest, a scannable
+mock of the email the office will get, then contact. Actions: save as PDF / print, a copy link
+that reopens the brief with the answers in the query, and send via the site's existing contact
+endpoint. The office email is that formatted brief, not a raw dump of fields. Resume a draft from
+`localStorage` (never store name, phone, or email).
+
+**Deep links.** If the site has a "Build your path" (or equivalent) picker, its primary "Start your
+home" goes to `/plan/` with `?work=`, `?path=`, `?land=`, and `?timeline=` as they apply. `/plan/`
+must read those params on load and set the corresponding fields (including hidden ones). A
+`?path=` that is not applied is a fail. `/contact/` keeps honoring the same params.
+
+**Accessibility.** Real radios and checkboxes in fieldsets; focus moves to the step heading when
+the step changes; `:focus-visible` obvious; reduced motion instant; no inner scrollbars.
+
+**Events.** `wizard_start`, `wizard_step`, `wizard_complete`, `brief_save`, `brief_send`,
+`wizard_exit_contact`, through `templates/scripts/analytics.ts`. Copy is A24. Do not invent
+headlines or prices.
+
+Templates: `templates/scripts/sketch-lib.js`, `templates/styles/sketch-lib.css`.

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sketch preview — Heartwood</title>
+<style>
+  @font-face{font-family:Newsreader;src:url("fonts/Newsreader[opsz,wght].woff2") format("woff2");font-weight:200 800;font-display:swap}
+  @font-face{font-family:"Source Sans 3";src:url("fonts/SourceSans3[wght].woff2") format("woff2");font-weight:200 900;font-display:swap}
+  body{margin:0;background:#E7EBE7;color:#1A1E18;font-family:"Source Sans 3",sans-serif}
+  h1{font-family:Newsreader,serif;font-weight:700;letter-spacing:-0.02em;margin:0 0 8px}
+  .wrap{padding:24px 32px 64px;max-width:1400px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  figure{margin:0;border:1px solid #B7BEB4;background:#E4E8DD;padding:8px 12px 12px}
+  figcaption{font-size:13px;color:#545C4E;margin:0 0 4px}
+  svg{width:100%;height:auto;display:block;color:#1A1E18}
+  .house-part{opacity:0}
+  .house-part.is-on{opacity:1}
+  [data-house]{display:none}
+  [data-house].is-on{display:block}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>House and lot sketches</h1>
+  <div class="grid" id="grid"></div>
+</div>
+<script type="module">
+  import { houseSVG } from './sketch-lib.js';
+
+  const scenes = [
+    { title: 'Family, flat, cleared', type:'family', terrain:'flat', cover:'cleared', stories:1 },
+    { title: 'Family, porch + 2 story + garage', type:'family', terrain:'flat', cover:'cleared', stories:2, porch:1, garage:1 },
+    { title: 'Lake, waterfront, walkout, deck', type:'lake', terrain:'water', cover:'partly', stories:2, porch:1, garage:1, basement:1, deck:1 },
+    { title: 'Lake, partly wooded, water, utilities', type:'lake', terrain:'water', cover:'partly', stories:2, porch:1, garage:1, basement:1, deck:1, power:1, well:1, septic:1 },
+    { title: 'Cabin, partly wooded, porch', type:'cabin', terrain:'gentle', cover:'partly', stories:1, porch:1 },
+    { title: 'A-frame, steep, wooded', type:'aframe', terrain:'steep', cover:'heavy', stories:2 },
+    { title: 'Short-term rental, porch, dormer', type:'rental', terrain:'flat', cover:'partly', stories:2, porch:1, garage:1 },
+    { title: 'Townhomes, two stories, stoops', type:'townhome', terrain:'flat', cover:'cleared', stories:2, porch:1 },
+    { title: 'Lot only, waterfront, wooded, septic unknown', type:'', terrain:'water', cover:'heavy', power:1, septic:1, structure:1 },
+  ];
+
+  function apply(root, s) {
+    const on = (part, yes) => root.querySelectorAll(`[data-part="${part}"]`).forEach(g => g.classList.toggle('is-on', !!yes));
+    root.querySelectorAll('[data-house]').forEach(g => g.classList.toggle('is-on', g.getAttribute('data-house') === s.type));
+    const slope = s.terrain && s.terrain !== 'flat';
+    on('ridge', s.terrain === 'steep');
+    on('ground-flat', !s.terrain || s.terrain === 'flat');
+    on('ground-gentle', s.terrain === 'gentle');
+    on('ground-steep', s.terrain === 'steep');
+    on('ground-water', s.terrain === 'water');
+    on('water', s.terrain === 'water');
+    const trees = s.cover === 'heavy' ? 5 : s.cover === 'partly' ? 3 : 0;
+    const back = root.querySelector('[data-part="trees-back"]');
+    if (back) {
+      back.classList.toggle('is-on', trees > 0);
+      [...back.querySelectorAll('[data-tree]')].forEach((t,i) => t.style.display = i < trees ? '' : 'none');
+    }
+    const hasTrees = s.cover === 'partly' || s.cover === 'heavy';
+    on('tree-flat', hasTrees && !slope);
+    on('tree-low', hasTrees && slope);
+    // tree c (x=278) collides with a lake deck; hide it then
+    const treeC = root.querySelector('[data-tree="c"]');
+    if (treeC) treeC.style.display = (s.type === 'lake' || s.structure) ? 'none' : '';
+
+    on('drive-paved', s.drive === 'paved');
+    on('drive-gravel', s.drive === 'gravel');
+    on('drive-needs', s.drive === 'needs');
+    on('old-shed', s.structure);
+    on('garage', s.garage);
+    on('basement', s.basement);
+    on('power', s.power);
+    on('well', s.well);
+    on('septic', s.septic);
+    if (s.type) {
+      const house = root.querySelector(`[data-house="${s.type}"]`);
+      const two = s.stories >= 2;
+      house?.querySelectorAll('[data-part="first"]').forEach(g => g.classList.add('is-on'));
+      house?.querySelectorAll('[data-part="roof1"]').forEach(g => g.classList.toggle('is-on', !two));
+      house?.querySelectorAll('[data-part="second"]').forEach(g => g.classList.toggle('is-on', two));
+      house?.querySelectorAll('[data-part="roof2"]').forEach(g => g.classList.toggle('is-on', two));
+      house?.querySelectorAll('[data-part="porch"]').forEach(g => g.classList.toggle('is-on', !!s.porch));
+      house?.querySelectorAll('[data-part="deck"]').forEach(g => g.classList.toggle('is-on', !!s.deck || s.type === 'lake'));
+    }
+  }
+
+  const grid = document.getElementById('grid');
+  for (const s of scenes) {
+    const fig = document.createElement('figure');
+    fig.innerHTML = `<figcaption>${s.title}</figcaption><div class="stage">${houseSVG()}</div>`;
+    apply(fig, s);
+    grid.appendChild(fig);
+  }
+</script>
+</body>
+</html>

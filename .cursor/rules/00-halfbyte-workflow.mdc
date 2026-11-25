@@ -95,7 +95,7 @@ skills/
   site-plan/SKILL.md          ← sitemap, funnel, tools, city pages, measurement, section outlines
   page-build/SKILL.md         ← how to build pages in Astro
   page-build/archetypes.md    ← section archetype library + recipes (layout, type, motion)
-  page-build/compositions.md  ← agency craft moves (C15–C32: photo-forward work, default project-page shell, index filters, primary service page, overlay scrubber, portrait rail, …)
+  page-build/compositions.md  ← agency craft moves (C15–C33: photo-forward work, default project-page shell, index filters, primary service page, overlay scrubber, portrait rail, build-brief wizard, …)
   templates/project-page.md     ← per-project photo count + C28 shell + C22–C26 pattern plan
   templates/copy-voice.md       ← public-site voice + banned-phrase list (A24)
   page-build/conversion.md    ← CTA, forms, tools, local pages, Jake's estimator rules (P1–P22)
@@ -113,6 +113,8 @@ templates/
   styles/project-filters.css  ← C29 pill chips
   styles/project-rail.css     ← C32 horizontal portrait rail
   scripts/project-rail.ts     ← C32 counter, 1:1 scrollbar, prev/next
+  styles/sketch-lib.css       ← C33 build-brief sketch
+  scripts/sketch-lib.js       ← C33 houseSVG + syncSketch
   styles/fonts.css            ← Newsreader + Source Sans 3 @font-face (A26)
   fonts/                      ← self-hosted woff2 + OFL files
   components/ProjectHero.astro, WalkRail.astro, ProjectShot.astro, SaveHouse.astro, NextHouse.astro, PhotoViewer.astro
