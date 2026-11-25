@@ -1,0 +1,21 @@
+{
+  "name": "heartwood-homes",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.6",
+    "@fontsource/bricolage-grotesque": "^5.3.0",
+    "@fontsource/source-sans-3": "^5.3.1",
+    "astro": "^7.4.13"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "typescript": "^7.0.2"
+  }
+}

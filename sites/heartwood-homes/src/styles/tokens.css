@@ -1,0 +1,97 @@
+/* Heartwood Homes — tokens from brief/material-board.md. Components read only these. */
+:root {
+  /* Color. Cool stone mist and canopy, sampled from the house photos. */
+  --color-bg: #E7EBE7;
+  --color-surface: #DEE3DC;
+  --color-surface-2: #D5DBD4;
+  --color-text: #1A1E18;
+  --color-muted: #545C4E;
+  --color-line: #B7BEB4;
+  --color-line-strong: #6A7264;
+  --color-primary: #2F341E;
+  --color-primary-strong: #242A18;
+  --color-on-primary: #FFFFFF;
+  --color-primary-tint: #E4E8DD;
+  --color-accent-2: #5E3B2E;
+  --color-focus: #242A18;
+  --color-success: #1E6B3A;
+  --color-warning: #8A4B12;
+  --color-danger: #8C2F2A;
+  --scrim: linear-gradient(180deg, rgb(26 30 24 / 0) 30%, rgb(26 30 24 / .62) 100%);
+
+  /* Type. Bricolage Grotesque 600 + Source Sans 3 400/600. */
+  --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", sans-serif;
+  --font-body: "Source Sans 3", "Avenir Next", "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --weight-body: 400;
+  --weight-bold: 600;
+  --weight-display: 600;
+
+  /* Bold scale. Display is about 97px at 1440px. Body never under 16px. Meta never under 14px. */
+  --step--1: clamp(0.875rem, 0.86rem + 0.08vw, 0.9375rem);
+  --step-0:  clamp(1rem, 0.96rem + 0.15vw, 1.125rem);
+  --step-1:  clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --step-2:  clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  --step-3:  clamp(1.75rem, 1.2rem + 1.6vw, 2.75rem);
+  --step-4:  clamp(2rem, 1.1rem + 2.2vw, 3.25rem);
+  --step-5:  clamp(2.5rem, 1rem + 3.2vw, 4.5rem);
+  --step-display: clamp(3.25rem, 1.2rem + 5.4vw, 7.5rem);
+  --leading-tight: 0.96;
+  --leading-snug: 1.15;
+  --leading-body: 1.6;
+  --tracking-eyebrow: 0.08em;
+  --tracking-display: -0.03em;
+  --measure: 65ch;
+
+  /* Space (8pt) */
+  --space-3xs: 4px;  --space-2xs: 8px;  --space-xs: 12px; --space-s: 16px;
+  --space-m: 24px;   --space-l: 32px;   --space-xl: 40px; --space-2xl: 48px;
+  --space-3xl: 64px; --space-4xl: 80px; --space-5xl: 96px; --space-6xl: 128px; --space-7xl: 160px;
+
+  /* Layout */
+  --container: 1240px;
+  --container-narrow: 720px;
+  --container-wide: 1344px;
+  --gutter: 16px;
+  --section-pad: 64px;
+  --section-pad-tight: 48px;
+  --section-pad-loose: 80px;
+  --header-h: 72px;
+  --actionbar-h: 64px;
+
+  /* Shape: sharp. Board ends, not cards. */
+  --radius-s: 0px;
+  --radius-m: 0px;
+  --radius-l: 0px;
+  --radius-pill: 0px;
+  --border-w: 1px;
+  --shadow-1: none;
+  --shadow-2: none;
+
+  /* Controls */
+  --btn-h: 52px;
+  --btn-pad-x: 32px;
+  --input-h: 52px;
+
+  /* Motion */
+  --dur-fast: 160ms;
+  --dur-base: 200ms;
+  --dur-slow: 320ms;
+  --dur-reveal: 450ms;
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --ease-in-out: cubic-bezier(.65, 0, .35, 1);
+}
+
+@media (min-width: 640px)  { :root { --gutter: 24px; } }
+@media (min-width: 1024px) {
+  :root {
+    --gutter: 48px;
+    --section-pad: 96px;
+    --section-pad-tight: 64px;
+    --section-pad-loose: 128px;
+    --header-h: 80px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-fast: 0ms; --dur-base: 0ms; --dur-slow: 0ms; --dur-reveal: 0ms; }
+}

@@ -1,0 +1,6983 @@
+{
+  "base": "http://localhost:4322",
+  "date": "2026-11-25T03:56:13.728Z",
+  "pages": {
+    "home": {
+      "path": "/",
+      "desktop": {
+        "overflow": [],
+        "fontSizes": {
+          "24": 5,
+          "32": 10,
+          "97": 1,
+          "17.5": 33,
+          "14.9": 27,
+          "49.3": 8,
+          "42.2": 1
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [
+          {
+            "el": "h1.is-in",
+            "manual": "text over image: check scrim on screenshot"
+          },
+          {
+            "el": "p.lede.is-in",
+            "manual": "text over image: check scrim on screenshot"
+          },
+          {
+            "el": "p.muted",
+            "manual": "text over image: check scrim on screenshot"
+          },
+          {
+            "el": "a.btn",
+            "manual": "text over image: check scrim on screenshot"
+          },
+          {
+            "el": "a.btn.btn-ghost",
+            "manual": "text over image: check scrim on screenshot"
+          },
+          {
+            "el": "a",
+            "manual": "text over image: check scrim on screenshot"
+          }
+        ],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "section.hero-full",
+            "y": 81,
+            "pt": 0,
+            "pb": 0,
+            "onScale": true,
+            "bg": "rgb(213, 219, 212)",
+            "heading": "A custom home, built for your family."
+          },
+          {
+            "el": "section.feature-home",
+            "y": 994,
+            "pt": 96,
+            "pb": 96,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "A-Frame Cabin AirBnb"
+          },
+          {
+            "el": "section.scrub",
+            "y": 1961,
+            "pt": 0,
+            "pb": 0,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "From the lot to the finished home"
+          },
+          {
+            "el": "section.section",
+            "y": 3308,
+            "pt": 96,
+            "pb": 96,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "Homes we've built"
+          },
+          {
+            "el": "section.section",
+            "y": 4518,
+            "pt": 96,
+            "pb": 96,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "We start with the land, too."
+          },
+          {
+            "el": "section.section.band-mist",
+            "y": 5100,
+            "pt": 96,
+            "pb": 96,
+            "onScale": true,
+            "bg": "rgb(222, 227, 220)",
+            "heading": "A family company."
+          },
+          {
+            "el": "section.section",
+            "y": 5794,
+            "pt": 96,
+            "pb": 96,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "What a build involves"
+          },
+          {
+            "el": "section.close-band",
+            "y": 6181,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(47, 52, 30)",
+            "heading": "Tell us about the house."
+          },
+          {
+            "el": "footer.site-footer",
+            "y": 6652,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "A custom home, built for your family."
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Custom Homes in Chattanooga, TN | Heartwood Homes",
+          "titleLen": 49,
+          "description": "Heartwood Homes builds custom homes in Chattanooga. A family company, from the first plans to the finished house.",
+          "descLen": 113,
+          "canonical": "https://www.heartwoodchatt.com/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 100,
+          "maxL": 100,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "section.hero-full",
+              "kind": "heading",
+              "left": 100,
+              "text": "A custom home, built for your family."
+            },
+            {
+              "el": "section.hero-full",
+              "kind": "body",
+              "left": 100,
+              "text": "We build the house with you, and we stay"
+            },
+            {
+              "el": "section.feature-home",
+              "kind": "heading",
+              "left": 100,
+              "text": "A-Frame Cabin AirBnb"
+            },
+            {
+              "el": "section.feature-home",
+              "kind": "body",
+              "left": 100,
+              "text": "Featured home"
+            },
+            {
+              "el": "section.section",
+              "kind": "heading",
+              "left": 100,
+              "text": "Homes we've built"
+            },
+            {
+              "el": "section.section",
+              "kind": "body",
+              "left": 100,
+              "text": "A-Frame Cabin AirBnb2022–2023"
+            },
+            {
+              "el": "section.section",
+              "kind": "heading",
+              "left": 100,
+              "text": "We start with the land, too."
+            },
+            {
+              "el": "section.section",
+              "kind": "body",
+              "left": 100,
+              "text": "Site prep before the build. Grading and "
+            },
+            {
+              "el": "section.section.band-mist",
+              "kind": "heading",
+              "left": 100,
+              "text": "A family company."
+            },
+            {
+              "el": "section.section.band-mist",
+              "kind": "body",
+              "left": 100,
+              "text": "Daniel Hertgers and Laura Hertgers found"
+            },
+            {
+              "el": "section.section",
+              "kind": "heading",
+              "left": 100,
+              "text": "What a build involves"
+            },
+            {
+              "el": "section.section",
+              "kind": "body",
+              "left": 100,
+              "text": "Plans, then an estimate, then the build."
+            },
+            {
+              "el": "section.close-band",
+              "kind": "heading",
+              "left": 100,
+              "text": "Tell us about the house."
+            },
+            {
+              "el": "section.close-band",
+              "kind": "body",
+              "left": 100,
+              "text": "A few questions come first. Then Heartwo"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 100,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.912,
+            "--step-0": 17.52,
+            "--step-1": 24,
+            "--step-2": 32,
+            "--step-3": 42.24,
+            "--step-4": 49.28,
+            "--step-5": 62.08,
+            "--step-display": 96.96
+          },
+          "sectionPads": [
+            96,
+            64,
+            128
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile": {
+        "overflow": [],
+        "fontSizes": {
+          "16": 35,
+          "20": 4,
+          "24": 10,
+          "28": 1,
+          "32": 8,
+          "52": 1,
+          "14.1": 23
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [
+          {
+            "el": "a.skip",
+            "manual": "text over image: check scrim on screenshot"
+          },
+          {
+            "el": "button.menu-toggle.nav-mobile",
+            "manual": "text over image: check scrim on screenshot"
+          },
+          {
+            "el": "h1.is-in",
+            "manual": "text over image: check scrim on screenshot"
+          },
+          {
+            "el": "p.lede.is-in",
+            "manual": "text over image: check scrim on screenshot"
+          },
+          {
+            "el": "p.muted",
+            "manual": "text over image: check scrim on screenshot"
+          },
+          {
+            "el": "a.btn",
+            "manual": "text over image: check scrim on screenshot"
+          },
+          {
+            "el": "a.btn.btn-ghost",
+            "manual": "text over image: check scrim on screenshot"
+          },
+          {
+            "el": "a",
+            "manual": "text over image: check scrim on screenshot"
+          }
+        ],
+        "images": [
+          {
+            "src": "/_astro/a-frame.xyYS7lAo_1NzUNY.webp",
+            "issues": [
+              "upscaled (389px shown at 390css px)"
+            ]
+          },
+          {
+            "src": "/_astro/a-frame.xyYS7lAo_1NzUNY.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/ten-mile.DkNMqwos_wgEh9.webp",
+            "issues": [
+              "upscaled (389px shown at 390css px)"
+            ]
+          },
+          {
+            "src": "/_astro/a-frame.xyYS7lAo_1NzUNY.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/ten-mile.DkNMqwos_wgEh9.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/hixson.DHS4Ta_A_croO7.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/flat-top.CQOhwrlS_Z2VRMF.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/spring-city.CEldYhPZ_Z1I05F6.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/spec-house.e5f4I8Tg_Z1a3xhL.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/pikeville-treehouses.D7TxpgOf_xDHaM.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/sewanee.BDkO4SRJ_Z1JlnjJ.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          }
+        ],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "section.hero-full",
+            "y": 73,
+            "pt": 0,
+            "pb": 0,
+            "onScale": true,
+            "bg": "rgb(213, 219, 212)",
+            "heading": "A custom home, built for your family."
+          },
+          {
+            "el": "section.feature-home",
+            "y": 998,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "A-Frame Cabin AirBnb"
+          },
+          {
+            "el": "section.scrub",
+            "y": 1615,
+            "pt": 0,
+            "pb": 0,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "From the lot to the finished home"
+          },
+          {
+            "el": "section.section",
+            "y": 2917,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "Homes we've built"
+          },
+          {
+            "el": "section.section",
+            "y": 5856,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "We start with the land, too."
+          },
+          {
+            "el": "section.section.band-mist",
+            "y": 6358,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(222, 227, 220)",
+            "heading": "A family company."
+          },
+          {
+            "el": "section.section",
+            "y": 7073,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "What a build involves"
+          },
+          {
+            "el": "section.close-band",
+            "y": 7401,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(47, 52, 30)",
+            "heading": "Tell us about the house."
+          },
+          {
+            "el": "footer.site-footer",
+            "y": 7797,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "A custom home, built for your family."
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Custom Homes in Chattanooga, TN | Heartwood Homes",
+          "titleLen": 49,
+          "description": "Heartwood Homes builds custom homes in Chattanooga. A family company, from the first plans to the finished house.",
+          "descLen": 113,
+          "canonical": "https://www.heartwoodchatt.com/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 16,
+          "maxL": 16,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "section.hero-full",
+              "kind": "heading",
+              "left": 16,
+              "text": "A custom home, built for your family."
+            },
+            {
+              "el": "section.hero-full",
+              "kind": "body",
+              "left": 16,
+              "text": "We build the house with you, and we stay"
+            },
+            {
+              "el": "section.feature-home",
+              "kind": "heading",
+              "left": 16,
+              "text": "A-Frame Cabin AirBnb"
+            },
+            {
+              "el": "section.feature-home",
+              "kind": "body",
+              "left": 16,
+              "text": "Featured home"
+            },
+            {
+              "el": "section.section",
+              "kind": "heading",
+              "left": 16,
+              "text": "Homes we've built"
+            },
+            {
+              "el": "section.section",
+              "kind": "body",
+              "left": 16,
+              "text": "A-Frame Cabin AirBnb2022–2023"
+            },
+            {
+              "el": "section.section",
+              "kind": "heading",
+              "left": 16,
+              "text": "We start with the land, too."
+            },
+            {
+              "el": "section.section",
+              "kind": "body",
+              "left": 16,
+              "text": "Site prep before the build. Grading and "
+            },
+            {
+              "el": "section.section.band-mist",
+              "kind": "heading",
+              "left": 16,
+              "text": "A family company."
+            },
+            {
+              "el": "section.section.band-mist",
+              "kind": "body",
+              "left": 16,
+              "text": "Daniel Hertgers and Laura Hertgers found"
+            },
+            {
+              "el": "section.section",
+              "kind": "heading",
+              "left": 16,
+              "text": "What a build involves"
+            },
+            {
+              "el": "section.section",
+              "kind": "body",
+              "left": 16,
+              "text": "Plans, then an estimate, then the build."
+            },
+            {
+              "el": "section.close-band",
+              "kind": "heading",
+              "left": 16,
+              "text": "Tell us about the house."
+            },
+            {
+              "el": "section.close-band",
+              "kind": "body",
+              "left": 16,
+              "text": "A few questions come first. Then Heartwo"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 16,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.072,
+            "--step-0": 16,
+            "--step-1": 20,
+            "--step-2": 24,
+            "--step-3": 28,
+            "--step-4": 32,
+            "--step-5": 40,
+            "--step-display": 52
+          },
+          "sectionPads": [
+            64,
+            48,
+            80
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile_reduced": {
+        "reveal": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      }
+    },
+    "about": {
+      "path": "/about/",
+      "desktop": {
+        "overflow": [],
+        "fontSizes": {
+          "24": 5,
+          "32": 1,
+          "97": 1,
+          "17.5": 16,
+          "14.9": 11,
+          "49.3": 2,
+          "42.2": 1
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "section.section",
+            "y": 81,
+            "pt": 96,
+            "pb": 96,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "A family company, since 2017."
+          },
+          {
+            "el": "section.close-band",
+            "y": 1155,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(47, 52, 30)",
+            "heading": "Tell us about the house."
+          },
+          {
+            "el": "footer.site-footer",
+            "y": 1626,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "A family company, since 2017."
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "About Heartwood Homes | Chattanooga",
+          "titleLen": 35,
+          "description": "Heartwood Homes is a family-owned custom home builder in Chattanooga, founded by Daniel and Laura Hertgers in 2017.",
+          "descLen": 115,
+          "canonical": "https://www.heartwoodchatt.com/about/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 100,
+          "maxL": 100,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "section.section",
+              "kind": "heading",
+              "left": 100,
+              "text": "A family company, since 2017."
+            },
+            {
+              "el": "section.section",
+              "kind": "body",
+              "left": 100,
+              "text": "Daniel Hertgers and Laura Hertgers found"
+            },
+            {
+              "el": "section.close-band",
+              "kind": "heading",
+              "left": 100,
+              "text": "Tell us about the house."
+            },
+            {
+              "el": "section.close-band",
+              "kind": "body",
+              "left": 100,
+              "text": "A few questions come first. Then Heartwo"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 100,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.912,
+            "--step-0": 17.52,
+            "--step-1": 24,
+            "--step-2": 32,
+            "--step-3": 42.24,
+            "--step-4": 49.28,
+            "--step-5": 62.08,
+            "--step-display": 96.96
+          },
+          "sectionPads": [
+            96,
+            64,
+            128
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [
+          "A family company, since 2017"
+        ],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile": {
+        "overflow": [],
+        "fontSizes": {
+          "16": 18,
+          "20": 4,
+          "24": 1,
+          "28": 1,
+          "32": 2,
+          "52": 1,
+          "14.1": 7
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [
+          {
+            "src": "/_astro/spring-city.CEldYhPZ_Z1I05F6.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          }
+        ],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "section.section",
+            "y": 73,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "A family company, since 2017."
+          },
+          {
+            "el": "section.close-band",
+            "y": 1340,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(47, 52, 30)",
+            "heading": "Tell us about the house."
+          },
+          {
+            "el": "footer.site-footer",
+            "y": 1736,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "A family company, since 2017."
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "About Heartwood Homes | Chattanooga",
+          "titleLen": 35,
+          "description": "Heartwood Homes is a family-owned custom home builder in Chattanooga, founded by Daniel and Laura Hertgers in 2017.",
+          "descLen": 115,
+          "canonical": "https://www.heartwoodchatt.com/about/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 16,
+          "maxL": 16,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "section.section",
+              "kind": "heading",
+              "left": 16,
+              "text": "A family company, since 2017."
+            },
+            {
+              "el": "section.section",
+              "kind": "body",
+              "left": 16,
+              "text": "Daniel Hertgers and Laura Hertgers found"
+            },
+            {
+              "el": "section.close-band",
+              "kind": "heading",
+              "left": 16,
+              "text": "Tell us about the house."
+            },
+            {
+              "el": "section.close-band",
+              "kind": "body",
+              "left": 16,
+              "text": "A few questions come first. Then Heartwo"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 16,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.072,
+            "--step-0": 16,
+            "--step-1": 20,
+            "--step-2": 24,
+            "--step-3": 28,
+            "--step-4": 32,
+            "--step-5": 40,
+            "--step-display": 52
+          },
+          "sectionPads": [
+            64,
+            48,
+            80
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [
+          "A family company, since 2017"
+        ],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile_reduced": {
+        "reveal": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      }
+    },
+    "contact": {
+      "path": "/contact/",
+      "desktop": {
+        "overflow": [],
+        "fontSizes": {
+          "24": 2,
+          "97": 1,
+          "17.5": 23,
+          "14.9": 12,
+          "49.3": 2
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "section.section",
+            "y": 81,
+            "pt": 96,
+            "pb": 96,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "Start your home."
+          },
+          {
+            "el": "footer.site-footer",
+            "y": 764,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Start your home."
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Start Your Home | Heartwood Homes",
+          "titleLen": 33,
+          "description": "Tell Heartwood Homes about a custom home, renovation, or site prep in Chattanooga. Call (423) 994-4911.",
+          "descLen": 103,
+          "canonical": "https://www.heartwoodchatt.com/contact/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 100,
+          "maxL": 100,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "section.section",
+              "kind": "heading",
+              "left": 100,
+              "text": "Start your home."
+            },
+            {
+              "el": "section.section",
+              "kind": "body",
+              "left": 100,
+              "text": "A few questions first. Your name and a w"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 100,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.912,
+            "--step-0": 17.52,
+            "--step-1": 24,
+            "--step-2": 32,
+            "--step-3": 42.24,
+            "--step-4": 49.28,
+            "--step-5": 62.08,
+            "--step-display": 96.96
+          },
+          "sectionPads": [
+            96,
+            64,
+            128
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile": {
+        "overflow": [],
+        "fontSizes": {
+          "16": 23,
+          "20": 1,
+          "32": 2,
+          "52": 1,
+          "14.1": 8
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "section.section",
+            "y": 73,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "Start your home."
+          },
+          {
+            "el": "footer.site-footer",
+            "y": 1116,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Start your home."
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Start Your Home | Heartwood Homes",
+          "titleLen": 33,
+          "description": "Tell Heartwood Homes about a custom home, renovation, or site prep in Chattanooga. Call (423) 994-4911.",
+          "descLen": 103,
+          "canonical": "https://www.heartwoodchatt.com/contact/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 16,
+          "maxL": 16,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "section.section",
+              "kind": "heading",
+              "left": 16,
+              "text": "Start your home."
+            },
+            {
+              "el": "section.section",
+              "kind": "body",
+              "left": 16,
+              "text": "A few questions first. Your name and a w"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 16,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.072,
+            "--step-0": 16,
+            "--step-1": 20,
+            "--step-2": 24,
+            "--step-3": 28,
+            "--step-4": 32,
+            "--step-5": 40,
+            "--step-display": 52
+          },
+          "sectionPads": [
+            64,
+            48,
+            80
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile_reduced": {
+        "reveal": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      }
+    },
+    "contact_thanks": {
+      "path": "/contact/thanks/",
+      "desktop": {
+        "overflow": [],
+        "fontSizes": {
+          "24": 2,
+          "97": 1,
+          "17.5": 14,
+          "14.9": 8,
+          "49.3": 2
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "section.section",
+            "y": 81,
+            "pt": 96,
+            "pb": 96,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "Call us to finish this."
+          },
+          {
+            "el": "footer.site-footer",
+            "y": 540,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Call us to finish this."
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "We have your note | Heartwood Homes",
+          "titleLen": 35,
+          "description": "What Heartwood Homes received from the start-your-home form.",
+          "descLen": 60,
+          "canonical": "https://www.heartwoodchatt.com/contact/thanks/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 100,
+          "maxL": 100,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "section.section",
+              "kind": "heading",
+              "left": 100,
+              "text": "Call us to finish this."
+            },
+            {
+              "el": "section.section",
+              "kind": "body",
+              "left": 100,
+              "text": "This form isn’t connected yet. Call (423"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 100,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.912,
+            "--step-0": 17.52,
+            "--step-1": 24,
+            "--step-2": 32,
+            "--step-3": 42.24,
+            "--step-4": 49.28,
+            "--step-5": 62.08,
+            "--step-display": 96.96
+          },
+          "sectionPads": [
+            96,
+            64,
+            128
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile": {
+        "overflow": [],
+        "fontSizes": {
+          "16": 14,
+          "20": 1,
+          "32": 2,
+          "52": 1,
+          "14.1": 4
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "section.section",
+            "y": 73,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "Call us to finish this."
+          },
+          {
+            "el": "footer.site-footer",
+            "y": 457,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Call us to finish this."
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "We have your note | Heartwood Homes",
+          "titleLen": 35,
+          "description": "What Heartwood Homes received from the start-your-home form.",
+          "descLen": 60,
+          "canonical": "https://www.heartwoodchatt.com/contact/thanks/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 16,
+          "maxL": 16,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "section.section",
+              "kind": "heading",
+              "left": 16,
+              "text": "Call us to finish this."
+            },
+            {
+              "el": "section.section",
+              "kind": "body",
+              "left": 16,
+              "text": "This form isn’t connected yet. Call (423"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 16,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.072,
+            "--step-0": 16,
+            "--step-1": 20,
+            "--step-2": 24,
+            "--step-3": 28,
+            "--step-4": 32,
+            "--step-5": 40,
+            "--step-display": 52
+          },
+          "sectionPads": [
+            64,
+            48,
+            80
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile_reduced": {
+        "reveal": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      }
+    },
+    "custom-homes": {
+      "path": "/custom-homes/",
+      "desktop": {
+        "overflow": [],
+        "fontSizes": {
+          "24": 2,
+          "32": 11,
+          "97": 1,
+          "17.5": 31,
+          "14.9": 19,
+          "49.3": 15,
+          "42.2": 1
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [
+          {
+            "el": "figcaption",
+            "manual": "text over image: check scrim on screenshot"
+          }
+        ],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "section.edge-split",
+            "y": 81,
+            "pt": 0,
+            "pb": 0,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "The house you plan to stay in."
+          },
+          {
+            "el": "section.band",
+            "y": 901,
+            "pt": 96,
+            "pb": 96,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "Design-build, or your plans."
+          },
+          {
+            "el": "section.band.band-mist",
+            "y": 1320,
+            "pt": 96,
+            "pb": 96,
+            "onScale": true,
+            "bg": "rgb(222, 227, 220)",
+            "heading": "In the house"
+          },
+          {
+            "el": "section.section",
+            "y": 2460,
+            "pt": 96,
+            "pb": 96,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "New houses"
+          },
+          {
+            "el": "section.band",
+            "y": 3670,
+            "pt": 96,
+            "pb": 96,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "How a budget gets built"
+          },
+          {
+            "el": "section.close-band",
+            "y": 4514,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(47, 52, 30)",
+            "heading": "Tell us about the house."
+          },
+          {
+            "el": "footer.site-footer",
+            "y": 4984,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "The house you plan to stay in."
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Custom Home Builder in Chattanooga | Heartwood Homes",
+          "titleLen": 52,
+          "description": "Heartwood Homes builds custom homes in Chattanooga, with the owners and their architect, from the plans to the finished house.",
+          "descLen": 126,
+          "canonical": "https://www.heartwoodchatt.com/custom-homes/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 100,
+          "maxL": 100,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "section.edge-split",
+              "kind": "heading",
+              "left": 100,
+              "text": "The house you plan to stay in."
+            },
+            {
+              "el": "section.edge-split",
+              "kind": "body",
+              "left": 100,
+              "text": "A new home from the ground up, with the "
+            },
+            {
+              "el": "section.band",
+              "kind": "heading",
+              "left": 100,
+              "text": "Design-build, or your plans."
+            },
+            {
+              "el": "section.band",
+              "kind": "body",
+              "left": 100,
+              "text": "Heartwood works with owners, architects,"
+            },
+            {
+              "el": "section.band.band-mist",
+              "kind": "heading",
+              "left": 100,
+              "text": "In the house"
+            },
+            {
+              "el": "section.band.band-mist",
+              "kind": "body",
+              "left": 100,
+              "text": "These are the trades the crew keeps in h"
+            },
+            {
+              "el": "section.section",
+              "kind": "heading",
+              "left": 100,
+              "text": "New houses"
+            },
+            {
+              "el": "section.section",
+              "kind": "body",
+              "left": 100,
+              "text": "A-Frame Cabin AirBnb2022–2023"
+            },
+            {
+              "el": "section.band",
+              "kind": "heading",
+              "left": 100,
+              "text": "How a budget gets built"
+            },
+            {
+              "el": "section.band",
+              "kind": "body",
+              "left": 100,
+              "text": "1PlansThe house is drawn with you, and w"
+            },
+            {
+              "el": "section.close-band",
+              "kind": "heading",
+              "left": 100,
+              "text": "Tell us about the house."
+            },
+            {
+              "el": "section.close-band",
+              "kind": "body",
+              "left": 100,
+              "text": "Plans, then an estimate, then the build."
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 100,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.912,
+            "--step-0": 17.52,
+            "--step-1": 24,
+            "--step-2": 32,
+            "--step-3": 42.24,
+            "--step-4": 49.28,
+            "--step-5": 62.08,
+            "--step-display": 96.96
+          },
+          "sectionPads": [
+            96,
+            64,
+            128
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile": {
+        "overflow": [],
+        "fontSizes": {
+          "16": 33,
+          "20": 1,
+          "24": 11,
+          "28": 1,
+          "32": 15,
+          "52": 1,
+          "14.1": 15
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [
+          {
+            "el": "figcaption",
+            "manual": "text over image: check scrim on screenshot"
+          }
+        ],
+        "images": [
+          {
+            "src": "/_astro/hixson.DHS4Ta_A_croO7.webp",
+            "issues": [
+              "upscaled (389px shown at 390css px)"
+            ]
+          },
+          {
+            "src": "/_astro/a-frame.xyYS7lAo_1NzUNY.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/ten-mile.DkNMqwos_wgEh9.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/hixson.DHS4Ta_A_croO7.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/flat-top.CQOhwrlS_Z2VRMF.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/spring-city.CEldYhPZ_Z1I05F6.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/spec-house.e5f4I8Tg_Z1a3xhL.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/pikeville-treehouses.D7TxpgOf_xDHaM.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/sewanee.BDkO4SRJ_Z1JlnjJ.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          }
+        ],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "section.edge-split",
+            "y": 73,
+            "pt": 0,
+            "pb": 0,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "The house you plan to stay in."
+          },
+          {
+            "el": "section.band",
+            "y": 761,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "Design-build, or your plans."
+          },
+          {
+            "el": "section.band.band-mist",
+            "y": 1126,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(222, 227, 220)",
+            "heading": "In the house"
+          },
+          {
+            "el": "section.section",
+            "y": 2076,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "New houses"
+          },
+          {
+            "el": "section.band",
+            "y": 5015,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "How a budget gets built"
+          },
+          {
+            "el": "section.close-band",
+            "y": 5778,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(47, 52, 30)",
+            "heading": "Tell us about the house."
+          },
+          {
+            "el": "footer.site-footer",
+            "y": 6200,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "The house you plan to stay in."
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Custom Home Builder in Chattanooga | Heartwood Homes",
+          "titleLen": 52,
+          "description": "Heartwood Homes builds custom homes in Chattanooga, with the owners and their architect, from the plans to the finished house.",
+          "descLen": 126,
+          "canonical": "https://www.heartwoodchatt.com/custom-homes/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 16,
+          "maxL": 16,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "section.edge-split",
+              "kind": "heading",
+              "left": 16,
+              "text": "The house you plan to stay in."
+            },
+            {
+              "el": "section.edge-split",
+              "kind": "body",
+              "left": 16,
+              "text": "A new home from the ground up, with the "
+            },
+            {
+              "el": "section.band",
+              "kind": "heading",
+              "left": 16,
+              "text": "Design-build, or your plans."
+            },
+            {
+              "el": "section.band",
+              "kind": "body",
+              "left": 16,
+              "text": "Heartwood works with owners, architects,"
+            },
+            {
+              "el": "section.band.band-mist",
+              "kind": "heading",
+              "left": 16,
+              "text": "In the house"
+            },
+            {
+              "el": "section.band.band-mist",
+              "kind": "body",
+              "left": 16,
+              "text": "These are the trades the crew keeps in h"
+            },
+            {
+              "el": "section.section",
+              "kind": "heading",
+              "left": 16,
+              "text": "New houses"
+            },
+            {
+              "el": "section.section",
+              "kind": "body",
+              "left": 16,
+              "text": "A-Frame Cabin AirBnb2022–2023"
+            },
+            {
+              "el": "section.band",
+              "kind": "heading",
+              "left": 16,
+              "text": "How a budget gets built"
+            },
+            {
+              "el": "section.band",
+              "kind": "body",
+              "left": 16,
+              "text": "1PlansThe house is drawn with you, and w"
+            },
+            {
+              "el": "section.close-band",
+              "kind": "heading",
+              "left": 16,
+              "text": "Tell us about the house."
+            },
+            {
+              "el": "section.close-band",
+              "kind": "body",
+              "left": 16,
+              "text": "Plans, then an estimate, then the build."
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 16,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.072,
+            "--step-0": 16,
+            "--step-1": 20,
+            "--step-2": 24,
+            "--step-3": 28,
+            "--step-4": 32,
+            "--step-5": 40,
+            "--step-display": 52
+          },
+          "sectionPads": [
+            64,
+            48,
+            80
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile_reduced": {
+        "reveal": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      }
+    },
+    "our-process": {
+      "path": "/our-process/",
+      "desktop": {
+        "overflow": [],
+        "fontSizes": {
+          "24": 2,
+          "32": 4,
+          "97": 1,
+          "17.5": 25,
+          "14.9": 9,
+          "49.3": 13,
+          "42.2": 1
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "section.section",
+            "y": 81,
+            "pt": 96,
+            "pb": 96,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "From the first conversation to the walkthrough."
+          },
+          {
+            "el": "section.band.edge-rule",
+            "y": 615,
+            "pt": 96,
+            "pb": 96,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "Talk"
+          },
+          {
+            "el": "section.band.band-mist",
+            "y": 1855,
+            "pt": 96,
+            "pb": 96,
+            "onScale": true,
+            "bg": "rgb(222, 227, 220)",
+            "heading": "What Heartwood already lists"
+          },
+          {
+            "el": "section.close-band",
+            "y": 2669,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(47, 52, 30)",
+            "heading": "When you are ready."
+          },
+          {
+            "el": "footer.site-footer",
+            "y": 3140,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "From the first conversation to the walkthrough."
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Our Building Process | Heartwood Homes",
+          "titleLen": 38,
+          "description": "How a Heartwood Homes custom build runs, from the first conversation through plans, estimate, construction, and walkthrough.",
+          "descLen": 124,
+          "canonical": "https://www.heartwoodchatt.com/our-process/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 100,
+          "maxL": 100,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "section.section",
+              "kind": "heading",
+              "left": 100,
+              "text": "From the first conversation to the walkt"
+            },
+            {
+              "el": "section.section",
+              "kind": "body",
+              "left": 100,
+              "text": "This is the path for a new house."
+            },
+            {
+              "el": "section.band.edge-rule",
+              "kind": "heading",
+              "left": 100,
+              "text": "Talk"
+            },
+            {
+              "el": "section.band.edge-rule",
+              "kind": "body",
+              "left": 100,
+              "text": "01TalkA first conversation about the hou"
+            },
+            {
+              "el": "section.band.band-mist",
+              "kind": "heading",
+              "left": 100,
+              "text": "What Heartwood already lists"
+            },
+            {
+              "el": "section.band.band-mist",
+              "kind": "body",
+              "left": 100,
+              "text": "Design-build, scheduling, estimating, an"
+            },
+            {
+              "el": "section.close-band",
+              "kind": "heading",
+              "left": 100,
+              "text": "When you are ready."
+            },
+            {
+              "el": "section.close-band",
+              "kind": "body",
+              "left": 100,
+              "text": "Start with a conversation. A few questio"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 100,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.912,
+            "--step-0": 17.52,
+            "--step-1": 24,
+            "--step-2": 32,
+            "--step-3": 42.24,
+            "--step-4": 49.28,
+            "--step-5": 62.08,
+            "--step-display": 96.96
+          },
+          "sectionPads": [
+            96,
+            64,
+            128
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [
+          "Certificate of occupancy, as-built drawings, and a warranty",
+          "Warranty"
+        ],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile": {
+        "overflow": [],
+        "fontSizes": {
+          "16": 27,
+          "20": 1,
+          "24": 4,
+          "28": 1,
+          "32": 13,
+          "52": 1,
+          "14.1": 5
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "section.section",
+            "y": 73,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "From the first conversation to the walkthrough."
+          },
+          {
+            "el": "section.band.edge-rule",
+            "y": 457,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "Talk"
+          },
+          {
+            "el": "section.band.band-mist",
+            "y": 1504,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(222, 227, 220)",
+            "heading": "What Heartwood already lists"
+          },
+          {
+            "el": "section.close-band",
+            "y": 2207,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(47, 52, 30)",
+            "heading": "When you are ready."
+          },
+          {
+            "el": "footer.site-footer",
+            "y": 2603,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "From the first conversation to the walkthrough."
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Our Building Process | Heartwood Homes",
+          "titleLen": 38,
+          "description": "How a Heartwood Homes custom build runs, from the first conversation through plans, estimate, construction, and walkthrough.",
+          "descLen": 124,
+          "canonical": "https://www.heartwoodchatt.com/our-process/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 16,
+          "maxL": 16,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "section.section",
+              "kind": "heading",
+              "left": 16,
+              "text": "From the first conversation to the walkt"
+            },
+            {
+              "el": "section.section",
+              "kind": "body",
+              "left": 16,
+              "text": "This is the path for a new house."
+            },
+            {
+              "el": "section.band.edge-rule",
+              "kind": "heading",
+              "left": 16,
+              "text": "Talk"
+            },
+            {
+              "el": "section.band.edge-rule",
+              "kind": "body",
+              "left": 16,
+              "text": "01TalkA first conversation about the hou"
+            },
+            {
+              "el": "section.band.band-mist",
+              "kind": "heading",
+              "left": 16,
+              "text": "What Heartwood already lists"
+            },
+            {
+              "el": "section.band.band-mist",
+              "kind": "body",
+              "left": 16,
+              "text": "Design-build, scheduling, estimating, an"
+            },
+            {
+              "el": "section.close-band",
+              "kind": "heading",
+              "left": 16,
+              "text": "When you are ready."
+            },
+            {
+              "el": "section.close-band",
+              "kind": "body",
+              "left": 16,
+              "text": "Start with a conversation. A few questio"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 16,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.072,
+            "--step-0": 16,
+            "--step-1": 20,
+            "--step-2": 24,
+            "--step-3": 28,
+            "--step-4": 32,
+            "--step-5": 40,
+            "--step-display": 52
+          },
+          "sectionPads": [
+            64,
+            48,
+            80
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [
+          "Certificate of occupancy, as-built drawings, and a warranty",
+          "Warranty"
+        ],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile_reduced": {
+        "reveal": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      }
+    },
+    "privacy": {
+      "path": "/privacy/",
+      "desktop": {
+        "overflow": [],
+        "fontSizes": {
+          "24": 1,
+          "97": 1,
+          "17.5": 22,
+          "14.9": 9,
+          "49.3": 2,
+          "42.2": 1
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "section.section.edge-rule",
+            "y": 81,
+            "pt": 96,
+            "pb": 96,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "Privacy"
+          },
+          {
+            "el": "section.close-band",
+            "y": 659,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(47, 52, 30)",
+            "heading": "Tell us about the house."
+          },
+          {
+            "el": "footer.site-footer",
+            "y": 1130,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Privacy"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Privacy | Heartwood Homes",
+          "titleLen": 25,
+          "description": "What the Heartwood Homes project form collects, and how to reach the company.",
+          "descLen": 77,
+          "canonical": "https://www.heartwoodchatt.com/privacy/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 100,
+          "maxL": 100,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "section.section.edge-rule",
+              "kind": "heading",
+              "left": 100,
+              "text": "Privacy"
+            },
+            {
+              "el": "section.section.edge-rule",
+              "kind": "body",
+              "left": 100,
+              "text": "The start-your-home form collects your n"
+            },
+            {
+              "el": "section.close-band",
+              "kind": "heading",
+              "left": 100,
+              "text": "Tell us about the house."
+            },
+            {
+              "el": "section.close-band",
+              "kind": "body",
+              "left": 100,
+              "text": "A few questions come first. Then Heartwo"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 100,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.912,
+            "--step-0": 17.52,
+            "--step-1": 24,
+            "--step-2": 32,
+            "--step-3": 42.24,
+            "--step-4": 49.28,
+            "--step-5": 62.08,
+            "--step-display": 96.96
+          },
+          "sectionPads": [
+            96,
+            64,
+            128
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile": {
+        "overflow": [],
+        "fontSizes": {
+          "16": 24,
+          "28": 1,
+          "32": 2,
+          "52": 1,
+          "14.1": 5
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "section.section.edge-rule",
+            "y": 73,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "Privacy"
+          },
+          {
+            "el": "section.close-band",
+            "y": 578,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(47, 52, 30)",
+            "heading": "Tell us about the house."
+          },
+          {
+            "el": "footer.site-footer",
+            "y": 975,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Privacy"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Privacy | Heartwood Homes",
+          "titleLen": 25,
+          "description": "What the Heartwood Homes project form collects, and how to reach the company.",
+          "descLen": 77,
+          "canonical": "https://www.heartwoodchatt.com/privacy/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 16,
+          "maxL": 16,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "section.section.edge-rule",
+              "kind": "heading",
+              "left": 16,
+              "text": "Privacy"
+            },
+            {
+              "el": "section.section.edge-rule",
+              "kind": "body",
+              "left": 16,
+              "text": "The start-your-home form collects your n"
+            },
+            {
+              "el": "section.close-band",
+              "kind": "heading",
+              "left": 16,
+              "text": "Tell us about the house."
+            },
+            {
+              "el": "section.close-band",
+              "kind": "body",
+              "left": 16,
+              "text": "A few questions come first. Then Heartwo"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 16,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.072,
+            "--step-0": 16,
+            "--step-1": 20,
+            "--step-2": 24,
+            "--step-3": 28,
+            "--step-4": 32,
+            "--step-5": 40,
+            "--step-display": 52
+          },
+          "sectionPads": [
+            64,
+            48,
+            80
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile_reduced": {
+        "reveal": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      }
+    },
+    "projects": {
+      "path": "/projects/",
+      "desktop": {
+        "overflow": [],
+        "fontSizes": {
+          "24": 2,
+          "32": 15,
+          "97": 1,
+          "17.5": 16,
+          "14.9": 24,
+          "49.3": 2,
+          "42.2": 1
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "section.section",
+            "y": 81,
+            "pt": 96,
+            "pb": 96,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "Homes we've built."
+          },
+          {
+            "el": "section.section",
+            "y": 467,
+            "pt": 96,
+            "pb": 96,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": null
+          },
+          {
+            "el": "section.close-band",
+            "y": 2364,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(47, 52, 30)",
+            "heading": "Tell us about the house."
+          },
+          {
+            "el": "footer.site-footer",
+            "y": 2835,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Homes we've built."
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Custom Home Projects | Heartwood Homes",
+          "titleLen": 38,
+          "description": "Custom homes and other work by Heartwood Homes in Chattanooga.",
+          "descLen": 62,
+          "canonical": "https://www.heartwoodchatt.com/projects/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 100,
+          "maxL": 100,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "section.section",
+              "kind": "heading",
+              "left": 100,
+              "text": "Homes we've built."
+            },
+            {
+              "el": "section.section",
+              "kind": "body",
+              "left": 100,
+              "text": "Every house is a page. The A-frame leads"
+            },
+            {
+              "el": "section.section",
+              "kind": "body",
+              "left": 100,
+              "text": "A-Frame Cabin AirBnb2022–2023"
+            },
+            {
+              "el": "section.close-band",
+              "kind": "heading",
+              "left": 100,
+              "text": "Tell us about the house."
+            },
+            {
+              "el": "section.close-band",
+              "kind": "body",
+              "left": 100,
+              "text": "A few questions come first. Then Heartwo"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 100,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.912,
+            "--step-0": 17.52,
+            "--step-1": 24,
+            "--step-2": 32,
+            "--step-3": 42.24,
+            "--step-4": 49.28,
+            "--step-5": 62.08,
+            "--step-display": 96.96
+          },
+          "sectionPads": [
+            96,
+            64,
+            128
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile": {
+        "overflow": [],
+        "fontSizes": {
+          "16": 18,
+          "20": 1,
+          "24": 15,
+          "28": 1,
+          "32": 2,
+          "52": 1,
+          "14.1": 20
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [
+          {
+            "el": "a",
+            "manual": "text over image: check scrim on screenshot"
+          }
+        ],
+        "images": [
+          {
+            "src": "/_astro/a-frame.xyYS7lAo_1NzUNY.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/ten-mile.DkNMqwos_wgEh9.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/hixson.DHS4Ta_A_croO7.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/flat-top.CQOhwrlS_Z2VRMF.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/spring-city.CEldYhPZ_Z1I05F6.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/spec-house.e5f4I8Tg_Z1a3xhL.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/pikeville-treehouses.D7TxpgOf_xDHaM.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/sewanee.BDkO4SRJ_Z1JlnjJ.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/signal-mountain.T95ERMXW_ZJLUvp.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/red-bank.CGWjcLUM_Z1XX3yF.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/crawlspace.CQzWFbhw_Z1zetrI.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/east-brainard.D-qCFCIn_Z26xpzI.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/investment-flip.Xc9e_bYL_ZW57Wf.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/incline.g1YJMmVM_ZRTIPK.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          },
+          {
+            "src": "/_astro/layouts.D4XCOSQY_21UM2o.webp",
+            "issues": [
+              "upscaled (389px shown at 358css px)"
+            ]
+          }
+        ],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "section.section",
+            "y": 73,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "Homes we've built."
+          },
+          {
+            "el": "section.section",
+            "y": 421,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": null
+          },
+          {
+            "el": "section.close-band",
+            "y": 5761,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(47, 52, 30)",
+            "heading": "Tell us about the house."
+          },
+          {
+            "el": "footer.site-footer",
+            "y": 6157,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Homes we've built."
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Custom Home Projects | Heartwood Homes",
+          "titleLen": 38,
+          "description": "Custom homes and other work by Heartwood Homes in Chattanooga.",
+          "descLen": 62,
+          "canonical": "https://www.heartwoodchatt.com/projects/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 16,
+          "maxL": 16,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "section.section",
+              "kind": "heading",
+              "left": 16,
+              "text": "Homes we've built."
+            },
+            {
+              "el": "section.section",
+              "kind": "body",
+              "left": 16,
+              "text": "Every house is a page. The A-frame leads"
+            },
+            {
+              "el": "section.section",
+              "kind": "body",
+              "left": 16,
+              "text": "A-Frame Cabin AirBnb2022–2023"
+            },
+            {
+              "el": "section.close-band",
+              "kind": "heading",
+              "left": 16,
+              "text": "Tell us about the house."
+            },
+            {
+              "el": "section.close-band",
+              "kind": "body",
+              "left": 16,
+              "text": "A few questions come first. Then Heartwo"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 16,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.072,
+            "--step-0": 16,
+            "--step-1": 20,
+            "--step-2": 24,
+            "--step-3": 28,
+            "--step-4": 32,
+            "--step-5": 40,
+            "--step-display": 52
+          },
+          "sectionPads": [
+            64,
+            48,
+            80
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile_reduced": {
+        "reveal": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      }
+    },
+    "projects_a-frame-cabin-airbnb": {
+      "path": "/projects/a-frame-cabin-airbnb/",
+      "desktop": {
+        "overflow": [],
+        "fontSizes": {
+          "24": 2,
+          "97": 1,
+          "17.5": 21,
+          "14.9": 11,
+          "49.3": 2,
+          "42.2": 1
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 2415,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "A-Frame Cabin AirBnb"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "A-Frame Cabin AirBnb | Heartwood Homes",
+          "titleLen": 38,
+          "description": "A-Frame Cabin AirBnb. Residential new construction. Complete, 2022–2023.",
+          "descLen": 72,
+          "canonical": "https://www.heartwoodchatt.com/projects/a-frame-cabin-airbnb/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 100,
+          "maxL": 100,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 100,
+              "text": "A-Frame Cabin AirBnb"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 100,
+              "text": "Residential new construction"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 100,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.912,
+            "--step-0": 17.52,
+            "--step-1": 24,
+            "--step-2": 32,
+            "--step-3": 42.24,
+            "--step-4": 49.28,
+            "--step-5": 62.08,
+            "--step-display": 96.96
+          },
+          "sectionPads": [
+            96,
+            64,
+            128
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile": {
+        "overflow": [],
+        "fontSizes": {
+          "16": 23,
+          "20": 1,
+          "28": 1,
+          "32": 2,
+          "52": 1,
+          "14.1": 7
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [
+          {
+            "src": "/_astro/a-frame.xyYS7lAo_1NzUNY.webp",
+            "issues": [
+              "upscaled (389px shown at 390css px)"
+            ]
+          }
+        ],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 1412,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "A-Frame Cabin AirBnb"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "A-Frame Cabin AirBnb | Heartwood Homes",
+          "titleLen": 38,
+          "description": "A-Frame Cabin AirBnb. Residential new construction. Complete, 2022–2023.",
+          "descLen": 72,
+          "canonical": "https://www.heartwoodchatt.com/projects/a-frame-cabin-airbnb/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 16,
+          "maxL": 16,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 16,
+              "text": "A-Frame Cabin AirBnb"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 16,
+              "text": "Residential new construction"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 16,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.072,
+            "--step-0": 16,
+            "--step-1": 20,
+            "--step-2": 24,
+            "--step-3": 28,
+            "--step-4": 32,
+            "--step-5": 40,
+            "--step-display": 52
+          },
+          "sectionPads": [
+            64,
+            48,
+            80
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile_reduced": {
+        "reveal": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      }
+    },
+    "projects_crawlspace-renovation": {
+      "path": "/projects/crawlspace-renovation/",
+      "desktop": {
+        "overflow": [],
+        "fontSizes": {
+          "24": 2,
+          "97": 1,
+          "17.5": 20,
+          "14.9": 10,
+          "49.3": 2,
+          "42.2": 1
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 2353,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Crawlspace Renovation"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Crawlspace Renovation | Heartwood Homes",
+          "titleLen": 39,
+          "description": "Crawlspace Renovation. Residential renovation. Complete, 2021.",
+          "descLen": 62,
+          "canonical": "https://www.heartwoodchatt.com/projects/crawlspace-renovation/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 100,
+          "maxL": 100,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 100,
+              "text": "Crawlspace Renovation"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 100,
+              "text": "Residential renovation"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 100,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.912,
+            "--step-0": 17.52,
+            "--step-1": 24,
+            "--step-2": 32,
+            "--step-3": 42.24,
+            "--step-4": 49.28,
+            "--step-5": 62.08,
+            "--step-display": 96.96
+          },
+          "sectionPads": [
+            96,
+            64,
+            128
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile": {
+        "overflow": [],
+        "fontSizes": {
+          "16": 22,
+          "20": 1,
+          "28": 1,
+          "32": 2,
+          "52": 1,
+          "14.1": 6
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [
+          {
+            "src": "/_astro/crawlspace.CQzWFbhw_Z1zetrI.webp",
+            "issues": [
+              "upscaled (389px shown at 390css px)"
+            ]
+          }
+        ],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 1346,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Crawlspace Renovation"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Crawlspace Renovation | Heartwood Homes",
+          "titleLen": 39,
+          "description": "Crawlspace Renovation. Residential renovation. Complete, 2021.",
+          "descLen": 62,
+          "canonical": "https://www.heartwoodchatt.com/projects/crawlspace-renovation/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 16,
+          "maxL": 16,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 16,
+              "text": "Crawlspace Renovation"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 16,
+              "text": "Residential renovation"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 16,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.072,
+            "--step-0": 16,
+            "--step-1": 20,
+            "--step-2": 24,
+            "--step-3": 28,
+            "--step-4": 32,
+            "--step-5": 40,
+            "--step-display": 52
+          },
+          "sectionPads": [
+            64,
+            48,
+            80
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile_reduced": {
+        "reveal": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      }
+    },
+    "projects_east-brainard-tornado-rebuild": {
+      "path": "/projects/east-brainard-tornado-rebuild/",
+      "desktop": {
+        "overflow": [],
+        "fontSizes": {
+          "24": 2,
+          "97": 1,
+          "17.5": 20,
+          "14.9": 10,
+          "49.3": 2,
+          "42.2": 1
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 2447,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "East Brainard Tornado Rebuild"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "East Brainard Tornado Rebuild | Heartwood Homes",
+          "titleLen": 47,
+          "description": "East Brainard Tornado Rebuild. Residential renovation. Completed, 2020.",
+          "descLen": 71,
+          "canonical": "https://www.heartwoodchatt.com/projects/east-brainard-tornado-rebuild/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 100,
+          "maxL": 100,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 100,
+              "text": "East Brainard Tornado Rebuild"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 100,
+              "text": "Residential renovation"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 100,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.912,
+            "--step-0": 17.52,
+            "--step-1": 24,
+            "--step-2": 32,
+            "--step-3": 42.24,
+            "--step-4": 49.28,
+            "--step-5": 62.08,
+            "--step-display": 96.96
+          },
+          "sectionPads": [
+            96,
+            64,
+            128
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile": {
+        "overflow": [],
+        "fontSizes": {
+          "16": 22,
+          "20": 1,
+          "28": 1,
+          "32": 2,
+          "52": 1,
+          "14.1": 6
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [
+          {
+            "el": "a",
+            "manual": "text over image: check scrim on screenshot"
+          },
+          {
+            "el": "a",
+            "manual": "text over image: check scrim on screenshot"
+          }
+        ],
+        "images": [
+          {
+            "src": "/_astro/east-brainard.D-qCFCIn_Z26xpzI.webp",
+            "issues": [
+              "upscaled (389px shown at 390css px)"
+            ]
+          }
+        ],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 1396,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "East Brainard Tornado Rebuild"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "East Brainard Tornado Rebuild | Heartwood Homes",
+          "titleLen": 47,
+          "description": "East Brainard Tornado Rebuild. Residential renovation. Completed, 2020.",
+          "descLen": 71,
+          "canonical": "https://www.heartwoodchatt.com/projects/east-brainard-tornado-rebuild/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 16,
+          "maxL": 16,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 16,
+              "text": "East Brainard Tornado Rebuild"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 16,
+              "text": "Residential renovation"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 16,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.072,
+            "--step-0": 16,
+            "--step-1": 20,
+            "--step-2": 24,
+            "--step-3": 28,
+            "--step-4": 32,
+            "--step-5": 40,
+            "--step-display": 52
+          },
+          "sectionPads": [
+            64,
+            48,
+            80
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile_reduced": {
+        "reveal": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      }
+    },
+    "projects_flat-top-mountain": {
+      "path": "/projects/flat-top-mountain/",
+      "desktop": {
+        "overflow": [],
+        "fontSizes": {
+          "24": 2,
+          "97": 1,
+          "17.5": 20,
+          "14.9": 11,
+          "49.3": 2,
+          "42.2": 1
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 2440,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Flat Top Mountain New Build"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Flat Top Mountain New Build | Heartwood Homes",
+          "titleLen": 45,
+          "description": "Flat Top Mountain New Build. Residential new construction. Complete, September 2024–2025.",
+          "descLen": 89,
+          "canonical": "https://www.heartwoodchatt.com/projects/flat-top-mountain/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 100,
+          "maxL": 100,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 100,
+              "text": "Flat Top Mountain New Build"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 100,
+              "text": "Residential new construction"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 100,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.912,
+            "--step-0": 17.52,
+            "--step-1": 24,
+            "--step-2": 32,
+            "--step-3": 42.24,
+            "--step-4": 49.28,
+            "--step-5": 62.08,
+            "--step-display": 96.96
+          },
+          "sectionPads": [
+            96,
+            64,
+            128
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile": {
+        "overflow": [],
+        "fontSizes": {
+          "16": 22,
+          "20": 1,
+          "28": 1,
+          "32": 2,
+          "52": 1,
+          "14.1": 7
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [
+          {
+            "src": "/_astro/flat-top.CQOhwrlS_Z2VRMF.webp",
+            "issues": [
+              "upscaled (389px shown at 390css px)"
+            ]
+          }
+        ],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 1394,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Flat Top Mountain New Build"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Flat Top Mountain New Build | Heartwood Homes",
+          "titleLen": 45,
+          "description": "Flat Top Mountain New Build. Residential new construction. Complete, September 2024–2025.",
+          "descLen": 89,
+          "canonical": "https://www.heartwoodchatt.com/projects/flat-top-mountain/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 16,
+          "maxL": 16,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 16,
+              "text": "Flat Top Mountain New Build"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 16,
+              "text": "Residential new construction"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 16,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.072,
+            "--step-0": 16,
+            "--step-1": 20,
+            "--step-2": 24,
+            "--step-3": 28,
+            "--step-4": 32,
+            "--step-5": 40,
+            "--step-display": 52
+          },
+          "sectionPads": [
+            64,
+            48,
+            80
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile_reduced": {
+        "reveal": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      }
+    },
+    "projects_hixson-new-build": {
+      "path": "/projects/hixson-new-build/",
+      "desktop": {
+        "overflow": [],
+        "fontSizes": {
+          "24": 2,
+          "97": 1,
+          "17.5": 20,
+          "14.9": 11,
+          "49.3": 2,
+          "42.2": 1
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 2347,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Hixson New Build"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Hixson New Build | Heartwood Homes",
+          "titleLen": 34,
+          "description": "Hixson New Build. Residential new construction. Complete, 2023–2024.",
+          "descLen": 68,
+          "canonical": "https://www.heartwoodchatt.com/projects/hixson-new-build/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 100,
+          "maxL": 100,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 100,
+              "text": "Hixson New Build"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 100,
+              "text": "Residential new construction"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 100,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.912,
+            "--step-0": 17.52,
+            "--step-1": 24,
+            "--step-2": 32,
+            "--step-3": 42.24,
+            "--step-4": 49.28,
+            "--step-5": 62.08,
+            "--step-display": 96.96
+          },
+          "sectionPads": [
+            96,
+            64,
+            128
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile": {
+        "overflow": [],
+        "fontSizes": {
+          "16": 22,
+          "20": 1,
+          "28": 1,
+          "32": 2,
+          "52": 1,
+          "14.1": 7
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [
+          {
+            "src": "/_astro/hixson.DHS4Ta_A_croO7.webp",
+            "issues": [
+              "upscaled (389px shown at 390css px)"
+            ]
+          }
+        ],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 1344,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Hixson New Build"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Hixson New Build | Heartwood Homes",
+          "titleLen": 34,
+          "description": "Hixson New Build. Residential new construction. Complete, 2023–2024.",
+          "descLen": 68,
+          "canonical": "https://www.heartwoodchatt.com/projects/hixson-new-build/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 16,
+          "maxL": 16,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 16,
+              "text": "Hixson New Build"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 16,
+              "text": "Residential new construction"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 16,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.072,
+            "--step-0": 16,
+            "--step-1": 20,
+            "--step-2": 24,
+            "--step-3": 28,
+            "--step-4": 32,
+            "--step-5": 40,
+            "--step-display": 52
+          },
+          "sectionPads": [
+            64,
+            48,
+            80
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile_reduced": {
+        "reveal": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      }
+    },
+    "projects_incline-townhomes": {
+      "path": "/projects/incline-townhomes/",
+      "desktop": {
+        "overflow": [],
+        "fontSizes": {
+          "24": 2,
+          "97": 1,
+          "17.5": 20,
+          "14.9": 11,
+          "49.3": 2,
+          "42.2": 1
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 2385,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Incline Townhomes"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Incline Townhomes | Heartwood Homes",
+          "titleLen": 35,
+          "description": "Incline Townhomes. Six townhomes. Complete, 2020–2021.",
+          "descLen": 54,
+          "canonical": "https://www.heartwoodchatt.com/projects/incline-townhomes/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 100,
+          "maxL": 100,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 100,
+              "text": "Incline Townhomes"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 100,
+              "text": "Six townhomes"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 100,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.912,
+            "--step-0": 17.52,
+            "--step-1": 24,
+            "--step-2": 32,
+            "--step-3": 42.24,
+            "--step-4": 49.28,
+            "--step-5": 62.08,
+            "--step-display": 96.96
+          },
+          "sectionPads": [
+            96,
+            64,
+            128
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile": {
+        "overflow": [],
+        "fontSizes": {
+          "16": 22,
+          "20": 1,
+          "28": 1,
+          "32": 2,
+          "52": 1,
+          "14.1": 7
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [
+          {
+            "src": "/_astro/incline.g1YJMmVM_ZRTIPK.webp",
+            "issues": [
+              "upscaled (389px shown at 390css px)"
+            ]
+          }
+        ],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 1399,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Incline Townhomes"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Incline Townhomes | Heartwood Homes",
+          "titleLen": 35,
+          "description": "Incline Townhomes. Six townhomes. Complete, 2020–2021.",
+          "descLen": 54,
+          "canonical": "https://www.heartwoodchatt.com/projects/incline-townhomes/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 16,
+          "maxL": 16,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 16,
+              "text": "Incline Townhomes"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 16,
+              "text": "Six townhomes"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 16,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.072,
+            "--step-0": 16,
+            "--step-1": 20,
+            "--step-2": 24,
+            "--step-3": 28,
+            "--step-4": 32,
+            "--step-5": 40,
+            "--step-display": 52
+          },
+          "sectionPads": [
+            64,
+            48,
+            80
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile_reduced": {
+        "reveal": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      }
+    },
+    "projects_investment-property-flip": {
+      "path": "/projects/investment-property-flip/",
+      "desktop": {
+        "overflow": [],
+        "fontSizes": {
+          "24": 2,
+          "97": 1,
+          "17.5": 20,
+          "14.9": 10,
+          "49.3": 2,
+          "42.2": 1
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 2353,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Investment Property Flip"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Investment Property Flip | Heartwood Homes",
+          "titleLen": 42,
+          "description": "Investment Property Flip. Residential renovation. Complete, 2022.",
+          "descLen": 65,
+          "canonical": "https://www.heartwoodchatt.com/projects/investment-property-flip/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 100,
+          "maxL": 100,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 100,
+              "text": "Investment Property Flip"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 100,
+              "text": "Residential renovation"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 100,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.912,
+            "--step-0": 17.52,
+            "--step-1": 24,
+            "--step-2": 32,
+            "--step-3": 42.24,
+            "--step-4": 49.28,
+            "--step-5": 62.08,
+            "--step-display": 96.96
+          },
+          "sectionPads": [
+            96,
+            64,
+            128
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile": {
+        "overflow": [],
+        "fontSizes": {
+          "16": 22,
+          "20": 1,
+          "28": 1,
+          "32": 2,
+          "52": 1,
+          "14.1": 6
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [
+          {
+            "src": "/_astro/investment-flip.Xc9e_bYL_ZW57Wf.webp",
+            "issues": [
+              "upscaled (389px shown at 390css px)"
+            ]
+          }
+        ],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 1346,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Investment Property Flip"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Investment Property Flip | Heartwood Homes",
+          "titleLen": 42,
+          "description": "Investment Property Flip. Residential renovation. Complete, 2022.",
+          "descLen": 65,
+          "canonical": "https://www.heartwoodchatt.com/projects/investment-property-flip/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 16,
+          "maxL": 16,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 16,
+              "text": "Investment Property Flip"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 16,
+              "text": "Residential renovation"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 16,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.072,
+            "--step-0": 16,
+            "--step-1": 20,
+            "--step-2": 24,
+            "--step-3": 28,
+            "--step-4": 32,
+            "--step-5": 40,
+            "--step-display": 52
+          },
+          "sectionPads": [
+            64,
+            48,
+            80
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile_reduced": {
+        "reveal": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      }
+    },
+    "projects_layouts-on-market": {
+      "path": "/projects/layouts-on-market/",
+      "desktop": {
+        "overflow": [],
+        "fontSizes": {
+          "24": 2,
+          "97": 1,
+          "17.5": 20,
+          "14.9": 10,
+          "49.3": 2,
+          "42.2": 1
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 2392,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Layouts on Market"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Layouts on Market | Heartwood Homes",
+          "titleLen": 35,
+          "description": "Layouts on Market. Nine townhomes. Completed, 2018–2019.",
+          "descLen": 56,
+          "canonical": "https://www.heartwoodchatt.com/projects/layouts-on-market/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 100,
+          "maxL": 100,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 100,
+              "text": "Layouts on Market"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 100,
+              "text": "Nine townhomes"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 100,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.912,
+            "--step-0": 17.52,
+            "--step-1": 24,
+            "--step-2": 32,
+            "--step-3": 42.24,
+            "--step-4": 49.28,
+            "--step-5": 62.08,
+            "--step-display": 96.96
+          },
+          "sectionPads": [
+            96,
+            64,
+            128
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile": {
+        "overflow": [],
+        "fontSizes": {
+          "16": 22,
+          "20": 1,
+          "28": 1,
+          "32": 2,
+          "52": 1,
+          "14.1": 6
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [
+          {
+            "src": "/_astro/layouts.D4XCOSQY_21UM2o.webp",
+            "issues": [
+              "upscaled (389px shown at 390css px)"
+            ]
+          }
+        ],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 1378,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Layouts on Market"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Layouts on Market | Heartwood Homes",
+          "titleLen": 35,
+          "description": "Layouts on Market. Nine townhomes. Completed, 2018–2019.",
+          "descLen": 56,
+          "canonical": "https://www.heartwoodchatt.com/projects/layouts-on-market/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 16,
+          "maxL": 16,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 16,
+              "text": "Layouts on Market"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 16,
+              "text": "Nine townhomes"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 16,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.072,
+            "--step-0": 16,
+            "--step-1": 20,
+            "--step-2": 24,
+            "--step-3": 28,
+            "--step-4": 32,
+            "--step-5": 40,
+            "--step-display": 52
+          },
+          "sectionPads": [
+            64,
+            48,
+            80
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile_reduced": {
+        "reveal": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      }
+    },
+    "projects_pikeville-treehouses": {
+      "path": "/projects/pikeville-treehouses/",
+      "desktop": {
+        "overflow": [],
+        "fontSizes": {
+          "24": 2,
+          "97": 1,
+          "17.5": 21,
+          "14.9": 10,
+          "49.3": 2,
+          "42.2": 1
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 2383,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Pikeville Treehouses"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Pikeville Treehouses | Heartwood Homes",
+          "titleLen": 38,
+          "description": "Pikeville Treehouses. Residential new construction. Completed, 2025–2026.",
+          "descLen": 73,
+          "canonical": "https://www.heartwoodchatt.com/projects/pikeville-treehouses/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 100,
+          "maxL": 100,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 100,
+              "text": "Pikeville Treehouses"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 100,
+              "text": "Residential new construction"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 100,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.912,
+            "--step-0": 17.52,
+            "--step-1": 24,
+            "--step-2": 32,
+            "--step-3": 42.24,
+            "--step-4": 49.28,
+            "--step-5": 62.08,
+            "--step-display": 96.96
+          },
+          "sectionPads": [
+            96,
+            64,
+            128
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile": {
+        "overflow": [],
+        "fontSizes": {
+          "16": 23,
+          "20": 1,
+          "28": 1,
+          "32": 2,
+          "52": 1,
+          "14.1": 6
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [
+          {
+            "src": "/_astro/pikeville-treehouses.D7TxpgOf_xDHaM.webp",
+            "issues": [
+              "upscaled (389px shown at 390css px)"
+            ]
+          }
+        ],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 1414,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Pikeville Treehouses"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Pikeville Treehouses | Heartwood Homes",
+          "titleLen": 38,
+          "description": "Pikeville Treehouses. Residential new construction. Completed, 2025–2026.",
+          "descLen": 73,
+          "canonical": "https://www.heartwoodchatt.com/projects/pikeville-treehouses/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 16,
+          "maxL": 16,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 16,
+              "text": "Pikeville Treehouses"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 16,
+              "text": "Residential new construction"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 16,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.072,
+            "--step-0": 16,
+            "--step-1": 20,
+            "--step-2": 24,
+            "--step-3": 28,
+            "--step-4": 32,
+            "--step-5": 40,
+            "--step-display": 52
+          },
+          "sectionPads": [
+            64,
+            48,
+            80
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile_reduced": {
+        "reveal": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      }
+    },
+    "projects_red-bank-renovation": {
+      "path": "/projects/red-bank-renovation/",
+      "desktop": {
+        "overflow": [],
+        "fontSizes": {
+          "24": 2,
+          "97": 1,
+          "17.5": 20,
+          "14.9": 10,
+          "49.3": 2,
+          "42.2": 1
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 2315,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Red Bank Renovation"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Red Bank Renovation | Heartwood Homes",
+          "titleLen": 37,
+          "description": "Red Bank Renovation. Residential renovation. Complete, 2020.",
+          "descLen": 60,
+          "canonical": "https://www.heartwoodchatt.com/projects/red-bank-renovation/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 100,
+          "maxL": 100,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 100,
+              "text": "Red Bank Renovation"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 100,
+              "text": "Residential renovation"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 100,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.912,
+            "--step-0": 17.52,
+            "--step-1": 24,
+            "--step-2": 32,
+            "--step-3": 42.24,
+            "--step-4": 49.28,
+            "--step-5": 62.08,
+            "--step-display": 96.96
+          },
+          "sectionPads": [
+            96,
+            64,
+            128
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile": {
+        "overflow": [],
+        "fontSizes": {
+          "16": 22,
+          "20": 1,
+          "28": 1,
+          "32": 2,
+          "52": 1,
+          "14.1": 6
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [
+          {
+            "src": "/_astro/red-bank.CGWjcLUM_Z1XX3yF.webp",
+            "issues": [
+              "upscaled (389px shown at 390css px)"
+            ]
+          }
+        ],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 1314,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Red Bank Renovation"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Red Bank Renovation | Heartwood Homes",
+          "titleLen": 37,
+          "description": "Red Bank Renovation. Residential renovation. Complete, 2020.",
+          "descLen": 60,
+          "canonical": "https://www.heartwoodchatt.com/projects/red-bank-renovation/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 16,
+          "maxL": 16,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 16,
+              "text": "Red Bank Renovation"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 16,
+              "text": "Residential renovation"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 16,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.072,
+            "--step-0": 16,
+            "--step-1": 20,
+            "--step-2": 24,
+            "--step-3": 28,
+            "--step-4": 32,
+            "--step-5": 40,
+            "--step-display": 52
+          },
+          "sectionPads": [
+            64,
+            48,
+            80
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile_reduced": {
+        "reveal": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      }
+    },
+    "projects_sewanee-airbnb": {
+      "path": "/projects/sewanee-airbnb/",
+      "desktop": {
+        "overflow": [],
+        "fontSizes": {
+          "24": 2,
+          "97": 1,
+          "17.5": 20,
+          "14.9": 11,
+          "49.3": 2,
+          "42.2": 1
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 2347,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Sewanee AirBnb"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Sewanee AirBnb | Heartwood Homes",
+          "titleLen": 32,
+          "description": "Sewanee AirBnb. Residential new construction. Completed, 2024–2025.",
+          "descLen": 67,
+          "canonical": "https://www.heartwoodchatt.com/projects/sewanee-airbnb/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 100,
+          "maxL": 100,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 100,
+              "text": "Sewanee AirBnb"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 100,
+              "text": "Residential new construction"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 100,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.912,
+            "--step-0": 17.52,
+            "--step-1": 24,
+            "--step-2": 32,
+            "--step-3": 42.24,
+            "--step-4": 49.28,
+            "--step-5": 62.08,
+            "--step-display": 96.96
+          },
+          "sectionPads": [
+            96,
+            64,
+            128
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile": {
+        "overflow": [],
+        "fontSizes": {
+          "16": 22,
+          "20": 1,
+          "28": 1,
+          "32": 2,
+          "52": 1,
+          "14.1": 7
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [
+          {
+            "src": "/_astro/sewanee.BDkO4SRJ_Z1JlnjJ.webp",
+            "issues": [
+              "upscaled (389px shown at 390css px)"
+            ]
+          }
+        ],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 1344,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Sewanee AirBnb"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Sewanee AirBnb | Heartwood Homes",
+          "titleLen": 32,
+          "description": "Sewanee AirBnb. Residential new construction. Completed, 2024–2025.",
+          "descLen": 67,
+          "canonical": "https://www.heartwoodchatt.com/projects/sewanee-airbnb/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 16,
+          "maxL": 16,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 16,
+              "text": "Sewanee AirBnb"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 16,
+              "text": "Residential new construction"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 16,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.072,
+            "--step-0": 16,
+            "--step-1": 20,
+            "--step-2": 24,
+            "--step-3": 28,
+            "--step-4": 32,
+            "--step-5": 40,
+            "--step-display": 52
+          },
+          "sectionPads": [
+            64,
+            48,
+            80
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile_reduced": {
+        "reveal": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      }
+    },
+    "projects_signal-mountain-renovation": {
+      "path": "/projects/signal-mountain-renovation/",
+      "desktop": {
+        "overflow": [],
+        "fontSizes": {
+          "24": 2,
+          "97": 1,
+          "17.5": 20,
+          "14.9": 11,
+          "49.3": 2,
+          "42.2": 1
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 2440,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Signal Mountain Full Home Renovation"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Signal Mountain Full Home Renovation | Heartwood Homes",
+          "titleLen": 54,
+          "description": "Signal Mountain Full Home Renovation. Residential renovation. Complete, 2025.",
+          "descLen": 77,
+          "canonical": "https://www.heartwoodchatt.com/projects/signal-mountain-renovation/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 100,
+          "maxL": 100,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 100,
+              "text": "Signal Mountain Full Home Renovation"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 100,
+              "text": "Residential renovation"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 100,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.912,
+            "--step-0": 17.52,
+            "--step-1": 24,
+            "--step-2": 32,
+            "--step-3": 42.24,
+            "--step-4": 49.28,
+            "--step-5": 62.08,
+            "--step-display": 96.96
+          },
+          "sectionPads": [
+            96,
+            64,
+            128
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile": {
+        "overflow": [],
+        "fontSizes": {
+          "16": 22,
+          "20": 1,
+          "28": 1,
+          "32": 2,
+          "52": 1,
+          "14.1": 7
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [
+          {
+            "el": "a",
+            "manual": "text over image: check scrim on screenshot"
+          },
+          {
+            "el": "a",
+            "manual": "text over image: check scrim on screenshot"
+          }
+        ],
+        "images": [
+          {
+            "src": "/_astro/signal-mountain.T95ERMXW_ZJLUvp.webp",
+            "issues": [
+              "upscaled (389px shown at 390css px)"
+            ]
+          }
+        ],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 1476,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Signal Mountain Full Home Renovation"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Signal Mountain Full Home Renovation | Heartwood Homes",
+          "titleLen": 54,
+          "description": "Signal Mountain Full Home Renovation. Residential renovation. Complete, 2025.",
+          "descLen": 77,
+          "canonical": "https://www.heartwoodchatt.com/projects/signal-mountain-renovation/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 16,
+          "maxL": 16,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 16,
+              "text": "Signal Mountain Full Home Renovation"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 16,
+              "text": "Residential renovation"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 16,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.072,
+            "--step-0": 16,
+            "--step-1": 20,
+            "--step-2": 24,
+            "--step-3": 28,
+            "--step-4": 32,
+            "--step-5": 40,
+            "--step-display": 52
+          },
+          "sectionPads": [
+            64,
+            48,
+            80
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile_reduced": {
+        "reveal": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      }
+    },
+    "projects_spec-house-pikeville": {
+      "path": "/projects/spec-house-pikeville/",
+      "desktop": {
+        "overflow": [],
+        "fontSizes": {
+          "24": 2,
+          "97": 1,
+          "17.5": 21,
+          "14.9": 10,
+          "49.3": 2,
+          "42.2": 1
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 2383,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Spec House, Pikeville"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Spec House, Pikeville | Heartwood Homes",
+          "titleLen": 39,
+          "description": "Spec House, Pikeville. Residential new construction. Completed, 2025–2026.",
+          "descLen": 74,
+          "canonical": "https://www.heartwoodchatt.com/projects/spec-house-pikeville/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 100,
+          "maxL": 100,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 100,
+              "text": "Spec House, Pikeville"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 100,
+              "text": "Residential new construction"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 100,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.912,
+            "--step-0": 17.52,
+            "--step-1": 24,
+            "--step-2": 32,
+            "--step-3": 42.24,
+            "--step-4": 49.28,
+            "--step-5": 62.08,
+            "--step-display": 96.96
+          },
+          "sectionPads": [
+            96,
+            64,
+            128
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile": {
+        "overflow": [],
+        "fontSizes": {
+          "16": 23,
+          "20": 1,
+          "28": 1,
+          "32": 2,
+          "52": 1,
+          "14.1": 6
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [
+          {
+            "src": "/_astro/spec-house.e5f4I8Tg_Z1a3xhL.webp",
+            "issues": [
+              "upscaled (389px shown at 390css px)"
+            ]
+          }
+        ],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 1414,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Spec House, Pikeville"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Spec House, Pikeville | Heartwood Homes",
+          "titleLen": 39,
+          "description": "Spec House, Pikeville. Residential new construction. Completed, 2025–2026.",
+          "descLen": 74,
+          "canonical": "https://www.heartwoodchatt.com/projects/spec-house-pikeville/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 16,
+          "maxL": 16,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 16,
+              "text": "Spec House, Pikeville"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 16,
+              "text": "Residential new construction"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 16,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.072,
+            "--step-0": 16,
+            "--step-1": 20,
+            "--step-2": 24,
+            "--step-3": 28,
+            "--step-4": 32,
+            "--step-5": 40,
+            "--step-display": 52
+          },
+          "sectionPads": [
+            64,
+            48,
+            80
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile_reduced": {
+        "reveal": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      }
+    },
+    "projects_spring-city-lake-house": {
+      "path": "/projects/spring-city-lake-house/",
+      "desktop": {
+        "overflow": [],
+        "fontSizes": {
+          "24": 2,
+          "97": 1,
+          "17.5": 20,
+          "14.9": 11,
+          "49.3": 2,
+          "42.2": 1
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 2347,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Spring City Lake House"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Spring City Lake House | Heartwood Homes",
+          "titleLen": 40,
+          "description": "Spring City Lake House. Residential new construction. Complete, 2024.",
+          "descLen": 69,
+          "canonical": "https://www.heartwoodchatt.com/projects/spring-city-lake-house/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 100,
+          "maxL": 100,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 100,
+              "text": "Spring City Lake House"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 100,
+              "text": "Residential new construction"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 100,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.912,
+            "--step-0": 17.52,
+            "--step-1": 24,
+            "--step-2": 32,
+            "--step-3": 42.24,
+            "--step-4": 49.28,
+            "--step-5": 62.08,
+            "--step-display": 96.96
+          },
+          "sectionPads": [
+            96,
+            64,
+            128
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile": {
+        "overflow": [],
+        "fontSizes": {
+          "16": 22,
+          "20": 1,
+          "28": 1,
+          "32": 2,
+          "52": 1,
+          "14.1": 7
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [
+          {
+            "src": "/_astro/spring-city.CEldYhPZ_Z1I05F6.webp",
+            "issues": [
+              "upscaled (389px shown at 390css px)"
+            ]
+          }
+        ],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 1344,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Spring City Lake House"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Spring City Lake House | Heartwood Homes",
+          "titleLen": 40,
+          "description": "Spring City Lake House. Residential new construction. Complete, 2024.",
+          "descLen": 69,
+          "canonical": "https://www.heartwoodchatt.com/projects/spring-city-lake-house/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 16,
+          "maxL": 16,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 16,
+              "text": "Spring City Lake House"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 16,
+              "text": "Residential new construction"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 16,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.072,
+            "--step-0": 16,
+            "--step-1": 20,
+            "--step-2": 24,
+            "--step-3": 28,
+            "--step-4": 32,
+            "--step-5": 40,
+            "--step-display": 52
+          },
+          "sectionPads": [
+            64,
+            48,
+            80
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile_reduced": {
+        "reveal": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      }
+    },
+    "projects_ten-mile-lake-house": {
+      "path": "/projects/ten-mile-lake-house/",
+      "desktop": {
+        "overflow": [],
+        "fontSizes": {
+          "24": 2,
+          "97": 1,
+          "17.5": 20,
+          "14.9": 11,
+          "49.3": 2,
+          "42.2": 1
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 2385,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Ten Mile Lake House"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Ten Mile Lake House | Heartwood Homes",
+          "titleLen": 37,
+          "description": "Ten Mile Lake House. Residential new construction. Completed, 2025–2026.",
+          "descLen": 72,
+          "canonical": "https://www.heartwoodchatt.com/projects/ten-mile-lake-house/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 100,
+          "maxL": 100,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 100,
+              "text": "Ten Mile Lake House"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 100,
+              "text": "Residential new construction"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 100,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.912,
+            "--step-0": 17.52,
+            "--step-1": 24,
+            "--step-2": 32,
+            "--step-3": 42.24,
+            "--step-4": 49.28,
+            "--step-5": 62.08,
+            "--step-display": 96.96
+          },
+          "sectionPads": [
+            96,
+            64,
+            128
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile": {
+        "overflow": [],
+        "fontSizes": {
+          "16": 22,
+          "20": 1,
+          "28": 1,
+          "32": 2,
+          "52": 1,
+          "14.1": 7
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [
+          {
+            "src": "/_astro/ten-mile.DkNMqwos_wgEh9.webp",
+            "issues": [
+              "upscaled (389px shown at 390css px)"
+            ]
+          }
+        ],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "footer.site-footer",
+            "y": 1376,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "Ten Mile Lake House"
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Ten Mile Lake House | Heartwood Homes",
+          "titleLen": 37,
+          "description": "Ten Mile Lake House. Residential new construction. Completed, 2025–2026.",
+          "descLen": 72,
+          "canonical": "https://www.heartwoodchatt.com/projects/ten-mile-lake-house/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 16,
+          "maxL": 16,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "header.section",
+              "kind": "heading",
+              "left": 16,
+              "text": "Ten Mile Lake House"
+            },
+            {
+              "el": "header.section",
+              "kind": "body",
+              "left": 16,
+              "text": "Residential new construction"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 16,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.072,
+            "--step-0": 16,
+            "--step-1": 20,
+            "--step-2": 24,
+            "--step-3": 28,
+            "--step-4": 32,
+            "--step-5": 40,
+            "--step-display": 52
+          },
+          "sectionPads": [
+            64,
+            48,
+            80
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile_reduced": {
+        "reveal": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      }
+    },
+    "renovations": {
+      "path": "/renovations/",
+      "desktop": {
+        "overflow": [],
+        "fontSizes": {
+          "24": 2,
+          "32": 6,
+          "97": 1,
+          "17.5": 31,
+          "14.9": 12,
+          "49.3": 4,
+          "42.2": 1
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "section.edge-split",
+            "y": 81,
+            "pt": 0,
+            "pb": 0,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "The same crew, on a house you already have."
+          },
+          {
+            "el": "section.band",
+            "y": 947,
+            "pt": 96,
+            "pb": 96,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "What the work includes"
+          },
+          {
+            "el": "section.band.band-mist",
+            "y": 1977,
+            "pt": 96,
+            "pb": 96,
+            "onScale": true,
+            "bg": "rgb(222, 227, 220)",
+            "heading": "Signal Mountain Full Home Renovation"
+          },
+          {
+            "el": "section.section",
+            "y": 2606,
+            "pt": 96,
+            "pb": 96,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": null
+          },
+          {
+            "el": "section.close-band",
+            "y": 2855,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(47, 52, 30)",
+            "heading": "Tell us about the house."
+          },
+          {
+            "el": "footer.site-footer",
+            "y": 3325,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "The same crew, on a house you already have."
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Home Renovations in Chattanooga | Heartwood Homes",
+          "titleLen": 49,
+          "description": "Major renovations by Heartwood Homes in Chattanooga, from kitchens and bathrooms to the exterior.",
+          "descLen": 97,
+          "canonical": "https://www.heartwoodchatt.com/renovations/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 100,
+          "maxL": 100,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "section.edge-split",
+              "kind": "heading",
+              "left": 100,
+              "text": "The same crew, on a house you already ha"
+            },
+            {
+              "el": "section.edge-split",
+              "kind": "body",
+              "left": 100,
+              "text": "Major renovations, from kitchens and bat"
+            },
+            {
+              "el": "section.band",
+              "kind": "heading",
+              "left": 100,
+              "text": "What the work includes"
+            },
+            {
+              "el": "section.band",
+              "kind": "body",
+              "left": 100,
+              "text": "The rooms a major renovation usually sta"
+            },
+            {
+              "el": "section.band.band-mist",
+              "kind": "heading",
+              "left": 100,
+              "text": "Signal Mountain Full Home Renovation"
+            },
+            {
+              "el": "section.band.band-mist",
+              "kind": "body",
+              "left": 100,
+              "text": "A full renovation of a house on Signal M"
+            },
+            {
+              "el": "section.section",
+              "kind": "body",
+              "left": 100,
+              "text": "A renovation budget is built the same wa"
+            },
+            {
+              "el": "section.close-band",
+              "kind": "heading",
+              "left": 100,
+              "text": "Tell us about the house."
+            },
+            {
+              "el": "section.close-band",
+              "kind": "body",
+              "left": 100,
+              "text": "A few questions come first. Then Heartwo"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 100,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.912,
+            "--step-0": 17.52,
+            "--step-1": 24,
+            "--step-2": 32,
+            "--step-3": 42.24,
+            "--step-4": 49.28,
+            "--step-5": 62.08,
+            "--step-display": 96.96
+          },
+          "sectionPads": [
+            96,
+            64,
+            128
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile": {
+        "overflow": [],
+        "fontSizes": {
+          "16": 33,
+          "20": 1,
+          "24": 6,
+          "28": 1,
+          "32": 4,
+          "52": 1,
+          "14.1": 8
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [
+          {
+            "el": "a",
+            "manual": "text over image: check scrim on screenshot"
+          },
+          {
+            "el": "a",
+            "manual": "text over image: check scrim on screenshot"
+          }
+        ],
+        "images": [
+          {
+            "src": "/_astro/signal-mountain.T95ERMXW_ZJLUvp.webp",
+            "issues": [
+              "upscaled (389px shown at 390css px)"
+            ]
+          }
+        ],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "section.edge-split",
+            "y": 73,
+            "pt": 0,
+            "pb": 0,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "The same crew, on a house you already have."
+          },
+          {
+            "el": "section.band",
+            "y": 907,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "What the work includes"
+          },
+          {
+            "el": "section.band.band-mist",
+            "y": 1848,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(222, 227, 220)",
+            "heading": "Signal Mountain Full Home Renovation"
+          },
+          {
+            "el": "section.section",
+            "y": 2686,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": null
+          },
+          {
+            "el": "section.close-band",
+            "y": 2891,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(47, 52, 30)",
+            "heading": "Tell us about the house."
+          },
+          {
+            "el": "footer.site-footer",
+            "y": 3288,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "The same crew, on a house you already have."
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Home Renovations in Chattanooga | Heartwood Homes",
+          "titleLen": 49,
+          "description": "Major renovations by Heartwood Homes in Chattanooga, from kitchens and bathrooms to the exterior.",
+          "descLen": 97,
+          "canonical": "https://www.heartwoodchatt.com/renovations/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 16,
+          "maxL": 16,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "section.edge-split",
+              "kind": "heading",
+              "left": 16,
+              "text": "The same crew, on a house you already ha"
+            },
+            {
+              "el": "section.edge-split",
+              "kind": "body",
+              "left": 16,
+              "text": "Major renovations, from kitchens and bat"
+            },
+            {
+              "el": "section.band",
+              "kind": "heading",
+              "left": 16,
+              "text": "What the work includes"
+            },
+            {
+              "el": "section.band",
+              "kind": "body",
+              "left": 16,
+              "text": "The rooms a major renovation usually sta"
+            },
+            {
+              "el": "section.band.band-mist",
+              "kind": "heading",
+              "left": 16,
+              "text": "Signal Mountain Full Home Renovation"
+            },
+            {
+              "el": "section.band.band-mist",
+              "kind": "body",
+              "left": 16,
+              "text": "A full renovation of a house on Signal M"
+            },
+            {
+              "el": "section.section",
+              "kind": "body",
+              "left": 16,
+              "text": "A renovation budget is built the same wa"
+            },
+            {
+              "el": "section.close-band",
+              "kind": "heading",
+              "left": 16,
+              "text": "Tell us about the house."
+            },
+            {
+              "el": "section.close-band",
+              "kind": "body",
+              "left": 16,
+              "text": "A few questions come first. Then Heartwo"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 16,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.072,
+            "--step-0": 16,
+            "--step-1": 20,
+            "--step-2": 24,
+            "--step-3": 28,
+            "--step-4": 32,
+            "--step-5": 40,
+            "--step-display": 52
+          },
+          "sectionPads": [
+            64,
+            48,
+            80
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile_reduced": {
+        "reveal": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      }
+    },
+    "site-prep-landwork": {
+      "path": "/site-prep-landwork/",
+      "desktop": {
+        "overflow": [],
+        "fontSizes": {
+          "24": 2,
+          "97": 1,
+          "17.5": 23,
+          "14.9": 10,
+          "49.3": 5,
+          "42.2": 1
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "section.section",
+            "y": 81,
+            "pt": 96,
+            "pb": 96,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "The land under the house."
+          },
+          {
+            "el": "section.band.edge-rule",
+            "y": 552,
+            "pt": 96,
+            "pb": 96,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "Before the build"
+          },
+          {
+            "el": "section.band.band-mist",
+            "y": 1071,
+            "pt": 96,
+            "pb": 96,
+            "onScale": true,
+            "bg": "rgb(222, 227, 220)",
+            "heading": "Septic"
+          },
+          {
+            "el": "section.close-band",
+            "y": 1362,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(47, 52, 30)",
+            "heading": "The house comes first."
+          },
+          {
+            "el": "footer.site-footer",
+            "y": 1833,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "The land under the house."
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Site Prep & Landwork, Chattanooga | Heartwood Homes",
+          "titleLen": 51,
+          "description": "Site prep before a Heartwood home, and grading and landscaping after. Land clearing, excavation, and septic installation.",
+          "descLen": 121,
+          "canonical": "https://www.heartwoodchatt.com/site-prep-landwork/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 100,
+          "maxL": 100,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "section.section",
+              "kind": "heading",
+              "left": 100,
+              "text": "The land under the house."
+            },
+            {
+              "el": "section.section",
+              "kind": "body",
+              "left": 100,
+              "text": "Site prep before the build. Grading and "
+            },
+            {
+              "el": "section.band.edge-rule",
+              "kind": "heading",
+              "left": 100,
+              "text": "Before the build"
+            },
+            {
+              "el": "section.band.edge-rule",
+              "kind": "body",
+              "left": 100,
+              "text": "Land clearing, excavation, sitework, and"
+            },
+            {
+              "el": "section.band.band-mist",
+              "kind": "heading",
+              "left": 100,
+              "text": "Septic"
+            },
+            {
+              "el": "section.band.band-mist",
+              "kind": "body",
+              "left": 100,
+              "text": "Heartwood is a licensed septic installer"
+            },
+            {
+              "el": "section.close-band",
+              "kind": "heading",
+              "left": 100,
+              "text": "The house comes first."
+            },
+            {
+              "el": "section.close-band",
+              "kind": "body",
+              "left": 100,
+              "text": "The land is the start of it. A few quest"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 100,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.912,
+            "--step-0": 17.52,
+            "--step-1": 24,
+            "--step-2": 32,
+            "--step-3": 42.24,
+            "--step-4": 49.28,
+            "--step-5": 62.08,
+            "--step-display": 96.96
+          },
+          "sectionPads": [
+            96,
+            64,
+            128
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [
+          "Heartwood is a licensed septic installer"
+        ],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile": {
+        "overflow": [],
+        "fontSizes": {
+          "16": 25,
+          "20": 1,
+          "28": 1,
+          "32": 5,
+          "52": 1,
+          "14.1": 6
+        },
+        "offScaleFonts": [],
+        "tooSmallFonts": [],
+        "smallTargets": [],
+        "contrast": [],
+        "images": [],
+        "innerScrollbars": [],
+        "sections": [
+          {
+            "el": "section.section",
+            "y": 73,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "The land under the house."
+          },
+          {
+            "el": "section.band.edge-rule",
+            "y": 511,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgba(0, 0, 0, 0)",
+            "heading": "Before the build"
+          },
+          {
+            "el": "section.band.band-mist",
+            "y": 926,
+            "pt": 64,
+            "pb": 64,
+            "onScale": true,
+            "bg": "rgb(222, 227, 220)",
+            "heading": "Septic"
+          },
+          {
+            "el": "section.close-band",
+            "y": 1259,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(47, 52, 30)",
+            "heading": "The house comes first."
+          },
+          {
+            "el": "footer.site-footer",
+            "y": 1655,
+            "pt": 48,
+            "pb": 48,
+            "onScale": true,
+            "bg": "rgb(26, 30, 24)",
+            "heading": null
+          }
+        ],
+        "headings": {
+          "h1": [
+            "The land under the house."
+          ],
+          "skips": []
+        },
+        "seo": {
+          "title": "Site Prep & Landwork, Chattanooga | Heartwood Homes",
+          "titleLen": 51,
+          "description": "Site prep before a Heartwood home, and grading and landscaping after. Land clearing, excavation, and septic installation.",
+          "descLen": 121,
+          "canonical": "https://www.heartwoodchatt.com/site-prep-landwork/",
+          "ogImage": "https://www.heartwoodchatt.com/og-default.jpg",
+          "lang": "en",
+          "jsonLdTypes": [
+            "GeneralContractor"
+          ],
+          "skipLink": true,
+          "mainCount": 1
+        },
+        "reveal": [],
+        "alignment": {
+          "minL": 16,
+          "maxL": 16,
+          "spread": 0,
+          "flags": [],
+          "lefts": [
+            {
+              "el": "section.section",
+              "kind": "heading",
+              "left": 16,
+              "text": "The land under the house."
+            },
+            {
+              "el": "section.section",
+              "kind": "body",
+              "left": 16,
+              "text": "Site prep before the build. Grading and "
+            },
+            {
+              "el": "section.band.edge-rule",
+              "kind": "heading",
+              "left": 16,
+              "text": "Before the build"
+            },
+            {
+              "el": "section.band.edge-rule",
+              "kind": "body",
+              "left": 16,
+              "text": "Land clearing, excavation, sitework, and"
+            },
+            {
+              "el": "section.band.band-mist",
+              "kind": "heading",
+              "left": 16,
+              "text": "Septic"
+            },
+            {
+              "el": "section.band.band-mist",
+              "kind": "body",
+              "left": 16,
+              "text": "Heartwood is a licensed septic installer"
+            },
+            {
+              "el": "section.close-band",
+              "kind": "heading",
+              "left": 16,
+              "text": "The house comes first."
+            },
+            {
+              "el": "section.close-band",
+              "kind": "body",
+              "left": 16,
+              "text": "The land is the start of it. A few quest"
+            },
+            {
+              "el": "footer.site-footer",
+              "kind": "body",
+              "left": 16,
+              "text": "© 2026 Heartwood Homes, LLC"
+            }
+          ]
+        },
+        "tokens": {
+          "steps": {
+            "--step--1": 14.072,
+            "--step-0": 16,
+            "--step-1": 20,
+            "--step-2": 24,
+            "--step-3": 28,
+            "--step-4": 32,
+            "--step-5": 40,
+            "--step-display": 52
+          },
+          "sectionPads": [
+            64,
+            48,
+            80
+          ],
+          "missingTokens": []
+        },
+        "heroImage": {
+          "src": "/_astro/logo.lsEt765d_2iAy2c.webp",
+          "loading": "eager",
+          "fetchpriority": null
+        },
+        "placeholders": [],
+        "claims": [
+          "Heartwood is a licensed septic installer"
+        ],
+        "consoleErrors": [],
+        "failedRequests": []
+      },
+      "mobile_reduced": {
+        "reveal": [],
+        "consoleErrors": [],
+        "failedRequests": []
+      }
+    }
+  }
+}

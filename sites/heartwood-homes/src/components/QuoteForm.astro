@@ -1,0 +1,97 @@
+---
+import { site } from '../data/site';
+
+const params = Astro.url.searchParams;
+const work = params.get('work') ?? '';
+const project = params.get('project') ?? '';
+const chapter = params.get('chapter') ?? '';
+const works = [
+  ['custom-home', 'Custom home'],
+  ['renovation', 'Renovation'],
+  ['site-prep', 'Site prep and landwork'],
+];
+---
+<form class="form" method="post" action="/api/quote" data-quote-form novalidate>
+  <div class="form-status" data-status hidden></div>
+  <div class="form-grid">
+    <label class="field">
+      Name
+      <input name="name" autocomplete="name" required />
+    </label>
+    <label class="field">
+      Phone
+      <input name="phone" type="tel" autocomplete="tel" inputmode="tel" />
+    </label>
+    <label class="field">
+      Email
+      <input name="email" type="email" autocomplete="email" />
+    </label>
+    <label class="field">
+      Which work
+      <select name="work" required>
+        <option value="">Choose one</option>
+        {works.map(([value, label]) => (
+          <option value={value} selected={work === value}>{label}</option>
+        ))}
+      </select>
+    </label>
+  </div>
+  <label class="field">
+    Budget
+    <input name="budget" autocomplete="off" />
+    <span class="muted">A range is fine. We don’t publish prices.</span>
+  </label>
+  <label class="field">
+    Message
+    <textarea name="message" rows="5"></textarea>
+  </label>
+  <p class="visually-hidden">
+    <label>Company<input class="visually-hidden" name="company" tabindex="-1" autocomplete="off" /></label>
+  </p>
+  {project && <input type="hidden" name="project" value={project} />}
+  {chapter && <input type="hidden" name="chapter" value={chapter} />}
+  <button class="btn" type="submit">Start your project</button>
+  {site.phone && site.phoneE164 && (
+    <p class="muted">Or call <a href={`tel:${site.phoneE164}`}>{site.phone}</a>.</p>
+  )}
+</form>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-quote-form]');
+  const status = form?.querySelector<HTMLElement>('[data-status]');
+  const phone = document.querySelector<HTMLAnchorElement>('[data-quote-form] a[href^="tel:"]');
+
+  function say(message: string) {
+    if (!status) return;
+    status.hidden = false;
+    status.textContent = message;
+  }
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!form) return;
+    const data = new FormData(form);
+    const name = String(data.get('name') ?? '').trim();
+    const phoneValue = String(data.get('phone') ?? '').trim();
+    const email = String(data.get('email') ?? '').trim();
+    const work = String(data.get('work') ?? '').trim();
+    if (!name || !work || (!phoneValue && !email)) {
+      say('Add your name, the kind of work, and a phone number or email.');
+      return;
+    }
+    if (String(data.get('company') ?? '').trim()) {
+      say('Thanks. We’ll be in touch.');
+      form.reset();
+      return;
+    }
+    try {
+      const response = await fetch(form.action, { method: 'POST', body: data });
+      if (!response.ok) throw new Error('unset');
+      say('Thanks. We’ll be in touch.');
+      form.reset();
+    } catch {
+      const call = phone ? ` Call ${phone.textContent}.` : '';
+      say(`This form isn’t connected yet.${call}`);
+    }
+  });
+</script>

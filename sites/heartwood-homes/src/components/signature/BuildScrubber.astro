@@ -1,0 +1,115 @@
+---
+import { Image } from 'astro:assets';
+import { getProject } from '../../data/projects';
+import AskProof from '../AskProof.astro';
+
+const house = getProject('ten-mile-lake-house');
+if (!house) throw new Error('Ten Mile Lake House is missing from projects.');
+
+const chapters = [
+  {
+    id: 'cleared-lot',
+    label: 'Cleared lot',
+    text: 'The story starts on the land. Clearing, excavation, and the pad the house will sit on. There isn’t a photo of this lot at that stage, so this chapter stays in words.',
+  },
+  {
+    id: 'foundation',
+    label: 'Foundation',
+    text: 'Footings and the foundation, before any frame goes up. No photo of this house at that stage is on file.',
+  },
+  {
+    id: 'frame',
+    label: 'Frame',
+    text: 'The frame goes up. Framing is work the Heartwood crew does in house. No frame photo of this house is on file.',
+  },
+  {
+    id: 'finished-home',
+    label: 'Finished home',
+    text: 'The finished Ten Mile Lake House. The homeowners call it Mermaid Landing.',
+  },
+];
+---
+<section class="scrub" data-scrubber data-showing="finished-home" aria-labelledby="scrubber-title">
+  <div class="scrub-stage">
+    <figure class="scrub-photo" data-animate="img-reveal">
+      <Image
+        src={house.image}
+        alt={house.imageAlt}
+        widths={[960, 1400, 2000]}
+        sizes="100vw"
+        loading="lazy"
+      />
+      {house.credit && <figcaption>{house.credit}</figcaption>}
+    </figure>
+    <ol class="chapters">
+      {chapters.map((chapter, index) => (
+        <li class:list={['chapter', { 'is-active': index === chapters.length - 1 }]} data-chapter={chapter.id}>
+          <h3>{chapter.label}</h3>
+          <p>{chapter.text}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+  <div class="container scrub-panel">
+    <div class="stack-s">
+      <p class="muted">Ten Mile Lake House</p>
+      <h2 id="scrubber-title">From the lot to the finished home</h2>
+    </div>
+    <div class="scrub-control">
+      <label for="build-scrubber">Chapter</label>
+      <input
+        id="build-scrubber"
+        type="range"
+        min="1"
+        max={chapters.length}
+        value={chapters.length}
+        step="1"
+        aria-valuemin={1}
+        aria-valuemax={chapters.length}
+        aria-valuenow={chapters.length}
+        aria-valuetext="Finished home"
+      />
+      <div class="ticks" aria-hidden="true">
+        {chapters.map((chapter) => <span>{chapter.label}</span>)}
+      </div>
+    </div>
+    <p class="scrubber-live visually-hidden" aria-live="polite">Finished home. {chapters[3].text}</p>
+    <a class="btn" href={`/contact/?project=${house.slug}&chapter=finished-home&work=custom-home`} data-scrubber-cta>
+      Start your home
+    </a>
+    <AskProof />
+  </div>
+</section>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-scrubber]');
+  if (root) {
+    root.dataset.enhanced = 'true';
+    const input = root.querySelector<HTMLInputElement>('input[type="range"]');
+    const live = root.querySelector<HTMLElement>('.scrubber-live');
+    const cta = root.querySelector<HTMLAnchorElement>('[data-scrubber-cta]');
+    const items = [...root.querySelectorAll<HTMLElement>('[data-chapter]')];
+    const labels = items.map((item) => item.querySelector('h3')?.textContent?.trim() ?? '');
+
+    const show = (index: number) => {
+      items.forEach((item, i) => item.classList.toggle('is-active', i === index));
+      const id = items[index]?.dataset.chapter ?? '';
+      root.dataset.showing = id;
+      const label = labels[index] ?? '';
+      const text = items[index]?.querySelector('p')?.textContent?.trim() ?? '';
+      if (input) {
+        input.value = String(index + 1);
+        input.setAttribute('aria-valuenow', String(index + 1));
+        input.setAttribute('aria-valuetext', label);
+      }
+      if (live) live.textContent = `${label}. ${text}`;
+      if (cta) {
+        const url = new URL(cta.href);
+        url.searchParams.set('chapter', id);
+        cta.href = `${url.pathname}${url.search}`;
+      }
+    };
+
+    input?.addEventListener('input', () => show(Number(input.value) - 1));
+  }
+</script>

@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import { landChapters } from '../data/services';
+import Button from '../components/Button.astro';
+import CloseBand from '../components/CloseBand.astro';
+import AskProof from '../components/AskProof.astro';
+---
+<Base
+  title="Site Prep & Landwork, Chattanooga | Heartwood Homes"
+  description="Site prep before a Heartwood home, and grading and landscaping after. Land clearing, excavation, and septic installation."
+>
+  <section class="section">
+    <div class="container stack">
+      <h1>The land under the house.</h1>
+      <p class="lede">Site prep before the build. Grading and landscaping after.</p>
+      <Button href="/contact/?work=site-prep">Start your home</Button>
+      <AskProof />
+    </div>
+  </section>
+
+  <section class="band edge-rule">
+    <div class="container">
+      <div class="ruled">
+        {landChapters.map((chapter) => (
+          <article>
+            <h2>{chapter.title}</h2>
+            <p class="measure">{chapter.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-mist">
+    <div class="container split">
+      <div class="stack">
+        <h2>Septic</h2>
+        <p class="measure">Heartwood is a licensed septic installer.</p>
+      </div>
+      <p class="measure">A land budget is built from the plans, then an estimate, then the work. <a href="/custom-homes/">How a budget gets built</a>. The house itself is on <a href="/custom-homes/">custom homes</a>.</p>
+    </div>
+  </section>
+
+  <CloseBand href="/contact/?work=site-prep" title="The house comes first." line="The land is the start of it. A few questions come first, then Heartwood calls or writes you back." />
+</Base>

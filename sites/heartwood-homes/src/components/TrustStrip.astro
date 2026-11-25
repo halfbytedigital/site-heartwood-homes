@@ -1,0 +1,13 @@
+---
+import { site } from '../data/site';
+const { rating, reviewCount, reviewUrl } = site.google;
+---
+<div class="container">
+  <div class="trust">
+    {site.yearFounded && <p>Founded {site.yearFounded}</p>}
+    {rating != null && reviewCount != null && reviewUrl && (
+      <a href={reviewUrl}>{rating.toFixed(1)} from {reviewCount} Google reviews</a>
+    )}
+    {site.areaServed?.map((area) => <p>{area}</p>)}
+  </div>
+</div>

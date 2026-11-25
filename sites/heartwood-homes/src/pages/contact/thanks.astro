@@ -1,0 +1,51 @@
+---
+import Base from '../../layouts/Base.astro';
+import { site } from '../../data/site';
+
+const sent = Astro.url.searchParams.get('sent') === '1';
+const name = Astro.url.searchParams.get('name');
+const phone = Astro.url.searchParams.get('phone');
+const email = Astro.url.searchParams.get('email');
+const work = Astro.url.searchParams.get('work');
+const area = Astro.url.searchParams.get('area');
+const land = Astro.url.searchParams.get('land');
+const timeline = Astro.url.searchParams.get('timeline');
+const rows = [
+  ['Planning', work],
+  ['Where', area],
+  ['Land', land],
+  ['Timing', timeline],
+  ['Name', name],
+  ['Phone', phone],
+  ['Email', email],
+].filter((row) => row[1]);
+---
+<Base
+  title="We have your note | Heartwood Homes"
+  description="What Heartwood Homes received from the start-your-home form."
+  noindex
+>
+  <section class="section">
+    <div class="container stack">
+      <h1>{sent ? 'We have this.' : 'Call us to finish this.'}</h1>
+      {sent ? (
+        <p class="lede">Heartwood Homes will reply. We don’t have a published response time.</p>
+      ) : (
+        <p class="lede">This form isn’t connected yet. Call {site.phone} and we’ll use what you wrote.</p>
+      )}
+      {rows.length > 0 && (
+        <dl class="ruled">
+          {rows.map(([label, value]) => (
+            <div>
+              <dt>{label}</dt>
+              <dd>{value}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+      {site.phone && site.phoneE164 && (
+        <a class="phone" href={`tel:${site.phoneE164}`} data-event="call_click" data-event-placement="thanks">{site.phone}</a>
+      )}
+    </div>
+  </section>
+</Base>

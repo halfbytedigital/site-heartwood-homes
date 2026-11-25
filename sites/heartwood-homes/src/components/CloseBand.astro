@@ -1,0 +1,29 @@
+---
+import { site } from '../data/site';
+import { ctaLabel, contactHref } from '../data/nav';
+import AskProof from './AskProof.astro';
+
+interface Props {
+  title?: string;
+  line?: string;
+  href?: string;
+}
+const {
+  title = 'Tell us about the house.',
+  line = 'A few questions come first. Then Heartwood calls or writes you back. We don’t publish a response time.',
+  href = contactHref,
+} = Astro.props;
+---
+<section class="close-band">
+  <div class="container stack">
+    <h2>{title}</h2>
+    <p class="measure">{line}</p>
+    <div class="btn-row">
+      <a class="btn" href={href}>{ctaLabel}</a>
+    </div>
+    <AskProof />
+    {site.phone && site.phoneE164 && (
+      <a class="close-phone" href={`tel:${site.phoneE164}`} data-event="call_click" data-event-placement="close">{site.phone}</a>
+    )}
+  </div>
+</section>

@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import { site } from '../../data/site';
+import Qualifier from '../../components/Qualifier.astro';
+import { ctaLabel } from '../../data/nav';
+---
+<Base
+  title="Start Your Home | Heartwood Homes"
+  description="Tell Heartwood Homes about a custom home, renovation, or site prep in Chattanooga. Call (423) 994-4911."
+>
+  <section class="section">
+    <div class="container split">
+      <div class="stack">
+        <h1>{ctaLabel}.</h1>
+        <p class="lede">A few questions first. Your name and a way to reply come last. Nothing here is a published price.</p>
+        {site.phone && site.phoneE164 && (
+          <p><a href={`tel:${site.phoneE164}`} data-event="call_click" data-event-placement="form">{site.phone}</a></p>
+        )}
+        {site.email && <p><a href={`mailto:${site.email}`} data-event="email_click">{site.email}</a></p>}
+        {site.areaServed?.map((area) => <p>{area}</p>)}
+        {site.serviceAreaOnly && <p class="muted">No public street address. The shop is reached by phone and by this form.</p>}
+      </div>
+      <Qualifier />
+    </div>
+  </section>
+</Base>

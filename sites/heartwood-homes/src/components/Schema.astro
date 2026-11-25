@@ -1,0 +1,19 @@
+---
+import { site } from '../data/site';
+
+const sameAs = Object.values(site.socials).filter((url): url is string => Boolean(url));
+const data: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': site.schemaType,
+  name: site.name,
+};
+if (Astro.site) data.url = Astro.site.href;
+if (site.legalName) data.legalName = site.legalName;
+if (site.phoneE164) data.telephone = site.phoneE164;
+if (site.email) data.email = site.email;
+if (site.areaServed?.length) {
+  data.areaServed = site.areaServed.map((name) => ({ '@type': 'City', name }));
+}
+if (sameAs.length) data.sameAs = sameAs;
+---
+<script type="application/ld+json" set:html={JSON.stringify(data)} />

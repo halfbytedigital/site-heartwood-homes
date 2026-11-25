@@ -1,0 +1,58 @@
+---
+import '../styles/motion.css';
+import '../styles/base.css';
+import '../styles/layout.css';
+import '@fontsource/bricolage-grotesque/latin-600.css';
+import '@fontsource/source-sans-3/latin-400.css';
+import '@fontsource/source-sans-3/latin-600.css';
+import displayFont from '@fontsource/bricolage-grotesque/files/bricolage-grotesque-latin-600-normal.woff2?url';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ActionBar from '../components/ActionBar.astro';
+import Schema from '../components/Schema.astro';
+interface Props {
+  title: string;
+  description: string;
+  noindex?: boolean;
+}
+const { title, description, noindex = false } = Astro.props;
+const quotePage = Astro.url.pathname.startsWith('/contact');
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const og = new URL('/og-default.jpg', Astro.site);
+---
+<!doctype html>
+<html lang="en" data-motion="crisp">
+  <head>
+    <meta charset="utf-8" />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical.href} />
+    <link rel="preload" href={displayFont} as="font" type="font/woff2" crossorigin />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical.href} />
+    <meta property="og:image" content={og.href} />
+    <meta name="twitter:card" content="summary_large_image" />
+    {noindex && <meta name="robots" content="noindex" />}
+    <Schema />
+  </head>
+  <body class:list={[quotePage && 'quote-page']}>
+    <a class="skip" href="#main">Skip to content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <ActionBar />
+    <script>
+      import '../scripts/motion';
+      import '../scripts/analytics';
+    </script>
+  </body>
+</html>

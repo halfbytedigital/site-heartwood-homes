@@ -1,0 +1,168 @@
+---
+import { site } from '../data/site';
+import { ctaLabel } from '../data/nav';
+import AskProof from './AskProof.astro';
+
+const params = Astro.url.searchParams;
+const work = params.get('work') ?? '';
+const project = params.get('project') ?? '';
+const chapter = params.get('chapter') ?? '';
+---
+<form class="qualifier" method="post" action="/api/quote" data-qualifier novalidate>
+  <p data-progress>Step 1 of 5</p>
+  <div class="step" data-step="0">
+    <h2>What are you planning?</h2>
+    <div class="choice-list">
+      <label class="choice"><input type="radio" name="work" value="custom-home" checked={work === 'custom-home'} /> Custom home</label>
+      <label class="choice"><input type="radio" name="work" value="renovation" checked={work === 'renovation'} /> Renovation</label>
+      <label class="choice"><input type="radio" name="work" value="site-prep" checked={work === 'site-prep'} /> Site prep and landwork</label>
+    </div>
+  </div>
+  <div class="step" data-step="1">
+    <h2>Where should we build?</h2>
+    <div class="choice-list">
+      <label class="choice"><input type="radio" name="area" value="Chattanooga area" /> Chattanooga area</label>
+      <label class="choice"><input type="radio" name="area" value="Somewhere else" /> Somewhere else</label>
+    </div>
+    <label class="field">
+      Town or area, if you want to say
+      <input name="area-note" autocomplete="address-level2" />
+    </label>
+  </div>
+  <div class="step" data-step="2">
+    <h2>Do you have land?</h2>
+    <div class="choice-list">
+      <label class="choice"><input type="radio" name="land" value="Yes" /> Yes</label>
+      <label class="choice"><input type="radio" name="land" value="Not yet" /> Not yet</label>
+      <label class="choice"><input type="radio" name="land" value="Not sure" /> Not sure</label>
+    </div>
+  </div>
+  <div class="step" data-step="3">
+    <h2>When are you hoping to start?</h2>
+    <div class="choice-list">
+      <label class="choice"><input type="radio" name="timeline" value="Ready to start" /> Ready to start</label>
+      <label class="choice"><input type="radio" name="timeline" value="This year" /> This year</label>
+      <label class="choice"><input type="radio" name="timeline" value="Just looking" /> Just looking</label>
+    </div>
+  </div>
+  <div class="step" data-step="4">
+    <h2>How should we reach you?</h2>
+    <label class="field">
+      Name
+      <input name="name" autocomplete="name" />
+    </label>
+    <label class="field">
+      Phone
+      <input name="phone" type="tel" autocomplete="tel" inputmode="tel" />
+    </label>
+    <label class="field">
+      Email
+      <input name="email" type="email" autocomplete="email" />
+    </label>
+    <p class="muted">A phone number or an email is enough. We don’t publish prices, and we don’t ask for a budget range until Heartwood sets one.</p>
+  </div>
+  <p class="visually-hidden">
+    <label>Company<input class="visually-hidden" name="company" tabindex="-1" autocomplete="off" /></label>
+  </p>
+  {project && <input type="hidden" name="project" value={project} />}
+  {chapter && <input type="hidden" name="chapter" value={chapter} />}
+  <div class="btn-row">
+    <button class="btn btn-ghost" type="button" data-back hidden>Back</button>
+    <button class="btn" type="button" data-next>Continue</button>
+    <button class="btn" type="submit" data-submit>{ctaLabel}</button>
+  </div>
+  <AskProof />
+  <p class="form-status" data-status hidden></p>
+  {site.phone && site.phoneE164 && (
+    <p class="muted">Or call <a href={`tel:${site.phoneE164}`} data-event="call_click" data-event-placement="form">{site.phone}</a>.</p>
+  )}
+</form>
+
+<script>
+  import { track } from '../scripts/analytics';
+
+  const form = document.querySelector<HTMLFormElement>('[data-qualifier]');
+  if (form) {
+    const steps = [...form.querySelectorAll<HTMLElement>('[data-step]')];
+    const progress = form.querySelector<HTMLElement>('[data-progress]');
+    const status = form.querySelector<HTMLElement>('[data-status]');
+    const next = form.querySelector<HTMLButtonElement>('[data-next]');
+    const back = form.querySelector<HTMLButtonElement>('[data-back]');
+    const submit = form.querySelector<HTMLButtonElement>('[data-submit]');
+    let index = 0;
+    let started = false;
+
+    const value = (name: string) => {
+      const field = form.querySelector<HTMLInputElement>(`[name="${name}"]:checked`) ?? form.querySelector<HTMLInputElement>(`[name="${name}"]`);
+      return field?.value?.trim() ?? '';
+    };
+
+    const show = (nextIndex: number) => {
+      index = nextIndex;
+      steps.forEach((step, i) => { step.hidden = i !== index; });
+      if (progress) progress.textContent = `Step ${index + 1} of ${steps.length}`;
+      if (back) back.hidden = index === 0;
+      if (next) next.hidden = index === steps.length - 1;
+      if (submit) submit.hidden = index !== steps.length - 1;
+    };
+
+    const markStart = () => {
+      if (started) return;
+      started = true;
+      track('qualifier_start', { form: 'start-your-home' });
+    };
+
+    form.addEventListener('change', markStart);
+
+    form.addEventListener('focusin', () => {
+      if (form.dataset.started) return;
+      form.dataset.started = 'true';
+      track('form_start', { form: 'start-your-home' });
+    }, { once: true });
+
+    next?.addEventListener('click', () => show(Math.min(index + 1, steps.length - 1)));
+    back?.addEventListener('click', () => show(Math.max(index - 1, 0)));
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const name = value('name');
+      const phone = value('phone');
+      const email = value('email');
+      if (!name || (!phone && !email)) {
+        if (status) {
+          status.hidden = false;
+          status.textContent = 'Add your name, and a phone number or email, so we can reply.';
+        }
+        return;
+      }
+      if (String(new FormData(form).get('company') ?? '').trim()) return;
+      const areaNote = value('area-note');
+      const area = [value('area'), areaNote].filter(Boolean).join(' — ');
+      const payload = new FormData(form);
+      if (area) payload.set('area', area);
+      let sent = false;
+      try {
+        const response = await fetch(form.action, { method: 'POST', body: payload });
+        sent = response.ok;
+      } catch {
+        sent = false;
+      }
+      if (sent) {
+        track('qualifier_complete', { form: 'start-your-home' });
+        track('quote_submit', { form: 'start-your-home' });
+      }
+      const thanks = new URL('/contact/thanks/', location.origin);
+      thanks.searchParams.set('sent', sent ? '1' : '0');
+      thanks.searchParams.set('name', name);
+      if (phone) thanks.searchParams.set('phone', phone);
+      if (email) thanks.searchParams.set('email', email);
+      if (value('work')) thanks.searchParams.set('work', value('work'));
+      if (area) thanks.searchParams.set('area', area);
+      if (value('land')) thanks.searchParams.set('land', value('land'));
+      if (value('timeline')) thanks.searchParams.set('timeline', value('timeline'));
+      location.assign(thanks.pathname + thanks.search);
+    });
+
+    show(0);
+  }
+</script>

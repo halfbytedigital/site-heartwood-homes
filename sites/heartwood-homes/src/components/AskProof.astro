@@ -1,0 +1,10 @@
+---
+import { site } from '../data/site';
+const { rating, reviewCount, reviewUrl } = site.google;
+const show = rating != null && reviewCount != null && reviewUrl;
+---
+{show && (
+  <p class="ask-proof">
+    <a href={reviewUrl}>{rating.toFixed(1)} from {reviewCount} Google reviews</a>
+  </p>
+)}

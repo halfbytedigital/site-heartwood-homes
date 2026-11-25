@@ -1,0 +1,202 @@
+/* motion.css — utilities for a site's motion PLAN, not a baseline to stamp on every section.
+   Plan: one hero load-in, one scroll-driven signature in plain CSS, quick hover, optional
+   view transitions. Everything else stays still. Count-ups are optional and must be justified.
+   Copy to sites/<slug>/src/styles/motion.css and import once from the base layout, after tokens.css.
+   Pair with src/scripts/motion.ts. Prefer reduced-motion: final states, no leftover opacity: 0. */
+
+/* Personality defaults (tokens may already set these; these are fallbacks). */
+html[data-motion="calm"] {
+  --reveal-y: 0.5rem;
+  --reveal-scale: 1;
+  --dur-hero: 600ms;
+  --dur-reveal: 600ms;
+  --stagger: 80ms;
+  --parallax-max: 0%;
+}
+html[data-motion="crisp"] {
+  --reveal-y: 1rem;
+  --reveal-scale: 1;
+  --dur-hero: 700ms;
+  --dur-reveal: 450ms;
+  --stagger: 50ms;
+  --parallax-max: 6%;
+}
+html[data-motion="bold"],
+html:not([data-motion]) {
+  --reveal-y: 2rem;
+  --reveal-scale: 0.985;
+  --dur-hero: 900ms;
+  --dur-reveal: 700ms;
+  --stagger: 65ms;
+  --parallax-max: 8%;
+}
+
+/* ---- Keyframes ---- */
+@keyframes hb-fade { from { opacity: 0; } }
+@keyframes hb-fade-up {
+  from { opacity: 0; transform: translate3d(0, var(--reveal-y, 1.25rem), 0); }
+}
+@keyframes hb-fade-down {
+  from { opacity: 0; transform: translate3d(0, calc(var(--reveal-y, 1.25rem) * -0.5), 0); }
+}
+@keyframes hb-fade-left {
+  from { opacity: 0; transform: translate3d(var(--reveal-y, 1.25rem), 0, 0); }
+}
+@keyframes hb-fade-right {
+  from { opacity: 0; transform: translate3d(calc(var(--reveal-y, 1.25rem) * -1), 0, 0); }
+}
+@keyframes hb-scale-in {
+  from { opacity: 0; transform: scale(var(--reveal-scale, 0.97)); }
+}
+@keyframes hb-blur-up {
+  from { opacity: 0; transform: translate3d(0, 0.4em, 0); filter: blur(8px); }
+}
+@keyframes hb-hero-image {
+  from { opacity: 0; transform: scale(1.06); }
+}
+@keyframes hb-img-reveal {
+  from { opacity: 0; clip-path: inset(8% 8% 8% 8%); transform: scale(1.06); }
+  to { opacity: 1; clip-path: inset(0 0 0 0); transform: scale(1); }
+}
+@keyframes hb-word-up {
+  from { opacity: 0; transform: translate3d(0, 0.45em, 0); }
+}
+
+/* ---- No-JS: everything is in its final state (honesty + SEO + print) ---- */
+/* With JS, the head script adds `html.js` before paint so we can hide pending items. */
+
+html.js [data-animate]:not(.is-in):not([data-hero-step]),
+html.js [data-hero] [data-hero-step]:not(.is-in),
+html.js [data-animate-words]:not(.is-in) [data-word] {
+  opacity: 0;
+}
+
+/* View-timeline path (no IO needed for simple section reveals). */
+@supports (animation-timeline: view()) {
+  html.js [data-animate]:not([data-hero-step]):not([data-animate="img-reveal"]) {
+    opacity: 1;
+    animation: hb-fade-up var(--dur-reveal) var(--ease-reveal, var(--ease-out)) both;
+    animation-timeline: view();
+    animation-range: entry 10% entry 40vh;
+  }
+  html.js [data-animate="fade"] {
+    animation-name: hb-fade;
+  }
+  html.js [data-animate="fade-down"] { animation-name: hb-fade-down; }
+  html.js [data-animate="fade-left"] { animation-name: hb-fade-left; }
+  html.js [data-animate="fade-right"] { animation-name: hb-fade-right; }
+  html.js [data-animate="scale-in"] { animation-name: hb-scale-in; }
+  html.js [data-animate="blur-up"] { animation-name: hb-blur-up; }
+  html.js [data-animate="img-reveal"] {
+    opacity: 1;
+    animation: hb-img-reveal var(--dur-reveal) var(--ease-reveal, var(--ease-out)) both;
+    animation-timeline: view();
+    animation-range: entry 10% entry 40vh;
+  }
+}
+
+/* IO / forced-play path (hero, word stagger, no-view() browsers, .is-in). */
+html.js [data-animate].is-in,
+html.js [data-hero] [data-hero-step].is-in {
+  opacity: 1;
+  animation: hb-fade-up var(--dur-reveal) var(--ease-reveal, var(--ease-out)) both;
+  animation-delay: calc(var(--animate-delay, 0) * var(--stagger, 65ms));
+}
+html.js [data-animate="fade"].is-in { animation-name: hb-fade; }
+html.js [data-animate="fade-down"].is-in { animation-name: hb-fade-down; }
+html.js [data-animate="fade-left"].is-in { animation-name: hb-fade-left; }
+html.js [data-animate="fade-right"].is-in { animation-name: hb-fade-right; }
+html.js [data-animate="scale-in"].is-in { animation-name: hb-scale-in; }
+html.js [data-animate="blur-up"].is-in { animation-name: hb-blur-up; }
+html.js [data-animate="hero-image"].is-in,
+html.js [data-hero-step][data-animate="hero-image"].is-in {
+  animation-name: hb-hero-image;
+  animation-duration: var(--dur-hero);
+}
+html.js [data-animate="img-reveal"].is-in { animation-name: hb-img-reveal; }
+html.js [data-animate-words].is-in [data-word] {
+  opacity: 1;
+  animation: hb-word-up var(--dur-hero) var(--ease-reveal, var(--ease-out)) backwards;
+  animation-delay: calc(var(--i, 0) * var(--stagger, 65ms));
+}
+
+/* Hero uses --dur-hero and a slightly larger move, not view timelines. */
+html.js [data-hero] [data-hero-step].is-in {
+  animation-duration: var(--dur-hero);
+  animation-delay: calc(var(--hero-step, var(--animate-delay, 0)) * var(--stagger, 65ms));
+}
+
+/* ---- Sticky header transition ---- */
+[data-header-sticky] {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  transition:
+    background-color var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out),
+    backdrop-filter var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out);
+}
+[data-header-sticky].is-scrolled {
+  background-color: color-mix(in srgb, var(--color-bg) 82%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-1);
+}
+
+/* ---- Hover / press (pointer only) ---- */
+@media (hover: hover) {
+  a, button, .btn, [data-animate="img-reveal"] img, .photo img {
+    transition:
+      transform var(--dur-fast) var(--ease-out),
+      background-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out),
+      box-shadow var(--dur-base) var(--ease-out),
+      opacity var(--dur-fast) var(--ease-out),
+      filter var(--dur-base) var(--ease-out);
+  }
+  .photo, [data-animate="img-reveal"], .project-card, [data-card] {
+    overflow: hidden;
+  }
+  .photo:hover img,
+  [data-animate="img-reveal"]:hover img,
+  .project-card:hover img,
+  [data-card]:hover img {
+    transform: scale(1.04);
+  }
+  html[data-motion="calm"] .photo:hover img,
+  html[data-motion="calm"] [data-card]:hover img {
+    transform: none;
+  }
+}
+.btn:active,
+button:active,
+a.btn:active {
+  transform: scale(0.98);
+}
+
+/* ---- Parallax wrapper (JS writes --parallax-y). Never shifts layout. ---- */
+[data-parallax] {
+  will-change: transform;
+  transform: translate3d(0, var(--parallax-y, 0px), 0);
+}
+
+/* ---- Reduced motion: final state immediately, interactions still work ---- */
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-animate],
+  html.js [data-animate].is-in,
+  html.js [data-hero] [data-hero-step],
+  html.js [data-hero] [data-hero-step].is-in,
+  html.js [data-animate-words] [data-word],
+  html.js [data-animate-words].is-in [data-word],
+  [data-parallax] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    clip-path: none !important;
+    animation: none !important;
+    will-change: auto !important;
+    translate: none !important;
+  }
+  [data-header-sticky] { transition: none; }
+}

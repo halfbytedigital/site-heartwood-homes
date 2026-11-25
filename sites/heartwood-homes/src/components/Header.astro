@@ -1,0 +1,63 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+import { nav, moreNav, contactHref, ctaLabel } from '../data/nav';
+import { site } from '../data/site';
+const path = Astro.url.pathname;
+const items = [...nav, ...moreNav];
+---
+<header class="site-header" data-header-sticky>
+  <div class="header-bar">
+    <a class="logo" href="/">
+      <Image src={logo} alt="Heartwood Homes" height={112} widths={[112, 224]} loading="eager" />
+    </a>
+    <nav class="nav-desktop" aria-label="Primary">
+      {nav.map((item) => (
+        <a href={item.href} aria-current={path === item.href ? 'page' : undefined}>{item.label}</a>
+      ))}
+    </nav>
+    <div class="header-actions">
+      {site.phone && site.phoneE164 && (
+        <a class="header-phone" href={`tel:${site.phoneE164}`} data-event="call_click" data-event-placement="header">{site.phone}</a>
+      )}
+      <a class="header-start" href={contactHref}>{ctaLabel}</a>
+    </div>
+    <button class="menu-toggle nav-mobile" type="button" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
+  </div>
+  <nav class="menu-panel" id="mobile-nav" aria-label="Primary" hidden>
+    {items.map((item) => (
+      <a href={item.href} aria-current={path === item.href ? 'page' : undefined}>{item.label}</a>
+    ))}
+    {site.phone && site.phoneE164 && (
+      <a href={`tel:${site.phoneE164}`} data-event="call_click" data-event-placement="menu">{site.phone}</a>
+    )}
+    <a href={contactHref}>{ctaLabel}</a>
+  </nav>
+</header>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const panel = document.querySelector<HTMLElement>('#mobile-nav');
+  if (button && panel) {
+    const close = () => {
+      button.setAttribute('aria-expanded', 'false');
+      panel.hidden = true;
+      panel.classList.remove('is-open');
+      document.documentElement.classList.remove('menu-open');
+    };
+    const open = () => {
+      button.setAttribute('aria-expanded', 'true');
+      panel.hidden = false;
+      panel.classList.add('is-open');
+      document.documentElement.classList.add('menu-open');
+      panel.querySelector<HTMLElement>('a')?.focus();
+    };
+    button.addEventListener('click', () => {
+      if (button.getAttribute('aria-expanded') === 'true') close();
+      else open();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') close();
+    });
+  }
+</script>

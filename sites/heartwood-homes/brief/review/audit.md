@@ -1,0 +1,909 @@
+# Automated audit — http://localhost:4322
+Run: 2026-11-25T03:56:13.728Z
+
+## home (/)
+- **desktop**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast  · manual: 6 over images
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+  - ✔ SEO/a11y basics: title 49c, desc 113c, canonical true, og true, lang en, skip true, main×1, schema [GeneralContractor]
+- **mobile**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast  · manual: 8 over images
+  - ✔ touch targets ≥44 
+  - ✘ images /_astro/a-frame.xyYS7lAo_1NzUNY.webp: upscaled (389px shown at 390css px); /_astro/a-frame.xyYS7lAo_1NzUNY.webp: upscaled (389px shown at 358css px); /_astro/ten-mile.DkNMqwos_wgEh9.webp: upscaled (389px shown at 390css px); /_astro/a-frame.xyYS7lAo_1NzUNY.webp: upscaled (389px shown at 358css px); /_astro/ten-mile.DkNMqwos_wgEh9.webp: upscaled (389px shown at 358css px)
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+- **reduced motion**: ✔ nothing stuck hidden
+
+## about (/about/)
+- **desktop**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+  - ✔ SEO/a11y basics: title 35c, desc 115c, canonical true, og true, lang en, skip true, main×1, schema [GeneralContractor]
+  - claims to verify against sources.md:
+    - "A family company, since 2017"
+- **mobile**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✘ images /_astro/spring-city.CEldYhPZ_Z1I05F6.webp: upscaled (389px shown at 358css px)
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+- **reduced motion**: ✔ nothing stuck hidden
+
+## contact (/contact/)
+- **desktop**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+  - ✔ SEO/a11y basics: title 33c, desc 103c, canonical true, og true, lang en, skip true, main×1, schema [GeneralContractor]
+- **mobile**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+- **reduced motion**: ✔ nothing stuck hidden
+
+## contact_thanks (/contact/thanks/)
+- **desktop**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+  - ✔ SEO/a11y basics: title 35c, desc 60c, canonical true, og true, lang en, skip true, main×1, schema [GeneralContractor]
+- **mobile**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+- **reduced motion**: ✔ nothing stuck hidden
+
+## custom-homes (/custom-homes/)
+- **desktop**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast  · manual: 1 over images
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+  - ✔ SEO/a11y basics: title 52c, desc 126c, canonical true, og true, lang en, skip true, main×1, schema [GeneralContractor]
+- **mobile**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast  · manual: 1 over images
+  - ✔ touch targets ≥44 
+  - ✘ images /_astro/hixson.DHS4Ta_A_croO7.webp: upscaled (389px shown at 390css px); /_astro/a-frame.xyYS7lAo_1NzUNY.webp: upscaled (389px shown at 358css px); /_astro/ten-mile.DkNMqwos_wgEh9.webp: upscaled (389px shown at 358css px); /_astro/hixson.DHS4Ta_A_croO7.webp: upscaled (389px shown at 358css px); /_astro/flat-top.CQOhwrlS_Z2VRMF.webp: upscaled (389px shown at 358css px)
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+- **reduced motion**: ✔ nothing stuck hidden
+
+## our-process (/our-process/)
+- **desktop**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+  - ✔ SEO/a11y basics: title 38c, desc 124c, canonical true, og true, lang en, skip true, main×1, schema [GeneralContractor]
+  - claims to verify against sources.md:
+    - "Certificate of occupancy, as-built drawings, and a warranty"
+    - "Warranty"
+- **mobile**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+- **reduced motion**: ✔ nothing stuck hidden
+
+## privacy (/privacy/)
+- **desktop**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+  - ✔ SEO/a11y basics: title 25c, desc 77c, canonical true, og true, lang en, skip true, main×1, schema [GeneralContractor]
+- **mobile**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+- **reduced motion**: ✔ nothing stuck hidden
+
+## projects (/projects/)
+- **desktop**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+  - ✔ SEO/a11y basics: title 38c, desc 62c, canonical true, og true, lang en, skip true, main×1, schema [GeneralContractor]
+- **mobile**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast  · manual: 1 over images
+  - ✔ touch targets ≥44 
+  - ✘ images /_astro/a-frame.xyYS7lAo_1NzUNY.webp: upscaled (389px shown at 358css px); /_astro/ten-mile.DkNMqwos_wgEh9.webp: upscaled (389px shown at 358css px); /_astro/hixson.DHS4Ta_A_croO7.webp: upscaled (389px shown at 358css px); /_astro/flat-top.CQOhwrlS_Z2VRMF.webp: upscaled (389px shown at 358css px); /_astro/spring-city.CEldYhPZ_Z1I05F6.webp: upscaled (389px shown at 358css px)
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+- **reduced motion**: ✔ nothing stuck hidden
+
+## projects_a-frame-cabin-airbnb (/projects/a-frame-cabin-airbnb/)
+- **desktop**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+  - ✔ SEO/a11y basics: title 38c, desc 72c, canonical true, og true, lang en, skip true, main×1, schema [GeneralContractor]
+- **mobile**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✘ images /_astro/a-frame.xyYS7lAo_1NzUNY.webp: upscaled (389px shown at 390css px)
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+- **reduced motion**: ✔ nothing stuck hidden
+
+## projects_crawlspace-renovation (/projects/crawlspace-renovation/)
+- **desktop**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+  - ✔ SEO/a11y basics: title 39c, desc 62c, canonical true, og true, lang en, skip true, main×1, schema [GeneralContractor]
+- **mobile**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✘ images /_astro/crawlspace.CQzWFbhw_Z1zetrI.webp: upscaled (389px shown at 390css px)
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+- **reduced motion**: ✔ nothing stuck hidden
+
+## projects_east-brainard-tornado-rebuild (/projects/east-brainard-tornado-rebuild/)
+- **desktop**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+  - ✔ SEO/a11y basics: title 47c, desc 71c, canonical true, og true, lang en, skip true, main×1, schema [GeneralContractor]
+- **mobile**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast  · manual: 2 over images
+  - ✔ touch targets ≥44 
+  - ✘ images /_astro/east-brainard.D-qCFCIn_Z26xpzI.webp: upscaled (389px shown at 390css px)
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+- **reduced motion**: ✔ nothing stuck hidden
+
+## projects_flat-top-mountain (/projects/flat-top-mountain/)
+- **desktop**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+  - ✔ SEO/a11y basics: title 45c, desc 89c, canonical true, og true, lang en, skip true, main×1, schema [GeneralContractor]
+- **mobile**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✘ images /_astro/flat-top.CQOhwrlS_Z2VRMF.webp: upscaled (389px shown at 390css px)
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+- **reduced motion**: ✔ nothing stuck hidden
+
+## projects_hixson-new-build (/projects/hixson-new-build/)
+- **desktop**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+  - ✔ SEO/a11y basics: title 34c, desc 68c, canonical true, og true, lang en, skip true, main×1, schema [GeneralContractor]
+- **mobile**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✘ images /_astro/hixson.DHS4Ta_A_croO7.webp: upscaled (389px shown at 390css px)
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+- **reduced motion**: ✔ nothing stuck hidden
+
+## projects_incline-townhomes (/projects/incline-townhomes/)
+- **desktop**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+  - ✔ SEO/a11y basics: title 35c, desc 54c, canonical true, og true, lang en, skip true, main×1, schema [GeneralContractor]
+- **mobile**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✘ images /_astro/incline.g1YJMmVM_ZRTIPK.webp: upscaled (389px shown at 390css px)
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+- **reduced motion**: ✔ nothing stuck hidden
+
+## projects_investment-property-flip (/projects/investment-property-flip/)
+- **desktop**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+  - ✔ SEO/a11y basics: title 42c, desc 65c, canonical true, og true, lang en, skip true, main×1, schema [GeneralContractor]
+- **mobile**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✘ images /_astro/investment-flip.Xc9e_bYL_ZW57Wf.webp: upscaled (389px shown at 390css px)
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+- **reduced motion**: ✔ nothing stuck hidden
+
+## projects_layouts-on-market (/projects/layouts-on-market/)
+- **desktop**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+  - ✔ SEO/a11y basics: title 35c, desc 56c, canonical true, og true, lang en, skip true, main×1, schema [GeneralContractor]
+- **mobile**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✘ images /_astro/layouts.D4XCOSQY_21UM2o.webp: upscaled (389px shown at 390css px)
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+- **reduced motion**: ✔ nothing stuck hidden
+
+## projects_pikeville-treehouses (/projects/pikeville-treehouses/)
+- **desktop**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+  - ✔ SEO/a11y basics: title 38c, desc 73c, canonical true, og true, lang en, skip true, main×1, schema [GeneralContractor]
+- **mobile**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✘ images /_astro/pikeville-treehouses.D7TxpgOf_xDHaM.webp: upscaled (389px shown at 390css px)
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+- **reduced motion**: ✔ nothing stuck hidden
+
+## projects_red-bank-renovation (/projects/red-bank-renovation/)
+- **desktop**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+  - ✔ SEO/a11y basics: title 37c, desc 60c, canonical true, og true, lang en, skip true, main×1, schema [GeneralContractor]
+- **mobile**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✘ images /_astro/red-bank.CGWjcLUM_Z1XX3yF.webp: upscaled (389px shown at 390css px)
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+- **reduced motion**: ✔ nothing stuck hidden
+
+## projects_sewanee-airbnb (/projects/sewanee-airbnb/)
+- **desktop**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+  - ✔ SEO/a11y basics: title 32c, desc 67c, canonical true, og true, lang en, skip true, main×1, schema [GeneralContractor]
+- **mobile**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✘ images /_astro/sewanee.BDkO4SRJ_Z1JlnjJ.webp: upscaled (389px shown at 390css px)
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+- **reduced motion**: ✔ nothing stuck hidden
+
+## projects_signal-mountain-renovation (/projects/signal-mountain-renovation/)
+- **desktop**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+  - ✔ SEO/a11y basics: title 54c, desc 77c, canonical true, og true, lang en, skip true, main×1, schema [GeneralContractor]
+- **mobile**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast  · manual: 2 over images
+  - ✔ touch targets ≥44 
+  - ✘ images /_astro/signal-mountain.T95ERMXW_ZJLUvp.webp: upscaled (389px shown at 390css px)
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+- **reduced motion**: ✔ nothing stuck hidden
+
+## projects_spec-house-pikeville (/projects/spec-house-pikeville/)
+- **desktop**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+  - ✔ SEO/a11y basics: title 39c, desc 74c, canonical true, og true, lang en, skip true, main×1, schema [GeneralContractor]
+- **mobile**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✘ images /_astro/spec-house.e5f4I8Tg_Z1a3xhL.webp: upscaled (389px shown at 390css px)
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+- **reduced motion**: ✔ nothing stuck hidden
+
+## projects_spring-city-lake-house (/projects/spring-city-lake-house/)
+- **desktop**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+  - ✔ SEO/a11y basics: title 40c, desc 69c, canonical true, og true, lang en, skip true, main×1, schema [GeneralContractor]
+- **mobile**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✘ images /_astro/spring-city.CEldYhPZ_Z1I05F6.webp: upscaled (389px shown at 390css px)
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+- **reduced motion**: ✔ nothing stuck hidden
+
+## projects_ten-mile-lake-house (/projects/ten-mile-lake-house/)
+- **desktop**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+  - ✔ SEO/a11y basics: title 37c, desc 72c, canonical true, og true, lang en, skip true, main×1, schema [GeneralContractor]
+- **mobile**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✘ images /_astro/ten-mile.DkNMqwos_wgEh9.webp: upscaled (389px shown at 390css px)
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+- **reduced motion**: ✔ nothing stuck hidden
+
+## renovations (/renovations/)
+- **desktop**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+  - ✔ SEO/a11y basics: title 49c, desc 97c, canonical true, og true, lang en, skip true, main×1, schema [GeneralContractor]
+- **mobile**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast  · manual: 2 over images
+  - ✔ touch targets ≥44 
+  - ✘ images /_astro/signal-mountain.T95ERMXW_ZJLUvp.webp: upscaled (389px shown at 390css px)
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+- **reduced motion**: ✔ nothing stuck hidden
+
+## site-prep-landwork (/site-prep-landwork/)
+- **desktop**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+  - ✔ SEO/a11y basics: title 51c, desc 121c, canonical true, og true, lang en, skip true, main×1, schema [GeneralContractor]
+  - claims to verify against sources.md:
+    - "Heartwood is a licensed septic installer"
+- **mobile**
+  - ✔ horizontal overflow  
+  - ✔ inner scrollbars 
+  - ✔ font sizes on scale 
+  - ✔ type ≥14px 
+  - ✔ alignment (spread 0px) 
+  - ✔ section padding on tokens 
+  - ✔ adjacent sections differ 
+  - ✔ contrast 
+  - ✔ touch targets ≥44 
+  - ✔ images 
+  - ✔ first image eager {"src":"/_astro/logo.lsEt765d_2iAy2c.webp","loading":"eager","fetchpriority":null}
+  - ✔ headings: h1×1 
+  - ✔ placeholders 
+  - ✔ console/network 
+  - ✔ token contract 
+- **reduced motion**: ✔ nothing stuck hidden

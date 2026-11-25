@@ -1,0 +1,75 @@
+---
+import { getImage } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import { renovationRows } from '../data/services';
+import { renovationProjects, getProject } from '../data/projects';
+import Button from '../components/Button.astro';
+import CloseBand from '../components/CloseBand.astro';
+import AskProof from '../components/AskProof.astro';
+
+const feature = getProject('signal-mountain-renovation');
+const heroMobile = feature ? await getImage({ src: feature.image, width: 720, quality: 64 }) : null;
+const heroDesktop = feature ? await getImage({ src: feature.image, width: 1400, quality: 70 }) : null;
+const rest = renovationProjects.filter((project) => project.slug !== feature?.slug);
+---
+<Base
+  title="Home Renovations in Chattanooga | Heartwood Homes"
+  description="Major renovations by Heartwood Homes in Chattanooga, from kitchens and bathrooms to the exterior."
+>
+  {feature && (
+    <section class="edge-split">
+      <div class="edge-copy">
+        <h1>The same crew, on a house you already have.</h1>
+        <p class="lede">Major renovations, from kitchens and bathrooms through the exterior.</p>
+        {feature.credit && <p class="muted">{feature.credit}</p>}
+        <Button href="/contact/?work=renovation">Start your home</Button>
+        <AskProof />
+      </div>
+      <figure class="bleed-photo">
+        <picture>
+          <source media="(min-width: 800px)" srcset={heroDesktop?.src} />
+          <img src={heroMobile?.src} alt={feature.imageAlt} width={heroMobile?.attributes.width} height={heroMobile?.attributes.height} loading="eager" fetchpriority="high" decoding="async" />
+        </picture>
+      </figure>
+    </section>
+  )}
+
+  <section class="band">
+    <div class="container">
+      <h2>What the work includes</h2>
+      <div class="ruled">
+        {renovationRows.map((row) => (
+          <article>
+            <h3>{row.title}</h3>
+            <p>{row.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {feature && (
+    <section class="band band-mist">
+      <div class="container split">
+        <div class="stack">
+          <h2>{feature.name}</h2>
+          <p>{feature.summary}</p>
+          <p class="muted">{feature.status} · {feature.dates}</p>
+          <a class="text-link" href={`/projects/${feature.slug}/`}>The project</a>
+        </div>
+        <ul class="plain-list ruled">
+          {rest.map((project) => (
+            <li><a href={`/projects/${project.slug}/`}>{project.name}</a></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <section class="section">
+    <div class="container">
+      <p class="measure">A renovation budget is built the same way as a new house: plans, then an estimate, then the work. <a href="/custom-homes/">How a budget gets built</a>. No prices are listed here.</p>
+    </div>
+  </section>
+  <CloseBand href="/contact/?work=renovation" />
+</Base>

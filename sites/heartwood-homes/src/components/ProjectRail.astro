@@ -1,0 +1,139 @@
+---
+import { Image } from 'astro:assets';
+import { projectPath, type Project } from '../data/projects';
+
+interface Props {
+  projects: Project[];
+  title: string;
+  eyebrow?: string;
+  moreHref?: string;
+  tone?: 'plain' | 'surface';
+}
+const { projects, title, eyebrow, moreHref, tone = 'plain' } = Astro.props;
+---
+<section class:list={['section', tone === 'surface' && 'surface']} data-rail>
+  <div class="container">
+    <div class="rail-head">
+      <div class="stack-s">
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        <h2>{title}</h2>
+      </div>
+      <div class="rail-arrows">
+        <button type="button" data-prev aria-label="Previous projects">Prev</button>
+        <button type="button" data-next aria-label="Next projects">Next</button>
+      </div>
+    </div>
+    <ul class="rail-track" tabindex="0" aria-label="Projects">
+      {projects.map((project) => (
+        <li class="rail-item">
+          <a class="rail-card" href={projectPath(project.slug)}>
+            <Image src={project.image} alt="" widths={[720, 1100, 1600]} sizes="(min-width: 1024px) 400px, 84vw" />
+            <span class="rail-name">{project.name}</span>
+            <span class="muted">{project.dates}</span>
+          </a>
+          <template>
+            <div class="dialog-body">
+              <Image src={project.image} alt={project.imageAlt} widths={[640, 960]} sizes="(min-width: 768px) 640px, 100vw" />
+              <p class="eyebrow">{project.type}</p>
+              <h2>{project.name}</h2>
+              <p>{project.status} · {project.dates}</p>
+              <p>{project.summary}</p>
+              {project.rendering && <p class="credit">Architectural rendering from the current Heartwood Homes site.</p>}
+              {project.credit && <p class="credit">{project.credit}</p>}
+              <a href={projectPath(project.slug)}>Full project</a>
+            </div>
+          </template>
+        </li>
+      ))}
+    </ul>
+    {moreHref && <p class="rail-more"><a href={moreHref}>All projects</a></p>}
+  </div>
+  <dialog class="rail-dialog" aria-label="Project">
+    <button class="dialog-close" type="button" data-close>Close</button>
+    <div data-panel></div>
+  </dialog>
+</section>
+
+<script>
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll<HTMLElement>('[data-rail]').forEach((root) => {
+    const track = root.querySelector<HTMLElement>('.rail-track');
+    const dialog = root.querySelector<HTMLDialogElement>('dialog');
+    const panel = root.querySelector<HTMLElement>('[data-panel]');
+    const prev = root.querySelector<HTMLButtonElement>('[data-prev]');
+    const next = root.querySelector<HTMLButtonElement>('[data-next]');
+    if (!track || !dialog || !panel || !prev || !next) return;
+
+    const step = () => track.querySelector<HTMLElement>('.rail-item')?.getBoundingClientRect().width ?? 280;
+
+    const updateArrows = () => {
+      prev.disabled = track.scrollLeft <= 4;
+      next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+    };
+    prev.addEventListener('click', () => track.scrollBy({ left: -(step() + 16), behavior: reduce ? 'auto' : 'smooth' }));
+    next.addEventListener('click', () => track.scrollBy({ left: step() + 16, behavior: reduce ? 'auto' : 'smooth' }));
+    track.addEventListener('scroll', updateArrows, { passive: true });
+    updateArrows();
+
+    track.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight') next.click();
+      if (event.key === 'ArrowLeft') prev.click();
+    });
+
+    let pushed = false;
+    let opener: HTMLElement | null = null;
+
+    const close = () => {
+      if (dialog.open) dialog.close();
+    };
+
+    dialog.addEventListener('close', () => {
+      dialog.classList.remove('is-shown');
+      opener?.focus();
+      if (!pushed) return;
+      pushed = false;
+      history.back();
+    });
+
+    const open = (item: HTMLElement, link: HTMLAnchorElement) => {
+      const template = item.querySelector('template');
+      if (!template) return;
+      panel.replaceChildren(template.content.cloneNode(true));
+      opener = link;
+      dialog.showModal();
+      if (reduce) dialog.classList.add('is-shown');
+      else requestAnimationFrame(() => dialog.classList.add('is-shown'));
+      const full = panel.querySelector('a');
+      full?.addEventListener('click', (event) => {
+        event.preventDefault();
+        window.location.assign(full.href);
+      });
+      const url = new URL(link.href);
+      if (location.pathname !== url.pathname) {
+        history.pushState({ project: url.pathname }, '', url.pathname);
+        pushed = true;
+      }
+      dialog.querySelector<HTMLButtonElement>('[data-close]')?.focus();
+    };
+
+    root.querySelectorAll<HTMLAnchorElement>('.rail-card').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        const item = link.closest<HTMLElement>('.rail-item');
+        if (!item) return;
+        event.preventDefault();
+        open(item, link);
+      });
+    });
+
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) close();
+    });
+    dialog.querySelector('[data-close]')?.addEventListener('click', () => close());
+    window.addEventListener('popstate', () => {
+      if (!dialog.open) return;
+      pushed = false;
+      dialog.close();
+    });
+  });
+</script>

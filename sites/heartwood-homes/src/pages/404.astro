@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import CloseBand from '../components/CloseBand.astro';
+---
+<Base
+  title="Page not found | Heartwood Homes"
+  description="That page is not on the Heartwood Homes site."
+>
+  <section class="section">
+    <div class="container stack">
+      <p class="label">404</p>
+      <h1>That page is not here.</h1>
+      <p class="lede">The house you’re looking for may be under custom homes.</p>
+      <div class="btn-row">
+        <Button href="/custom-homes/">Custom homes</Button>
+      </div>
+    </div>
+  </section>
+  <CloseBand />
+</Base>

@@ -1,0 +1,18 @@
+---
+import { site } from '../data/site';
+import Button from './Button.astro';
+
+interface Props { title?: string; }
+const { title = 'Start your project' } = Astro.props;
+---
+<section class="section band-primary">
+  <div class="container stack">
+    <h2>{title}</h2>
+    <div class="btn-row">
+      <Button href="/contact/">Start your project</Button>
+      {site.phone && site.phoneE164 && (
+        <a class="btn btn-ghost" href={`tel:${site.phoneE164}`}>{site.phone}</a>
+      )}
+    </div>
+  </div>
+</section>

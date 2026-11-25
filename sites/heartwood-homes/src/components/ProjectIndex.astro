@@ -1,0 +1,59 @@
+---
+import { Image } from 'astro:assets';
+import { projectPath, type Project } from '../data/projects';
+
+interface Props {
+  projects: Project[];
+  title?: string;
+}
+const { projects, title } = Astro.props;
+---
+<section class="section" data-work>
+  {title && (
+    <div class="container">
+      <h2>{title}</h2>
+    </div>
+  )}
+  <div class="container work">
+    <ol class="work-list">
+      {projects.map((project) => (
+        <li>
+          <a class="work-link" href={projectPath(project.slug)} data-shot={project.slug}>
+            <Image src={project.image} alt="" widths={[480, 960, 1400]} sizes="(min-width: 900px) 96px, 100vw" />
+            <span class="work-name">{project.name}</span>
+            <span class="muted">{project.dates}</span>
+          </a>
+        </li>
+      ))}
+    </ol>
+    <figure class="work-stage">
+      {projects.map((project, index) => (
+        <Image
+          src={project.image}
+          alt=""
+          widths={[800, 1200, 1600]}
+          sizes="(min-width: 900px) 50vw, 100vw"
+          class:list={[{ 'is-on': index === 0 }]}
+          data-frame={project.slug}
+        />
+      ))}
+    </figure>
+  </div>
+</section>
+
+<script>
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll<HTMLElement>('[data-work]').forEach((root) => {
+    const frames = [...root.querySelectorAll<HTMLImageElement>('[data-frame]')];
+    const show = (slug: string) => {
+      frames.forEach((frame) => frame.classList.toggle('is-on', frame.dataset.frame === slug));
+    };
+    root.querySelectorAll<HTMLAnchorElement>('[data-shot]').forEach((link) => {
+      const slug = link.dataset.shot ?? '';
+      const activate = () => show(slug);
+      link.addEventListener('pointerenter', activate);
+      link.addEventListener('focus', activate);
+      if (reduce) link.addEventListener('focus', activate);
+    });
+  });
+</script>

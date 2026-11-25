@@ -1,0 +1,26 @@
+---
+import { Image } from 'astro:assets';
+import { getProject, projectPath } from '../data/projects';
+
+const house = getProject('a-frame-cabin-airbnb');
+---
+{house && (
+  <section class="feature-home">
+    <div class="container">
+      <div class="feature-frame">
+        <Image
+          src={house.image}
+          alt={house.imageAlt}
+          widths={[960, 1400, 2000]}
+          sizes="(min-width: 900px) 1240px, 100vw"
+        />
+        <aside class="info-card">
+          <p class="muted">Featured home</p>
+          <h2>{house.name}</h2>
+          <p>{house.summary}</p>
+          <a class="text-link" href={projectPath(house.slug)}>See the house</a>
+        </aside>
+      </div>
+    </div>
+  </section>
+)}

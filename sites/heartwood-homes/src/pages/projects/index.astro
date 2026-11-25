@@ -1,0 +1,19 @@
+---
+import Base from '../../layouts/Base.astro';
+import { featuredFirst } from '../../data/projects';
+import ProjectIndex from '../../components/ProjectIndex.astro';
+import CloseBand from '../../components/CloseBand.astro';
+---
+<Base
+  title="Custom Home Projects | Heartwood Homes"
+  description="Custom homes and other work by Heartwood Homes in Chattanooga."
+>
+  <section class="section">
+    <div class="container stack">
+      <h1>Homes we've built.</h1>
+      <p class="lede">Every house is a page. The A-frame leads because the photograph is the one you remember.</p>
+    </div>
+  </section>
+  <ProjectIndex projects={featuredFirst()} />
+  <CloseBand />
+</Base>
