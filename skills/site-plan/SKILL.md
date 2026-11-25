@@ -104,10 +104,13 @@ question, leave all facts `null`, and jump to Step 5.
 - **Layout default:** shared, centered container and consistent left edges. Asymmetry only in restrained,
   grid-snapped amounts (a split hero, an occasional offset image), recorded in the plan — never required,
   never wandering.
-- **Work index:** default to a photo-forward, calm C15 / W7 (photo-led list or split list with a sticky
-  crossfading image; large mobile thumbnails). Not a typographic cursor-follow, and not a card grid.
-  With 8 or more projects, plan job-type filters (C29): All plus types the harvest supports, counts,
-  `?type=` URLs, no empty categories.
+- **Work index:** with 6 or more projects and good photographs, default to the C32 horizontal portrait
+  rail (five plus a sliver at 1440, 1–2 plus a sliver at 390, live counter, 1:1 scrollbar, prev/next,
+  no scroll-jacking). Use a photo-forward C15 / W7 (photo-led list or split list with a sticky
+  crossfading image; large mobile thumbnails) only when the set is smaller or the photos cannot
+  support a rail. Not a typographic cursor-follow, and not a generic card grid.
+  With 8 or more projects, plan job-type filters (C29) above the rail: All plus types the harvest supports, counts,
+  `?type=` URLs, no empty categories, in-place fade.
 - **Project detail pages:** every project page uses the **C28 shell** (photo-first opening, Walk through rail,
   reactive photos, save heart, next-house card). Each project in `plan.md` also lists its harvested photo
   count and the compositions it can genuinely support from C22–C26 (build-story, room-by-room, editorial

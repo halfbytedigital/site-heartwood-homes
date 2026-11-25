@@ -47,7 +47,7 @@ say "I don't know who these people are, or how to reach them, or what this says,
 Required in the first viewport:
 
 - A **real photograph** from the client's existing site or assets, or a typographic / color-field composition that still feels designed. Never a gray box, a labeled placeholder as the hero, or an empty band. If learn mode found photos, use them.
-- **Display type** at `--step-display` (default **56–88px at 1440**; luxury-modern / Eppright up to 120px only when the plan names it), tight leading (`--leading-tight`), slightly tight tracking. `--step-display` must be clearly larger than H2. Body stays 16px+.
+- **Display type** at `--step-display` (default for trades and builders: **56–72px at 1440**; luxury-modern / Eppright up to 120px only when the plan names it), tight leading (`--leading-tight`, about 1.1), slightly tight tracking (about −0.02em). `--step-display` must be clearly larger than H2. Body stays 16px+. See A26.
 - Hero fills the viewport on desktop (min-height ~100vh, or a split hero whose photo column does). One H1 that names the outcome, one primary CTA plus a quieter Call, the phone visible in the header, no clutter. A trust strip (C18) sits immediately under the hero.
 - The **hero load-in** from the motion system plays once on arrival (see A7).
 - If facts or photos are still `null`, do **not** leave a hole. Use editorial type, ruled layouts, and the images you do have so the page still feels complete. Ask Jake once, with options (labeled placeholder / skip / stock with his OK). Prefer pulling every usable photo from the confirmed existing site before asking.
@@ -107,7 +107,9 @@ Required in the first viewport:
 ### A4. Typography
 
 - Max **2 families** (display + text), self-hosted woff2, `font-display: swap`, preload the display face.
-  A third face only for a logo-matched accent, and only with Jake's OK.
+  A third face only for a logo-matched accent, and only with Jake's OK. Ship the font license files
+  (OFL or equivalent) next to the files. Recommended default for trades and builders: Newsreader +
+  Source Sans 3 (`templates/fonts/`, `templates/styles/fonts.css`).
 - Body: 16px mobile, 17–18px desktop. Line height: body 1.55–1.7, headings 0.95–1.2 (tighter as size grows).
 - **Fluid type scale.** Mobile ratio 1.2 at 390px; desktop ratio per the "type contrast" knob at 1440px.
   Formula for each step: `clamp(MIN, calc(MIN - SLOPE*390px) + SLOPE*100vw, MAX)` where
@@ -125,19 +127,20 @@ Required in the first viewport:
 
   Calm sites use desktop ratio 1.25 (step-5 ≈ 55px). Bold sites use 1.5 only when the plan names the
   **luxury-modern / Eppright** display knob (see below).
-  The hero H1 uses `--step-display`. **Default at 1440 is 56–88px** — the band measured on the approved
-  grounded-agency sites (Buchanan, Yardie, Maple Crest, Nature's Call, S2, Brydon). Tight leading (0.9–1.05),
-  slight negative tracking (about −0.02em to −0.04em). At 390 it can be smaller (~44px), but the clamp must
-  still feel oversized next to body type. Never leave `--step-display` equal to `--step-5`.
+  The hero H1 uses `--step-display`. **Default for trades and builders at 1440 is 56–72px**
+  (`clamp(2.5rem, 6vw, 4.5rem)` lands at 72px). Tight leading (about 1.1), slight negative tracking
+  (about −0.02em), optical sizing when the face supports it. Prefer two-line hero breaks. At 390 it
+  can be smaller (~40px), but the clamp must still feel oversized next to body type. Never leave
+  `--step-display` equal to `--step-5`. Never set a single giant one-line sans headline.
   **Luxury-modern knob:** when the plan names an Eppright-style custom-home direction, `--step-display` may go
-  up to **120px at 1440**. Do not default to 150px display lines (Eppright's own outlier). Do not silently
-  shrink body type to buy contrast.
+  up to **120px at 1440**, still as a serif display with two-line breaks, not a one-line sans billboard.
+  Do not default to 150px display lines (Eppright's own outlier). Do not silently shrink body type to buy contrast.
 - **Body stays comfortably readable. Drama comes from display size, not from shrinking the text.** Body
   (`--step-0`) is **16px minimum** — 16px at 390, 17–18px at 1440. Captions, indexes, asides, eyebrows and
   meta (`--step--1`) are **14px minimum** (14–15px). **No text on the site is smaller than 14px. Never 11px,
   never 12px, never 13px** — award-site micro type is not appropriate for older homeowners or for a local
   service business. Inputs stay ≥ 16px (also avoids iOS zoom). Type contrast is a 16–18px body (and 14–15px
-  labels) next to a 56–88px (or, if named, up to 120px) word, not a tiny index next to a modest heading.
+  labels) next to a 56–72px (or, if named, up to 120px) word, not a tiny index next to a modest heading.
 - Map: H1 = step-display, H2 = step-4, H3 = step-2, H4/card title = step-1, body = step-0, small/meta = step--1.
 - **Mixed weights and contrast.** A heavy display against a lighter body (or the reverse) is a craft tool. A
   single stressed word in a headline may be heavier or italic; don't set every heading the same weight.
@@ -525,6 +528,29 @@ scrolls through hundreds of pixels of blank page.
 
 `review.mjs` flags any vertical gap with no visible content over **~240px at 1440** or **~160px at 390**.
 
+### A26. Type for trades and builders
+
+The default pairing for trades and builders is a **warm serif display with a sans UI**. Newsreader
+(display and headings) plus Source Sans 3 (body, buttons, filters, dates, kickers) is the recommended
+OFL pairing; files live in `templates/fonts/` with their license text. Another warm OFL serif is fine
+when the brand kit names it, but do not default to a large grotesque or geometric sans for the H1.
+
+- Display at 1440 is **56–72px**. Default H1: `clamp(2.5rem, 6vw, 4.5rem)`, weight 700, leading 1.1,
+  tracking −0.02em, optical sizing on. Allow and prefer **two-line hero breaks**.
+- **Never** a single giant one-line sans headline (the "tech / generic" look).
+- Self-host woff2, `font-display: swap`, preload the display face, and keep the OFL (or other license)
+  files in the repo.
+- This is a type rule, not a palette rule. Do not take it as permission to default the colors to
+  cream + terracotta (the anti-generic skin still needs justification).
+
+### A27. Hero card padding
+
+Text inside a light card or panel that sits on or over a photograph (`.hero-panel`, `.info-card`,
+and equivalents) has **at least 32px padding on all sides at desktop**, and **24px under 800px**.
+Never go under 24px. Do not leave `padding-inline: 0` or a one-sided zero that flush-mounts the
+display type to the box edge. Keep the card's position on the photo; just pad the type inside it.
+Type on a photo scrim with no light box is not this rule.
+
 ---
 
 ## B. Expression knobs (set per site in `brief/brand.md`)
@@ -535,9 +561,9 @@ unless a client brand kit forces fonts), on at least **two** composition moves, 
 
 | Knob | Options (examples, not limits) |
 |---|---|
-| Font pairing | Condensed grotesk + neutral sans (rugged); serif display + humanist sans (editorial); geometric sans only (modern); slab + sans (workmanlike); rounded sans (friendly) |
+| Font pairing | **Default for trades and builders:** warm serif display + sans UI (Newsreader + Source Sans 3, or equivalent OFL). Other options: condensed grotesk + neutral sans (rugged); geometric sans only (modern, not the trades default); slab + sans (workmanlike); rounded sans (friendly) |
 | Heading case/weight | uppercase heavy / sentence-case light / sentence-case bold |
-| Type contrast | default (display 56–88px at 1440) / calm 1.25 / luxury-modern (up to 120px, named in the plan) |
+| Type contrast | default for trades and builders (display 56–72px at 1440, two-line breaks) / calm 1.25 / luxury-modern (up to 120px, named in the plan, still not a one-line sans) |
 | Base | light / dark / mixed (dark hero + light body) |
 | Accent | one hue from brand or direction; plus optional support color |
 | Corner radius | 0 (sharp) / 4–8 (crisp) / 12–20 (soft) / pill buttons only |
@@ -603,7 +629,7 @@ tokens. Adding site-specific tokens is fine; removing or renaming these is not.
 
 Use these unless the art direction gives a reason to change them, and write the reason in `brand.md`.
 
-- **Container 1240**, gutters 16/24/48, section padding **96 / 64**, CTA strip 64. Display type **56–88px** at 1440 by default.
+- **Container 1240**, gutters 16/24/48, section padding **96 / 64**, CTA strip 64. Display type **56–72px** at 1440 by default for trades and builders.
 - **Eyebrow component** (`<Eyebrow>`): small uppercase label in the accent, letter-spaced, sits 12–16px above
   the heading. **Optional and rare** — at most one or two on a page, never on every section (A20). It is a `<p>`, not a heading.
 - **`.photo` treatment**: one shared wrapper for all content photos (same radius, aspect ratio per role,

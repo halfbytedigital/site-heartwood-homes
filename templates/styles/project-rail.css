@@ -1,0 +1,149 @@
+/* C32 horizontal portrait rail — default project index at 6+ projects with good photos.
+   Pair with C29 chips above the rail (templates/styles/project-filters.css). */
+
+.project-rail {
+  --rail-gap: 20px;
+  --rail-inset: var(--gutter, 24px);
+  margin: 0;
+}
+
+.project-rail-track {
+  display: flex;
+  gap: var(--rail-gap);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+  -webkit-overflow-scrolling: auto;
+  padding-inline: max(var(--rail-inset), calc((100vw - var(--container, 1240px)) / 2));
+  padding-block: 0 8px;
+  margin-inline: calc(var(--rail-inset) * -1);
+  scrollbar-width: none;
+}
+.project-rail-track::-webkit-scrollbar { display: none; }
+
+.project-rail-card {
+  position: relative;
+  flex: 0 0 auto;
+  width: min(42vw, 16.5rem);
+  aspect-ratio: 2 / 3;
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  overflow: hidden;
+  background: var(--color-surface-2, #d5dbd4);
+}
+.project-rail-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.project-rail-card .shade {
+  position: absolute;
+  inset: 0;
+  background: var(--scrim, linear-gradient(180deg, rgb(26 30 24 / 0.12) 20%, rgb(26 30 24 / 0) 40%, rgb(26 30 24 / 0.72) 100%));
+  pointer-events: none;
+}
+.project-rail-card .top {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+}
+.project-rail-card .date {
+  font-family: var(--font-body);
+  font-size: var(--step--1);
+  font-weight: var(--weight-bold, 600);
+  letter-spacing: 0.04em;
+  margin: 0 0 6px;
+}
+.project-rail-card .title {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  font-optical-sizing: auto;
+  margin: 0;
+  max-width: 14ch;
+}
+.project-rail-card .bottom {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 14px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+.project-rail-card .index {
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+  font-optical-sizing: auto;
+  font-variant-numeric: tabular-nums;
+}
+.project-rail-card .save-house {
+  /* Keep the C28d heart on the card; place it so it doesn't fight the index or arrow. */
+}
+
+.project-rail-chrome {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: min(100%, var(--container, 1240px));
+  margin: 16px auto 0;
+  padding-inline: 0;
+}
+.project-rail-count {
+  font-family: var(--font-body);
+  font-size: var(--step--1);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  min-width: 6ch;
+  color: var(--color-muted);
+}
+.project-rail-scroll {
+  flex: 1;
+  position: relative;
+  height: 12px;
+  display: flex;
+  align-items: center;
+}
+.project-rail-scroll input[type="range"] {
+  width: 100%;
+  margin: 0;
+  accent-color: var(--color-text);
+  cursor: pointer;
+}
+.project-rail-buttons {
+  display: flex;
+  gap: 8px;
+}
+.project-rail-buttons button {
+  appearance: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--color-line);
+  background: var(--color-bg);
+  color: var(--color-text);
+  cursor: pointer;
+  font: inherit;
+}
+.project-rail-buttons button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+@media (width <= 700px) {
+  .project-rail { --rail-gap: 16px; }
+  .project-rail-card { width: min(72vw, 16rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-rail-track { scroll-behavior: auto; }
+}

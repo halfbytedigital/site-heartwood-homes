@@ -22,8 +22,8 @@
   --scrim: linear-gradient(180deg, rgb(0 0 0 / 0) 30%, rgb(0 0 0 / .65) 100%);
 
   /* Type: CHANGE families and weights */
-  --font-display: "Display Family", ui-serif, Georgia, serif;
-  --font-body: "Text Family", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Newsreader", "Source Serif 4", ui-serif, Georgia, serif;
+  --font-body: "Source Sans 3", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
   --weight-body: 400;
   --weight-bold: 650;
@@ -31,7 +31,7 @@
 
   /* Fluid scale: 390px → 1440px.
      Body (--step-0) is 16px minimum (16 → 18). Meta (--step--1) is 14px minimum (14 → 15).
-     Never ship type smaller than 14px. Drama comes from --step-display (default 56–88px at 1440; luxury-modern up to 120px when the plan names it), not tiny meta. */
+     Never ship type smaller than 14px. Drama comes from --step-display (default for trades and builders: 56–72px at 1440; luxury-modern up to 120px when the plan names it), not tiny meta. */
   --step--1: clamp(0.875rem, 0.852rem + 0.095vw, 0.9375rem); /* 14 → 15 */
   --step-0:  clamp(1rem, 0.954rem + 0.190vw, 1.125rem);       /* 16 → 18 */
   --step-1:  clamp(1.1875rem, 1.071rem + 0.476vw, 1.5rem);
@@ -39,17 +39,17 @@
   --step-3:  clamp(1.75rem, 1.402rem + 1.429vw, 2.6875rem);
   --step-4:  clamp(2.0625rem, 1.505rem + 2.286vw, 3.5625rem);
   --step-5:  clamp(2.5rem, 1.664rem + 3.429vw, 4.75rem);
-  /* Display default: ~44px at 390 → ~77px at 1440, capped at 88px (the grounded 56–88px band).
+  /* Display default for trades and builders: 40px at 390 → 72px at 1440 (56–72px band).
      Luxury-modern / Eppright knob (only when the plan names it):
      --step-display: clamp(3rem, 1.25rem + 5.9vw, 7.5rem);  /* ~48px → up to 120px */
-     Tight leading and slight negative tracking are required. */
-  --step-display: clamp(2.75rem, 1.15rem + 4.05vw, 5.5rem);
+     Tight leading (~1.1) and slight negative tracking (−0.02em) are required. Prefer two-line breaks. */
+  --step-display: clamp(2.5rem, 6vw, 4.5rem);
 
-  --leading-tight: 1.0;
+  --leading-tight: 1.1;
   --leading-snug: 1.2;
   --leading-body: 1.6;
   --tracking-eyebrow: 0.12em;
-  --tracking-display: -0.03em;
+  --tracking-display: -0.02em;
   --measure: 65ch;
 
   /* Space (8pt) */

@@ -89,7 +89,7 @@ Open the images. The script can't judge taste, so check:
 - **Anti-generic (A20) and template smell test:** reject eyebrow-on-every-heading, identical card grids
   (especially on Projects — prefer photo-forward C15 / C16 / C17), cream + serif display + terracotta unless
   the material board sampled it from *their* photos or kit and the plan justifies it, and a boxed Legacy hero,
-  Teton badge soup, or Hammond remodeler chrome (see `grounded-references.md`). Default display is 56–88px at
+  Teton badge soup, or Hammond remodeler chrome (see `grounded-references.md`). Default display for trades and builders is 56–72px at
   1440; under ~56px usually fails; above 120px only if the plan named the luxury-modern knob.
 - **Alignment:** one shared container, consistent left edges at 1440 and 390. Headings and body in the same section share an alignment. Asymmetry (a split hero, an offset image) is grid-snapped and clearly deliberate — not drift, not wildly off-center type. The automated audit flags a left-edge spread of 16px or more; confirm each flag visually.
 - Nothing hugging the screen edge on mobile unless it is a planned full-bleed photo.
@@ -128,17 +128,29 @@ Open the images. The script can't judge taste, so check:
   slider is only a real drag reveal of a same-vantage pair. On the mobile work index, house names must clear
   the sticky call bar. Google ratings must not link to a search. Content patterns still match C22–C26.
   With 8 or more projects, confirm C29 filters (chips, counts, `?type=`, keyboard / `aria-pressed`,
-  reduced-motion instant, mobile chip row clear of sticky bars).
+  reduced-motion instant, in-place fade with no fly-in from 0,0, mobile chip row clear of sticky bars).
+  With 6 or more projects and good photographs, confirm the C32 portrait rail: 2:3–3:4 cards, five plus
+  a sliver at 1440 and one or two plus a sliver at 390, first card on the type margin, 16–24px gaps,
+  live `01 / N` counter, 1:1 scrollbar (no snap, no custom momentum), prev/next, overflow-x auto
+  (trackpad / Shift+wheel), keyboard-focusable cards and arrows, no page scroll-jacking.
 - **Empty runway (A25):** fail any vertical gap with no visible content over ~240px at 1440 or ~160px
   at 390. A sticky or scroll-driven section (scrubber, pin, `view()` fade) must show its content on the
   first frame — `review.mjs` reports `emptyGaps`. Do not leave an opacity-0 stage as blank page.
 - **Overlay scrubber (C31):** if the Home (or equivalent) has a lot-to-finish scrubber, confirm the
   photograph and its controls share the viewport at 1440×900 and 390×844; the photo is the drag/swipe
-  control, with tappable stops, arrow keys, and a restyled range or `role="slider"` (`aria-valuetext`,
-  live region); no pinned or scroll-jacked scroll; a glass bar sits on the photo with a margin and a
+  control — a drag or swipe on the stage, including above the glass bar, must change chapters (threshold
+  then snap); tappable stops; arrow keys work when the stage or the slider is focused; a restyled
+  range or `role="slider"` (`aria-valuetext`, live region); no pinned or scroll-jacked scroll; a glass
+  bar sits on the photo with a margin, both `backdrop-filter` and `-webkit-backdrop-filter`, and a
   solid fallback; the track is a branded material line, not a second icon timeline; the primary CTA
   appears prominently only on the last chapter; reduced motion is an instant swap; the photo credit
   is visible; query params on the CTA are honored by the qualifier.
+- **Hero card padding (A27):** light cards or panels over a photograph (`.hero-panel`, `.info-card`,
+  equivalents) have at least 32px padding on all sides at desktop and 24px under 800px. Fail a flush
+  `padding-inline: 0` or any inner padding under 24px.
+- **Type for trades and builders (A26):** display is a warm serif at 56–72px at 1440, with two-line
+  hero breaks, not a single giant one-line sans. Body, buttons, filters, dates, and kickers stay in
+  the sans. Fonts are self-hosted, `font-display: swap`, display face preloaded, license files present.
 
 ## Step 5 — Copy honesty check
 
@@ -179,11 +191,13 @@ Checklist
 - [x] Delight: 1–2 client-specific moments listed; not a sprinkle of generic ticks
 - [x] Motion plan followed (one hero load-in, one CSS signature, hovers; the rest still); Playwright scroll video or equivalent watched
 - [x] Anti-generic: no default eyebrow parade, card-grid indexes, fade-every-section, unjustified count-ups, or cream+serif+terracotta unless sampled and justified
-- [x] Project galleries: no project ships one photo when the source harvest had more; first viewport at 1440 and 390 shows a photo; C28 shell (rail, hearts, viewer, next-house) is present; C22–C26 match the photos; C29 filters when 8+ projects
+- [x] Project galleries: no project ships one photo when the source harvest had more; first viewport at 1440 and 390 shows a photo; C28 shell (rail, hearts, viewer, next-house) is present; C22–C26 match the photos; C29 filters when 8+ projects; C32 portrait rail when 6+ projects have good photos
 - [x] Copy voice (A24): no banned or internal/meta phrases; missing facts omitted, not explained
 - [x] No empty runway (A25): no visible-content gap over ~240px at 1440 or ~160px at 390; sticky/scroll-driven sections show content on the first frame
 - [x] One widget, one page: a distinctive interactive widget is not repeated across pages
-- [x] Overlay scrubber (C31, if present): photo + controls share the viewport at 1440 and 390; photo-as-control; no scroll-jacking; CTA at the last chapter; reduced motion instant
+- [x] Overlay scrubber (C31, if present): photo + controls share the viewport at 1440 and 390; photo drag/swipe (including above the glass) changes chapters; arrow keys work when the stage or slider is focused; unprefixed + `-webkit-` backdrop-filter with a solid fallback; no scroll-jacking; CTA at the last chapter; reduced motion instant
+- [x] Hero card padding (A27): light photo-over cards have ≥ 32px padding on all sides at desktop, 24px under 800px, never under 24px
+- [x] Type (A26, trades and builders): warm serif display 56–72px at 1440, two-line hero breaks, no giant one-line sans; sans UI for body/buttons/filters; self-hosted, swap, preload, license files
 - [x] Template smell test: not a Legacy boxed hero + tile grid, not Teton badge soup, not Hammond remodeler chrome
 - [x] Conversion: one primary CTA, trust beside the ask, contact last on tools/qualifiers, thank-you page, no banned patterns
 - [x] Measurement: events fired in preview, brief/measurement.md filled, 90-day baseline noted

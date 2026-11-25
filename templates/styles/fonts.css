@@ -1,0 +1,22 @@
+/* Recommended default pairing for trades and builders (A26):
+   Newsreader (display / headings) + Source Sans 3 (body, UI).
+   Copy the woff2 files and OFL text into public/fonts/ (or src/fonts/)
+   and point these urls there. Preload the Newsreader file in the base
+   layout. Both faces are SIL Open Font License 1.1; keep the OFL files
+   next to the fonts. */
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("../fonts/Newsreader[opsz,wght].woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("../fonts/SourceSans3[wght].woff2") format("woff2");
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}

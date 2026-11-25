@@ -79,10 +79,12 @@ cells, above a footer, beside a quote). Line color from tokens; thickness 1px un
 
 ### C15 Project index (photo-forward, calm)
 
-The default for a work or project index on **local-service sites**. Homeowners buy with their eyes: lead with
-photographs, keep the interaction calm, and stay on the shared container grid.
+With **6 or more** projects and good photographs, the default work or project index is **C32** (a
+horizontal portrait rail). Use C15 when the harvest is smaller, or the photos cannot support a
+portrait rail. Homeowners buy with their eyes: lead with photographs, keep the interaction calm,
+and stay on the shared container grid.
 
-**Default (use this unless the plan says otherwise):** a photo-led index, or a split list with a **sticky
+**When C15 applies:** a photo-led index, or a split list with a **sticky
 large image that crossfades** (240–400ms, opacity only, no layout shift). One image panel, shared by the
 rows — do not mount a full-viewport photo on every row and snap `opacity` from 0 to 1. Type (name, place or
 year, optional numeral) stays readable at 14px+ and lines up with the site's container left edge. On mobile,
@@ -152,7 +154,7 @@ and mid-page bands; don't drift the left edge off the container.
 ## Anti-combinations
 
 - Don't put two equal card grids next to each other, even with different surfaces. Don't use a card grid
-  for the project index when C15, C16, or C17 would do.
+  for the project index when C32, C15, C16, or C17 would do.
 - Don't use C7 on every section (numeral fatigue).
 - Don't overlay type on every image (C8 is a choice, not a default).
 - Don't invert every CTA (C6 works because it is rare).
@@ -252,8 +254,9 @@ count). Accessible: `aria-pressed`. Honest: no fake counts — only houses this 
 The default on a work or project index with **8 or more** projects. Pill chips at the top of the
 list: **All** plus one chip per job type the data actually supports (no empty categories). Show a
 count on each chip. A project may belong to more than one type. The shareable URL is `?type=slug`
-(All clears the param). Keyboard and `aria-pressed` on every chip. The reflow is a calm crossfade
-plus FLIP so cards keep their place; `prefers-reduced-motion` is instant. On mobile the chip row
+(All clears the param). Keyboard and `aria-pressed` on every chip. The reflow is instant, with a short in-place
+fade (and FLIP only for cards that stay visible and actually move). Entering cards fade in at
+their final cell — they never animate from 0,0 or the page origin. `prefers-reduced-motion` is instant. On mobile the chip row
 scrolls horizontally and stays clear of the sticky header and the sticky call bar.
 
 Derive types from the harvest and the plan — for a custom-home builder that often means New builds,
@@ -304,15 +307,19 @@ visible as soon as the section is in the layout (no `opacity: 0` enter animation
 The photo credit stays visible.
 
 **Photo as control.** Horizontal drag or swipe across the photo (pointer events) moves through
-chapters and snaps to the nearest stop. The stops are also tappable buttons. Arrow keys work.
+chapters: apply a movement threshold, then snap to the nearest stop. Pointer events must stay live
+on the stage, **including the photograph above the glass bar** — the bar must not swallow a drag
+that starts on the photo. The stops are also tappable buttons. Arrow keys change chapters when the
+**stage or the slider** is focused.
 Keep an accessible control: a visually restyled `<input type="range">` or a proper `role="slider"`,
 with `aria-valuetext` and a live region announcing the chapter. **Do not** pin, sticky-pin, or
 scroll-jack the section to drive chapters — horizontal drag and taps, not a scroll runway. (Pinned
 scroll on desktop is annoying; don't use it.)
 
 **Glass bar.** Overlay the bottom of the photo with a margin on all sides (not edge-to-edge). Dark
-smoked glass: `backdrop-filter` blur plus saturate, a dark ink tint at about 55–65% alpha, a
-hairline border, cream type. Provide a solid dark fallback when `backdrop-filter` is unsupported.
+smoked glass: set both `backdrop-filter` and `-webkit-backdrop-filter` (blur plus saturate), a dark
+ink tint at about 55–65% alpha, a hairline border, cream type. Provide a solid dark fallback when
+`backdrop-filter` is unsupported.
 The bar holds the house name, the section title, a counter readout (e.g. `02 / 04 Foundation`),
 the chapter's one-line caption, and the track. On mobile, keep the bar compact (counter, caption,
 track), clear of the sticky call bar; a prominent last-chapter CTA may sit just below the photo
@@ -335,6 +342,30 @@ for accessibility, but not a big button on every step. If that CTA carries query
 
 Do not ship a tall full-bleed photo with the title, range input, ticks, and CTA in a panel below
 it — that puts the picture off-screen while the visitor is dragging.
-- When you are unsure of a fact, say so and leave it `null`. Never paper over it.
 
-- C29 filter motion: filtering animates in place. Survivors FLIP from their real previous rect, and entering cards fade and scale in their final cell. Never animate from 0,0. Only give a view-transition-name to cards visible in both states. Reduced motion swaps instantly. The review clicks every chip and checks that no card travels from the top-left.
+### C32 Horizontal portrait rail (project index, 6+ with good photos)
+
+The default work or project index when there are **6 or more** projects and the harvest has good
+photographs. One horizontal row of portrait, full-bleed photo cards (ratio **2:3 to 3:4**). At 1440,
+five full cards plus a 15–20% sliver of the sixth bleeding off the right edge. At 390, one or two
+full cards plus a sliver. The first card aligns to the type / container left margin; gaps 16–24px.
+After scroll, cards may also bleed off the left edge.
+
+Each card is a photograph with a dark gradient and: a small date (UI sans), a display-serif title,
+a large two-digit index, a diagonal arrow, and the save-this-house heart (C28d) when the site uses
+saves. Under the rail: a live `01 / N` counter (N is the visible count in the current filter), a
+custom scrollbar thumb that tracks `scrollLeft` 1:1 (no scroll-snap, no custom momentum), and prev /
+next buttons to the right of the track.
+
+The page is not scroll-jacked — the header, heading, and filters stay put. The rail is
+`overflow-x: auto`, so a trackpad and Shift+wheel work. Cards and the prev/next controls are
+keyboard-focusable; arrow keys operate the rail when it or its controls are focused.
+`prefers-reduced-motion` is instant.
+
+With 8 or more projects, sit **C29** chips above the rail (counts, `?type=`, in-place fade, never a
+fly-in from 0,0). Tighten the heading area: no redundant subhead, no empty runway (A25). Do not ship
+a typographic split list with a sticky still as the default when C32 applies. Do not paste the C31
+overlay scrubber or an Our Process icon timeline onto this page (One widget, one page).
+
+Templates: `templates/styles/project-rail.css`, `templates/scripts/project-rail.ts`, plus the C29
+filter templates when chips are present.

@@ -1,3 +1,4 @@
+/* C29: entering cards fade in place. Never animate from 0,0 or the page origin. */
 /**
  * C29 job-type filters for a portfolio index (8+ projects).
  *

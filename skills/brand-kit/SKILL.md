@@ -129,7 +129,7 @@ When writing `brand.md` and `tokens.css`:
 
 - Set the **motion personality** knob (`calm` / `crisp` / `bold`) and say that `<html data-motion="…">` must match it.
   High-ticket, editorial, or "wow" directions default to **bold** unless Jake picked a calm direction.
-- Generate `--step-display` in the **default 56–88px at 1440** band, tight leading, slight negative tracking.
+- Generate `--step-display` in the **default 56–72px at 1440** band for trades and builders (`clamp(2.5rem, 6vw, 4.5rem)`), leading ~1.1, tracking about −0.02em. Prefer two-line hero breaks; do not default to a giant one-line sans.
   Only when the plan names a luxury-modern / Eppright direction may it go up to **120px**. Body
   **16px minimum** (16–18px); labels/meta **14px minimum**. Never smaller than 14px, never 11px. The drama
   comes from display size, not from shrinking the body.

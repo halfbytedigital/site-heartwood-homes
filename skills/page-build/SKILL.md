@@ -42,7 +42,9 @@ npm i -D @playwright/test
   ```
 
   (`npm create astro` usually writes these; if a mid-build preview is missing `dev`, add them immediately.)
-- Fonts: `@fontsource/<family>` (or files in `public/fonts/`), imported once in the base layout.
+- Fonts: `@fontsource/<family>` or files in `public/fonts/` (copy `templates/fonts/` + `templates/styles/fonts.css`
+  for the default Newsreader + Source Sans 3 pairing), imported once in the base layout. Preload the display
+  face, `font-display: swap`, keep the OFL files.
 - Motion utilities: copy `templates/styles/motion.css`, `templates/scripts/motion.ts`, `templates/components/Animate.astro`.
   They are tools for the **motion plan** (one hero load-in, one CSS scroll-driven signature, hover), not a system
   to stamp on every section. Delight utilities: copy `templates/styles/delight.css` only if a chosen moment needs
@@ -51,9 +53,12 @@ npm i -D @playwright/test
   Content must be visible without JS; never add a loader that hides the page.
 - **Project-page shell (C28):** copy `templates/styles/project-page.css`, `templates/scripts/project-page.ts`,
   and the components `ProjectHero`, `WalkRail`, `ProjectShot`, `SaveHouse`, `NextHouse`, `PhotoViewer`.
-- **Project index filters (C29):** when the index has 8 or more projects, copy
+- **Project index (C32 + C29):** when the index has 6 or more projects and good photographs, copy
+  `templates/styles/project-rail.css` and `templates/scripts/project-rail.ts` and ship a horizontal
+  portrait rail (C32). When it has 8 or more projects, also copy
   `templates/styles/project-filters.css` and `templates/scripts/project-filters.ts`, and put job-type
-  chips above the list (All + types the harvest supports, counts, `?type=`, `aria-pressed`).
+  chips above the rail (All + types the harvest supports, counts, `?type=`, `aria-pressed`, in-place
+  fade, no fly-in from 0,0).
 - **Home lot-to-finish scrubber (C31):** when phase photos of the same house exist, use the overlay
   scrubber (photo-as-control, glass bar on the media, branded track, no scroll-jacking, primary CTA
   only at the last chapter). Do not put the controls in a panel below a tall photograph.
@@ -71,6 +76,9 @@ src/
   scripts/motion.ts        ← from templates/scripts/motion.ts (imported once in Base.astro)
   scripts/project-page.ts  ← from templates/scripts/project-page.ts (C28 rail, viewer, saves)
   styles/project-page.css  ← from templates/styles/project-page.css
+  styles/project-rail.css  ← from templates/styles/project-rail.css (C32)
+  scripts/project-rail.ts  ← from templates/scripts/project-rail.ts
+  styles/fonts.css         ← from templates/styles/fonts.css (adjust font urls)
   data/site.ts             ← facts (null-config, from templates/site.ts)
   data/services.ts, reviews.ts, projects.ts, nav.ts
   layouts/Base.astro       ← <head> (SEO, OG, JSON-LD, preloads), header, main, footer, action bar

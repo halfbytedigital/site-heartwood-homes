@@ -14,7 +14,7 @@ tell when used as a default proof row).
 ## Heroes (H)
 
 A desktop hero fills the first viewport (min-height ~100vh, or a split whose photo column does). One H1 at
-`--step-display` (default 56–88px at 1440; tight leading, slightly tight tracking), one lede ≤ 55ch, one
+`--step-display` (default 56–72px at 1440 for trades and builders; tight leading ~1.1, tracking about −0.02em), one lede ≤ 55ch, one
 primary CTA plus a quieter Call. Wrap in `[data-hero]`. Lead with the ranked memorable photo.
 
 - **H1 Full-bleed photo + scrim.** Big image, headline bottom-left, 1–2 CTAs. Bold, outdoor trades. (316 used this.)

@@ -65,7 +65,7 @@ Read it before you write any CSS or markup.
    and they have to make the client's customer feel looked after. Two ship/fail questions: "would a design
    agency ship this?" and "would the client's customer feel cared for?" Write a **material board before any
    code**. Layout defaults to a shared, centered container (full-bleed photography and restrained, grid-snapped
-   asymmetry are optional). Project indexes are photo-forward and calm. Display type defaults to **56–88px at 1440** (luxury-modern up to 120px when named); **body stays 16px minimum**, never 11px. Delight is 1–2 hospitable,
+   asymmetry are optional). Project indexes are photo-forward and calm. Display type defaults to **56–72px at 1440** for trades and builders (luxury-modern up to 120px when named); **body stays 16px minimum**, never 11px. Delight is 1–2 hospitable,
    client-specific moments, not cleverness (A19). Motion is a **plan** that reassures and guides (A7). Call,
    quote, and contact are always easy to find. No mystery-meat nav. Real people, faces, and owner voice when
    we have them; plain-language copy (A21). Accessibility and performance are a differentiator. Anti-generic
@@ -95,8 +95,9 @@ skills/
   site-plan/SKILL.md          ← sitemap, funnel, tools, city pages, measurement, section outlines
   page-build/SKILL.md         ← how to build pages in Astro
   page-build/archetypes.md    ← section archetype library + recipes (layout, type, motion)
-  page-build/compositions.md  ← agency craft moves (C15–C28: photo-forward work, default project-page shell, …)
+  page-build/compositions.md  ← agency craft moves (C15–C32: photo-forward work, default project-page shell, index filters, primary service page, overlay scrubber, portrait rail, …)
   templates/project-page.md     ← per-project photo count + C28 shell + C22–C26 pattern plan
+  templates/copy-voice.md       ← public-site voice + banned-phrase list (A24)
   page-build/conversion.md    ← CTA, forms, tools, local pages, Jake's estimator rules (P1–P22)
   page-build/delight.md       ← 1–2 client-specific moments, with recipes
   page-build/signature-interactions.md ← one per trade, built prominently on Home
@@ -108,6 +109,12 @@ templates/
   scripts/analytics.ts        ← data-event adapter (Plausible / Umami / GA4)
   scripts/project-page.ts     ← C28 walk-rail, viewer, saved houses, next-house
   styles/project-page.css     ← C28 project-page shell styles
+  scripts/project-filters.ts  ← C29 job-type index filters (?type=, in-place fade, aria-pressed)
+  styles/project-filters.css  ← C29 pill chips
+  styles/project-rail.css     ← C32 horizontal portrait rail
+  scripts/project-rail.ts     ← C32 counter, 1:1 scrollbar, prev/next
+  styles/fonts.css            ← Newsreader + Source Sans 3 @font-face (A26)
+  fonts/                      ← self-hosted woff2 + OFL files
   components/ProjectHero.astro, WalkRail.astro, ProjectShot.astro, SaveHouse.astro, NextHouse.astro, PhotoViewer.astro
   data/estimator.ts           ← null-safe pricing inputs for a quote tool
   material-board.md           ← shape of brief/material-board.md (write this before tokens)

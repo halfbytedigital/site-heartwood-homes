@@ -89,7 +89,7 @@ Run this in review, in addition to the anti-generic tells in design-foundation A
 
 - One centered container (about 1240–1280px) and the same side padding in every mid-page section. Text never floats off the grid. Only the hero, one dark band, and at most one photo band run full-bleed.
 - The hero is a full-bleed real job photo, with the headline left- or center-aligned *inside the container*, one or two CTAs, and the phone in the header.
-- Display type at 1440 is about **56–88px** for most sites (tight leading, slight negative tracking). Body 16–18px. A luxury-modern builder in the Eppright vein may go up to **120px** when the plan names that knob. Do not default to 150px display lines.
+- Display type at 1440 is about **56–72px** for trades and builders (tight leading ~1.1, tracking about −0.02em, two-line hero breaks, warm serif display). Body 16–18px. A luxury-modern builder in the Eppright vein may go up to **120px** when the plan names that knob. Do not default to 150px display lines or a single giant one-line sans.
 - A trust strip sits right under the hero: Google rating and review count, years, licence or warranty, associations — only confirmed facts.
 - Projects are photos inside the container: one big feature photo with a small info card (Eppright), or one big plus two small with name and town captions (Nature's Call), or a calm 2×2 / 3-column photo grid (Buchanan, Maple Crest). Not a typographic hover takeover, and not a Legacy-style identical tile grid.
 - The owners appear on a real job site with a short story in their own voice, when we have the photos and the words.
