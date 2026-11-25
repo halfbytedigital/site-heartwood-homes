@@ -369,3 +369,5 @@ overlay scrubber or an Our Process icon timeline onto this page (One widget, one
 
 Templates: `templates/styles/project-rail.css`, `templates/scripts/project-rail.ts`, plus the C29
 filter templates when chips are present.
+
+- C31 handle alignment: the handle, ticks, labels and fill all use one formula, stop i at calc(thumb/2 + (100% - thumb) * i/(n-1)). The range min/max matches the chapter count. Review checks that the handle center is within 2px of each label center at 1440 and 390.
