@@ -54,6 +54,9 @@ npm i -D @playwright/test
 - **Project index filters (C29):** when the index has 8 or more projects, copy
   `templates/styles/project-filters.css` and `templates/scripts/project-filters.ts`, and put job-type
   chips above the list (All + types the harvest supports, counts, `?type=`, `aria-pressed`).
+- **Home lot-to-finish scrubber (C31):** when phase photos of the same house exist, use the overlay
+  scrubber (photo-as-control, glass bar on the media, branded track, no scroll-jacking, primary CTA
+  only at the last chapter). Do not put the controls in a panel below a tall photograph.
   Import the CSS from Base (hearts also appear on the work index). Import the script once after `analytics.ts`.
   Mark the primary CTA with `data-start-cta` (optional inner `data-start-cta-label`) and add a
   `data-saved-count` element in the header. On the qualifier, include a `data-saved-houses-field` input

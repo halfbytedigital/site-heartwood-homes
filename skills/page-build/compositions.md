@@ -163,11 +163,15 @@ Use only when the harvested photos (or video) actually show construction phases.
 cleared lot or site, foundation, frame, finishes, the lived-in house. Short captions in plain language. This
 can also fill a Home lot-to-finish scrubber — but only with photos of *that same house*. Never paste one
 project's foundation onto another project's finished shot. Missing chapters stay honest (words, no stock).
+The default Home treatment for that scrubber is **C31** (photo-as-control, glass bar on the media). Do
+not put the title, range input, ticks, and CTA in a panel *below* a tall photograph so the picture is
+off-screen while the visitor drags.
 
 Do not put an enter/reveal animation (`data-animate`, `data-reveal`, `hb-fade`, a `view()` fade with
 `fill: both`, or a parent at `opacity: 0`) on the scrubber section, its stage, or its first
-photograph. The first chapter must be visible as soon as the section enters the viewport. A sticky
-or scroll-driven scrubber cannot leave an empty runway (A25).
+photograph. The first chapter must be visible as soon as the section enters the viewport. A sticky,
+pinned, or scroll-jacked scrubber cannot leave an empty runway (A25), and **C31 does not use pinned
+or scroll-jacked scroll** — horizontal drag and tappable stops move the chapters.
 
 ### C23 Room-by-room walkthrough
 
@@ -270,7 +274,8 @@ Ship, in this spirit:
    three-beat row), **not** a paste of the Home scrubber or the full Process timeline (see
    "One widget, one page" below).
 3. What is included, and what the crew self-performs, only when those trades are sourced. A photo
-   grid beats a text list when we have the pictures.
+   grid beats a text list when we have the pictures. If a card flips or overlays a "why it matters"
+   line, that line sits on the photograph — not over the caption or the icon under the photo.
 4. Featured examples pulled from real project pages (save hearts are welcome).
 5. Cost guidance only with numbers the client gave. If there is no range, say what happens next
    ("Plans, then an estimate") and do not narrate the absence of a price (A24).
@@ -283,5 +288,53 @@ Ship, in this spirit:
 A distinctive interactive widget — a lot-to-finish scrubber, a full process timeline, a
 design-build picker, a long sticky pin — lives on **one** page. Other pages may link to it or use
 a compact teaser (a three-step row, not the same component). Never ship the same widget on Custom
-Homes and Our Process, or paste the Home scrubber onto a service page.
+Homes and Our Process, or paste the Home scrubber (C31) onto a service page. The widget's controls and
+the media they change must remain visible together in that section's viewport at 1440 and at 390
+(don't put a 3/2 or 4:3 photo so tall that the track or a stage control is left with only a sliver
+of the picture). A Home overlay scrubber must also stay visually distinct from an Our Process icon
+timeline: no illustrated trade icons on the C31 track.
 
+### C31 Overlay scrubber (photo-as-control, glass bar)
+
+The default for a Home lot-to-finish / build-story scrubber when we have same-house phase photos
+(C22). The photograph *is* the control. Controls sit on the media, not in a panel underneath it.
+
+**Stage.** Viewport-fit: about `100svh` minus the header, `object-fit: cover`. The first chapter is
+visible as soon as the section is in the layout (no `opacity: 0` enter animation, no empty runway).
+The photo credit stays visible.
+
+**Photo as control.** Horizontal drag or swipe across the photo (pointer events) moves through
+chapters and snaps to the nearest stop. The stops are also tappable buttons. Arrow keys work.
+Keep an accessible control: a visually restyled `<input type="range">` or a proper `role="slider"`,
+with `aria-valuetext` and a live region announcing the chapter. **Do not** pin, sticky-pin, or
+scroll-jack the section to drive chapters — horizontal drag and taps, not a scroll runway. (Pinned
+scroll on desktop is annoying; don't use it.)
+
+**Glass bar.** Overlay the bottom of the photo with a margin on all sides (not edge-to-edge). Dark
+smoked glass: `backdrop-filter` blur plus saturate, a dark ink tint at about 55–65% alpha, a
+hairline border, cream type. Provide a solid dark fallback when `backdrop-filter` is unsupported.
+The bar holds the house name, the section title, a counter readout (e.g. `02 / 04 Foundation`),
+the chapter's one-line caption, and the track. On mobile, keep the bar compact (counter, caption,
+track), clear of the sticky call bar; a prominent last-chapter CTA may sit just below the photo
+if it can't fit in the bar. Photo plus controls must share the viewport at 1440×900 and 390×844.
+
+**Track.** A material, branded track — for a builder, a tape-measure / survey-line: a thin ruled
+line with fine tick marks, labeled stops, the passed portion filled in the brand sage (or the
+site's primary), and a brass-toned (or otherwise material) marker that snaps with a tiny settle.
+Subtle material reference only. **No illustrated trade icons** when another page already has an
+icon timeline (One widget, one page).
+
+**Time passing.** The incoming photo crossfades with a slow 1–2% push-in (the same camera
+returning). The counter and caption roll like a counter. `prefers-reduced-motion`: instant swap,
+no push-in, no settle animation.
+
+**Restraint until the end.** The primary CTA (e.g. "Start your home") fades in prominently only
+when the last chapter is reached. Earlier chapters show progress only. A quiet text link is fine
+for accessibility, but not a big button on every step. If that CTA carries query params (`?work=`,
+`?project=`, `?chapter=`, `?path=`), the qualifier must honor them on load (conversion.md).
+
+Do not ship a tall full-bleed photo with the title, range input, ticks, and CTA in a panel below
+it — that puts the picture off-screen while the visitor is dragging.
+- When you are unsure of a fact, say so and leave it `null`. Never paper over it.
+
+- C29 filter motion: filtering animates in place. Survivors FLIP from their real previous rect, and entering cards fade and scale in their final cell. Never animate from 0,0. Only give a view-transition-name to cards visible in both states. Reduced motion swaps instantly. The review clicks every chip and checks that no card travels from the top-left.

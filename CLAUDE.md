@@ -88,7 +88,7 @@ skills/
   site-plan/SKILL.md          ← sitemap, funnel, tools, city pages, measurement, section outlines
   page-build/SKILL.md         ← how to build pages in Astro
   page-build/archetypes.md    ← section archetype library + recipes (layout, type, motion)
-  page-build/compositions.md  ← agency craft moves (C15–C30: photo-forward work, default project-page shell, index filters, primary service page, …)
+  page-build/compositions.md  ← agency craft moves (C15–C31: photo-forward work, default project-page shell, index filters, primary service page, overlay scrubber, …)
   templates/project-page.md     ← per-project photo count + C28 shell + C22–C26 pattern plan
   templates/copy-voice.md       ← public-site voice + banned-phrase list (A24)
   page-build/conversion.md    ← CTA, forms, tools, local pages, Jake's estimator rules (P1–P22)

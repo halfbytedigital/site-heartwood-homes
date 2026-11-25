@@ -132,6 +132,13 @@ Open the images. The script can't judge taste, so check:
 - **Empty runway (A25):** fail any vertical gap with no visible content over ~240px at 1440 or ~160px
   at 390. A sticky or scroll-driven section (scrubber, pin, `view()` fade) must show its content on the
   first frame — `review.mjs` reports `emptyGaps`. Do not leave an opacity-0 stage as blank page.
+- **Overlay scrubber (C31):** if the Home (or equivalent) has a lot-to-finish scrubber, confirm the
+  photograph and its controls share the viewport at 1440×900 and 390×844; the photo is the drag/swipe
+  control, with tappable stops, arrow keys, and a restyled range or `role="slider"` (`aria-valuetext`,
+  live region); no pinned or scroll-jacked scroll; a glass bar sits on the photo with a margin and a
+  solid fallback; the track is a branded material line, not a second icon timeline; the primary CTA
+  appears prominently only on the last chapter; reduced motion is an instant swap; the photo credit
+  is visible; query params on the CTA are honored by the qualifier.
 
 ## Step 5 — Copy honesty check
 
@@ -176,6 +183,7 @@ Checklist
 - [x] Copy voice (A24): no banned or internal/meta phrases; missing facts omitted, not explained
 - [x] No empty runway (A25): no visible-content gap over ~240px at 1440 or ~160px at 390; sticky/scroll-driven sections show content on the first frame
 - [x] One widget, one page: a distinctive interactive widget is not repeated across pages
+- [x] Overlay scrubber (C31, if present): photo + controls share the viewport at 1440 and 390; photo-as-control; no scroll-jacking; CTA at the last chapter; reduced motion instant
 - [x] Template smell test: not a Legacy boxed hero + tile grid, not Teton badge soup, not Hammond remodeler chrome
 - [x] Conversion: one primary CTA, trust beside the ask, contact last on tools/qualifiers, thank-you page, no banned patterns
 - [x] Measurement: events fired in preview, brief/measurement.md filled, 90-day baseline noted

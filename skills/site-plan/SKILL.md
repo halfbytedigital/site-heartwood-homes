@@ -118,6 +118,9 @@ question, leave all facts `null`, and jump to Step 5.
   compact how-it-works widget unique to that page, sourced inclusions, featured work, cost only with
   real numbers, FAQ, trust beside the ask. Our Process (or equivalent) gets the full timeline. Do not
   plan the same distinctive widget on two pages.
+- **Home lot-to-finish scrubber:** when same-house phase photos exist, plan C31 (overlay scrubber:
+  photo-as-control, glass bar on the media, branded track, no pinned or scroll-jacked scroll, primary
+  CTA only at the last chapter). Not a tall photo with the range input and CTA in a panel below it.
 - **Anti-generic:** do not plan eyebrows on every heading, fade-up on every section, or a count-up stat row
   unless each is justified by name. Do not default the palette to cream + serif + terracotta.
   Home's feature is the trade-specific signature interaction.
