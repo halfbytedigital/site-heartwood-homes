@@ -36,7 +36,7 @@ write_rule 10-intake.mdc \
 write_rule 20-design-foundation.mdc \
   "Bare-metal UI/UX rules, expression knobs and token contract for every Half Byte site. Apply whenever writing or editing markup, CSS, components or pages in sites/." \
   "sites/**/*.astro,sites/**/*.css,sites/**/*.ts,sites/**/*.tsx,sites/**/*.js,sites/**/*.mjs,sites/**/*.md" false \
-  skills/design-foundation/SKILL.md templates/tokens.css templates/site.ts
+  skills/design-foundation/SKILL.md skills/design-foundation/grounded-references.md templates/tokens.css templates/site.ts
 
 write_rule 30-brand-kit.mdc \
   "Use after intake answers: map a client brand kit (logo, colors, fonts, guidelines PDF) faithfully into tokens, derive missing pieces with contrast checks, or generate a kit from the chosen art direction." \
@@ -44,12 +44,12 @@ write_rule 30-brand-kit.mdc \
 
 write_rule 40-site-plan.mdc \
   "Use after brand kit: propose sitemap, then walk page by page asking page-specific questions and facts one at a time only when that page needs them (unknowns null/hidden), write section outlines, get a go." \
-  "sites/**/brief/plan.md" false skills/site-plan/SKILL.md skills/page-build/archetypes.md
+  "sites/**/brief/plan.md" false skills/site-plan/SKILL.md skills/page-build/archetypes.md skills/page-build/compositions.md skills/page-build/delight.md skills/page-build/conversion.md templates/measurement-plan.md templates/monthly-client-report.md
 
 write_rule 50-page-build.mdc \
-  "Use when building an approved plan into an Astro site: scaffold, null-config facts, archetype sections, one signature interaction, forms (Resend/GoHighLevel), SEO, Cloudflare Pages." \
-  "sites/**/src/**" false skills/page-build/SKILL.md skills/page-build/archetypes.md skills/page-build/signature-interactions.md
+  "Use when building an approved plan into an Astro site: scaffold, motion, composition and delight layers, null-config facts, archetype sections, one signature interaction, forms, SEO, Cloudflare Pages." \
+  "sites/**/src/**" false skills/page-build/SKILL.md skills/page-build/archetypes.md skills/page-build/compositions.md skills/page-build/conversion.md skills/page-build/delight.md skills/page-build/signature-interactions.md templates/styles/motion.css templates/scripts/motion.ts templates/scripts/analytics.ts templates/data/estimator.ts templates/components/Animate.astro
 
 write_rule 60-review.mdc \
-  "Use before showing Jake any site or change: Playwright screenshots 1440/390 of every page, token/spacing/contrast/overflow audits, Lighthouse, copy honesty check, checklist report." \
-  "sites/**/brief/review/**" false skills/review/SKILL.md scripts/review.mjs
+  "Use before showing Jake any site or change: Playwright screenshots 1440/390, agency-craft rubric, delight and motion checks, token/contrast/overflow audits, Lighthouse, honesty, checklist report." \
+  "sites/**/brief/review/**" false skills/review/SKILL.md scripts/review.mjs skills/design-foundation/grounded-references.md skills/page-build/conversion.md

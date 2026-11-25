@@ -5,8 +5,34 @@ description: 'Turn the client''s brand kit (logo files, colors, fonts, guideline
 
 # Brand kit
 
-Output: `sites/<slug>/brief/brand.md` (decisions + knob settings + contrast table) and
+Output: `sites/<slug>/brief/material-board.md` (written **first**, before tokens or markup),
+`sites/<slug>/brief/brand.md` (decisions + knob settings + contrast table) and
 `sites/<slug>/src/styles/tokens.css` (all tokens from the contract in design-foundation, Section C).
+
+## Material board (before any code)
+
+Do this before writing `tokens.css` or a single component. If you skip it, the site will default to a generic
+palette and type pairing.
+
+Write `brief/material-board.md` with three things, and show Jake a short version in chat:
+
+1. **Color, sampled from the client's world.** Pull 6–8 colors from *their* photos (and from a provided kit, if
+   any) — not from a "warm editorial" preset. Name where each swatch came from ("metal roof, Ten Mile Lake House
+   (Travis Jacobs)", "stone chimney", "summer canopy"). Build bg / text / accent from those samples. **Do not
+   default to warm cream + terracotta + a serif display** — that pairing is an AI-generic tell (A20) unless
+   the photos or kit actually are that.
+2. **Fonts chosen for the subject.** Pick a display + body that fit *this* trade and these pictures (a mountain
+   custom-home builder is not automatically Fraunces; a metal shop is not automatically a grotsesk). Self-hostable.
+   Show why the pairing belongs to this client.
+3. **Hero and featured photography.** Rank the client's photos by how striking and distinctive they are,
+   not by the order they were found. Lead the hero and the featured project with the most memorable image
+   (for a custom-home builder, that may be the coolest house, not the newest or the first file in the folder).
+   Write the choice and the reason on the board.
+4. **The one memorable element.** One sentence: the moment the site will be remembered for (a lot-to-finish
+   scrubber of *their* job, the address as type, a clip-path from their roofline, a heading that changes color
+   over a photo of their work). This is the delight/motion-plan signature, not a list of five widgets.
+
+Only after the board exists do you map Path A/B/C into tokens.
 
 Decide the path first:
 
@@ -96,3 +122,19 @@ Compute with the WCAG relative-luminance formula (a 10-line script is fine; e.g.
 6. Flags for Jake (font licenses, low-res logo, failing brand pairs, stock photos).
 
 Then move to `skills/site-plan/SKILL.md`.
+
+## Motion personality and display type
+
+When writing `brand.md` and `tokens.css`:
+
+- Set the **motion personality** knob (`calm` / `crisp` / `bold`) and say that `<html data-motion="…">` must match it.
+  High-ticket, editorial, or "wow" directions default to **bold** unless Jake picked a calm direction.
+- Generate `--step-display` in the **default 56–88px at 1440** band, tight leading, slight negative tracking.
+  Only when the plan names a luxury-modern / Eppright direction may it go up to **120px**. Body
+  **16px minimum** (16–18px); labels/meta **14px minimum**. Never smaller than 14px, never 11px. The drama
+  comes from display size, not from shrinking the body.
+- Set the **Direction** knob: grounded (default), or an opt-in premium-editorial (Cormack) or playful-retro
+  (Thelen) direction if Jake asked for it. See `design-foundation/grounded-references.md`.
+- Fill the new motion tokens (`--dur-hero`, `--dur-count`, `--ease-reveal`, `--reveal-y`, `--stagger`, `--parallax-max`)
+  or leave the `templates/tokens.css` + `motion.css` personality defaults.
+

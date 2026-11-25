@@ -50,9 +50,21 @@ Read it before you write any CSS or markup.
 2. **Brand kit wins.** If the client has a brand kit, use it exactly. Derive only what is missing.
 3. **Every site looks custom.** Same foundation rules, different expression knobs and section archetypes.
    Do not copy another client's site as a starting point.
-4. **Mobile first, fast, accessible.** WCAG AA, 44px+ touch targets (we use 52px buttons), reduced motion respected,
-   performance budgets met.
-5. **One signature interaction per site**, tied to the trade (like the slope dial on 316 Land Clearing).
+4. **Mobile first, fast, accessible — as a differentiator.** WCAG AA, 44px+ touch targets (we use 52px buttons),
+   reduced motion respected (final states, no hidden content), visible focus, performance budgets met.
+5. **One signature interaction per site**, tied to the trade (like the slope dial on 316 Land Clearing). It ships
+   in the first run, on Home, in or just under the hero, large enough to feel like a feature.
+6. **Cutting edge but caring.** First runs have to pop, and they have to look like a studio designed them —
+   and they have to make the client's customer feel looked after. Two ship/fail questions: "would a design
+   agency ship this?" and "would the client's customer feel cared for?" Write a **material board before any
+   code**. Layout defaults to a shared, centered container (full-bleed photography and restrained, grid-snapped
+   asymmetry are optional). Project indexes are photo-forward and calm. Display type defaults to **56–88px at 1440** (luxury-modern up to 120px when named); **body stays 16px minimum**, never 11px. Delight is 1–2 hospitable,
+   client-specific moments, not cleverness (A19). Motion is a **plan** that reassures and guides (A7). Call,
+   quote, and contact are always easy to find. No mystery-meat nav. Real people, faces, and owner voice when
+   we have them; plain-language copy (A21). Accessibility and performance are a differentiator. Anti-generic
+   tells in A20, and the template smell test in `grounded-references.md`, fail the build. Conversion rules
+   (value before contact, estimator only with real rates, otherwise a multi-step qualifier) live in
+   `page-build/conversion.md`. Every site ships a measurement plan. Sites still have to look unlike each other.
 
 ## Stack
 
@@ -71,14 +83,26 @@ skills/
   intake/SKILL.md             ← one-question-at-a-time intake, learn mode, art directions
   intake/question-bank.md     ← reference menu of trade questions (10 trades + fallback), not a script
   design-foundation/SKILL.md  ← the "bare metal" rules + expression knobs + token contract
+  design-foundation/grounded-references.md ← approved / rejected examples, Jake's notes, template smell test
   brand-kit/SKILL.md          ← map a client kit to tokens, or generate one
-  site-plan/SKILL.md          ← sitemap, extra-page questions, section outlines
+  site-plan/SKILL.md          ← sitemap, funnel, tools, city pages, measurement, section outlines
   page-build/SKILL.md         ← how to build pages in Astro
-  page-build/archetypes.md    ← section archetype library (pick per page so sites differ)
-  page-build/signature-interactions.md ← one per trade
-  review/SKILL.md             ← self-QA before Jake sees anything
+  page-build/archetypes.md    ← section archetype library + recipes (layout, type, motion)
+  page-build/compositions.md  ← agency craft moves (C15–C21: photo-forward work, trust, closing CTA, …)
+  page-build/conversion.md    ← CTA, forms, tools, local pages, Jake's estimator rules (P1–P22)
+  page-build/delight.md       ← 1–2 client-specific moments, with recipes
+  page-build/signature-interactions.md ← one per trade, built prominently on Home
+  review/SKILL.md             ← self-QA, including the "would an agency ship this?" rubric
 templates/
   tokens.css                  ← token contract with placeholder values
+  styles/motion.css           ← motion utilities (hero load-in + one signature, not every section)
+  scripts/motion.ts           ← optional helpers for the motion plan
+  scripts/analytics.ts        ← data-event adapter (Plausible / Umami / GA4)
+  data/estimator.ts           ← null-safe pricing inputs for a quote tool
+  material-board.md           ← shape of brief/material-board.md (write this before tokens)
+  measurement-plan.md         ← events, analytics default, 90-day baseline
+  monthly-client-report.md    ← one-page monthly report for the client
+  components/Animate.astro    ← optional wrapper for data-animate
   site.ts                     ← null-config pattern for facts
   intake-brief.md             ← shape of brief/intake.md
   sources.md                  ← shape of brief/sources.md

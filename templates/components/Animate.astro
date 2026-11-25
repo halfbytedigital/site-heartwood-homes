@@ -1,0 +1,40 @@
+---
+/**
+ * Optional wrapper for the motion system.
+ * Copy to sites/<slug>/src/components/Animate.astro
+ *
+ * <Animate type="fade-up" delay={1}>...</Animate>
+ * <Animate words type="blur-up" as="h2">A short headline</Animate>
+ * <Animate stagger={65}><card/><card/></Animate>
+ * <Animate type="img-reveal"><img ... /></Animate>
+ */
+interface Props {
+  as?: string;
+  type?: "fade" | "fade-up" | "fade-down" | "fade-left" | "fade-right" | "scale-in" | "blur-up" | "img-reveal" | "hero-image";
+  delay?: number | string;
+  stagger?: number | string;
+  words?: boolean;
+  heroStep?: number | string;
+  class?: string;
+}
+const {
+  as: Tag = "div",
+  type = "fade-up",
+  delay,
+  stagger,
+  words = false,
+  heroStep,
+  class: className,
+} = Astro.props;
+---
+
+<Tag
+  class={className}
+  data-animate={words || stagger ? undefined : type}
+  data-animate-words={words ? type : undefined}
+  data-animate-delay={delay !== undefined ? String(delay) : undefined}
+  data-animate-stagger={stagger !== undefined ? String(stagger) : undefined}
+  data-hero-step={heroStep !== undefined ? String(heroStep) : undefined}
+>
+  <slot />
+</Tag>

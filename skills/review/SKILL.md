@@ -20,6 +20,12 @@ npm run build && npx astro preview --port 4321 &     # review the production bui
 
 If a page 404s or the build warns, fix first.
 
+If Jake (or you) is reviewing over a Cloudflare quick tunnel (`*.trycloudflare.com`) and you get
+`403 Blocked request. This host is not allowed`, add `vite.server.allowedHosts` and `vite.preview.allowedHosts`
+of `['.trycloudflare.com']` to `astro.config.mjs` and restart. Do not screenshot the 403 as if it were the site.
+For full-page stills of pages that use scroll-driven animations, prefer reduced-motion (or force final states)
+so mid-page sections are not captured at `opacity: 0`.
+
 ## Step 2 — Automated audit + screenshots
 
 ```
@@ -51,8 +57,42 @@ bytes from `dist/` (`find dist -name '*.js' | xargs gzip -c | wc -c`).
 
 Open the images. The script can't judge taste, so check:
 
-- **First impression at the fold** (desktop and mobile): clear H1, one obvious primary action, strong image, no clutter.
-- Alignment to the container edges; consistent gutters; nothing hugging the screen edge on mobile.
+- **Would a design agency ship this?** This is a ship/fail rubric, not a compliment. Score each page
+  (agency / competent / DIY) on: first viewport, composition, type scale and contrast, rhythm/negative space,
+  imagery, motion, micro-detail, nav/footer craft, delight, and point of view. **DIY on the first viewport,
+  or DIY on two or more other axes, or three or more template tells from A20, fails the build** — even if
+  tokens, contrast and Lighthouse pass. "Clean and professional, like something the business could have built
+  itself" is a fail, not a soft pass. A website-builder first-run is the floor we have to beat.
+- **Would the client's customer feel cared for?** Equal ship/fail, asked on every page (A21). Warm, human,
+  trustworthy: real people/faces/owner voice when we have them; plain-language copy; call, quote, and contact
+  always easy to find; body type 16px+ and nothing under 14px (never 11px); no experimental or mystery-meat
+  nav; motion that reassures rather than shows off; delight that feels like hospitality, not cleverness.
+  A stunning but cold, hard-to-read, or hard-to-act-on page fails. A friendly but generic page also fails.
+  Both questions have to pass. Guiding principle: **cutting edge but caring.**
+- **First impression at the fold** (desktop and mobile): display-scale H1, one primary action, a strong photograph
+  or typographic field, a compositional idea (split bleed, type field, overlap — not a padded box of image +
+  heading + two buttons). No gray holes.
+- **Composition and anti-template:** count the composition moves (Home ≥ 4, interiors ≥ 2). Run the A20 tell
+  list. Note every tell in `review.md`.
+- **Delight:** 1–2 client-specific moments for the site (Home: the signature, hard to miss). List them in
+  `review.md`. A pile of generic ticks, or no memorable moment at all, is a fail. Missing a 3–5 "details per
+  page" count is *not* a fail — that rule was retired.
+- **Motion plan, not a baseline.** On a preview *with motion enabled* (not `prefers-reduced-motion`), confirm:
+  one hero load-in plays once; one scroll-driven signature (plain CSS) works; hovers/press are quick; optional
+  view transitions if planned. **Everything else stays still.** Fail if every section fades up, if count-up
+  stat rows were added without a written justification, or if there is no motion plan. Watch a slow scroll
+  (or a short Playwright video) at 1440. Record a couple of signature-interaction states.
+- **Reduced motion, focus, no hidden content:** emulate `prefers-reduced-motion: reduce` and screenshot every
+  page again if needed. Every section must be visible (no leftover `opacity: 0`). Visible `:focus-visible` on
+  interactive controls (Tab a few times and screenshot). No loader or overlay hiding content. This is also
+  how you take full-page stills without "holes."
+- **Anti-generic (A20) and template smell test:** reject eyebrow-on-every-heading, identical card grids
+  (especially on Projects — prefer photo-forward C15 / C16 / C17), cream + serif display + terracotta unless
+  the material board sampled it from *their* photos or kit and the plan justifies it, and a boxed Legacy hero,
+  Teton badge soup, or Hammond remodeler chrome (see `grounded-references.md`). Default display is 56–88px at
+  1440; under ~56px usually fails; above 120px only if the plan named the luxury-modern knob.
+- **Alignment:** one shared container, consistent left edges at 1440 and 390. Headings and body in the same section share an alignment. Asymmetry (a split hero, an offset image) is grid-snapped and clearly deliberate — not drift, not wildly off-center type. The automated audit flags a left-edge spread of 16px or more; confirm each flag visually.
+- Nothing hugging the screen edge on mobile unless it is a planned full-bleed photo.
 - Section rhythm: generous, consistent spacing; no cramped or empty bands; surfaces alternate sensibly.
 - Type: no widows/orphans in headings, no overly long lines, hierarchy obvious at a glance, readouts not bigger than H2s.
 - Photos look like one set (`.photo` treatment), subjects not cropped out, no stretched logos, no blurry images.
@@ -62,10 +102,18 @@ Open the images. The script can't judge taste, so check:
 - Text over images is readable (scrim) on both crops.
 - **Variation check:** compare Home with the two most recent sites' Home screenshots (`sites/*/brief/review/home-desktop.png`).
   If it looks like a sibling (same hero layout + same type feel), fix before showing Jake.
-- Signature interaction: works with mouse, touch (390 emulation, vertical swipe still scrolls), keyboard, screen reader
-  text (`aria-valuetext`, live region), reduced motion; numbers never exceed real claims; CTA carries values to the form.
+- Signature interaction: actually on the Home page and hard to miss; works with mouse, touch (390 emulation,
+  vertical swipe still scrolls), keyboard, screen reader text (`aria-valuetext`, live region), reduced motion;
+  numbers never exceed real claims; CTA carries values to the form. Screenshot at least two states.
 - Forms: required/invalid states, success state, submission reaches the endpoint (use a test address / GHL test
-  contact; don't spam the client).
+  contact; don't spam the client). Multi-step qualifiers ask for contact last. Estimators show a range before
+  any contact field.
+- **Conversion audit (P16):** at 1440 and 390, does screen one state the outcome, the place, the next step, and
+  the proof? Is the primary CTA visible? Only one primary button style? Trust beside every ask? Field count
+  3–5 on a short form? Targets ≥ 48px for primary actions? Banned patterns (load pop-ups, self-opening chat,
+  fake urgency, gated prices) absent? Header phone and CTA present? Sticky mobile call bar? Dark closing band?
+- **Tracking test (P19):** fire every event in the preview (`quote_submit`, `call_click`, `estimator_*`,
+  `qualifier_*`, …) and confirm it in the dashboard before launch. `brief/measurement.md` is filled in.
 
 ## Step 5 — Copy honesty check
 
@@ -94,11 +142,23 @@ Screenshots: brief/review/home-desktop.png, home-mobile.png, … (attach the 4�
 
 Checklist
 - [x] Every page screenshotted at 1440 and 390 (N pages)
+- [x] Agency rubric: would a design agency ship this? (fail if DIY at the fold or on two+ axes, or 3+ template tells)
+- [x] Care rubric: would the client's customer feel cared for? (people/voice, plain language, obvious call/quote/contact, body 16px+, no mystery nav, hospitality not cleverness)
+- [x] Type: body 16px minimum, no text under 14px; drama is in display size
+- [x] First impression bar: first viewport feels finished at 1440 and 390
+- [x] Composition moves present (Home ≥ 4, interiors ≥ 2); anti-template checklist passed
+- [x] Delight: 1–2 client-specific moments listed; not a sprinkle of generic ticks
+- [x] Motion plan followed (one hero load-in, one CSS signature, hovers; the rest still); Playwright scroll video or equivalent watched
+- [x] Anti-generic: no default eyebrow parade, card-grid indexes, fade-every-section, unjustified count-ups, or cream+serif+terracotta unless sampled and justified
+- [x] Template smell test: not a Legacy boxed hero + tile grid, not Teton badge soup, not Hammond remodeler chrome
+- [x] Conversion: one primary CTA, trust beside the ask, contact last on tools/qualifiers, thank-you page, no banned patterns
+- [x] Measurement: events fired in preview, brief/measurement.md filled, 90-day baseline noted
 - [x] No horizontal overflow or inner scrollbars
 - [x] Type and spacing on tokens
 - [x] Contrast AA (manual check on hero text over photos)
 - [x] Touch targets ≥ 44px; mobile action bar OK
-- [x] Reduced motion: everything visible, interactions work
+- [x] Reduced motion: everything visible (no opacity-0 holes), interactions work; focus-visible obvious; no content-hiding loader
+- [x] Signature interaction on Home, two states screenshotted
 - [x] Lighthouse mobile: Perf 96 / A11y 100 / BP 100 / SEO 100; LCP 1.8s; CLS 0.01
 - [x] SEO: titles, descriptions, canonical, OG, sitemap, LocalBusiness schema (null fields omitted)
 - [x] Honesty: 14 claims checked, all sourced; 3 facts hidden until confirmed (list)

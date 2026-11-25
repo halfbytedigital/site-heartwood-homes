@@ -29,20 +29,27 @@
   --weight-bold: 650;
   --weight-display: 700;
 
-  /* Fluid scale: 390px → 1440px. Default = mobile 1.2 / desktop 1.333. Regenerate for calm (1.25) or bold (1.5). */
-  --step--1: clamp(0.8125rem, 0.789rem + 0.095vw, 0.875rem);
-  --step-0:  clamp(1rem, 0.954rem + 0.190vw, 1.125rem);
+  /* Fluid scale: 390px → 1440px.
+     Body (--step-0) is 16px minimum (16 → 18). Meta (--step--1) is 14px minimum (14 → 15).
+     Never ship type smaller than 14px. Drama comes from --step-display (default 56–88px at 1440; luxury-modern up to 120px when the plan names it), not tiny meta. */
+  --step--1: clamp(0.875rem, 0.852rem + 0.095vw, 0.9375rem); /* 14 → 15 */
+  --step-0:  clamp(1rem, 0.954rem + 0.190vw, 1.125rem);       /* 16 → 18 */
   --step-1:  clamp(1.1875rem, 1.071rem + 0.476vw, 1.5rem);
   --step-2:  clamp(1.4375rem, 1.229rem + 0.857vw, 2rem);
   --step-3:  clamp(1.75rem, 1.402rem + 1.429vw, 2.6875rem);
   --step-4:  clamp(2.0625rem, 1.505rem + 2.286vw, 3.5625rem);
   --step-5:  clamp(2.5rem, 1.664rem + 3.429vw, 4.75rem);
-  --step-display: var(--step-5);     /* hero H1; bold sites may go larger */
+  /* Display default: ~44px at 390 → ~77px at 1440, capped at 88px (the grounded 56–88px band).
+     Luxury-modern / Eppright knob (only when the plan names it):
+     --step-display: clamp(3rem, 1.25rem + 5.9vw, 7.5rem);  /* ~48px → up to 120px */
+     Tight leading and slight negative tracking are required. */
+  --step-display: clamp(2.75rem, 1.15rem + 4.05vw, 5.5rem);
+
   --leading-tight: 1.0;
   --leading-snug: 1.2;
   --leading-body: 1.6;
   --tracking-eyebrow: 0.12em;
-  --tracking-display: -0.01em;
+  --tracking-display: -0.03em;
   --measure: 65ch;
 
   /* Space (8pt) */
@@ -51,9 +58,9 @@
   --space-3xl: 64px; --space-4xl: 80px; --space-5xl: 96px; --space-6xl: 128px; --space-7xl: 160px;
 
   /* Layout */
-  --container: 1152px;
+  --container: 1240px;
   --container-narrow: 720px;
-  --container-wide: 1344px;
+  --container-wide: 1440px;
   --gutter: 16px;
   --section-pad: 64px;
   --section-pad-tight: 48px;
@@ -75,13 +82,21 @@
   --btn-pad-x: 32px;
   --input-h: 48px;
 
-  /* Motion: CHANGE per motion knob (calm / crisp / bold) */
+  /* Motion: CHANGE per motion knob (calm / crisp / bold). motion.css also
+     overrides --reveal-y, --dur-hero, --dur-reveal, --stagger, --parallax-max. */
   --dur-fast: 120ms;
   --dur-base: 200ms;
   --dur-slow: 320ms;
-  --dur-reveal: 600ms;
+  --dur-reveal: 700ms;
+  --dur-hero: 900ms;
+  --dur-count: 1200ms;
   --ease-out: cubic-bezier(.2, .7, .2, 1);
   --ease-in-out: cubic-bezier(.65, 0, .35, 1);
+  --ease-reveal: cubic-bezier(.22, 1, .36, 1);
+  --reveal-y: 1.25rem;
+  --reveal-scale: 1;
+  --stagger: 65ms;
+  --parallax-max: 8%;
 }
 
 @media (min-width: 640px)  { :root { --gutter: 24px; } }

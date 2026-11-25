@@ -1,0 +1,44 @@
+/* delight.css — optional utilities for the delight layer (see skills/page-build/delight.md).
+   Copy to sites/<slug>/src/styles/delight.css and import after motion.css.
+   Opt in with classes; do not sprinkle every class on every element. */
+
+/* D1 — underline draws on hover/focus */
+.delight-underline {
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size var(--dur-base) var(--ease-out);
+}
+.delight-underline:hover,
+.delight-underline:focus-visible {
+  background-size: 100% 1px;
+}
+
+/* C14 / D6 — hairline and a quiet badge */
+.delight-rule { border: 0; border-top: 1px solid var(--color-line); }
+.delight-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4em 0.7em;
+  border: 1px solid currentColor;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  transform: rotate(-4deg);
+}
+
+/* D7 — static stamp tilt (add JS only if you need rotation; stop under reduced motion) */
+.delight-stamp { display: inline-block; transform: rotate(-8deg); }
+
+/* D4 — pause a CSS marquee on hover/focus; animation itself is defined by the site */
+.delight-marquee:hover,
+.delight-marquee:focus-within { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  .delight-underline { background-size: 100% 1px; transition: none; }
+  .delight-marquee { animation: none !important; }
+  .delight-badge,
+  .delight-stamp { transform: none; }
+}

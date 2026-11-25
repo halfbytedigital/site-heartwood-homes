@@ -26,7 +26,7 @@ Industry pages, added only when answers or sources support them:
 | Portfolio / Projects + project detail pages | builders, remodelers, landscapers, painters with 6+ real projects |
 | Our process | high-ticket or multi-step work (builders, design-build, roofing claims) |
 | Financing | the client really offers it (named partner) |
-| Service area hub + town pages | several towns with real town-specific content |
+| Service area hub + town pages | several towns with **real local proof** (a project, a review, or a crew who works there). Renewal-style city pages: local H1, local photos, local review, CTA prefilled with the town. Never doorway pages. |
 | Reviews | 10+ real reviews; otherwise reviews live on Home/About |
 | Equipment / Our machine | equipment is a selling point (316) |
 | Maintenance plans / memberships | real plans exist |
@@ -83,18 +83,47 @@ question, leave all facts `null`, and jump to Step 5.
 
 ```
 ### Home
-1. Hero: H3 "Split with stat rail" | H1 draft | lede draft | CTA: Start your project (+ Call if phone known) | image: <file or "needs photo">
-2. Proof bar: P1 | years (null→hidden), license (null→hidden), Google link (null→hidden)
-3. Services: S2 numbered list | from C1 answer
-...
+1. Hero: full-bleed job photo, H1 in the shared container, one primary CTA + quieter Call | image: the ranked memorable photo
+2. Trust strip (C18 / P1): rating, years, licence, associations — confirmed facts only
+3. Featured work: Eppright big-photo + info card (C16) or Nature's Call one-big-plus-two-small (C17)
+4. Signature / process / services (as planned)
+5. Owners on a job site (C20) if we have photos
+6. Reviews
+7. Service area (with town-page links if they exist)
+8. FAQ
+9. Dark closing CTA band (C19) with the qualifier or short form + phone
 ```
 
-- Archetype IDs from `skills/page-build/archetypes.md`; no two adjacent sections with the same archetype; Home uses ≥ 5.
-- Mark where the one **signature interaction** lives.
+- Archetype IDs from `skills/page-build/archetypes.md`; no two adjacent sections with the same archetype; Home uses ≥ 5
+  *and* at least three layout shapes (split or full-bleed media, a snap rail or ruled grid, a manifesto or dark CTA — not
+  five stacked card rows). Follow each archetype's recipe, including its motion.
+- **Composition moves** from `page-build/compositions.md`: list them per page (Home ≥ 4, interiors ≥ 2).
+- **Delight:** 1–2 client-specific moments for the *site*, named in the plan (not 3–5 details per page).
+- **Motion plan** (A7): one hero load-in, one CSS scroll-driven signature, hovers; everything else still.
+- **Layout default:** shared, centered container and consistent left edges. Asymmetry only in restrained,
+  grid-snapped amounts (a split hero, an occasional offset image), recorded in the plan — never required,
+  never wandering.
+- **Work index:** default to a photo-forward, calm C15 / W7 (photo-led list or split list with a sticky
+  crossfading image; large mobile thumbnails). Not a typographic cursor-follow, and not a card grid.
+- **Anti-generic:** do not plan eyebrows on every heading, fade-up on every section, or a count-up stat row
+  unless each is justified by name. Do not default the palette to cream + serif + terracotta.
+  Home's feature is the trade-specific signature interaction.
+- Mark where the one **signature interaction** lives. On Home it belongs in the hero (H7) or as the first content
+  section (T3), full width — not buried. If photos are still pending, the plan still includes it (placeholder frames).
+- Note the first-viewport plan for Home *and* each interior page (H1/H2/H4) so no page opens on a bare heading stack.
+  Write the site's one-sentence point of view into `brand.md` if it isn't there yet.
 - Draft headlines in the chosen voice; every fact shows its source or `null`.
 - Assets needed per section, and whether we have them.
 - SEO per page: title, meta description, target query, H1.
 - Existing site: old URL → new URL redirects.
+
+Also write, in the same `plan.md`:
+
+- **Funnel map (P6):** every page has a stage, one primary action (verb + outcome), a secondary, and its trust elements.
+- **Tool evaluation (P7):** score candidates and apply Jake's rule — a quote or estimator only when the client can supply real pricing inputs; otherwise an Adair/Schumacher multi-step qualifier, contact last. List the data Jake must get if a tool is a placeholder.
+- **Top objections (P8):** the client's top five, each assigned to a section or the FAQ. Ask Jake if they aren't in intake.
+- **City pages (P9):** only towns with local proof. Skip if there is none.
+- **Measurement plan (P10):** copy `templates/measurement-plan.md` to `brief/measurement.md` and fill the chosen analytics tool and the event list. Note the 90-day baseline and the monthly report template.
 
 ## Step 5 — Approval
 

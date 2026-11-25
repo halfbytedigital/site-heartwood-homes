@@ -10,6 +10,13 @@ Think of it like this:
   check its own work before you see it.
 - **Each client site is built fresh** in its own folder under `sites/`. 316 Land Clearing can live there too as a
   reference, but new sites never start as a copy of it.
+- **First runs have to pop, and look like a studio designed them.** The playbook starts with a material board
+  (colors from the client's photos, fonts for the subject, one memorable element). Layout carries the design.
+  Delight is one or two moments from the client's world, not a sprinkle of widgets. Motion is a short plan
+  (one hero load-in, one scroll-driven signature, hovers) — not a fade-in on every section. Accessibility and
+  performance are a differentiator. The review questions are "would a design agency ship this?" and "would the client's customer feel cared for?" The guiding principle is **cutting edge but caring**. Clean-but-generic
+  fails, including the usual AI-site tells (eyebrow on every heading, identical card grids, cream + serif +
+  terracotta as a default). Sites still have to look unlike each other.
 
 ## Start a new site
 
@@ -48,11 +55,11 @@ See `EXAMPLE-heartwood-intake.md` for what the first few turns look like, in bot
 | Skill | What it does in one line |
 |---|---|
 | **intake** | Asks one trade-specific question at a time (or learns from the old site and asks only the gaps), then offers 3 looks. |
-| **design-foundation** | The rules every site follows (spacing, type, contrast, mobile call bar, speed, honesty), plus the "knobs" that make each site look different. |
-| **brand-kit** | Uses the client's real brand exactly if they have one; builds one from the chosen look if they don't. |
-| **site-plan** | Proposes pages, then asks page-specific questions only as each page needs them, and outlines every page before building. |
-| **page-build** | Builds the Astro site, mixing section styles so no two sites look alike, plus one signature interactive piece. |
-| **review** | Screenshots and self-checks every page before you see it. |
+| **design-foundation** | The rules every site follows (first impression, spacing, type, contrast, motion, mobile call bar, speed, honesty, conversion), plus the "knobs" that make each site look different. Approved references and a template smell test live alongside it. |
+| **brand-kit** | Writes a material board first (colors from their photos, fonts for the subject, one memorable element), then uses the client's real brand exactly if they have one, or builds tokens from the board if they don't. |
+| **site-plan** | Proposes pages, maps the funnel and tools, plans city pages and measurement, then outlines every page before building. |
+| **page-build** | Builds the Astro site from the material board and motion plan, with composition moves, conversion patterns (forms, tools, CTAs), 1–2 client-specific moments, and one signature interactive piece on the Home page. |
+| **review** | Screenshots and self-checks, including "would a design agency ship this?", "would the client's customer feel cared for?", the template smell test, and a conversion / tracking audit, before you see it. |
 
 ## Folder layout
 
@@ -61,7 +68,7 @@ halfbyte-sites/
   CLAUDE.md            instructions Claude Code reads automatically
   .cursor/rules/       the same instructions for Cursor
   skills/              the playbook (edit these to change how every future site is built)
-  templates/           starting files (token list, facts file, brief formats)
+  templates/           starting files (token list, motion.css / motion.ts, facts file, brief formats)
   scripts/             review script, rule sync script
   sites/
     heartwood-homes/   one folder per client, each a normal Astro project
@@ -89,6 +96,7 @@ These files belong only in this repo. Don't put them in your global Cursor rules
 ```
 npm install
 npm run dev          # local preview at http://localhost:4321
+                     # for a tunnel, astro.config.mjs must allow .trycloudflare.com (see page-build)
 npm run build        # production build for Cloudflare Pages
 node ../../scripts/review.mjs --base http://localhost:4321 --out brief/review
 ```

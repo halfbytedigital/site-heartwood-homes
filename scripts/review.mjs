@@ -61,8 +61,8 @@ async function discoverPages(browser) {
 
 // Runs inside the page.
 function audit() {
-  const out = { overflow: [], fontSizes: {}, offScaleFonts: [], smallTargets: [], contrast: [], images: [],
-    innerScrollbars: [], sections: [], headings: {}, seo: {}, reveal: [] };
+  const out = { overflow: [], fontSizes: {}, offScaleFonts: [], tooSmallFonts: [], smallTargets: [], contrast: [], images: [],
+    innerScrollbars: [], sections: [], headings: {}, seo: {}, reveal: [], alignment: {} };
   const vw = document.documentElement.clientWidth;
   const root = getComputedStyle(document.documentElement);
 
@@ -122,6 +122,8 @@ function audit() {
     out.fontSizes[fs] = (out.fontSizes[fs] || 0) + 1;
     if (steps.length && !steps.some(([, v]) => Math.abs(v - fs) <= 0.6) && out.offScaleFonts.length < 25)
       out.offScaleFonts.push({ el: sel(el), size: fs, text: el.textContent.trim().slice(0, 40) });
+    if (fs < 14 && out.tooSmallFonts.length < 25)
+      out.tooSmallFonts.push({ el: sel(el), size: fs, text: el.textContent.trim().slice(0, 40) });
   }
 
   // Contrast (solid backgrounds only; text over images is flagged for manual check)
@@ -190,6 +192,36 @@ function audit() {
   for (let i = 1; i < out.sections.length; i++) {
     if (out.sections[i].bg === out.sections[i - 1].bg && out.sections[i].bg !== 'rgba(0, 0, 0, 0)') out.sections[i].sameBgAsPrevious = true;
   }
+
+  // Alignment: in-container text left edges should agree (drift >= 16px is a fail signal)
+  const contentLefts = [];
+  const alignFlags = [];
+  const isBleed = (n) => n != null && n <= 8;
+  for (const s of document.querySelectorAll('main > section, main > div > section, footer, header')) {
+    const h = s.querySelector('h1, h2, h3');
+    const p = s.querySelector('p, .lede, li, label');
+    const pick = (el) => el && visible(el) ? Math.round(el.getBoundingClientRect().left) : null;
+    const hl = pick(h), pl = pick(p);
+    if (hl != null && !isBleed(hl) && hl < vw * 0.55) contentLefts.push({ el: sel(s), kind: 'heading', left: hl, text: (h.textContent || '').trim().slice(0, 40) });
+    if (pl != null && !isBleed(pl) && pl < vw * 0.55) contentLefts.push({ el: sel(s), kind: 'body', left: pl, text: (p.textContent || '').trim().slice(0, 40) });
+    if (h && p && hl != null && pl != null) {
+      const ha = getComputedStyle(h).textAlign, pa = getComputedStyle(p).textAlign;
+      const centered = (a) => a === 'center' || a === '-webkit-center';
+      if (centered(ha) !== centered(pa)) {
+        alignFlags.push({ type: 'heading-body-align-mismatch', el: sel(s), headingAlign: ha, bodyAlign: pa, heading: (h.textContent || '').trim().slice(0, 40) });
+      }
+      if (Math.abs(hl - pl) >= 16 && !centered(ha) && !centered(pa) && !isBleed(hl) && !isBleed(pl)) {
+        alignFlags.push({ type: 'heading-body-left-mismatch', el: sel(s), headingLeft: hl, bodyLeft: pl, delta: hl - pl, heading: (h.textContent || '').trim().slice(0, 40) });
+      }
+    }
+  }
+  const leftVals = contentLefts.map((x) => x.left);
+  const minL = leftVals.length ? Math.min(...leftVals) : 0;
+  const maxL = leftVals.length ? Math.max(...leftVals) : 0;
+  if (maxL - minL >= 16) {
+    alignFlags.unshift({ type: 'wandering-left-edge', min: minL, max: maxL, spread: maxL - minL, samples: contentLefts.slice(0, 12) });
+  }
+  out.alignment = { minL, maxL, spread: maxL - minL, flags: alignFlags, lefts: contentLefts };
 
   // Headings + SEO
   const hs = [...document.querySelectorAll('h1,h2,h3,h4,h5,h6')];
@@ -267,6 +299,8 @@ for (const [key, pg] of Object.entries(report.pages)) {
       `  - ${flag(!r.pageScrollWidth && !r.overflow.length)} horizontal overflow ${r.pageScrollWidth ? `(page ${r.pageScrollWidth}px)` : ''} ${r.overflow.slice(0, 5).map((o) => o.el).join(', ')}`,
       `  - ${flag(!r.innerScrollbars.length)} inner scrollbars ${r.innerScrollbars.join(', ')}`,
       `  - ${flag(!r.offScaleFonts.length)} font sizes on scale ${r.offScaleFonts.slice(0, 6).map((f) => `${f.el} ${f.size}px`).join(', ')}`,
+      `  - ${flag(!(r.tooSmallFonts && r.tooSmallFonts.length))} type ≥14px ${ (r.tooSmallFonts || []).slice(0, 6).map((f) => `${f.el} ${f.size}px`).join(', ')}`,
+      `  - ${flag(!(r.alignment && r.alignment.flags && r.alignment.flags.length))} alignment (spread ${r.alignment ? r.alignment.spread : '?'}px) ${(r.alignment && r.alignment.flags || []).slice(0, 4).map((f) => f.type + (f.el ? ' ' + f.el : '') + (f.spread != null ? ' ' + f.spread + 'px' : '')).join('; ')}`,
       `  - ${flag(r.sections.every((s) => s.onScale))} section padding on tokens ${r.sections.filter((s) => !s.onScale).map((s) => `${s.el} ${s.pt}/${s.pb}`).join(', ')}`,
       `  - ${flag(!r.sections.some((s) => s.sameBgAsPrevious))} adjacent sections differ ${r.sections.filter((s) => s.sameBgAsPrevious).map((s) => s.heading || s.el).join(', ')}`,
       `  - ${flag(!r.contrast.some((c) => c.ratio))} contrast ${r.contrast.filter((c) => c.ratio).slice(0, 6).map((c) => `${c.el} ${c.ratio}:1<${c.need}`).join(', ')}${r.contrast.some((c) => c.manual) ? ` · manual: ${r.contrast.filter((c) => c.manual).length} over images` : ''}`,

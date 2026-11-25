@@ -106,14 +106,23 @@ Or tell me something else."
 
 Rules for directions: real Google/self-hostable fonts; hex values that pass the contrast rules in
 design-foundation; directions differ on fonts, palette, photo style, layout and signature piece; if there's a brand
-kit, all three use it. Full direction details (radius, density, texture, archetypes) go into `brief/brand.md`
-after Jake picks, not into the chat.
+kit, all three use it. **Sample palettes from the client's photos** (or kit) — do not offer "warm cream +
+Fraunces/Newsreader + terracotta" (or rust/clay) as a default "premium / editorial" direction; that combo is a
+generic AI tell unless their pictures actually look like that. Fonts should be chosen for the subject, not from
+a preset list. Each direction names **one memorable element**. Full details go into `brief/material-board.md`
+and `brief/brand.md` after Jake picks, not into the chat.
+
+**Opt-in directions.** Do not offer Cormack (premium / editorial) or Thelen (playful / retro) as one of the
+three default directions unless Jake asks, or the client clearly fits (a high-end custom builder with cinematic
+photos; a personality-forward trade with a real retro or mascot identity). Those are skill options, used
+selectively. The default three stay in the grounded band (see `design-foundation/grounded-references.md`).
 
 ### Hand-off
 
-After E, write the choices into `intake.md` and move straight to `skills/brand-kit/SKILL.md` (it only stops if a
-brand kit has a real conflict), then `skills/site-plan/SKILL.md`. Tell Jake in one line: "Got it. Setting up the
-colors and fonts, then I'll walk through the pages with you."
+After E, write the choices into `intake.md` and move to `skills/brand-kit/SKILL.md`. That skill starts with a
+**material board** (colors from their photos, fonts for the subject, one memorable element) *before* tokens.
+It only stops if a brand kit has a real conflict. Then `skills/site-plan/SKILL.md`. Tell Jake: "Got it. I'll
+put a material board together from their photos, then we'll walk the pages."
 
 ## Learn mode ("learn from their existing site")
 
