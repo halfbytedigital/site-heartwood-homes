@@ -33,6 +33,7 @@ and confirm each one in the dashboard before launch.
 | `qualifier_start` | First step of a multi-step qualifier | form | Engagement |
 | `qualifier_complete` | Qualifier submitted | form | Primary conversion |
 | `directions_click`, `email_click` | Map or mailto tapped | page | Minor |
+| `save_house` | Visitor saves or unsaves a house (heart) | slug, name, saved (`true`/`false`), count | Engagement |
 
 ## Call tracking
 

@@ -86,8 +86,10 @@ photographs, keep the interaction calm, and stay on the shared container grid.
 large image that crossfades** (240–400ms, opacity only, no layout shift). One image panel, shared by the
 rows — do not mount a full-viewport photo on every row and snap `opacity` from 0 to 1. Type (name, place or
 year, optional numeral) stays readable at 14px+ and lines up with the site's container left edge. On mobile,
-show **large thumbnails** (full-width or two-up, not a 72px chip). Keyboard and touch work without hover;
-reduced motion shows the selected photo immediately.
+show **large thumbnails** (full-width or two-up, not a 72px chip). Titles and the first row must
+**clear the sticky header and the sticky call bar** (scroll-margin or padding). Fail if a house name
+tucks under the bar. Keyboard and touch work without hover; reduced motion shows the selected photo immediately.
+Each card may include the save-this-house heart (C28d).
 
 **Not the default:** a type-first list whose photo is a studio-style cursor-follow or a sudden full-bleed
 takeover. That variant is allowed only when `brief/plan.md` justifies it for a more editorial audience. It is
@@ -110,9 +112,10 @@ Legacy-style identical tile grid.
 
 ### C18 Trust strip
 
-A short band directly under the hero: Google rating and review count (linked to the real profile when we have
-it), years, licence or warranty, associations — only confirmed facts. Quiet type, no badge soup (Teton).
-This is the default proof after the hero (P1).
+A short band directly under the hero: Google rating and review count (linked to the **real Google
+Business Profile** when we have the URL), years, licence or warranty, associations — only confirmed facts.
+If we do not have a profile URL, show the rating as plain text — **do not link to a Google search**.
+Quiet type, no badge soup (Teton). This is the default proof after the hero (P1).
 
 ### C19 Dark closing CTA band
 
@@ -149,3 +152,84 @@ and mid-page bands; don't drift the left edge off the container.
 - Don't use C7 on every section (numeral fatigue).
 - Don't overlay type on every image (C8 is a choice, not a default).
 - Don't invert every CTA (C6 works because it is rare).
+
+### C22 Build-story scroll (lot → foundation → frame → finish)
+
+Use only when the harvested photos (or video) actually show construction phases. A vertical story, in order:
+cleared lot or site, foundation, frame, finishes, the lived-in house. Short captions in plain language. This
+can also fill a Home lot-to-finish scrubber — but only with photos of *that same house*. Never paste one
+project's foundation onto another project's finished shot. Missing chapters stay honest (words, no stock).
+
+### C23 Room-by-room walkthrough
+
+Use when there are distinct interior rooms (kitchen, living, bath, bedroom, porch). The default highlight
+is the **Walk through rail (C28b)** — tappable section dots, current one lit, `scroll-margin-top` on the
+sections themselves (not on the nav links). Infer rooms from the photo when filenames or captions already
+name them (e.g. `jp-11-kitchen.webp`); otherwise use plain, obvious labels ("Kitchen", "Primary bath") only
+when the picture is unambiguous. Don't invent room names.
+
+### C24 Editorial photo spreads
+
+The **default** treatment for a builder project page with a real gallery. Varied layouts — a full-bleed hero,
+a two-up, a vertical next to a square, a wide aerial — with optional material or credit notes pulled from the
+source ("Photo by Travis Jacobs", "hardwood and finish carpentry in house"). Not an identical tile grid
+(Legacy). Not a typographic list with one tiny thumb.
+
+### C25 Before/after or day/dusk drag slider
+
+Use only when we have a **matched pair of the same vantage**: the same view before and after, or the same
+elevation in daylight and at dusk/blue hour. It must be a **real drag reveal** (a continuous range input,
+not `step="1"` and not a snap toggle). Do not force a slider from unrelated photos, and do not caption two
+different angles as "the same front." Unmatched frames stay editorial (C24). If the story is a renovation or
+a dusk exterior but we only have the after (or only the day), say so and use C24 until Jake can get the missing frame.
+
+### C26 Detail hotspots on a hero photo
+
+Use only when we have close detail shots *and* something true to say (a named material, a piece the crew
+built, a credit). Pins or quiet marks on a wide photo that reveal the detail. Needs labels from the client
+or from unambiguous captions. Without those, skip it — don't invent "premium fixtures" callouts.
+
+### C27 Next-house handoff
+
+Every project page ends with the **C28e next-house card** (a big photo of the next project, its name, a
+one-line teaser, and a small Previous link) before the dark closing band. Gentle zoom on hover; tap or swipe
+on mobile; View Transitions API with a short opacity fallback. No door animation. Teaser copy must be sourced
+or plainly descriptive of the photo — do not invent a story.
+
+### Fullscreen view (utility only)
+
+A fullscreen / lightbox is **not** the project page and **not** the feature. It is a utility on top of
+C22–C28: Close at the top right, Previous and Next on the sides, swipe on a touch device, arrow keys, Esc
+to close, focus trapped, reduced motion shows the photo with no flourish. Never put a "View larger" badge
+on every photograph — the photo itself is the control (C28c). Never ship a project page that is only a
+hero plus "click to open gallery."
+
+### C28 Project-page shell (default on every project page)
+
+Ship this shell on **every** project page, across sites — not as a per-project option. Content inside the
+shell still follows C22–C26 according to what the photos can support. Templates live in
+`templates/components/` (`ProjectHero`, `WalkRail`, `ProjectShot`, `SaveHouse`, `NextHouse`, `PhotoViewer`)
+with `templates/styles/project-page.css` and `templates/scripts/project-page.ts`.
+
+**(a) Photo-first opening.** The first viewport at 1440 and at 390 is the project's most striking photograph,
+full-bleed, with the title over it or just under it. A gentle settle-in plays once: a slight scale ease on
+the photo plus the title fading up, 600–900ms. The long description moves *below* the hero, as a short lede
+— never a wall of boilerplate above the first picture. Reduced motion: no animation, photo and title visible
+immediately. This *is* the page's hero load-in; don't add a second one.
+
+**(b) Walk through rail.** A thin rail fills as you scroll, with tappable dots per section (exterior, living,
+kitchen, outdoor — only sections that exist). The current section is lit via IntersectionObserver. Put
+`scroll-margin-top` on the **sections**, not on the nav links. On mobile the rail is a slim top or bottom bar
+that never collides with the sticky call bar.
+
+**(c) Reactive photos.** On hover, a slight lift, brighten, and soft shadow (150–250ms). On touch, brief
+pressed feedback. No "View larger" badge on every photo. Tapping a photo opens the cleaned-up fullscreen
+utility (above).
+
+**(d) Save-this-house heart.** A heart on each project page and on index cards. Saves persist in
+`localStorage` with no account. A small saved count appears in the header or near the CTA. The Start-your-home
+CTA reads e.g. "Start your home (2 saved)" when the visitor has saves. The qualifier form receives the saved
+house names as a hidden or visible "Houses you liked" field. Fire `save_house` (slug, name, saved true/false,
+count). Accessible: `aria-pressed`. Honest: no fake counts — only houses this visitor saved.
+
+**(e) Next-house card.** See C27. One calm card at the bottom, then the dark closing band.

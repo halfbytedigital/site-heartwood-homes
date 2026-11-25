@@ -244,6 +244,35 @@ function audit() {
   out.claims = [...new Set((txt.match(/[^.\n]*(\b\d{2,}\+?\s*(years?|homes|projects|acres|reviews|customers|jobs)\b|since \d{4}|\d\.\d\s*(stars?|★)|#\s?\d{3,}|licensed|insured|bonded|certified|award|guarantee|warranty|best|#1|top[- ]rated)[^.\n]*/gi) || []).map((s) => s.trim()))].slice(0, 40);
   // Reveal elements stuck hidden
   for (const el of document.querySelectorAll('[data-reveal]')) if (parseFloat(getComputedStyle(el).opacity) < 0.05) out.reveal.push(sel(el));
+
+  // C28: project detail pages must show a photograph in the first viewport
+  const parts = location.pathname.replace(/\/+$/, '').split('/').filter(Boolean);
+  const isProjectDetail = !!document.querySelector('[data-project-page], [data-project-hero]') ||
+    (parts.length >= 2 && /^(projects|work|portfolio|homes)$/.test(parts[0]));
+  if (isProjectDetail) {
+    const vh = window.innerHeight;
+    const imgs = [...document.querySelectorAll('main img, [data-project-hero] img, .project-hero img')];
+    const inFold = imgs.find((img) => {
+      const r = img.getBoundingClientRect();
+      const visibleH = Math.min(r.bottom, vh) - Math.max(r.top, 0);
+      return r.width > 80 && visibleH > Math.min(160, vh * 0.2);
+    });
+    out.projectHeroPhoto = { required: true, present: !!inFold, src: inFold ? (inFold.currentSrc || inFold.src || '').split('/').pop() : null };
+  }
+  const viewBadges = [...document.querySelectorAll('button, a, span, label')].filter((el) => /^\s*view larger\s*$/i.test((el.textContent || '').trim()));
+  out.viewLargerBadges = viewBadges.length;
+  out.googleSearchLinks = [...document.querySelectorAll('a[href*="google.com/search"]')].map((a) => a.getAttribute('href'));
+  const bar = document.querySelector('.action-bar');
+  if (bar) {
+    const cs = getComputedStyle(bar);
+    const br = bar.getBoundingClientRect();
+    if (cs.display !== 'none' && br.height > 0) {
+      out.actionBarCollisions = [...document.querySelectorAll('.work-name, .work-link, [data-work] a')].filter((el) => {
+        const r = el.getBoundingClientRect();
+        return r.width > 0 && r.bottom > br.top + 2 && r.top < window.innerHeight && r.top < br.bottom;
+      }).slice(0, 8).map(sel);
+    }
+  }
   return out;
 }
 
@@ -311,6 +340,18 @@ for (const [key, pg] of Object.entries(report.pages)) {
       `  - ${flag(!r.placeholders.length)} placeholders ${r.placeholders.join(', ')}`,
       `  - ${flag(!r.consoleErrors.length && !r.failedRequests.length)} console/network ${[...r.consoleErrors, ...r.failedRequests].slice(0, 4).join(' | ')}`,
       `  - ${flag(!r.tokens.missingTokens.length)} token contract ${r.tokens.missingTokens.join(', ')}`);
+    if (r.projectHeroPhoto && r.projectHeroPhoto.required) {
+      lines.push(`  - ${flag(r.projectHeroPhoto.present)} project first viewport photo ${r.projectHeroPhoto.present ? (r.projectHeroPhoto.src || '') : 'MISSING'}`);
+    }
+    if (typeof r.viewLargerBadges === 'number') {
+      lines.push(`  - ${flag(!r.viewLargerBadges)} "View larger" badges ${r.viewLargerBadges || 0}`);
+    }
+    if (r.googleSearchLinks && r.googleSearchLinks.length) {
+      lines.push(`  - ✘ Google search links (use a Business Profile URL, or no link): ${r.googleSearchLinks.length}`);
+    }
+    if (r.actionBarCollisions && r.actionBarCollisions.length) {
+      lines.push(`  - ✘ sticky call bar covers: ${r.actionBarCollisions.join(', ')}`);
+    }
     if (vpName === 'desktop') {
       const s = r.seo;
       lines.push(`  - ${flag(s.titleLen > 0 && s.titleLen <= 60 && s.descLen >= 50 && s.descLen <= 155 && s.canonical && s.ogImage && s.lang && s.skipLink && s.mainCount === 1)} SEO/a11y basics: title ${s.titleLen}c, desc ${s.descLen}c, canonical ${!!s.canonical}, og ${!!s.ogImage}, lang ${s.lang}, skip ${s.skipLink}, main×${s.mainCount}, schema [${s.jsonLdTypes.join(', ')}]`);

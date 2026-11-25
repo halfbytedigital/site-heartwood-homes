@@ -149,7 +149,7 @@ Steps:
    - Site-wide: logo (header img/SVG), favicon/apple-touch-icon, colors (computed styles of header, buttons, links,
      backgrounds; CSS custom properties), fonts (`font-family`, Google Fonts/Typekit links), footer (NAP, hours,
      license lines, copyright year, associations).
-   - Photos ≥ 800px (originals from `srcset`; flag likely stock), embedded videos.
+   - **Project and gallery harvest (required, not optional):** crawl every projects/portfolio/gallery index *and* every project, album, or lightbox-detail page you can reach without violating robots.txt (do not request `*?lightbox=` if robots disallows it — read the full-resolution media URLs already on the page instead). Download **every** photo and video poster at the **full-resolution original**, not a cropped srcset, not the first image only, not a single cover per project. On Wix, that is `https://static.wixstatic.com/media/{id}` without `/v1/fill` crop params; on other hosts, pick the largest untransformed source. Save to `brief/assets/projects/<slug>/` with a `manifest.json` per project (name, location, size, style, dates, description, photo credits, captions, alt, width, height, source URL). Log **per-project photo counts** (source vs downloaded) in `brief/sources.md` and in the "What I learned" summary. **This is a fail** if a project is later built with only one photo while the source had more.
    - Reviews/testimonials verbatim with name and page URL; embedded Google review widgets.
    - Social links, Google Business Profile / Maps links, BBB, Houzz, Nextdoor, Yelp links found **on the site**.
      Only follow those exact links; don't search for other profiles.
@@ -161,8 +161,9 @@ Steps:
    `src/data/site.ts` values for **high-confidence facts only**. Low-confidence items stay `null` and go on the gap list.
    Save assets to `brief/assets/`. Note old URLs for redirects.
 5. **Send a short "What I learned" summary** (≤ 10 bullets, no wall of text): services, area, contact, proof found
-   (reviews, licenses, years, as quoted), photo count/quality, brand (logo quality, colors, fonts), what looks
-   outdated. Link to `sources.md` for the details. End the same message with the **first gap question** (one only).
+   (reviews, licenses, years, as quoted), **per-project photo counts** (and any project that has only a cover),
+   brand (logo quality, colors, fonts), what looks outdated. Link to `sources.md` for the details. End the same
+   message with the **first gap question** (one only).
 6. **Ask only the gaps and low-confidence items, one per message, most build-blocking first:**
    1. Keep the existing brand or refresh it? (decides brand kit + art direction)
    2. Work mix, if the site was unclear or looks outdated
@@ -186,9 +187,11 @@ Steps:
 Use Playwright or fetch; stay on that domain; respect robots.txt; max ~40 pages. Save files to
 `brief/assets/` and log every item in `sources.md` (value, URL, exact quote, date):
 
-- Logo (prefer SVG; note low-res), photos ≥ 800px (flag likely stock), service names, about copy,
-  reviews (verbatim, with source), colors and fonts (computed styles), phone/email/address/hours,
-  socials, licensing/years/area statements (exact sentence), page titles and URLs (for redirects).
+- Logo (prefer SVG; note low-res), service names, about copy, reviews (verbatim, with source), colors and fonts
+  (computed styles), phone/email/address/hours, socials, licensing/years/area statements (exact sentence),
+  page titles and URLs (for redirects).
+- **Every project/gallery photo at full resolution**, with captions and project details, as in Learn mode's
+  project and gallery harvest. One cover per project is a fail when the source has a gallery. Log counts.
 - Record "Over 20 years of experience" exactly as written. Don't convert it to "Since 2004".
 
 ## What never happens in intake

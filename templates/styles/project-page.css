@@ -1,0 +1,304 @@
+/* Default project-page shell (C28). Copy to src/styles/project-page.css
+   and import from the project layout (or Base) after tokens.css and motion.css.
+   Tokens only. Reduced motion: no settle-in, no lift, no zoom, no leave-fade. */
+
+/* ---------- (a) Photo-first opening ---------- */
+.project-hero {
+  position: relative;
+  min-height: 100svh;
+  isolation: isolate;
+}
+.project-hero-media,
+.project-hero-media img,
+.project-hero-media picture,
+.project-hero-media picture img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.project-hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.project-hero[data-title-placement="under"] {
+  display: grid;
+  min-height: 0;
+}
+.project-hero[data-title-placement="under"] .project-hero-media {
+  position: relative;
+  min-height: 70svh;
+}
+.project-hero[data-title-placement="under"] .project-hero-copy {
+  position: relative;
+  width: min(100% - var(--gutter) * 2, var(--container));
+  margin: var(--space-l) auto var(--space-xl);
+  color: var(--color-text);
+}
+.project-hero[data-title-placement="over"] .project-hero-copy {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: min(100% - var(--gutter) * 2, var(--container));
+  margin-inline: auto;
+  padding: var(--space-3xl) 0 var(--space-xl);
+  color: var(--color-on-primary, #fff);
+  background: var(--scrim);
+}
+.project-hero-title {
+  font-family: var(--font-display);
+  font-size: var(--step-display);
+  font-weight: var(--weight-display);
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-tight);
+  max-width: 18ch;
+  margin: 0;
+}
+.js .project-hero-media img,
+.js .project-hero-media picture img {
+  transform: scale(1.04);
+  animation: project-hero-settle 800ms var(--ease-out, cubic-bezier(.2, .7, .2, 1)) forwards;
+}
+.js .project-hero-copy {
+  animation: project-hero-title 800ms var(--ease-out, cubic-bezier(.2, .7, .2, 1)) both;
+}
+@keyframes project-hero-settle {
+  from { transform: scale(1.04); }
+  to { transform: scale(1); }
+}
+@keyframes project-hero-title {
+  from { opacity: 0; transform: translate3d(0, 12px, 0); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---------- (b) Walk-through rail ---------- */
+.walk-rail {
+  --walk-rail-h: 52px;
+  z-index: 30;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-line);
+  position: sticky;
+  top: var(--header-h, 72px);
+}
+.walk-rail-track {
+  height: 2px;
+  background: var(--color-line);
+  transform-origin: left center;
+}
+.walk-rail-fill {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--color-primary);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+.walk-rail ol {
+  display: flex;
+  gap: var(--space-2xs);
+  margin: 0;
+  padding: var(--space-2xs) max(var(--gutter), calc((100% - var(--container)) / 2));
+  list-style: none;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+.walk-rail a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-inline: var(--space-s);
+  color: var(--color-muted);
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: var(--step-0);
+}
+.walk-rail a[aria-current="true"] {
+  color: var(--color-text);
+  font-weight: var(--weight-bold);
+  box-shadow: inset 0 -2px 0 var(--color-primary);
+}
+[data-walk-section] {
+  scroll-margin-top: calc(var(--header-h, 72px) + var(--walk-rail-h, 52px) + var(--space-s));
+}
+@media (width <= 767px) {
+  .walk-rail {
+    top: auto;
+    bottom: var(--actionbar-h, 64px);
+    border-bottom: 0;
+    border-top: 1px solid var(--color-line);
+  }
+  [data-walk-section] {
+    scroll-margin-top: calc(var(--header-h, 72px) + var(--space-s));
+    scroll-margin-bottom: calc(var(--actionbar-h, 64px) + var(--walk-rail-h, 52px) + var(--space-s));
+  }
+  .work-link,
+  .work-name,
+  [data-work] a {
+    scroll-margin-bottom: calc(var(--actionbar-h, 64px) + var(--space-s));
+  }
+  .work,
+  [data-work],
+  .project-hero,
+  main {
+    padding-bottom: var(--actionbar-h, 64px);
+  }
+}
+
+/* ---------- (c) Reactive photos + viewer ---------- */
+.project-shot {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  width: 100%;
+  cursor: zoom-in;
+  position: relative;
+  transition: transform 200ms var(--ease-out, cubic-bezier(.2, .7, .2, 1)),
+    filter 200ms var(--ease-out, cubic-bezier(.2, .7, .2, 1)),
+    box-shadow 200ms var(--ease-out, cubic-bezier(.2, .7, .2, 1));
+}
+.project-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (hover: hover) and (pointer: fine) {
+  .project-shot:hover {
+    transform: translateY(-4px);
+    filter: brightness(1.06);
+    box-shadow: 0 12px 32px #1a1e1826;
+  }
+}
+.project-shot:active {
+  transform: scale(0.985);
+  filter: brightness(0.97);
+  transition-duration: 120ms;
+}
+
+.photo-viewer {
+  width: min(100vw, 100%);
+  max-width: 100vw;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: #1a1e18f2;
+  color: #fff;
+}
+.photo-viewer::backdrop { background: #1a1e18f2; }
+.photo-viewer img {
+  object-fit: contain;
+  width: min(100%, 1400px);
+  height: auto;
+  max-height: 100dvh;
+  margin: 0 auto;
+  display: block;
+}
+.viewer-close,
+.viewer-prev,
+.viewer-next {
+  position: absolute;
+  z-index: 2;
+  min-width: 44px;
+  min-height: 44px;
+  padding: var(--space-s);
+  border: 0;
+  background: #1a1e18cc;
+  color: #fff;
+  cursor: pointer;
+}
+.viewer-close { top: var(--space-s); right: var(--space-s); }
+.viewer-prev { top: 50%; left: var(--space-s); transform: translateY(-50%); }
+.viewer-next { top: 50%; right: var(--space-s); transform: translateY(-50%); }
+.viewer-count {
+  position: absolute;
+  bottom: var(--space-s);
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: var(--step-0);
+}
+
+/* ---------- (d) Save heart ---------- */
+.save-house {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xs);
+  min-width: 44px;
+  min-height: 44px;
+  padding: var(--space-2xs) var(--space-s);
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.save-house svg {
+  width: 22px;
+  height: 22px;
+  fill: transparent;
+  stroke: currentColor;
+  stroke-width: 1.75;
+}
+.save-house[aria-pressed="true"] svg { fill: currentColor; }
+[data-saved-count]:not([hidden]) {
+  font-size: var(--step-0);
+  font-weight: var(--weight-bold);
+}
+
+/* ---------- (e) Next-house card ---------- */
+.next-house {
+  width: min(100% - var(--gutter) * 2, var(--container));
+  margin: var(--space-5xl) auto var(--space-3xl);
+}
+.next-house-card {
+  display: grid;
+  gap: var(--space-m);
+  color: inherit;
+  text-decoration: none;
+}
+.next-house-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: transform 240ms var(--ease-out, cubic-bezier(.2, .7, .2, 1));
+  view-transition-name: next-house-photo;
+}
+@media (hover: hover) and (pointer: fine) {
+  .next-house-card:hover img { transform: scale(1.03); }
+}
+.next-house-prev {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  margin-top: var(--space-s);
+  font-size: var(--step-0);
+}
+.next-house-teaser { max-width: 45ch; }
+
+@view-transition { navigation: auto; }
+html.is-leaving { opacity: 0; transition: opacity 180ms var(--ease-out, cubic-bezier(.2, .7, .2, 1)); }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .project-hero-media img,
+  .js .project-hero-media picture img,
+  .js .project-hero-copy,
+  .project-shot,
+  .next-house-card img,
+  .walk-rail-fill,
+  html.is-leaving {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+  }
+}

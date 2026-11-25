@@ -44,11 +44,11 @@ write_rule 30-brand-kit.mdc \
 
 write_rule 40-site-plan.mdc \
   "Use after brand kit: propose sitemap, then walk page by page asking page-specific questions and facts one at a time only when that page needs them (unknowns null/hidden), write section outlines, get a go." \
-  "sites/**/brief/plan.md" false skills/site-plan/SKILL.md skills/page-build/archetypes.md skills/page-build/compositions.md skills/page-build/delight.md skills/page-build/conversion.md templates/measurement-plan.md templates/monthly-client-report.md
+  "sites/**/brief/plan.md" false skills/site-plan/SKILL.md skills/page-build/archetypes.md skills/page-build/compositions.md skills/page-build/delight.md skills/page-build/conversion.md templates/measurement-plan.md templates/monthly-client-report.md templates/project-page.md
 
 write_rule 50-page-build.mdc \
   "Use when building an approved plan into an Astro site: scaffold, motion, composition and delight layers, null-config facts, archetype sections, one signature interaction, forms, SEO, Cloudflare Pages." \
-  "sites/**/src/**" false skills/page-build/SKILL.md skills/page-build/archetypes.md skills/page-build/compositions.md skills/page-build/conversion.md skills/page-build/delight.md skills/page-build/signature-interactions.md templates/styles/motion.css templates/scripts/motion.ts templates/scripts/analytics.ts templates/data/estimator.ts templates/components/Animate.astro
+  "sites/**/src/**" false skills/page-build/SKILL.md skills/page-build/archetypes.md skills/page-build/compositions.md skills/page-build/conversion.md skills/page-build/delight.md skills/page-build/signature-interactions.md templates/project-page.md templates/styles/motion.css templates/styles/project-page.css templates/scripts/motion.ts templates/scripts/analytics.ts templates/scripts/project-page.ts templates/data/estimator.ts templates/components/Animate.astro templates/components/ProjectHero.astro templates/components/WalkRail.astro templates/components/ProjectShot.astro templates/components/SaveHouse.astro templates/components/NextHouse.astro templates/components/PhotoViewer.astro
 
 write_rule 60-review.mdc \
   "Use before showing Jake any site or change: Playwright screenshots 1440/390, agency-craft rubric, delight and motion checks, token/contrast/overflow audits, Lighthouse, honesty, checklist report." \

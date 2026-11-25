@@ -1,0 +1,17 @@
+---
+/**
+ * Reactive gallery photo (C28c). No "View larger" badge.
+ * Slot in the <Image> (or img). The button opens the shared PhotoViewer.
+ */
+interface Props {
+  alt: string;
+  class?: string;
+}
+const { alt, class: className } = Astro.props;
+---
+
+<figure class:list={["shot", className]}>
+  <button type="button" class="project-shot" data-view data-alt={alt} aria-label={`View ${alt} fullscreen`}>
+    <slot />
+  </button>
+</figure>

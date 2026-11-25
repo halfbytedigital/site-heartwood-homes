@@ -116,7 +116,20 @@ Open the images. The script can't judge taste, so check:
   3–5 on a short form? Targets ≥ 48px for primary actions? Banned patterns (load pop-ups, self-opening chat,
   fake urgency, gated prices) absent? Header phone and CTA present? Sticky mobile call bar? Dark closing band?
 - **Tracking test (P19):** fire every event in the preview (`quote_submit`, `call_click`, `estimator_*`,
-  `qualifier_*`, …) and confirm it in the dashboard before launch. `brief/measurement.md` is filled in.
+  `qualifier_*`, `save_house`, …) and confirm it in the dashboard before launch. `brief/measurement.md` is filled in.
+  Toggle a heart and confirm the CTA reads "Start your home (N saved)", the qualifier "Houses you liked" field
+  fills, and `save_house` fires.
+- **Project galleries and C28 shell:** every project page uses the harvested gallery, not a single cover, when the source
+  had more than one photo. Compare `brief/assets/projects/<slug>/manifest.json` (source count) to the built
+  page. **Fail the build** if a project has only one photo on the site while the source has more.
+  **Fail the build** if a project page's first viewport at 1440 or 390 does not show a photograph (the
+  striking photo, not a title-and-boilerplate stack). The `review.mjs` audit flags this as `projectHeroPhoto`.
+  Confirm the rest of the C28 shell: Walk through rail with the current section lit and jumps landing on the
+  section heading (scroll-margin on the sections); no "View larger" badges; viewer chrome is Close top-right
+  and Prev/Next on the sides, with swipe, arrows, Esc, and reduced motion; heart buttons use `aria-pressed`
+  and do not show a fake count; next-house is a calm card, no door animation. A day/dusk or before/after
+  slider is only a real drag reveal of a same-vantage pair. On the mobile work index, house names must clear
+  the sticky call bar. Google ratings must not link to a search. Content patterns still match C22–C26.
 
 ## Step 5 — Copy honesty check
 
@@ -153,6 +166,7 @@ Checklist
 - [x] Delight: 1–2 client-specific moments listed; not a sprinkle of generic ticks
 - [x] Motion plan followed (one hero load-in, one CSS signature, hovers; the rest still); Playwright scroll video or equivalent watched
 - [x] Anti-generic: no default eyebrow parade, card-grid indexes, fade-every-section, unjustified count-ups, or cream+serif+terracotta unless sampled and justified
+- [x] Project galleries: no project ships one photo when the source harvest had more; first viewport at 1440 and 390 shows a photo; C28 shell (rail, hearts, viewer, next-house) is present; C22–C26 match the photos
 - [x] Template smell test: not a Legacy boxed hero + tile grid, not Teton badge soup, not Hammond remodeler chrome
 - [x] Conversion: one primary CTA, trust beside the ask, contact last on tools/qualifiers, thank-you page, no banned patterns
 - [x] Measurement: events fired in preview, brief/measurement.md filled, 90-day baseline noted

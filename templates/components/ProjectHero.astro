@@ -1,0 +1,33 @@
+---
+/**
+ * Photo-first project opening (C28a). The long description does not go here —
+ * place it in a short lede under the hero.
+ *
+ * <ProjectHero title="A-Frame Cabin" kicker="Residential new construction" dates="2022–2023" slug="a-frame-cabin-airbnb">
+ *   <Image src={hero} alt="A-Frame Cabin at dusk" preload="none" />
+ * </ProjectHero>
+ */
+import SaveHouse from "./SaveHouse.astro";
+
+interface Props {
+  title: string;
+  slug: string;
+  kicker?: string;
+  dates?: string;
+  titlePlacement?: "over" | "under";
+  name?: string;
+}
+const { title, slug, kicker, dates, titlePlacement = "over", name = title } = Astro.props;
+---
+
+<header class="project-hero" data-project-hero data-title-placement={titlePlacement}>
+  <div class="project-hero-media">
+    <slot />
+  </div>
+  <div class="project-hero-copy">
+    {kicker && <p class="muted">{kicker}</p>}
+    <h1 class="project-hero-title">{title}</h1>
+    {dates && <p>{dates}</p>}
+    <SaveHouse slug={slug} name={name} />
+  </div>
+</header>

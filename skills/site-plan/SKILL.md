@@ -73,8 +73,9 @@ Typical just-in-time questions by page:
 - **Services:** pricing stance; any service that deserves its own page.
 - **About:** owner/team names and photos (else an About page without a team grid); year founded; licenses/insured.
 - **Contact:** form destination (Resend email or GoHighLevel), public address vs. service-area only, area served, hours.
-- **Industry pages:** the one question that decides each (e.g. Portfolio: "How many finished projects with good
-  photos?"; Financing: "Who's the financing partner?").
+- **Industry pages:** the one question that decides each (e.g. Financing: "Who's the financing partner?").
+  For Portfolio / project pages, do **not** ask how many photos we have — use the crawl counts. If the harvest
+  is thin, ask Jake only for missing mid-phase, before, or owner photos.
 
 If Jake says **"use your recommendations"** during the walk-through, apply the recommended pick to every remaining
 question, leave all facts `null`, and jump to Step 5.
@@ -105,6 +106,12 @@ question, leave all facts `null`, and jump to Step 5.
   never wandering.
 - **Work index:** default to a photo-forward, calm C15 / W7 (photo-led list or split list with a sticky
   crossfading image; large mobile thumbnails). Not a typographic cursor-follow, and not a card grid.
+- **Project detail pages:** every project page uses the **C28 shell** (photo-first opening, Walk through rail,
+  reactive photos, save heart, next-house card). Each project in `plan.md` also lists its harvested photo
+  count and the compositions it can genuinely support from C22–C26 (build-story, room-by-room, editorial
+  spreads, same-vantage before/after or day/dusk drag reveal, detail hotspots). Do not plan a single-hero or
+  typography-first page when the crawl found a gallery. Fullscreen is a utility only. See
+  `page-build/compositions.md` and `templates/project-page.md`.
 - **Anti-generic:** do not plan eyebrows on every heading, fade-up on every section, or a count-up stat row
   unless each is justified by name. Do not default the palette to cream + serif + terracotta.
   Home's feature is the trade-specific signature interaction.

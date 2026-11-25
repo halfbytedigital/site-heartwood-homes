@@ -1,0 +1,29 @@
+---
+/**
+ * Calm next-house card (C28e). Big photo, name, one-line teaser, small Previous.
+ * Hover zooms the photo gently. View Transitions API + a short opacity fallback.
+ * No door animation. Slot in the next house's photo.
+ */
+interface Props {
+  nextHref: string;
+  nextName: string;
+  teaser?: string;
+  prevHref?: string;
+  prevName?: string;
+}
+const { nextHref, nextName, teaser, prevHref, prevName } = Astro.props;
+---
+
+<aside class="next-house" data-next-house-wrap>
+  <p class="muted">Another house</p>
+  <a class="next-house-card" href={nextHref} data-next-house>
+    <slot />
+    <h2>{nextName}</h2>
+    {teaser && <p class="next-house-teaser">{teaser}</p>}
+  </a>
+  {prevHref && (
+    <a class="next-house-prev" href={prevHref} data-prev-house>
+      Previous{prevName ? `: ${prevName}` : ""}
+    </a>
+  )}
+</aside>

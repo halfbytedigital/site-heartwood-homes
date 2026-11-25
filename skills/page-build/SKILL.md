@@ -49,6 +49,12 @@ npm i -D @playwright/test
   them. Import `motion.css` after `tokens.css`. Import `motion.ts` once (`import "../scripts/motion";`).
   In `<head>`, before paint: `<script is:inline>document.documentElement.classList.add("js");</script>`.
   Content must be visible without JS; never add a loader that hides the page.
+- **Project-page shell (C28):** copy `templates/styles/project-page.css`, `templates/scripts/project-page.ts`,
+  and the components `ProjectHero`, `WalkRail`, `ProjectShot`, `SaveHouse`, `NextHouse`, `PhotoViewer`.
+  Import the CSS from Base (hearts also appear on the work index). Import the script once after `analytics.ts`.
+  Mark the primary CTA with `data-start-cta` (optional inner `data-start-cta-label`) and add a
+  `data-saved-count` element in the header. On the qualifier, include a `data-saved-houses-field` input
+  named something like `housesLiked` ("Houses you liked").
 - Structure:
 
 ```
@@ -57,11 +63,14 @@ src/
   styles/base.css          ← reset, typography, utilities (container, section, visually-hidden), focus, reduced motion
   styles/motion.css        ← from templates/styles/motion.css
   scripts/motion.ts        ← from templates/scripts/motion.ts (imported once in Base.astro)
+  scripts/project-page.ts  ← from templates/scripts/project-page.ts (C28 rail, viewer, saves)
+  styles/project-page.css  ← from templates/styles/project-page.css
   data/site.ts             ← facts (null-config, from templates/site.ts)
   data/services.ts, reviews.ts, projects.ts, nav.ts
   layouts/Base.astro       ← <head> (SEO, OG, JSON-LD, preloads), header, main, footer, action bar
   components/              ← Header (data-header-sticky), MobileNav, Footer, ActionBar, Eyebrow, Button, Photo,
                              CtaStrip, ReviewCards, GoogleBadge, QuoteForm, SectionHeading, Schema, Animate.astro,
+                             ProjectHero, WalkRail, ProjectShot, SaveHouse, NextHouse, PhotoViewer,
                              + archetype components
   components/signature/    ← the one signature interaction
   pages/                   ← per plan.md
@@ -113,8 +122,17 @@ Shared components may be adapted from earlier sites only if restyled through tok
   number. Count-ups only if the plan names them.
 - Mobile first. Build each section at 390, then widen. Check 768 and 1024 for awkward in-betweens.
 - Images: `<Image>`/`<Picture>` from `src/assets/`, explicit `sizes`, LCP rules from design-foundation A8.
-  In learn mode, download every usable photo from the confirmed existing site into `src/assets/` *before* building
-  the hero and galleries. Don't wait to be asked.
+  In learn mode, download **every** project and gallery original (full resolution, all captions and details)
+  into `brief/assets/projects/<slug>/` *and* the site `src/assets/projects/<slug>/` *before* building the hero
+  or any project page. Don't wait to be asked. A project page that ships one photo when the source had more
+  fails review.
+- **Every project page uses the C28 shell** (`compositions.md`, `templates/project-page.md`): photo-first
+  opening (the most striking photo is visible in the first viewport at 1440 *and* 390; long copy below);
+  Walk through rail; reactive photos with no "View larger" badges; a cleaned-up fullscreen utility; a
+  save-this-house heart; a calm next-house card. A C25 slider is only a real drag reveal of a same-vantage
+  pair; otherwise use editorial frames and do not caption different angles as the same view. Don't paste a
+  raw URL into a paragraph when a text link exists. Google ratings link to the real Business Profile URL, or
+  to nothing — never to a search. The settle-in is the project page's hero load-in (once, 600–900ms).
 
 ## Step 4 — The signature interaction (exactly one per site)
 
@@ -164,6 +182,7 @@ to this business (the thing Jake would show the client first).
 
 - `npm run build` passes with no warnings you can fix.
 - `npm run dev` is a real script; a tunnel to the dev server does not 403 on `*.trycloudflare.com`.
+- Every project page's first viewport at 1440 and 390 shows the striking photograph (C28a), not a title-and-paragraph stack.
 - First viewport at 1440 and 390 passes the first-impression bar (A0). The motion plan (A7) is followed:
   one hero load-in, one signature, hovers; the rest is still. Reduced-motion shows the page complete with no
   `opacity: 0` leftovers; focus-visible is obvious; no loader hides content.
