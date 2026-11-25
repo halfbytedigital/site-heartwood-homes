@@ -103,6 +103,16 @@ const pad = (n: number) => String(n).padStart(2, '0');
   </div>
   <p class="scrubber-live visually-hidden" aria-live="polite">The lot. {chapters[0].text}</p>
 </section>
+<style is:inline>
+  .scrub-glass { background: rgb(26 30 24 / 0.92); }
+  @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .scrub-glass {
+      background: rgb(26 30 24 / 0.6);
+      backdrop-filter: blur(18px) saturate(1.35);
+      -webkit-backdrop-filter: blur(18px) saturate(1.35);
+    }
+  }
+</style>
 
 <script>
   const root = document.querySelector<HTMLElement>('[data-scrubber]');
@@ -169,33 +179,48 @@ const pad = (n: number) => String(n).padStart(2, '0');
     input?.addEventListener('input', () => show(Number(input.value) - 1));
     stops.forEach((stop) => stop.addEventListener('click', () => show(Number(stop.dataset.stop))));
 
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'ArrowRight') { event.preventDefault(); show(index + 1); }
-      if (event.key === 'ArrowLeft') { event.preventDefault(); show(index - 1); }
-    };
-    root.querySelector('.scrub-photo')?.addEventListener('keydown', onKey);
-    input?.addEventListener('keydown', (event) => {
-      if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') event.stopPropagation();
-    });
-
     const photo = root.querySelector<HTMLElement>('.scrub-photo');
     let startX = 0;
+    let lastX = 0;
     let tracking = false;
+    const fromPhoto = (event: Event) => {
+      const target = event.target as HTMLElement | null;
+      return !!target && !target.closest('.scrub-glass, a, button, input');
+    };
     photo?.addEventListener('dragstart', (event) => event.preventDefault());
+    photo?.querySelectorAll('img').forEach((img) => { img.draggable = false; });
     photo?.addEventListener('pointerdown', (event) => {
-      if ((event.target as HTMLElement).closest('.scrub-glass, a, button, input')) return;
-      startX = event.clientX;
+      if (!fromPhoto(event) || event.button > 0) return;
+      startX = lastX = event.clientX;
       tracking = true;
     });
-    window.addEventListener('pointerup', (event) => {
+    photo?.addEventListener('pointermove', (event) => {
+      if (!tracking) return;
+      lastX = event.clientX;
+    });
+    const finishDrag = (clientX: number) => {
       if (!tracking || !photo) return;
       tracking = false;
-      const width = photo.getBoundingClientRect().width || 1;
-      const delta = event.clientX - startX;
+      const delta = clientX - startX;
       if (Math.abs(delta) < 24) return;
+      const width = photo.getBoundingClientRect().width || 1;
       const steps = Math.max(1, Math.round(Math.abs(delta) / (width / count)));
       show(index + (delta < 0 ? steps : -steps));
-    });
-    photo?.addEventListener('pointercancel', () => { tracking = false; });
+    };
+    window.addEventListener('pointerup', (event) => finishDrag(event.clientX));
+    photo?.addEventListener('pointercancel', () => finishDrag(lastX));
+
+    const onKey = (event: KeyboardEvent) => {
+      const target = event.target as HTMLElement | null;
+      if (!target || target.closest('a, button')) return;
+      const onSlider = target === input;
+      const onStage = target === photo || (!!photo && photo.contains(target) && !target.closest('.scrub-glass'));
+      if (!onStage && !onSlider) return;
+      if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+      if (onSlider) return;
+      event.preventDefault();
+      show(event.key === 'ArrowRight' ? index + 1 : index - 1);
+    };
+    root.addEventListener('keydown', onKey);
   }
 </script>

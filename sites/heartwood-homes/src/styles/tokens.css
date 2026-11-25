@@ -19,15 +19,15 @@
   --color-danger: #8C2F2A;
   --scrim: linear-gradient(180deg, rgb(26 30 24 / 0) 30%, rgb(26 30 24 / .62) 100%);
 
-  /* Type. Bricolage Grotesque 600 + Source Sans 3 400/600. */
-  --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", sans-serif;
+  /* Type. Newsreader (display, headings) + Source Sans 3 (body, UI). */
+  --font-display: "Newsreader", "Iowan Old Style", "Palatino Linotype", serif;
   --font-body: "Source Sans 3", "Avenir Next", "Segoe UI", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
   --weight-body: 400;
   --weight-bold: 600;
   --weight-display: 600;
 
-  /* Bold scale. Display is about 97px at 1440px. Body never under 16px. Meta never under 14px. */
+  /* Trades scale. Display is 72px at 1440 and 40px at 390. Body never under 16px. */
   --step--1: clamp(0.875rem, 0.86rem + 0.08vw, 0.9375rem);
   --step-0:  clamp(1rem, 0.96rem + 0.15vw, 1.125rem);
   --step-1:  clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
@@ -35,12 +35,12 @@
   --step-3:  clamp(1.75rem, 1.2rem + 1.6vw, 2.75rem);
   --step-4:  clamp(2rem, 1.1rem + 2.2vw, 3.25rem);
   --step-5:  clamp(2.5rem, 1rem + 3.2vw, 4.5rem);
-  --step-display: clamp(3.25rem, 1.2rem + 5.4vw, 7.5rem);
-  --leading-tight: 0.96;
+  --step-display: clamp(2.5rem, 6vw, 4.5rem);
+  --leading-tight: 1.1;
   --leading-snug: 1.15;
   --leading-body: 1.6;
   --tracking-eyebrow: 0.08em;
-  --tracking-display: -0.03em;
+  --tracking-display: -0.02em;
   --measure: 65ch;
 
   /* Space (8pt) */

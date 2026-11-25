@@ -1,19 +1,13 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { featuredFirst } from '../../data/projects';
-import ProjectIndex from '../../components/ProjectIndex.astro';
+import ProjectRail from '../../components/ProjectRail.astro';
 import CloseBand from '../../components/CloseBand.astro';
 ---
 <Base
   title="Custom Home Projects | Heartwood Homes"
   description="Custom homes and other work by Heartwood Homes in Chattanooga."
 >
-  <section class="section index-lead">
-    <div class="container stack">
-      <h1>Homes we've built.</h1>
-      <p class="lede">Homes we've built, starting with the A-frame.</p>
-    </div>
-  </section>
-  <ProjectIndex projects={featuredFirst()} showFilters />
+  <ProjectRail projects={featuredFirst()} />
   <CloseBand />
 </Base>

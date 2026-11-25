@@ -1,0 +1,18 @@
+/* Newsreader (display / headings) + Source Sans 3 (body, UI).
+   Self-hosted from public/fonts/. font-display: swap. OFL files sit beside the woff2. */
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("/fonts/Newsreader[opsz,wght].woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("/fonts/SourceSans3[wght].woff2") format("woff2");
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}

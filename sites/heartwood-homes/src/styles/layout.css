@@ -69,7 +69,7 @@ p a, .letter a, .measure a { text-decoration: underline; text-underline-offset: 
 }
 .hero-panel {
   background: var(--color-bg);
-  padding-block: var(--space-l);
+  padding: var(--space-l);
   width: 100%;
   max-width: none;
   display: grid;
@@ -78,6 +78,9 @@ p a, .letter a, .measure a { text-decoration: underline; text-underline-offset: 
 @media (min-width: 800px) {
   .hero-panel { grid-template-columns: minmax(0, 1fr) auto; align-items: end; }
 }
+@media (max-width: 799px) {
+  .hero-panel { padding: var(--space-m); }
+}
 @media (max-width: 767px) {
   .hero-full-copy { padding-bottom: calc(var(--actionbar-h) + var(--space-m)); }
 }
@@ -85,8 +88,8 @@ p a, .letter a, .measure a { text-decoration: underline; text-underline-offset: 
   .hero-full { min-height: calc(100svh - var(--actionbar-h)); }
   .hero-full img { object-position: center 28%; }
   .hero-full-copy { padding-top: var(--space-m); padding-bottom: calc(var(--actionbar-h) + var(--space-m)); }
-  .hero-panel { padding-block: var(--space-m); gap: var(--space-s); }
-  .hero-full h1 { font-size: 2.75rem; max-width: 12ch; }
+  .hero-panel { padding: var(--space-m); gap: var(--space-s); }
+  .hero-full .hero-keep { white-space: nowrap; }
 }
 .ask-proof { margin: 0; font-size: var(--step--1); }
 .ask-proof a { color: inherit; }
@@ -118,7 +121,7 @@ p a, .letter a, .measure a { text-decoration: underline; text-underline-offset: 
 }
 .info-card {
   background: var(--color-bg);
-  padding: var(--space-l) var(--space-l) var(--space-l) 0;
+  padding: var(--space-l);
   display: grid;
   gap: var(--space-s);
   max-width: 22rem;
