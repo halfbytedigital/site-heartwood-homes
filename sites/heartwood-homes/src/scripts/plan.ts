@@ -4,7 +4,7 @@
  */
 import { track } from "./analytics";
 import { loadSaved } from "./project-page";
-import { houseSVG, syncSketch } from "./sketch-lib.js";
+import { initScene, syncScene } from "./plan-scene";
 
 const DRAFT_KEY = "heartwood-build-brief";
 
@@ -40,6 +40,7 @@ const ACCESS_LABELS: Record<string, string> = {
 const NEED_LABELS: Record<string, string> = {
   porch: "A porch",
   screened: "A screened porch",
+  deck: "A deck",
   garage: "A garage",
   basement: "A walkout or basement",
   bedroom: "A main-level bedroom",
@@ -48,11 +49,13 @@ const NEED_LABELS: Record<string, string> = {
   shop: "A shop or outbuilding",
 };
 const BUDGET_LABELS: Record<string, string> = {
-  modest: "A modest budget for the house",
-  mid: "A mid-range budget for the house",
-  higher: "A higher-end budget for the house",
+  simple: "Simple: good, durable basics",
+  comfortable: "Comfortable: room for a few upgrades",
+  premium: "Premium: the finishes they really want",
   unsure: "Budget still to talk through",
 };
+const BUDGET_MAP: Record<string, string> = { modest: "simple", mid: "comfortable", higher: "premium" };
+const normBudget = (value: string) => BUDGET_MAP[value] || value;
 const PAY_LABELS: Record<string, string> = {
   cash: "Paying cash",
   loan: "A construction loan",
@@ -88,9 +91,7 @@ const TIMING_OUT: Record<string, string> = {
 type State = {
   land: string;
   place: string;
-  pinned: boolean;
-  pinX: number;
-  pinY: number;
+  parcel: string;
   acres: string;
   terrain: string;
   cover: string;
@@ -126,7 +127,7 @@ type State = {
 const root = document.querySelector<HTMLElement>("[data-plan]");
 if (root) {
   const state: State = {
-    land: "", place: "", pinned: false, pinX: 0, pinY: 0, acres: "",
+    land: "", place: "", parcel: "", acres: "",
     terrain: "", cover: "", access: "",
     power: "", water: "", sewer: "", internet: "", structure: "",
     type: "", typeOther: "",
@@ -139,9 +140,16 @@ if (root) {
     survey: "", hoa: "", otherPerson: "", callTime: "", source: "",
   };
 
-  const stage = document.getElementById("sketch-stage");
-  const briefSlot = document.getElementById("brief-sketch-slot");
-  if (stage) stage.innerHTML = houseSVG();
+  const railSvg = document.querySelector("#sketch-stage svg");
+  const briefSvg = document.querySelector("#brief-sketch-slot svg");
+  if (railSvg) initScene(railSvg);
+  if (briefSvg) initScene(briefSvg);
+  let briefDrawn = false;
+  const SECTION: Record<string, string> = {
+    land: "Your land", place: "The lot", terrain: "The lot", utilities: "The lot",
+    type: "The house", size: "The house", people: "The house", plans: "The house",
+    money: "The money", timing: "Timing",
+  };
 
   const wideSteps = new Set(["brief", "extra"]);
   let lastQuestion = "land";
@@ -165,6 +173,7 @@ if (root) {
   const readForm = () => {
     state.land = val("land");
     state.place = field("place")?.value.trim() || "";
+    state.parcel = field("parcel")?.value.trim() || "";
     state.acres = val("acres");
     state.terrain = val("terrain");
     state.cover = val("cover");
@@ -176,8 +185,8 @@ if (root) {
     state.structure = val("structure");
     state.type = val("type");
     state.typeOther = field("else-text")?.value.trim() || "";
-    state.beds = val("beds");
-    state.baths = val("baths");
+    state.beds = field("beds")?.value || "";
+    state.baths = field("baths")?.value || "";
     state.stories = val("stories");
     state.sqft = Number(field("sqft")?.value) || 2400;
     state.who = vals("who");
@@ -185,7 +194,7 @@ if (root) {
     state.plans = val("plans");
     state.plansLink = field("plans-link")?.value.trim() || "";
     state.needs = vals("need");
-    state.budget = val("budget");
+    state.budget = normBudget(val("budget"));
     state.pay = val("pay");
     state.timing = val("timing");
     state.sell = val("sell");
@@ -235,7 +244,8 @@ if (root) {
       if (state.land === "no") return "We can help you look.";
       if (state.land === "unsure") return "We can start either way.";
     }
-    if (name === "place" && (state.place || state.acres)) return "That’s enough to start.";
+    if (name === "place" && state.place) return `We’ll check where ${state.place.split(",")[0]} sits for us.`;
+    if (name === "place" && (state.parcel || state.acres)) return "That’s enough to start.";
     if (name === "terrain") {
       if (state.terrain === "water") return "We’ll plan for the view and the bank.";
       if (state.terrain === "steep") return "We’ve built on ground like this.";
@@ -247,6 +257,7 @@ if (root) {
       if (state.power === "unsure" || state.water === "unsure") return "We’ll find that out with you.";
       if (state.structure === "yes") return "We’ll look at what’s already there, and whether it comes down.";
     }
+    if (name === "type" && state.type === "townhome") return "We’ll talk through whether this is a fit for us.";
     if (name === "type" && state.type) return "The lot will have a say in the final shape.";
     if (name === "size") return "A starting size is all we need for now.";
     if (name === "people") {
@@ -283,6 +294,7 @@ if (root) {
       if (state.water === "unsure" || state.water === "well") items.push("Water — a well, or a public line, if one is close.");
       if (state.power === "no" || state.power === "unsure") items.push("Power to the lot.");
       if (state.access === "needs") items.push("A drive in, and whether the road can take construction traffic.");
+      if (state.parcel) items.splice(1, 0, "The parcel you sent, pulled up before the first call.");
       if (state.structure === "yes") items.push("The structure that’s already there, and whether it comes down.");
       if (state.survey === "none" || state.survey === "unsure") items.push("Whether a survey is already in hand.");
     } else if (state.land === "no") {
@@ -306,10 +318,11 @@ if (root) {
     if (type) rows.push(["The house", type + "."]);
     const sizeBits: string[] = [];
     if (state.sqft) sizeBits.push(sqftLabel());
-    if (state.beds) sizeBits.push(state.beds === "5" ? "5 or more bedrooms" : state.beds + " bedrooms");
+    if (state.beds) sizeBits.push(state.beds === "6" ? "6 or more bedrooms" : state.beds === "1" ? "1 bedroom" : state.beds + " bedrooms");
     if (state.baths) {
-      const baths = state.baths === "2.5" ? "2½" : state.baths === "4" ? "4 or more" : state.baths;
-      sizeBits.push(baths + " baths");
+      const n = Number(state.baths);
+      const baths = n >= 5 ? "5 or more" : Math.floor(n) + (n % 1 ? "½" : "");
+      sizeBits.push(baths + (state.baths === "1" ? " bath" : " baths"));
     }
     if (state.stories && state.stories !== "unsure") sizeBits.push(state.stories === "1" ? "One story" : state.stories + " stories");
     if (sizeBits.length) rows.push(["Size", sizeBits.join(". ") + "."]);
@@ -337,12 +350,12 @@ if (root) {
       if (state.terrain) lotBits.push(TERRAIN_LABELS[state.terrain].replace(/^A /, "a ").replace(/^Steep/, "steep").replace(/^Waterfront/, "waterfront"));
       if (state.cover) lotBits.push(COVER_LABELS[state.cover].toLowerCase());
       if (state.access && state.access !== "unsure") lotBits.push(ACCESS_LABELS[state.access].toLowerCase().replace(/^a /, ""));
-      if (state.pinned) lotBits.push("with a pin on the lot");
       let lotText = state.place || "They have land";
       if (lotBits.length) {
         lotText += ". " + lotBits[0].charAt(0).toUpperCase() + lotBits[0].slice(1) + (lotBits.length > 1 ? ", " + lotBits.slice(1).join(", ") : "");
       }
       rows.push(["The lot", lotText + "."]);
+      if (state.parcel) rows.push(["Where to look", state.parcel]);
       const util: string[] = [];
       if (state.power === "yes") util.push("Power at the road");
       if (state.power === "no") util.push("Power not yet at the road");
@@ -449,18 +462,20 @@ if (root) {
 
   const refresh = () => {
     readForm();
-    document.getElementById("else-field")?.classList.toggle("is-on", state.type === "else");
-    document.getElementById("plans-attach")?.classList.toggle("is-on", state.plans === "have" || state.plans === "sketch");
+    const attachOn = state.plans === "have" || state.plans === "sketch";
+    document.getElementById("plans-attach")?.setAttribute("aria-hidden", attachOn ? "false" : "true");
+    document.getElementById("plans-note-empty")?.setAttribute("aria-hidden", attachOn ? "true" : "false");
+    document.querySelectorAll<HTMLInputElement>("#plans-attach input").forEach((input) => { input.tabIndex = attachOn ? 0 : -1; });
     const n = Number(field("sqft")?.value) || 2400;
     const readout = document.getElementById("sqft-readout");
     if (readout) readout.textContent = "About " + n.toLocaleString("en-US") + " square feet";
     const num = field("sqft-num");
     if (num && document.activeElement !== num) num.value = String(n);
-    if (stage) syncSketch(stage, state);
-    const onBrief = !document.getElementById("panel-brief")?.hidden;
-    if (onBrief && briefSlot && stage) {
-      briefSlot.innerHTML = stage.innerHTML;
-      syncSketch(briefSlot, state);
+    if (railSvg) syncScene(railSvg, state);
+    const onBrief = document.getElementById("panel-brief")?.classList.contains("is-on");
+    if (onBrief && briefSvg) {
+      syncScene(briefSvg, state, briefDrawn ? undefined : { force: true });
+      briefDrawn = true;
       updateBrief();
     }
     const items: string[] = [];
@@ -469,7 +484,7 @@ if (root) {
     if (state.sqft && t) items.push(sqftLabel());
     if (state.terrain) items.push(TERRAIN_LABELS[state.terrain]);
     if (state.cover) items.push(COVER_LABELS[state.cover]);
-    state.needs.forEach((n) => items.push(NEED_LABELS[n]));
+    state.needs.forEach((need) => items.push(NEED_LABELS[need]));
     const caption = document.getElementById("sketch-caption");
     if (caption) caption.textContent = items.length ? items.slice(0, 2).join(". ") + "." : "Answer a few questions, and the lot and the house will fill in.";
     const list = document.getElementById("sketch-list");
@@ -520,7 +535,9 @@ if (root) {
     root.querySelectorAll<HTMLElement>(".panel").forEach((panel) => {
       const on = panel.id === "panel-" + name;
       panel.classList.toggle("is-on", on);
-      panel.hidden = !on;
+      panel.hidden = false;
+      panel.toggleAttribute("inert", !on);
+      panel.setAttribute("aria-hidden", on ? "false" : "true");
     });
     document.getElementById("layout")?.classList.toggle("is-wide", wideSteps.has(name));
     const rail = document.getElementById("sketch-rail");
@@ -528,32 +545,33 @@ if (root) {
 
     const label = document.getElementById("progress-label");
     const railBar = document.getElementById("progress-rail");
+    const timeEl = document.getElementById("progress-time");
     const idx = steps.indexOf(name);
+    const total = steps.length;
     if (label && railBar) {
-      railBar.style.gridTemplateColumns = `repeat(${steps.length}, 1fr)`;
-      if (name === "brief" || name === "extra") {
-        label.textContent = name === "brief" ? "Your brief" : "A few more details";
-        railBar.replaceChildren(...steps.map(() => {
-          const span = document.createElement("span");
-          span.className = "is-done";
-          return span;
-        }));
+      if (railBar.children.length !== total) {
+        railBar.style.gridTemplateColumns = `repeat(${total}, 1fr)`;
+        railBar.replaceChildren(...steps.map(() => document.createElement("span")));
+      }
+      const done = name === "brief" || name === "extra";
+      const n = done ? total + 1 : idx + 1;
+      [...railBar.children].forEach((span, i) => {
+        span.classList.toggle("is-done", i + 1 < n);
+        span.classList.toggle("is-on", i + 1 === n);
+      });
+      if (done) {
+        label.innerHTML = name === "brief" ? "Your brief <span class=\"sec\">· All done</span>" : "A few more details <span class=\"sec\">· Optional</span>";
+        if (timeEl) timeEl.textContent = "";
       } else {
-        const n = idx + 1;
-        label.textContent = `Step ${n} of ${steps.length}`;
-        railBar.replaceChildren(...steps.map((_, i) => {
-          const span = document.createElement("span");
-          span.className = i + 1 < n ? "is-done" : i + 1 === n ? "is-on" : "";
-          return span;
-        }));
+        label.innerHTML = `Step ${n} of ${total} <span class="sec">· ${SECTION[name] || ""}</span>`;
+        const left = Math.max(1, Math.ceil((total - n + 1) * 15 / 60));
+        if (timeEl) timeEl.textContent = left <= 1 ? "Under a minute left" : `About ${left} minutes left`;
       }
     }
 
-    if (name === "brief") {
-      if (briefSlot && stage) {
-        briefSlot.innerHTML = stage.innerHTML;
-        syncSketch(briefSlot, state);
-      }
+    if (name === "brief" && briefSvg) {
+      syncScene(briefSvg, state, briefDrawn ? undefined : { force: true });
+      briefDrawn = true;
       updateBrief();
       if (!completed) {
         completed = true;
@@ -565,7 +583,11 @@ if (root) {
       track("wizard_step", { step: name, index: String(steps.indexOf(name) + 1) });
     }
     history.replaceState(null, "", "#" + name);
-    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+    const heading = root.querySelector<HTMLElement>(".panel.is-on h1");
+    const headerH = document.querySelector<HTMLElement>(".site-header")?.offsetHeight || 0;
+    if (heading && heading.getBoundingClientRect().top < headerH + 8) {
+      window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+    }
     refresh();
     persist(name);
     if (opts.focus !== false) {
@@ -576,9 +598,10 @@ if (root) {
   const applyStateToForm = () => {
     if (state.land) setRadio("land", state.land);
     if (field("place")) field("place")!.value = state.place;
+    if (field("parcel")) field("parcel")!.value = state.parcel;
     if (state.acres) setRadio("acres", state.acres);
-    (["terrain", "cover", "access", "power", "water", "sewer", "internet", "structure", "type", "beds", "baths", "stories", "use", "plans", "budget", "pay", "timing", "sell", "survey", "hoa", "source"] as const)
-      .forEach((name) => { if (state[name]) setRadio(name, state[name]); });
+    (["terrain", "cover", "access", "power", "water", "sewer", "internet", "structure", "type", "stories", "use", "plans", "budget", "pay", "timing", "sell", "survey", "hoa", "source"] as const)
+      .forEach((name) => { if (state[name]) setRadio(name, name === "budget" ? normBudget(state[name]) : state[name]); });
     setRadio("call", state.callTime);
     setChecks("who", state.who);
     setChecks("need", state.needs);
@@ -587,33 +610,13 @@ if (root) {
     if (field("other-person")) field("other-person")!.value = state.otherPerson;
     if (field("sqft")) field("sqft")!.value = String(state.sqft || 2400);
     if (field("sqft-num")) field("sqft-num")!.value = String(state.sqft || 2400);
-    if (state.pinned) placePin(state.pinX, state.pinY);
-  };
-
-  const placePin = (xRatio: number, yRatio: number) => {
-    const frame = document.getElementById("map-frame");
-    document.getElementById("map-box")?.classList.add("is-on");
-    if (!frame) return;
-    let pin = frame.querySelector<HTMLElement>(".map-pin-el");
-    if (!pin) {
-      pin = document.createElement("span");
-      pin.className = "map-pin-el";
-      pin.innerHTML = `<svg viewBox="0 0 18 26" width="18" height="26" aria-hidden="true"><path d="M9 24 C 9 24, 2 14, 2 9 a 7 7 0 1 1 14 0 C 16 14, 9 24, 9 24 z" fill="currentColor" stroke="none"/><circle cx="9" cy="9" r="2.5" fill="#E7EBE7"/></svg>`;
-      frame.append(pin);
-    }
-    const box = frame.getBoundingClientRect();
-    const x = xRatio ? xRatio * (box.width || frame.clientWidth) : frame.clientWidth / 2;
-    const y = yRatio ? yRatio * (box.height || frame.clientHeight) : frame.clientHeight / 2;
-    pin.style.left = x + "px";
-    pin.style.top = y + "px";
-    const note = document.getElementById("pin-note");
-    if (note) note.textContent = "Pinned. You can move it, or leave it.";
+    if (state.beds) setStepper("beds", Number(state.beds));
+    if (state.baths) setStepper("baths", Number(state.baths));
   };
 
   const briefParams = () => {
     readForm();
     const params = new URLSearchParams();
-    const work = field("data-brief-work") ? "" : (root.querySelector<HTMLInputElement>("[data-brief-work]")?.value || "custom-home");
     params.set("work", root.querySelector<HTMLInputElement>("[data-brief-work]")?.value || "custom-home");
     if (entryPath) params.set("path", entryPath);
     if (state.land) params.set("land", LAND_OUT[state.land] || state.land);
@@ -632,12 +635,6 @@ if (root) {
     if (state.sqft) params.set("sqft", String(state.sqft));
     if (state.who.length) params.set("who", state.who.join(","));
     if (state.needs.length) params.set("needs", state.needs.join(","));
-    if (state.pinned) {
-      params.set("pin", "1");
-      if (state.pinX) params.set("pinx", String(Math.round(state.pinX * 1000) / 1000));
-      if (state.pinY) params.set("piny", String(Math.round(state.pinY * 1000) / 1000));
-    }
-    void work;
     return params;
   };
 
@@ -664,8 +661,10 @@ if (root) {
     if (land) setRadio("land", land);
     const timing = normTiming(params.get("timing") || params.get("timeline") || "");
     if (timing) setRadio("timing", timing);
-    const radios = ["acres", "terrain", "cover", "access", "power", "water", "sewer", "internet", "structure", "type", "beds", "baths", "stories", "use", "plans", "budget", "pay", "sell", "survey", "hoa", "call", "source"];
+    const radios = ["acres", "terrain", "cover", "access", "power", "water", "sewer", "internet", "structure", "type", "stories", "use", "plans", "pay", "sell", "survey", "hoa", "call", "source"];
     radios.forEach((name) => { const v = params.get(name); if (v) setRadio(name, v); });
+    const budget = params.get("budget");
+    if (budget) setRadio("budget", normBudget(budget));
     if (params.get("place") && field("place")) field("place")!.value = params.get("place") || "";
     if (params.get("else") && field("else-text")) field("else-text")!.value = params.get("else") || "";
     if (params.get("plansLink") && field("plans-link")) field("plans-link")!.value = params.get("plansLink") || "";
@@ -676,12 +675,8 @@ if (root) {
     }
     if (params.get("who")) setChecks("who", params.get("who")!.split(",").filter(Boolean));
     if (params.get("needs")) setChecks("need", params.get("needs")!.split(",").filter(Boolean));
-    if (params.get("pin") === "1") {
-      state.pinned = true;
-      state.pinX = Number(params.get("pinx")) || 0.5;
-      state.pinY = Number(params.get("piny")) || 0.5;
-      placePin(state.pinX, state.pinY);
-    }
+    if (params.get("beds")) setStepper("beds", Number(params.get("beds")));
+    if (params.get("baths")) setStepper("baths", Number(params.get("baths")));
     const work = params.get("work");
     const workField = root.querySelector<HTMLInputElement>("[data-brief-work]");
     if (workField && work) workField.value = work;
@@ -719,21 +714,24 @@ if (root) {
     });
     const workField = root.querySelector<HTMLInputElement>("[data-brief-work]");
     if (workField) workField.value = "custom-home";
-    state.pinned = false;
-    state.pinX = 0;
-    state.pinY = 0;
     entryPath = "";
-    document.getElementById("map-pin-el")?.remove();
-    document.querySelector(".map-pin-el")?.remove();
-    document.getElementById("map-box")?.classList.remove("is-on");
-    const note = document.getElementById("pin-note");
-    if (note) note.textContent = "";
+    document.querySelectorAll<HTMLElement>("[data-stepper]").forEach((stepper) => {
+      stepper.dataset.set = "0";
+      stepper.dataset.value = stepper.dataset.start || "";
+      const out = stepper.querySelector("output");
+      if (out) out.textContent = "–";
+      const hidden = document.getElementById(stepper.dataset.stepper || "");
+      if (hidden instanceof HTMLInputElement) hidden.value = "";
+      stepper.querySelectorAll<HTMLButtonElement>("button").forEach((button) => { button.disabled = false; });
+      const hint = document.querySelector(`[data-hint="${stepper.dataset.stepper}"]`);
+      if (hint && stepper.dataset.stepper === "beds") hint.textContent = "Tap + or − to set it";
+    });
   };
 
   root.querySelectorAll<HTMLInputElement>("input, textarea").forEach((el) => {
     el.addEventListener("change", () => { markStart(); refresh(); persist(lastQuestion); });
     el.addEventListener("input", () => {
-      if (el.id === "sqft" || el.id === "sqft-num" || el.id === "place" || el.id === "else-text") {
+      if (el.id === "sqft" || el.id === "sqft-num" || el.id === "place" || el.id === "parcel" || el.id === "else-text") {
         if (el.id === "sqft-num" && field("sqft")) field("sqft")!.value = (el as HTMLInputElement).value;
         markStart();
         refresh();
@@ -744,7 +742,7 @@ if (root) {
   field("plans-file")?.addEventListener("change", (ev) => {
     const f = (ev.target as HTMLInputElement).files?.[0];
     const note = document.getElementById("plans-file-note");
-    if (note) note.textContent = f ? "We’ll look at " + f.name + " with your brief." : "";
+    if (note) note.textContent = f ? f.name : "PDF or photos";
     state.plansFile = f ? f.name : "";
     markStart();
   });
@@ -800,21 +798,50 @@ if (root) {
     track("brief_save", { method: "link" });
   });
 
-  document.getElementById("btn-pin")?.addEventListener("click", () => {
-    document.getElementById("map-box")?.classList.add("is-on");
-  });
-  document.getElementById("map-frame")?.addEventListener("click", (ev) => {
-    const frame = ev.currentTarget as HTMLElement;
-    const box = frame.getBoundingClientRect();
-    const x = (ev as MouseEvent).clientX - box.left;
-    const y = (ev as MouseEvent).clientY - box.top;
-    state.pinned = true;
-    state.pinX = box.width ? x / box.width : 0;
-    state.pinY = box.height ? y / box.height : 0;
-    placePin(state.pinX, state.pinY);
-    markStart();
-    refresh();
-    persist(lastQuestion);
+  const setStepper = (key: string, value: number) => {
+    const stepper = root.querySelector<HTMLElement & { setValue?: (v: number) => void }>(`[data-stepper="${key}"]`);
+    stepper?.setValue?.(value);
+  };
+
+  document.querySelectorAll<HTMLElement & { setValue?: (v: number) => void }>("[data-stepper]").forEach((st) => {
+    const key = st.dataset.stepper || "";
+    const min = Number(st.dataset.min);
+    const max = Number(st.dataset.max);
+    const step = Number(st.dataset.step);
+    const out = st.querySelector("output");
+    const input = document.getElementById(key) as HTMLInputElement | null;
+    const show = (v: number) => {
+      if (out) {
+        out.textContent = st.dataset.set !== "1"
+          ? "–"
+          : key === "baths"
+            ? (v >= max ? "5 or more" : Math.floor(v) + (v % 1 ? "½" : ""))
+            : (v >= max ? max + "+" : String(v));
+      }
+      const down = st.querySelector<HTMLButtonElement>('[data-dir="-1"]');
+      const up = st.querySelector<HTMLButtonElement>('[data-dir="1"]');
+      if (down) down.disabled = v <= min;
+      if (up) up.disabled = v >= max;
+    };
+    st.setValue = (v: number) => {
+      const next = Math.min(max, Math.max(min, v));
+      st.dataset.value = String(next);
+      st.dataset.set = "1";
+      if (input) input.value = String(next);
+      show(next);
+      const hint = document.querySelector(`[data-hint="${key}"]`);
+      if (hint && key === "beds") hint.textContent = next >= max ? "Six or more" : "";
+    };
+    st.dataset.value = st.dataset.start || "";
+    show(Number(st.dataset.start));
+    st.querySelectorAll("button").forEach((button) => button.addEventListener("click", () => {
+      const dir = Number((button as HTMLButtonElement).dataset.dir);
+      const start = Number(st.dataset.start);
+      st.setValue?.(st.dataset.set === "1" ? Number(st.dataset.value) + step * dir : (dir > 0 ? start : start - step));
+      markStart();
+      refresh();
+      persist(lastQuestion);
+    }));
   });
 
   const form = root.querySelector<HTMLFormElement>("[data-brief-form]");
@@ -855,7 +882,8 @@ if (root) {
     if (state.land) payload.set("land", LAND_OUT[state.land] || state.land);
     if (state.timing) payload.set("timeline", TIMING_OUT[state.timing] || state.timing);
     if (state.place) payload.set("area", state.place);
-    if (state.budget) payload.set("budget", BUDGET_LABELS[state.budget] || state.budget);
+    if (state.parcel) payload.set("parcel", state.parcel);
+    if (state.budget) payload.set("budget", BUDGET_LABELS[normBudget(state.budget)] || state.budget);
     payload.set("path", entryPath);
     let sent = false;
     try {
@@ -886,7 +914,7 @@ if (root) {
     const note = root.querySelector<HTMLElement>("[data-resume]");
     if (note) note.hidden = true;
     Object.assign(state, {
-      land: "", place: "", pinned: false, acres: "", terrain: "", cover: "", access: "",
+      land: "", place: "", parcel: "", acres: "", terrain: "", cover: "", access: "",
       power: "", water: "", sewer: "", internet: "", structure: "", type: "", typeOther: "",
       beds: "", baths: "", stories: "", sqft: 2400, who: [], use: "", plans: "", plansLink: "",
       plansFile: "", needs: [], budget: "", pay: "", timing: "", sell: "", survey: "", hoa: "",
@@ -908,6 +936,8 @@ if (root) {
     const draft = loadDraft();
     if (draft?.state) {
       Object.assign(state, draft.state);
+      state.budget = normBudget(state.budget);
+      delete (state as State & { pinned?: boolean; pinX?: number; pinY?: number }).pinned;
       if (draft.path) entryPath = draft.path;
       applyStateToForm();
       const note = root.querySelector<HTMLElement>("[data-resume]");

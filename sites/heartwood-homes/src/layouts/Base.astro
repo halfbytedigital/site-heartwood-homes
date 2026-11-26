@@ -7,7 +7,6 @@ import '../styles/project-page.css';
 import '../styles/project-filters.css';
 import '../styles/project-rail.css';
 import '../styles/offering.css';
-import '../styles/sketch-lib.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ActionBar from '../components/ActionBar.astro';
@@ -34,6 +33,7 @@ const og = new URL('/og-default.jpg', Astro.site);
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical.href} />
     <link rel="preload" href="/fonts/Newsreader[opsz,wght].woff2" as="font" type="font/woff2" crossorigin />
+    {Astro.url.pathname.startsWith('/plan') && <link rel="preload" href="/fonts/SourceSans3[wght].woff2" as="font" type="font/woff2" crossorigin />}
     <link rel="icon" href="/favicon.png" type="image/png" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

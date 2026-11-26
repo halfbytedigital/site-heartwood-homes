@@ -1,0 +1,12 @@
+---
+import raw from '../assets/plan/scene.svg?raw';
+
+interface Props {
+  titleId?: string;
+}
+const { titleId = 'scene-title' } = Astro.props;
+const svg = raw
+  .replace('id="scene-title"', `id="${titleId}"`)
+  .replace('aria-labelledby="scene-title"', `aria-labelledby="${titleId}"`);
+---
+<Fragment set:html={svg} />

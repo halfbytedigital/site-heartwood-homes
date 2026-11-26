@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
+import PlanScene from '../components/PlanScene.astro';
 import { getProject, projectPath } from '../data/projects';
 import '../styles/plan.css';
 
@@ -9,11 +10,14 @@ const springCity = getProject('spring-city-lake-house');
 ---
 <Base
   title="Plan your home | Heartwood Homes"
-  description="Tell us about the lot and the house. Next is plans, then an estimate, then we build."
+  description="Tell us about the lot and the house. Plans, then an estimate, then we build."
 >
 <div class="plan wrap" data-plan>
     <div class="progress">
-      <p class="progress-label" id="progress-label">Step 1 of 7</p>
+      <div class="progress-top">
+        <p class="progress-label" id="progress-label">Step 1 of 7 <span class="sec">· Your land</span></p>
+        <p class="progress-time" id="progress-time">About 2 minutes left</p>
+      </div>
       <div class="progress-rail" aria-hidden="true" id="progress-rail"></div>
     </div>
 
@@ -47,26 +51,19 @@ const springCity = getProject('spring-city-lake-house');
           <p class="talk-exit"><a href="/contact/" data-exit>Rather just talk? Contact Heartwood</a></p>
         </section>
 
-        <section class="panel" id="panel-place" aria-labelledby="place-title" hidden>
+        <section class="panel" id="panel-place" aria-labelledby="place-title" aria-hidden="true" inert>
           <p class="kicker">The lot</p>
           <h1 tabindex="-1" id="place-title">Where is it?</h1>
-          <p class="lede">A town or a county is enough. You can pin it if you like, or leave that for later.</p>
+          <p class="lede">A town or a county is enough to start.</p>
           <p class="cheer" data-cheer></p>
           <div class="field">
             <label for="place">Town or county</label>
             <input id="place" name="place" type="text" autocomplete="address-level2" placeholder="Ten Mile, Meigs County">
           </div>
-          <p><button class="btn-ghost btn" type="button" id="btn-pin" style="min-height:44px;padding:0 16px">Pin it on a map</button></p>
-          <div class="map-box" id="map-box">
-            <p class="muted" style="margin-bottom:8px">Tap the map to drop a pin. You don’t have to.</p>
-            <div class="map-frame" id="map-frame" role="application" aria-label="A simple map. Click to drop a pin.">
-              <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2">
-                <path d="M0 80 C 60 60, 120 90, 180 70 C 240 50, 300 80, 400 60"/>
-                <path d="M0 120 C 80 140, 140 110, 220 130 C 300 150, 350 120, 400 140"/>
-                <path d="M40 150 C 120 130, 200 170, 360 150" stroke-width="1.6"/>
-              </svg>
-            </div>
-            <p class="muted" id="pin-note" style="margin-top:8px"></p>
+          <div class="field">
+            <label for="parcel">Address, Google Maps link, or parcel number <span class="opt">(optional)</span></label>
+            <input id="parcel" name="parcel" type="text" autocomplete="street-address" placeholder="Paste whatever you have">
+            <p class="helper">Any one of these lets us look up the lot before we call. Skip it if it’s not handy.</p>
           </div>
           <fieldset class="group" style="margin-top:28px">
             <legend class="group-label">About how much land?</legend>
@@ -100,7 +97,7 @@ const springCity = getProject('spring-city-lake-house');
           <p class="talk-exit"><a href="/contact/" data-exit>Rather just talk? Contact Heartwood</a></p>
         </section>
 
-        <section class="panel" id="panel-terrain" aria-labelledby="terrain-title" hidden>
+        <section class="panel" id="panel-terrain" aria-labelledby="terrain-title" aria-hidden="true" inert>
           <p class="kicker">The lot</p>
           <h1 tabindex="-1" id="terrain-title">What’s the ground like?</h1>
           <p class="lede">Pick what you know. Leave the rest.</p>
@@ -150,7 +147,7 @@ const springCity = getProject('spring-city-lake-house');
           <p class="talk-exit"><a href="/contact/" data-exit>Rather just talk? Contact Heartwood</a></p>
         </section>
 
-        <section class="panel" id="panel-utilities" aria-labelledby="utilities-title" hidden>
+        <section class="panel" id="panel-utilities" aria-labelledby="utilities-title" aria-hidden="true" inert>
           <p class="kicker">The lot</p>
           <h1 tabindex="-1" id="utilities-title">How do you get there, and what’s already in?</h1>
           <p class="lede">If you don’t know, say so. We’ll find it out with you.</p>
@@ -249,7 +246,7 @@ const springCity = getProject('spring-city-lake-house');
           <p class="talk-exit"><a href="/contact/" data-exit>Rather just talk? Contact Heartwood</a></p>
         </section>
 
-        <section class="panel" id="panel-type" aria-labelledby="type-title" hidden>
+        <section class="panel" id="panel-type" aria-labelledby="type-title" aria-hidden="true" inert>
           <p class="kicker">The house</p>
           <h1 tabindex="-1" id="type-title">What kind of house?</h1>
           <p class="lede">Tell us the house you have in mind. If you’re not sure, that’s fine.</p>
@@ -284,8 +281,8 @@ const springCity = getProject('spring-city-lake-house');
               <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 40 V22 L24 12 l14 10 v18"/><path d="M10 40 h28"/><path d="M24 22 v10 M19 27 h10"/></svg><span><strong>Something else.</strong><small>Tell us in your own words.</small></span></span>
             </label>
           </div>
-          <div class="else-field" id="else-field">
-            <label for="else-text">What do you have in mind?</label>
+          <div class="field else-field" id="else-field">
+            <label for="else-text">Anything else about the house? <span class="opt">(optional)</span></label>
             <input id="else-text" name="else-text" type="text">
           </div>
           <div class="actions">
@@ -295,48 +292,32 @@ const springCity = getProject('spring-city-lake-house');
           <p class="talk-exit"><a href="/contact/" data-exit>Rather just talk? Contact Heartwood</a></p>
         </section>
 
-        <section class="panel" id="panel-size" aria-labelledby="size-title" hidden>
+        <section class="panel" id="panel-size" aria-labelledby="size-title" aria-hidden="true" inert>
           <p class="kicker">The house</p>
           <h1 tabindex="-1" id="size-title">How big should it be?</h1>
           <p class="lede">A starting size is enough. You can change this later, once the plans are drawn.</p>
           <p class="cheer" data-cheer></p>
           <div class="size-grid">
-            <fieldset>
-              <legend class="group-label">Bedrooms</legend>
-              <div class="chips">
-            <label class="chip">
-              <input type="radio" name="beds" value="2">
-              <span class="chip-face">2</span>
-            </label>            <label class="chip">
-              <input type="radio" name="beds" value="3">
-              <span class="chip-face">3</span>
-            </label>            <label class="chip">
-              <input type="radio" name="beds" value="4">
-              <span class="chip-face">4</span>
-            </label>            <label class="chip">
-              <input type="radio" name="beds" value="5">
-              <span class="chip-face">5+</span>
-            </label>
+            <div>
+              <span class="group-label" id="beds-label">Bedrooms</span>
+              <div class="stepper" data-stepper="beds" data-min="1" data-max="6" data-step="1" data-start="3" data-set="0" role="group" aria-labelledby="beds-label">
+                <button type="button" data-dir="-1" aria-label="One fewer bedroom"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 10 H16"/></svg></button>
+                <output aria-live="polite">–</output>
+                <button type="button" data-dir="1" aria-label="One more bedroom"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 10 H16 M10 4 V16"/></svg></button>
               </div>
-            </fieldset>
-            <fieldset>
-              <legend class="group-label">Baths</legend>
-              <div class="chips">
-            <label class="chip">
-              <input type="radio" name="baths" value="2">
-              <span class="chip-face">2</span>
-            </label>            <label class="chip">
-              <input type="radio" name="baths" value="2.5">
-              <span class="chip-face">2½</span>
-            </label>            <label class="chip">
-              <input type="radio" name="baths" value="3">
-              <span class="chip-face">3</span>
-            </label>            <label class="chip">
-              <input type="radio" name="baths" value="4">
-              <span class="chip-face">4+</span>
-            </label>
+              <input type="hidden" name="beds" id="beds" value="">
+              <p class="stepper-hint" data-hint="beds">Tap + or − to set it</p>
+            </div>
+            <div>
+              <span class="group-label" id="baths-label">Baths</span>
+              <div class="stepper" data-stepper="baths" data-min="1" data-max="5" data-step="0.5" data-start="2.5" data-set="0" role="group" aria-labelledby="baths-label">
+                <button type="button" data-dir="-1" aria-label="Half a bath fewer"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 10 H16"/></svg></button>
+                <output aria-live="polite">–</output>
+                <button type="button" data-dir="1" aria-label="Half a bath more"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 10 H16 M10 4 V16"/></svg></button>
               </div>
-            </fieldset>
+              <input type="hidden" name="baths" id="baths" value="">
+              <p class="stepper-hint" data-hint="baths">Half baths count</p>
+            </div>
             <fieldset>
               <legend class="group-label">Stories</legend>
               <div class="chips">
@@ -375,7 +356,7 @@ const springCity = getProject('spring-city-lake-house');
           <p class="talk-exit"><a href="/contact/" data-exit>Rather just talk? Contact Heartwood</a></p>
         </section>
 
-        <section class="panel" id="panel-people" aria-labelledby="people-title" hidden>
+        <section class="panel" id="panel-people" aria-labelledby="people-title" aria-hidden="true" inert>
           <p class="kicker">The house</p>
           <h1 tabindex="-1" id="people-title">Who is it for?</h1>
           <p class="lede">This helps us plan how the house is used, not just how it looks.</p>
@@ -433,7 +414,7 @@ const springCity = getProject('spring-city-lake-house');
           <p class="talk-exit"><a href="/contact/" data-exit>Rather just talk? Contact Heartwood</a></p>
         </section>
 
-        <section class="panel" id="panel-plans" aria-labelledby="plans-title" hidden>
+        <section class="panel" id="panel-plans" aria-labelledby="plans-title" aria-hidden="true" inert>
           <p class="kicker">The house</p>
           <h1 tabindex="-1" id="plans-title">Where are you with plans?</h1>
           <p class="lede">Most people we work with are starting fresh. If you have something already, you can show us.</p>
@@ -452,20 +433,29 @@ const springCity = getProject('spring-city-lake-house');
               <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 34 H42"/><path d="M24 34 V30"/></svg><span><strong>Starting fresh.</strong><small>We’ll begin with how you want to live, and with the lot.</small></span></span>
             </label>
           </div>
-          <div class="plans-attach" id="plans-attach">
-            <div class="field">
-              <label for="plans-link">A link, if you have one</label>
-              <input id="plans-link" name="plans-link" type="url" placeholder="https://">
+          <div class="reserve" id="plans-reserve">
+            <div class="reserve-note" id="plans-note-empty">
+              <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4 H17 L22 9 V24 H7 Z"/><path d="M17 4 V9 H22"/><path d="M11 15 H18 M11 19 H16"/></svg>
+              <span>If you have plans, a sketch, or a board, you can add it here. Nothing to add is fine too.</span>
             </div>
-            <div class="field">
-              <label for="plans-file">Or upload a file</label>
-              <input id="plans-file" name="plans-file" type="file">
-              <p class="muted" id="plans-file-note" style="margin-top:6px"></p>
+            <div class="attach" id="plans-attach" aria-hidden="true">
+              <div class="field">
+                <label for="plans-link">A link, if you have one</label>
+                <input id="plans-link" name="plans-link" type="url" placeholder="Pinterest, Dropbox, Google Drive" tabindex="-1">
+              </div>
+              <div class="field">
+                <span class="group-label">Or a file</span>
+                <div class="upload">
+                  <input id="plans-file" name="plans-file" type="file" accept=".pdf,.jpg,.jpeg,.png,.heic,.dwg" tabindex="-1">
+                  <label class="upload-btn" for="plans-file"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13 V3 M6 7 l4 -4 4 4"/><path d="M3 13 v4 h14 v-4"/></svg>Choose a file</label>
+                  <span class="upload-name" id="plans-file-note">PDF or photos</span>
+                </div>
+              </div>
             </div>
           </div>
           <fieldset class="group">
             <legend class="group-label">Must-haves, if you already know them</legend>
-            <div class="chips">
+            <div class="need-grid">
             <label class="chip">
               <input type="checkbox" name="need" value="porch">
               <span class="chip-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40 V22 L24 10 l16 12 v18"/><path d="M8 40 h32"/><path d="M14 22 h20"/><path d="M16 40 V22 M32 40 V22"/><path d="M14 22 l10-6 10 6"/></svg>A porch</span>
@@ -473,6 +463,10 @@ const springCity = getProject('spring-city-lake-house');
             <label class="chip">
               <input type="checkbox" name="need" value="screened">
               <span class="chip-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40 V22 h32 v18"/><path d="M8 22 L24 12 L40 22"/><path d="M16 40 V22 M24 40 V16 M32 40 V22"/></svg>A screened porch</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="need" value="deck">
+              <span class="chip-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 30 H42"/><path d="M6 20 H42"/><path d="M12 20 V30 M20 20 V30 M28 20 V30 M36 20 V30"/><path d="M10 30 V40 M38 30 V40"/></svg>A deck</span>
             </label>
             <label class="chip">
               <input type="checkbox" name="need" value="garage">
@@ -507,30 +501,18 @@ const springCity = getProject('spring-city-lake-house');
           <p class="talk-exit"><a href="/contact/" data-exit>Rather just talk? Contact Heartwood</a></p>
         </section>
 
-        <section class="panel" id="panel-money" aria-labelledby="money-title" hidden>
+        <section class="panel" id="panel-money" aria-labelledby="money-title" aria-hidden="true" inert>
           <p class="kicker">A word about the money</p>
           <h1 tabindex="-1" id="money-title">If you have a range for the house, you can tell us.</h1>
           <p class="lede">This is for the house itself. Land and site work sit beside that, not in it. If you don’t have a number yet, that’s fine.</p>
           <p class="cheer" data-cheer></p>
           <fieldset class="group">
             <legend class="group-label">A budget for the house</legend>
-            <div class="chips">
-            <label class="chip">
-              <input type="radio" name="budget" value="modest">
-              <span class="chip-face">A modest budget</span>
-            </label>
-            <label class="chip">
-              <input type="radio" name="budget" value="mid">
-              <span class="chip-face">A mid-range budget</span>
-            </label>
-            <label class="chip">
-              <input type="radio" name="budget" value="higher">
-              <span class="chip-face">A higher-end budget</span>
-            </label>
-            <label class="chip">
-              <input type="radio" name="budget" value="unsure">
-              <span class="chip-face">Not sure yet</span>
-            </label>
+            <div class="budget-grid">
+            <label class="chip"><input type="radio" name="budget" value="simple"><span class="chip-face"><b>Simple</b><small>Good, durable basics</small></span></label>
+            <label class="chip"><input type="radio" name="budget" value="comfortable"><span class="chip-face"><b>Comfortable</b><small>Room for a few upgrades</small></span></label>
+            <label class="chip"><input type="radio" name="budget" value="premium"><span class="chip-face"><b>Premium</b><small>The finishes you really want</small></span></label>
+            <label class="chip"><input type="radio" name="budget" value="unsure"><span class="chip-face"><b>Not sure yet</b><small>We’ll talk it through</small></span></label>
             </div>
           </fieldset>
           <fieldset class="group">
@@ -557,7 +539,7 @@ const springCity = getProject('spring-city-lake-house');
           <p class="talk-exit"><a href="/contact/" data-exit>Rather just talk? Contact Heartwood</a></p>
         </section>
 
-        <section class="panel" id="panel-timing" aria-labelledby="timing-title" hidden>
+        <section class="panel" id="panel-timing" aria-labelledby="timing-title" aria-hidden="true" inert>
           <p class="kicker">Timing</p>
           <h1 tabindex="-1" id="timing-title">When do you want to be in?</h1>
           <p class="lede">A window is enough. We’ll talk through what the lot and the season will allow.</p>
@@ -607,12 +589,12 @@ const springCity = getProject('spring-city-lake-house');
           <p class="talk-exit"><a href="/contact/" data-exit>Rather just talk? Contact Heartwood</a></p>
         </section>
 
-        <section class="panel" id="panel-brief" aria-labelledby="brief-title" hidden>
+        <section class="panel" id="panel-brief" aria-labelledby="brief-title" aria-hidden="true" inert>
           <article class="brief-card">
             <div class="brief-copy">
               <p class="kicker">Your build brief</p>
               <h1 tabindex="-1" id="brief-title">What you’ve told us so far.</h1>
-              <p class="lede">Next is plans, then an estimate, then we build.</p>
+              <p class="lede">Plans, then an estimate, then we build.</p>
               <dl class="brief-dl" id="brief-dl"></dl>
               <div class="actions">
                 <button class="btn-ghost btn" type="button" id="btn-print">Save as PDF / Print</button>
@@ -621,7 +603,7 @@ const springCity = getProject('spring-city-lake-house');
               </div>
               <p class="copied" id="copied" role="status" hidden>Link copied</p>
             </div>
-            <div class="brief-sketch" id="brief-sketch-slot"></div>
+            <div class="brief-sketch" id="brief-sketch-slot"><PlanScene titleId="scene-title-brief" /></div>
           </article>
 
           <div class="look-first">
@@ -672,6 +654,7 @@ const springCity = getProject('spring-city-lake-house');
               <input type="hidden" name="work" value="custom-home" data-brief-work>
               <input type="hidden" name="subject" value="" data-brief-subject>
               <input type="hidden" name="message" value="" data-brief-message>
+              <input type="hidden" name="parcel" value="" data-brief-parcel>
               <input type="hidden" name="path" value="" data-brief-path>
               <label class="field" data-saved-wrap hidden>
                 Houses you liked
@@ -691,7 +674,7 @@ const springCity = getProject('spring-city-lake-house');
           <p class="talk-exit"><a href="tel:+14239944911">Or just call (423) 994-4911</a></p>
         </section>
 
-        <section class="panel" id="panel-extra" aria-labelledby="extra-title" hidden>
+        <section class="panel" id="panel-extra" aria-labelledby="extra-title" aria-hidden="true" inert>
           <p class="kicker">A few more details</p>
           <h1 tabindex="-1" id="extra-title">Only if you already know.</h1>
           <p class="lede">Skip anything you don’t. None of this is required to send the brief.</p>
@@ -784,7 +767,7 @@ const springCity = getProject('spring-city-lake-house');
       <aside class="sketch-rail" id="sketch-rail" aria-label="A house sketch that updates as you answer">
         <h2>The house so far</h2>
         <p class="muted" id="sketch-caption" style="font-size: var(--step--1);">Answer a few questions, and the lot and the house will fill in.</p>
-        <div class="sketch-stage" id="sketch-stage"></div>
+        <div class="sketch-stage" id="sketch-stage"><PlanScene /></div>
         <ul class="sketch-list" id="sketch-list" aria-live="polite"></ul>
       </aside>
     </div>

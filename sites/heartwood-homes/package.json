@@ -12,7 +12,8 @@
     "@astrojs/sitemap": "^3.7.6",
     "@fontsource/bricolage-grotesque": "^5.3.0",
     "@fontsource/source-sans-3": "^5.3.1",
-    "astro": "^7.4.13"
+    "astro": "^7.4.13",
+    "gsap": "^3.15.1"
   },
   "devDependencies": {
     "@playwright/test": "^1.65.1",
