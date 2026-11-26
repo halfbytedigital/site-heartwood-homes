@@ -19,6 +19,7 @@ interface Props {
 }
 const { title, description, noindex = false } = Astro.props;
 const quotePage = Astro.url.pathname.startsWith('/contact');
+const planPage = Astro.url.pathname.startsWith('/plan');
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const og = new URL('/og-default.jpg', Astro.site);
 ---
@@ -33,8 +34,8 @@ const og = new URL('/og-default.jpg', Astro.site);
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical.href} />
-    <link rel="preload" href="/fonts/Newsreader[opsz,wght].woff2" as="font" type="font/woff2" crossorigin />
-    {Astro.url.pathname.startsWith('/plan') && <link rel="preload" href="/fonts/SourceSans3[wght].woff2" as="font" type="font/woff2" crossorigin />}
+    <link rel="preload" href="/fonts/newsreader-var.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/source-sans-3-var.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/favicon.png" type="image/png" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -45,7 +46,7 @@ const og = new URL('/og-default.jpg', Astro.site);
     {noindex && <meta name="robots" content="noindex" />}
     <Schema />
   </head>
-  <body class:list={[quotePage && 'quote-page']}>
+  <body class:list={[quotePage && 'quote-page', planPage && 'no-action-bar']}>
     <a class="skip" href="#main">Skip to content</a>
     <Header />
     <main id="main">

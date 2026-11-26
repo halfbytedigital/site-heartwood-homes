@@ -944,27 +944,49 @@ async function onRequestPost(context2) {
   const phone = String(form.get("phone") ?? "").trim();
   const email = String(form.get("email") ?? "").trim();
   const work = String(form.get("work") ?? "").trim();
+  const area = String(form.get("area") ?? "").trim().slice(0, 160);
+  const land = String(form.get("land") ?? "").trim().slice(0, 40);
+  const timeline = String(form.get("timeline") ?? "").trim().slice(0, 40);
   const budget = String(form.get("budget") ?? "").trim().slice(0, 120);
   const message = String(form.get("message") ?? "").trim().slice(0, 4e3);
   const project = String(form.get("project") ?? "").trim();
   const chapter = String(form.get("chapter") ?? "").trim();
+  const houses = String(form.get("houses") ?? "").trim().slice(0, 500);
+  const path = String(form.get("path") ?? "").trim().slice(0, 40);
+  const kind = String(form.get("kind") ?? "").trim().slice(0, 40);
+  const subject = String(form.get("subject") ?? "").trim().slice(0, 200);
   const allowed = ["custom-home", "renovation", "site-prep"];
-  if (!name || !allowed.includes(work) || !phone && !email) {
-    return json({ ok: false }, 400);
-  }
+  const brief = kind === "brief";
+  if (brief ? !name && !phone && !email : !name || !phone && !email) return json({ ok: false }, 400);
+  if (work && !allowed.includes(work)) return json({ ok: false }, 400);
   const webhook = context2.env.GHL_WEBHOOK_URL;
   if (!webhook) return json({ ok: false, reason: "unset" }, 503);
   const response = await fetch(webhook, {
     method: "POST",
     headers: { "content-type": "application/json" },
-    body: JSON.stringify({ name, phone, email, work, budget, message, project, chapter })
+    body: JSON.stringify({
+      name,
+      phone,
+      email,
+      work,
+      budget,
+      message,
+      project,
+      chapter,
+      area,
+      land,
+      timeline,
+      houses,
+      path,
+      ...brief ? { kind, subject, ...context2.env.QUOTE_TO ? { to: context2.env.QUOTE_TO } : {} } : {}
+    })
   });
   if (!response.ok) return json({ ok: false }, 502);
   return json({ ok: true });
 }
 __name(onRequestPost, "onRequestPost");
 
-// ../.wrangler/tmp/pages-848ewe/functionsRoutes-0.6796685196859881.mjs
+// ../.wrangler/tmp/pages-PUL4EG/functionsRoutes-0.23855724339295592.mjs
 var routes = [
   {
     routePath: "/api/quote",

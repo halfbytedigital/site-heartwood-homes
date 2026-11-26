@@ -1,0 +1,12 @@
+{
+  "/": [
+    "http://127.0.0.1:4321/fonts/newsreader-var.woff2",
+    "http://127.0.0.1:4321/fonts/source-sans-3-var.woff2",
+    "http://127.0.0.1:4321/src/styles/fonts.css"
+  ],
+  "/plan/": [
+    "http://127.0.0.1:4321/fonts/newsreader-var.woff2",
+    "http://127.0.0.1:4321/fonts/source-sans-3-var.woff2",
+    "http://127.0.0.1:4321/src/styles/fonts.css"
+  ]
+}

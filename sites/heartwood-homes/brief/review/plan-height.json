@@ -1,0 +1,170 @@
+{
+  "viewports": [
+    {
+      "viewport": "1440",
+      "steps": [
+        {
+          "step": "land",
+          "panels": 511.97,
+          "panel": 511.97,
+          "delta": 0,
+          "gap": 64
+        },
+        {
+          "step": "place",
+          "panels": 704.47,
+          "panel": 704.47,
+          "delta": 0,
+          "gap": 64
+        },
+        {
+          "step": "terrain",
+          "panels": 813.42,
+          "panel": 813.42,
+          "delta": 0,
+          "gap": 64
+        },
+        {
+          "step": "utilities",
+          "panels": 1101.53,
+          "panel": 1101.53,
+          "delta": 0,
+          "gap": 64
+        },
+        {
+          "step": "type",
+          "panels": 1060.14,
+          "panel": 1060.14,
+          "delta": 0,
+          "gap": 64
+        },
+        {
+          "step": "size",
+          "panels": 695.55,
+          "panel": 695.55,
+          "delta": 0,
+          "gap": 64
+        },
+        {
+          "step": "people",
+          "panels": 610.64,
+          "panel": 610.64,
+          "delta": 0,
+          "gap": 64
+        },
+        {
+          "step": "plans",
+          "panels": 957.94,
+          "panel": 957.94,
+          "delta": 0,
+          "gap": 64
+        },
+        {
+          "step": "money",
+          "panels": 693.11,
+          "panel": 693.11,
+          "delta": 0,
+          "gap": 64
+        },
+        {
+          "step": "timing",
+          "panels": 595.02,
+          "panel": 595.02,
+          "delta": 0,
+          "gap": 130.77
+        },
+        {
+          "step": "brief",
+          "panels": 4146.58,
+          "panel": 4146.58,
+          "delta": 0,
+          "gap": 64
+        }
+      ],
+      "pass": true
+    },
+    {
+      "viewport": "390",
+      "steps": [
+        {
+          "step": "land",
+          "panels": 649.8,
+          "panel": 649.8,
+          "delta": 0,
+          "gap": 144
+        },
+        {
+          "step": "place",
+          "panels": 792.42,
+          "panel": 792.42,
+          "delta": 0,
+          "gap": 144
+        },
+        {
+          "step": "terrain",
+          "panels": 1316.09,
+          "panel": 1316.09,
+          "delta": 0,
+          "gap": 144
+        },
+        {
+          "step": "utilities",
+          "panels": 1560.91,
+          "panel": 1560.91,
+          "delta": 0,
+          "gap": 144
+        },
+        {
+          "step": "type",
+          "panels": 1521.5,
+          "panel": 1521.5,
+          "delta": 0,
+          "gap": 144
+        },
+        {
+          "step": "size",
+          "panels": 987.22,
+          "panel": 987.22,
+          "delta": 0,
+          "gap": 144
+        },
+        {
+          "step": "people",
+          "panels": 682.2,
+          "panel": 682.2,
+          "delta": 0,
+          "gap": 144
+        },
+        {
+          "step": "plans",
+          "panels": 1407.75,
+          "panel": 1407.75,
+          "delta": 0,
+          "gap": 144
+        },
+        {
+          "step": "money",
+          "panels": 795.88,
+          "panel": 795.88,
+          "delta": 0,
+          "gap": 144
+        },
+        {
+          "step": "timing",
+          "panels": 630.2,
+          "panel": 630.2,
+          "delta": 0,
+          "gap": 144
+        },
+        {
+          "step": "brief",
+          "panels": 4913.92,
+          "panel": 4913.92,
+          "delta": 0,
+          "gap": 128
+        }
+      ],
+      "pass": true
+    }
+  ]
+}

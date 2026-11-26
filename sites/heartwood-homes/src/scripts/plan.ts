@@ -126,6 +126,13 @@ type State = {
   source: string;
 };
 
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Tab") document.documentElement.classList.add("kbd");
+});
+document.addEventListener("pointerdown", () => {
+  document.documentElement.classList.remove("kbd");
+});
+
 const root = document.querySelector<HTMLElement>("[data-plan]");
 if (root) {
   const state: State = {
@@ -549,7 +556,7 @@ if (root) {
     root.querySelectorAll<HTMLElement>(".panel").forEach((panel) => {
       const on = panel.id === "panel-" + name;
       panel.classList.toggle("is-on", on);
-      panel.hidden = false;
+      if (on) panel.hidden = false;
       panel.toggleAttribute("inert", !on);
       panel.setAttribute("aria-hidden", on ? "false" : "true");
     });
@@ -984,7 +991,9 @@ if (root) {
       const step = hash && steps.includes(hash) ? hash : (draft.step && steps.includes(draft.step) ? draft.step : "land");
       showPanel(step, { focus: step !== "land" });
     } else {
-      showPanel("land", { focus: false });
+      const hash = hashStep();
+      const step = hash && document.getElementById("panel-" + hash) ? hash : "land";
+      showPanel(step, { focus: step !== "land" });
     }
   }
 

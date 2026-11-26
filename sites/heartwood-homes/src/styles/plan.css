@@ -79,9 +79,9 @@
   min-height: 44px;
 }
 
-.plan .panels { display: grid; }
-.plan .panel { display: block; grid-area: 1 / 1; visibility: hidden; align-self: start; width: 100%; }
-.plan .panel.is-on { visibility: visible; }
+.plan .panels { display: block; }
+.plan .panel { display: none; }
+.plan .panel.is-on { display: block; }
 .plan fieldset { border: 0; margin: 0; padding: 0; }
 .plan legend { padding: 0; }
 .plan .group { margin: 0 0 var(--space-l); }
@@ -240,7 +240,8 @@
 .plan #panel-land .cheer { display: none; }
 .plan #panel-land .lede { margin-bottom: var(--space-l); }
 .plan .panel h1[tabindex="-1"]:focus { outline: none; }
-.plan .panel h1[tabindex="-1"]:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; }
+html.kbd .plan .panel h1[tabindex="-1"]:focus { outline: 3px solid var(--color-focus); outline-offset: 3px; }
+.plan #panel-brief .lede { margin-bottom: var(--space-m); }
 
 .plan .talk-exit { margin-top: var(--space-m); font-size: var(--step--1); }
 .plan .talk-exit a { color: var(--color-muted); text-underline-offset: 3px; }
@@ -272,7 +273,7 @@
 .plan .brief-sketch { align-items: flex-start; }
 .plan .brief-sketch .scene { width: 100%; height: auto; }
 @media (width < 1024px) {
-  .plan.wrap:has(.layout:not(.is-wide)) { padding-bottom: 188px; }
+  .plan.wrap:has(.layout:not(.is-wide)) { padding-bottom: 80px; }
   .plan .sketch-rail {
     position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
     margin: 0; border-left: 0; border-right: 0; border-bottom: 0;
@@ -287,8 +288,8 @@
   .plan .sketch-list { display: none; }
 }
 @media (width < 768px) {
-  .plan .sketch-rail { bottom: 0; transform: translateY(calc(-1 * var(--actionbar-h))); }
-  .plan.wrap:has(.layout:not(.is-wide)) { padding-bottom: calc(188px + var(--actionbar-h)); }
+  .plan .sketch-rail { bottom: 0; transform: none; }
+  .plan.wrap:has(.layout:not(.is-wide)) { padding-bottom: 80px; }
 }
 html.keyboard-open .plan .sketch-rail { transform: translateY(0); }
 @media (width >= 1024px) {
@@ -403,8 +404,8 @@ html.keyboard-open .plan .sketch-rail { transform: translateY(0); }
 .plan .budget-grid .chip:has(input:checked) small { color: rgb(231 235 231 / 0.85); }
 
 @media (width < 768px) {
-  .plan .sketch-rail { bottom: 0; transform: translateY(calc(-1 * var(--actionbar-h))); }
-  .plan.wrap:has(.layout:not(.is-wide)) { padding-bottom: calc(188px + var(--actionbar-h)); }
+  .plan .sketch-rail { bottom: 0; transform: none; }
+  .plan.wrap:has(.layout:not(.is-wide)) { padding-bottom: 80px; }
 }
 html.keyboard-open .plan .sketch-rail { transform: translateY(0); }
 

@@ -92,7 +92,7 @@
   {
     "name": "header Plan your home on /plan/ keeps the step, brings it into view",
     "ok": true,
-    "extra": "{\"y\":16,\"panel\":\"panel-type\",\"top\":211,\"header\":81,\"vh\":900,\"focus\":\"type-title\",\"shifts\":0}"
+    "extra": "{\"y\":16,\"panel\":\"panel-type\",\"top\":211,\"header\":81,\"vh\":900,\"focus\":\"type-title\",\"shifts\":0.05625529272762346}"
   },
   {
     "name": "home: header, phone bottom bar and scrubber Finish go to /plan/",
@@ -118,6 +118,61 @@
     "name": "project a-frame-cabin-airbnb: closing CTA -> /plan/?type=aframe",
     "ok": true,
     "extra": "/plan/?type=aframe"
+  },
+  {
+    "name": "no action bar on /plan/",
+    "ok": true,
+    "extra": ""
+  },
+  {
+    "name": "/renovations/ bar and close -> /contact/?work=renovation “Tell us about it”, no data-start-cta",
+    "ok": true,
+    "extra": "{\"bar\":\"/contact/?work=renovation\",\"barLabel\":\"Tell us about it\",\"barCta\":false,\"close\":\"/contact/?work=renovation\",\"closeLabel\":\"Tell us about it\",\"closeCta\":false}"
+  },
+  {
+    "name": "/site-prep-landwork/ bar and close -> /contact/?work=site-prep “Tell us about it”, no data-start-cta",
+    "ok": true,
+    "extra": "{\"bar\":\"/contact/?work=site-prep\",\"barLabel\":\"Tell us about it\",\"barCta\":false,\"close\":\"/contact/?work=site-prep\",\"closeLabel\":\"Tell us about it\",\"closeCta\":false}"
+  },
+  {
+    "name": "project signal-mountain-renovation: renovation close",
+    "ok": true,
+    "extra": "{\"href\":\"/contact/?work=renovation\",\"label\":\"Tell us about it\",\"cta\":false,\"title\":\"Planning a renovation?\"}"
+  },
+  {
+    "name": "project red-bank-renovation: renovation close",
+    "ok": true,
+    "extra": "{\"href\":\"/contact/?work=renovation\",\"label\":\"Tell us about it\",\"cta\":false,\"title\":\"Planning a renovation?\"}"
+  },
+  {
+    "name": "project crawlspace-renovation: renovation close",
+    "ok": true,
+    "extra": "{\"href\":\"/contact/?work=renovation\",\"label\":\"Tell us about it\",\"cta\":false,\"title\":\"Planning a renovation?\"}"
+  },
+  {
+    "name": "project east-brainard-tornado-rebuild: renovation close",
+    "ok": true,
+    "extra": "{\"href\":\"/contact/?work=renovation\",\"label\":\"Tell us about it\",\"cta\":false,\"title\":\"Planning a renovation?\"}"
+  },
+  {
+    "name": "project investment-property-flip: renovation close",
+    "ok": true,
+    "extra": "{\"href\":\"/contact/?work=renovation\",\"label\":\"Tell us about it\",\"cta\":false,\"title\":\"Planning a renovation?\"}"
+  },
+  {
+    "name": "project incline-townhomes: closing CTA -> /plan/?type=townhome",
+    "ok": true,
+    "extra": "/plan/?type=townhome"
+  },
+  {
+    "name": "project layouts-on-market: closing CTA -> /plan/?type=townhome",
+    "ok": true,
+    "extra": "/plan/?type=townhome"
+  },
+  {
+    "name": "project sewanee-airbnb: closing CTA -> /plan/?type=rental",
+    "ok": true,
+    "extra": "/plan/?type=rental"
   },
   {
     "name": "no land-finding wording on any page (incl. Our process, About, Projects)",

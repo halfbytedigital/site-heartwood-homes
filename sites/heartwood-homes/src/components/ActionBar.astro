@@ -1,14 +1,25 @@
 ---
 import { site } from '../data/site';
 import { planHref, planLabel } from '../data/nav';
-const quotePage = Astro.url.pathname.startsWith('/contact');
+const path = Astro.url.pathname;
+const quotePage = path.startsWith('/contact');
+const planPage = path.startsWith('/plan');
+const bar = path.startsWith('/renovations')
+  ? { href: '/contact/?work=renovation', label: 'Tell us about it', start: false }
+  : path.startsWith('/site-prep')
+    ? { href: '/contact/?work=site-prep', label: 'Tell us about it', start: false }
+    : { href: planHref, label: planLabel, start: true };
 ---
-{!quotePage && (
+{!quotePage && !planPage && (
   <nav class="action-bar" aria-label="Quick actions">
     {site.phone && site.phoneE164 && (
       <a href={`tel:${site.phoneE164}`} data-event="call_click" data-event-placement="bar">Call</a>
     )}
-    <a href={planHref} data-start-cta><span data-start-cta-label>{planLabel}</span></a>
+    {bar.start ? (
+      <a href={bar.href} data-start-cta><span data-start-cta-label>{bar.label}</span></a>
+    ) : (
+      <a href={bar.href}>{bar.label}</a>
+    )}
   </nav>
 )}
 

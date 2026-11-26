@@ -764,6 +764,40 @@ const springCity = getProject('spring-city-lake-house');
           <p class="talk-exit"><a href="/contact/" data-exit>Rather just talk? Contact Heartwood</a></p>
         </section>
       </div>
+      <script is:inline>
+        (function () {
+          var params = new URLSearchParams(location.search);
+          var hash = (location.hash || "").replace(/^#/, "").replace(/^q-/, "");
+          var raw = (params.get("land") || "").toLowerCase();
+          var land = raw === "yes" || raw === "have-land" ? "yes" : raw === "no" || raw === "not yet" || raw === "find-land" || raw === "still looking" ? "no" : raw === "unsure" || raw === "not sure" || raw === "not-sure" ? "unsure" : "";
+          var path = params.get("path") || "";
+          if (!land && path === "have-land") land = "yes";
+          if (!land && path === "find-land") land = "no";
+          var steps = land === "yes"
+            ? ["land", "place", "terrain", "utilities", "type", "size", "people", "plans", "money", "timing", "brief", "extra"]
+            : ["land", "type", "size", "people", "plans", "money", "timing", "brief", "extra"];
+          var step = params.get("step") || hash;
+          if (!step && path === "have-land" && land === "yes") step = "place";
+          if (!step && path === "find-land" && land === "no") step = "type";
+          if (!step || !document.getElementById("panel-" + step)) step = "land";
+          var next = document.getElementById("panel-" + step);
+          var on = document.querySelector(".panel.is-on");
+          if (!next || next === on) return;
+          if (on) {
+            on.classList.remove("is-on");
+            on.setAttribute("aria-hidden", "true");
+            on.setAttribute("inert", "");
+          }
+          next.classList.add("is-on");
+          next.setAttribute("aria-hidden", "false");
+          next.removeAttribute("inert");
+          var wide = step === "brief" || step === "extra";
+          var layout = document.getElementById("layout");
+          if (layout) layout.classList.toggle("is-wide", wide);
+          var rail = document.getElementById("sketch-rail");
+          if (rail && wide) rail.hidden = true;
+        })();
+      </script>
 
       <aside class="sketch-rail" id="sketch-rail" aria-label="A house sketch that updates as you answer">
         <h2>The house so far</h2>

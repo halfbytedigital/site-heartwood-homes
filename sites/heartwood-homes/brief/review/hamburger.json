@@ -1,0 +1,86 @@
+{
+  "normal": {
+    "reduced": false,
+    "box": {
+      "x": 330,
+      "y": 14,
+      "width": 44,
+      "height": 44
+    },
+    "before": {
+      "label": "Open menu",
+      "expanded": "false",
+      "controls": "mobile-nav",
+      "w": 44,
+      "h": 44
+    },
+    "headerClosed": 73,
+    "headerOpen": 73,
+    "duration": "0.2s, 0s",
+    "midOpen": {
+      "rows": "303.531px",
+      "h": 368.109375,
+      "visibility": "visible"
+    },
+    "open": {
+      "label": "Close menu",
+      "expanded": "true",
+      "rows": "444px",
+      "visibility": "visible",
+      "inert": false,
+      "inner": 444,
+      "focus": true
+    },
+    "afterEsc": {
+      "expanded": "false",
+      "focus": true,
+      "inert": true
+    },
+    "afterOut": "false",
+    "afterLink": "http://127.0.0.1:4321/about/",
+    "cls": [],
+    "headerSame": true
+  },
+  "reduced": {
+    "reduced": true,
+    "box": {
+      "x": 330,
+      "y": 14,
+      "width": 44,
+      "height": 44
+    },
+    "before": {
+      "label": "Open menu",
+      "expanded": "false",
+      "controls": "mobile-nav",
+      "w": 44,
+      "h": 44
+    },
+    "headerClosed": 73,
+    "headerOpen": 73,
+    "duration": "0s",
+    "midOpen": {
+      "rows": "444px",
+      "h": 445,
+      "visibility": "visible"
+    },
+    "open": {
+      "label": "Close menu",
+      "expanded": "true",
+      "rows": "444px",
+      "visibility": "visible",
+      "inert": false,
+      "inner": 444,
+      "focus": true
+    },
+    "afterEsc": {
+      "expanded": "false",
+      "focus": true,
+      "inert": true
+    },
+    "afterOut": "false",
+    "afterLink": "http://127.0.0.1:4321/about/",
+    "cls": [],
+    "headerSame": true
+  }
+}

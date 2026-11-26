@@ -8,7 +8,15 @@ const work = params.get('work') ?? '';
 const project = params.get('project') ?? '';
 const chapter = params.get('chapter') ?? '';
 const path = params.get('path') ?? '';
-const landChoice = params.get('land') ?? (path === 'have-land' ? 'Yes' : path === 'find-land' ? 'Not yet' : '');
+const rawLand = params.get('land') ?? (path === 'have-land' ? 'Yes' : path === 'find-land' ? 'Still looking' : '');
+const landKey = rawLand.toLowerCase();
+const landChoice = landKey === 'not yet' || landKey === 'find-land' || landKey === 'still looking' || landKey === 'no'
+  ? 'Still looking'
+  : landKey === 'yes' || landKey === 'have-land'
+    ? 'Yes'
+    : landKey === 'not sure' || landKey === 'unsure' || landKey === 'not-sure'
+      ? 'Not sure'
+      : rawLand;
 const timelineChoice = params.get('timeline') ?? (path === 'dreaming' ? 'Just looking' : '');
 ---
 <form class="qualifier" method="post" action="/api/quote" data-qualifier novalidate>
@@ -38,7 +46,7 @@ const timelineChoice = params.get('timeline') ?? (path === 'dreaming' ? 'Just lo
     <h2>Do you have land?</h2>
     <div class="choice-list">
       <label class="choice"><input type="radio" name="land" value="Yes" checked={landChoice === 'Yes'} /> Yes</label>
-      <label class="choice"><input type="radio" name="land" value="Not yet" checked={landChoice === 'Not yet'} /> Still looking</label>
+      <label class="choice"><input type="radio" name="land" value="Still looking" checked={landChoice === 'Still looking'} /> Still looking</label>
       <label class="choice"><input type="radio" name="land" value="Not sure" checked={landChoice === 'Not sure'} /> Not sure</label>
     </div>
   </div>
@@ -95,7 +103,15 @@ const timelineChoice = params.get('timeline') ?? (path === 'dreaming' ? 'Just lo
   if (form) {
     const params = new URLSearchParams(location.search);
     const pathValue = params.get('path') ?? '';
-    const landValue = params.get('land') ?? (pathValue === 'have-land' ? 'Yes' : pathValue === 'find-land' ? 'Not yet' : '');
+    const rawLand = params.get('land') ?? (pathValue === 'have-land' ? 'Yes' : pathValue === 'find-land' ? 'Still looking' : '');
+    const landKey = rawLand.toLowerCase();
+    const landValue = landKey === 'not yet' || landKey === 'find-land' || landKey === 'still looking' || landKey === 'no'
+      ? 'Still looking'
+      : landKey === 'yes' || landKey === 'have-land'
+        ? 'Yes'
+        : landKey === 'not sure' || landKey === 'unsure' || landKey === 'not-sure'
+          ? 'Not sure'
+          : rawLand;
     const timelineValue = params.get('timeline') ?? (pathValue === 'dreaming' ? 'Just looking' : '');
 
     const setRadio = (name: string, value: string) => {

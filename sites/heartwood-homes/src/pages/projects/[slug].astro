@@ -8,7 +8,7 @@ import ProjectShot from '../../components/ProjectShot.astro';
 import NextHouse from '../../components/NextHouse.astro';
 import PhotoViewer from '../../components/PhotoViewer.astro';
 import { getGallery, openingShot, roomGroups, shotWidths, type Shot } from '../../data/galleries';
-import { featuredFirst, planTypeFor, projectPath, projects } from '../../data/projects';
+import { featuredFirst, planTypeFor, projectPath, projects, typesFor } from '../../data/projects';
 
 export function getStaticPaths() {
   return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
@@ -22,6 +22,7 @@ const order = featuredFirst(projects.filter((item) => item.kind === project.kind
 const index = Math.max(0, order.findIndex((item) => item.slug === project.slug));
 const next = order.length > 1 ? order[(index + 1) % order.length] : undefined;
 const prev = order.length > 1 ? order[(index - 1 + order.length) % order.length] : undefined;
+const renovation = typesFor(project.slug).includes('renovations');
 const link = project.href ?? gallery?.link ?? null;
 const linkLabel = project.hrefLabel ?? (link ? 'The project site' : null);
 
@@ -142,12 +143,22 @@ function pairs(shots: Shot[]) {
     )}
 
     <PhotoViewer />
-    <CloseBand
-      href={`/plan/?type=${planTypeFor(project.slug)}`}
-      title="Want something like this?"
-      line="A few easy questions, and you get a brief and a sketch of your house."
-      label="Plan yours"
-      startCta={false}
-    />
+    {renovation ? (
+      <CloseBand
+        href="/contact/?work=renovation"
+        title="Planning a renovation?"
+        line="Tell us about the house and what you want to change. We’ll call or write you back."
+        label="Tell us about it"
+        startCta={false}
+      />
+    ) : (
+      <CloseBand
+        href={`/plan/?type=${planTypeFor(project.slug)}`}
+        title="Want something like this?"
+        line="A few easy questions, and you get a brief and a sketch of your house."
+        label="Plan yours"
+        startCta={false}
+      />
+    )}
   </article>
 </Base>

@@ -323,27 +323,20 @@ export function featuredFirst(list: Project[] = projects) {
 export const customProjects = featuredFirst(projects.filter((project) => project.kind === 'custom'));
 export const renovationProjects = projects.filter((project) => project.kind === 'renovation');
 
-/** Closest plan house type for the project closing CTA. Townhomes use family. */
-const planTypes: Record<string, 'lake' | 'family' | 'cabin' | 'aframe'> = {
+/** Explicit house types that the category rule must not override. The A-frame is also a short-term rental. */
+const planTypes: Record<string, 'lake' | 'cabin' | 'aframe'> = {
   'ten-mile-lake-house': 'lake',
   'spring-city-lake-house': 'lake',
   'a-frame-cabin-airbnb': 'aframe',
   'pikeville-treehouses': 'cabin',
-  'hixson-new-build': 'family',
-  'flat-top-mountain': 'family',
-  'spec-house-pikeville': 'family',
-  'sewanee-airbnb': 'family',
-  'signal-mountain-renovation': 'family',
-  'red-bank-renovation': 'family',
-  'crawlspace-renovation': 'family',
-  'east-brainard-tornado-rebuild': 'family',
-  'investment-property-flip': 'family',
-  'incline-townhomes': 'family',
-  'layouts-on-market': 'family',
 };
 
 export function planTypeFor(slug: string) {
-  return planTypes[slug] ?? 'family';
+  if (planTypes[slug]) return planTypes[slug];
+  const types = typesFor(slug);
+  if (types.includes('townhomes-investment') && !types.includes('renovations')) return 'townhome';
+  if (types.includes('short-term')) return 'rental';
+  return 'family';
 }
 
 export function projectPath(slug: string) {
