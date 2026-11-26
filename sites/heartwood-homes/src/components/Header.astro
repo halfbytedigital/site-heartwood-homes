@@ -30,7 +30,9 @@ const items = [...nav, ...moreNav, { href: '/contact/', label: 'Contact' }];
       <span class="burger" aria-hidden="true"><span></span><span></span><span></span></span>
     </button>
   </div>
+  <div class="menu-backdrop" aria-hidden="true"></div>
   <nav class="menu-panel" id="mobile-nav" aria-label="Primary" inert>
+    <div class="menu-panel-clip">
     <div class="menu-panel-inner">
       {items.map((item) => (
         <a href={item.href} aria-current={path === item.href || (item.href === '/contact/' && onContact) ? 'page' : undefined}>{item.label}</a>
@@ -40,12 +42,14 @@ const items = [...nav, ...moreNav, { href: '/contact/', label: 'Contact' }];
       )}
       <a href={planHref} data-start-cta data-plan-here={onPlan ? true : undefined} aria-current={onPlan ? 'page' : undefined}><span data-start-cta-label>{planLabel}</span></a>
     </div>
+    </div>
   </nav>
 </header>
 
 <script>
   const button = document.querySelector<HTMLButtonElement>('.menu-toggle');
   const panel = document.querySelector<HTMLElement>('#mobile-nav');
+  const backdrop = document.querySelector<HTMLElement>('.menu-backdrop');
   if (button && panel) {
     let closeTimer = 0;
     const setOpen = (open: boolean) => {
@@ -73,6 +77,12 @@ const items = [...nav, ...moreNav, { href: '/contact/', label: 'Contact' }];
       if (button.getAttribute('aria-expanded') !== 'true') return;
       const target = event.target;
       if (!(target instanceof Node) || panel.contains(target) || button.contains(target)) return;
+      if (target instanceof Element && target.closest('.menu-backdrop')) return;
+      setOpen(false);
+    });
+    backdrop?.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
       setOpen(false);
     });
     panel.addEventListener('click', (event) => {

@@ -16,6 +16,15 @@ p a, .letter a, .measure a { text-decoration: underline; text-underline-offset: 
   .nav-mobile { display: none; }
 }
 
+.header-bar { position: relative; z-index: 2; }
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: transparent;
+  pointer-events: none;
+}
+html.menu-open .menu-backdrop { pointer-events: auto; }
 .menu-panel {
   display: grid;
   grid-template-rows: 0fr;
@@ -24,8 +33,7 @@ p a, .letter a, .measure a { text-decoration: underline; text-underline-offset: 
   right: 0;
   top: 100%;
   background: var(--color-bg);
-  border-bottom: 1px solid var(--color-line);
-  z-index: 30;
+  z-index: 2;
   overflow: hidden;
   visibility: hidden;
   transition: grid-template-rows var(--dur-base) var(--ease-out), visibility 0s linear var(--dur-base);
@@ -35,12 +43,15 @@ p a, .letter a, .measure a { text-decoration: underline; text-underline-offset: 
   visibility: visible;
   transition: grid-template-rows var(--dur-base) var(--ease-out), visibility 0s linear 0s;
 }
-.menu-panel-inner {
+.menu-panel-clip {
   min-height: 0;
   overflow: hidden;
+}
+.menu-panel-inner {
   display: flex;
   flex-direction: column;
   padding: var(--space-s) var(--gutter) var(--space-l);
+  border-bottom: 1px solid var(--color-line);
 }
 .menu-panel a {
   min-height: 48px;
@@ -62,6 +73,7 @@ p a, .letter a, .measure a { text-decoration: underline; text-underline-offset: 
   border: 0;
   color: var(--color-text);
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 .burger {
   position: relative;

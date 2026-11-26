@@ -7,7 +7,7 @@
     {
       "value": 0.0387426054526749,
       "hadRecentInput": true,
-      "t": 1246,
+      "t": 1247,
       "sources": [
         "site-footer {\"x\":0,\"y\":766.984375,\"width\":1440,\"height\":313.015625,\"top\":766.984375,\"right\":1440,\"bottom\":1080,\"left\":0} -> {\"x\":0,\"y\":959.484375,\"width\":1440,\"height\":120.515625,\"top\":959.484375,\"right\":1440,\"bottom\":1080,\"left\":0}"
       ]
@@ -15,7 +15,7 @@
     {
       "value": 0.008476934236754115,
       "hadRecentInput": true,
-      "t": 1928,
+      "t": 1914,
       "sources": [
         "site-footer {\"x\":0,\"y\":959.484375,\"width\":1440,\"height\":120.515625,\"top\":959.484375,\"right\":1440,\"bottom\":1080,\"left\":0} -> {\"x\":0,\"y\":1068.4375,\"width\":1440,\"height\":11.5625,\"top\":1068.4375,\"right\":1440,\"bottom\":1080,\"left\":0}",
         "footer-phone {\"x\":100,\"y\":1023.484375,\"width\":110.34375,\"height\":44,\"top\":1023.484375,\"right\":210.34375,\"bottom\":1067.484375,\"left\":100} -> {\"x\":0,\"y\":0,\"width\":0,\"height\":0,\"top\":0,\"right\":0,\"bottom\":0,\"left\":0}"
@@ -24,7 +24,7 @@
     {
       "value": 0.0022230661651234567,
       "hadRecentInput": true,
-      "t": 2896,
+      "t": 2898,
       "sources": [
         "site-footer {\"x\":0,\"y\":1068.4375,\"width\":1440,\"height\":11.5625,\"top\":1068.4375,\"right\":1440,\"bottom\":1080,\"left\":0} -> {\"x\":0,\"y\":0,\"width\":0,\"height\":0,\"top\":0,\"right\":0,\"bottom\":0,\"left\":0}"
       ]
@@ -32,7 +32,7 @@
     {
       "value": 0.03399311583719136,
       "hadRecentInput": true,
-      "t": 5815,
+      "t": 5782,
       "sources": [
         "site-footer {\"x\":0,\"y\":0,\"width\":0,\"height\":0,\"top\":0,\"right\":0,\"bottom\":0,\"left\":0} -> {\"x\":0,\"y\":934.5625,\"width\":1440,\"height\":145.4375,\"top\":934.5625,\"right\":1440,\"bottom\":1080,\"left\":0}"
       ]
@@ -40,7 +40,7 @@
     {
       "value": 0.01255686567644033,
       "hadRecentInput": true,
-      "t": 8061,
+      "t": 7997,
       "sources": [
         "site-footer {\"x\":0,\"y\":934.5625,\"width\":1440,\"height\":145.4375,\"top\":934.5625,\"right\":1440,\"bottom\":1080,\"left\":0} -> {\"x\":0,\"y\":849.65625,\"width\":1440,\"height\":230.34375,\"top\":849.65625,\"right\":1440,\"bottom\":1080,\"left\":0}"
       ]
@@ -48,7 +48,7 @@
     {
       "value": 0.051362063560956794,
       "hadRecentInput": true,
-      "t": 8745,
+      "t": 8664,
       "sources": [
         "site-footer {\"x\":0,\"y\":849.65625,\"width\":1440,\"height\":230.34375,\"top\":849.65625,\"right\":1440,\"bottom\":1080,\"left\":0} -> {\"x\":0,\"y\":0,\"width\":0,\"height\":0,\"top\":0,\"right\":0,\"bottom\":0,\"left\":0}"
       ]
@@ -56,7 +56,7 @@
     {
       "value": 0.02605369285300926,
       "hadRecentInput": true,
-      "t": 11030,
+      "t": 10912,
       "sources": [
         "site-footer {\"x\":0,\"y\":0,\"width\":0,\"height\":0,\"top\":0,\"right\":0,\"bottom\":0,\"left\":0} -> {\"x\":0,\"y\":927.125,\"width\":1440,\"height\":152.875,\"top\":927.125,\"right\":1440,\"bottom\":1080,\"left\":0}"
       ]
@@ -64,7 +64,7 @@
     {
       "value": 0.003706516846707819,
       "hadRecentInput": true,
-      "t": 12014,
+      "t": 11863,
       "sources": [
         "site-footer {\"x\":0,\"y\":927.125,\"width\":1440,\"height\":152.875,\"top\":927.125,\"right\":1440,\"bottom\":1080,\"left\":0} -> {\"x\":0,\"y\":895.796875,\"width\":1440,\"height\":184.203125,\"top\":895.796875,\"right\":1440,\"bottom\":1080,\"left\":0}"
       ]
@@ -72,7 +72,7 @@
     {
       "value": 0.17037037037037037,
       "hadRecentInput": true,
-      "t": 12987,
+      "t": 12837,
       "sources": [
         "site-footer {\"x\":0,\"y\":895.796875,\"width\":1440,\"height\":184.203125,\"top\":895.796875,\"right\":1440,\"bottom\":1080,\"left\":0} -> {\"x\":0,\"y\":0,\"width\":0,\"height\":0,\"top\":0,\"right\":0,\"bottom\":0,\"left\":0}"
       ]
