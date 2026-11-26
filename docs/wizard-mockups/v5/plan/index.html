@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Plan your home — Heartwood Homes</title>
+  <link rel="preload" href="fonts/Newsreader[opsz,wght].woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/SourceSans3[wght].woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face {
+      font-family: Newsreader;
+      src: url("fonts/Newsreader[opsz,wght].woff2") format("woff2");
+      font-weight: 200 800;
+      font-style: normal;
+      font-display: optional;
+    }
+    @font-face {
+      font-family: "Source Sans 3";
+      src: url("fonts/SourceSans3[wght].woff2") format("woff2");
+      font-weight: 200 900;
+      font-style: normal;
+      font-display: optional;
+    }
+    :root {
+      --color-bg: #E7EBE7;
+      --color-surface: #DEE3DC;
+      --color-surface-2: #D5DBD4;
+      --color-text: #1A1E18;
+      --color-muted: #545C4E;
+      --color-line: #B7BEB4;
+      --color-line-strong: #6A7264;
+      --color-primary: #2F341E;
+      --color-primary-strong: #242A18;
+      --color-on-primary: #FFFFFF;
+      --color-primary-tint: #E4E8DD;
+      --color-accent-2: #5E3B2E;
+      --color-focus: #242A18;
+      --font-display: "Newsreader", "Iowan Old Style", "Palatino Linotype", serif;
+      --font-body: "Source Sans 3", "Avenir Next", "Segoe UI", sans-serif;
+      --weight-body: 400;
+      --weight-bold: 600;
+      --weight-display: 600;
+      --step--1: clamp(0.875rem, 0.86rem + 0.08vw, 0.9375rem);
+      --step-0:  clamp(1rem, 0.96rem + 0.15vw, 1.125rem);
+      --step-1:  clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+      --step-2:  clamp(1.5rem, 1.2rem + 1vw, 2rem);
+      --step-3:  clamp(1.75rem, 1.2rem + 1.6vw, 2.75rem);
+      --leading-tight: 1.1;
+      --leading-body: 1.6;
+      --tracking-display: -0.02em;
+      --space-3xs: 4px; --space-2xs: 8px; --space-xs: 12px; --space-s: 16px;
+      --space-m: 24px; --space-l: 32px; --space-xl: 40px; --space-2xl: 48px;
+      --space-3xl: 64px;
+      --container: 1240px;
+      --gutter: 16px;
+      --header-h: 72px;
+      --btn-h: 52px;
+      --btn-pad-x: 32px;
+      --input-h: 52px;
+      --dur-fast: 160ms;
+      --dur-base: 220ms;
+      --dur-slow: 700ms;
+      --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    @media (width >= 800px) { :root { --gutter: 24px; --header-h: 80px; } }
+    @media (width >= 1024px) { :root { --gutter: 48px; } }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      font-size: var(--step-0);
+      font-weight: var(--weight-body);
+      line-height: var(--leading-body);
+    }
+    img { max-width: 100%; display: block; }
+    button, input, textarea, select { font: inherit; color: inherit; }
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      line-height: var(--leading-tight);
+      letter-spacing: var(--tracking-display);
+      font-optical-sizing: auto;
+      margin: 0;
+    }
+    h1 { font-size: var(--step-3); font-variation-settings: "opsz" 36; }
+    h2 { font-size: var(--step-3); font-variation-settings: "opsz" 36; max-width: 20ch; }
+    p { margin: 0; }
+    fieldset { border: 0; margin: 0; padding: 0; }
+    legend { padding: 0; }
+    .muted { color: var(--color-muted); }
+    .kicker {
+      font-family: var(--font-body);
+      font-size: var(--step--1);
+      font-weight: var(--weight-bold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin: 0 0 var(--space-xs);
+    }
+    :focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; }
+
+    .skip {
+      position: absolute; left: var(--space-s); top: var(--space-s); z-index: 80;
+      background: var(--color-bg); color: var(--color-text); padding: 8px 12px;
+      transform: translateY(-200%);
+    }
+    .skip:focus { transform: none; }
+
+    .site-header {
+      background: var(--color-bg);
+      border-bottom: 1px solid var(--color-line);
+      position: sticky; top: 0; z-index: 40;
+    }
+    .header-bar {
+      display: flex; align-items: center; gap: var(--space-s);
+      min-height: var(--header-h);
+      padding: var(--space-xs) var(--gutter);
+      max-width: calc(var(--container) + 2 * var(--gutter));
+      margin: 0 auto;
+    }
+    .logo { display: flex; align-items: center; margin-right: auto; }
+    .logo img { height: 56px; width: auto; }
+    @media (width >= 800px) { .logo img { height: 64px; } }
+    .nav-desktop, .header-actions { display: none; }
+    @media (width >= 900px) {
+      .nav-desktop, .header-actions { display: flex; align-items: center; gap: var(--space-m); }
+      .menu-toggle { display: none; }
+    }
+    .nav-desktop a { color: var(--color-text); text-decoration: none; font-size: var(--step-0); }
+    .nav-desktop a[aria-current="page"] { box-shadow: inset 0 -2px 0 var(--color-accent-2); }
+    .header-phone {
+      color: var(--color-text); text-decoration: none;
+      font-family: var(--font-display); font-weight: var(--weight-display);
+      font-size: var(--step-1); letter-spacing: -0.03em;
+      min-height: 44px; display: inline-flex; align-items: center;
+    }
+    .header-start, .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: var(--btn-h); padding: 0 var(--btn-pad-x);
+      background: var(--color-primary); color: var(--color-on-primary);
+      font-family: var(--font-body); font-size: var(--step-0); font-weight: var(--weight-bold);
+      line-height: 1.2; text-decoration: none;
+      border: 1px solid var(--color-primary); border-radius: 0; cursor: pointer;
+    }
+    .header-start { min-height: 44px; padding: 0 20px; }
+    .btn:hover, .header-start:hover { background: var(--color-primary-strong); color: var(--color-on-primary); }
+    .btn-ghost { background: transparent; color: var(--color-text); border-color: var(--color-line-strong); }
+    .btn-ghost:hover { background: var(--color-surface); color: var(--color-text); }
+    .menu-toggle {
+      appearance: none; background: none; border: 0;
+      min-height: 44px; padding: 0 4px; cursor: pointer; font-weight: var(--weight-bold);
+    }
+
+    .wrap {
+      width: min(100% - 2 * var(--gutter), var(--container));
+      margin: 0 auto;
+      padding: var(--space-l) 0 var(--space-3xl);
+    }
+    .layout { display: grid; grid-template-columns: 1fr; gap: 0; }
+    @media (width >= 1024px) {
+      .layout {
+        grid-template-columns: minmax(0, 1fr) 400px;
+        gap: var(--space-2xl);
+        align-items: start;
+      }
+      .layout.is-wide { grid-template-columns: 1fr; }
+    }
+    /* Larger sketch where there is room: 556px rail = ~522px drawing at 1440 */
+    @media (width >= 1280px) {
+      .layout {
+        grid-template-columns: minmax(0, 1fr) 556px;
+        gap: var(--space-xl);
+        align-items: start;
+      }
+      .layout.is-wide { grid-template-columns: 1fr; }
+    }
+
+    .progress { margin: 0 0 var(--space-l); }
+    .progress-top { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin: 0 0 10px; }
+    .progress-label { font-weight: var(--weight-bold); font-size: var(--step-0); margin: 0; font-variant-numeric: tabular-nums; }
+    .progress-label .sec { font-weight: var(--weight-body); color: var(--color-muted); }
+    .progress-time { font-size: var(--step--1); color: var(--color-muted); margin: 0; font-variant-numeric: tabular-nums; white-space: nowrap; width: 12em; flex: none; text-align: right; }
+    .progress-rail { display: grid; gap: 4px; height: 8px; }
+    .progress-rail span { background: var(--color-surface-2); display: block; position: relative; overflow: hidden; }
+    .progress-rail span::after {
+      content: ""; position: absolute; inset: 0; background: var(--color-primary);
+      transform: scaleX(0); transform-origin: left center; transition: transform 480ms var(--ease-out), background var(--dur-base);
+    }
+    .progress-rail span.is-done::after { transform: scaleX(1); }
+    .progress-rail span.is-on::after { transform: scaleX(1); background: var(--color-accent-2); }
+    @media (prefers-reduced-motion: reduce) { .progress-rail span::after { transition: none; } }
+
+    .lede { max-width: 42rem; margin: var(--space-s) 0 0; color: var(--color-muted); }
+    .cheer {
+      max-width: 42rem; margin: 8px 0 var(--space-l);
+      color: var(--color-text); min-height: calc(1.6em * 2);
+    }
+    @media (width >= 800px) { .cheer { min-height: 1.6em; } }
+    .cheer:empty { margin-bottom: var(--space-l); }
+
+    .panel { display: none; }
+    .panel.is-on { display: block; }
+
+    .group { margin: 0 0 var(--space-l); }
+    .group-label {
+      font-weight: var(--weight-bold);
+      margin: 0 0 var(--space-s);
+      display: block;
+    }
+
+    .type-grid, .card-grid {
+      display: grid; gap: 12px; grid-template-columns: 1fr;
+    }
+    @media (width >= 640px) {
+      .type-grid { grid-template-columns: 1fr 1fr; }
+      .type-grid.cols-3-at-wide { grid-template-columns: 1fr 1fr 1fr; }
+      .card-grid.cols-4 { grid-template-columns: 1fr 1fr; }
+      .card-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+    }
+    @media (width < 600px) {
+      .choice-face { min-height: 0; padding: 12px 14px; }
+    }
+    @media (width >= 900px) {
+      .card-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+      .card-grid.cols-4 .choice-face {
+        grid-template-columns: 1fr;
+        justify-items: start;
+        min-height: 0;
+        padding: 14px;
+        gap: 8px;
+      }
+      .card-grid.cols-4 .choice-face svg { width: 40px; height: 40px; }
+    }
+
+    .choice { display: block; cursor: pointer; position: relative; margin: 0; }
+    .choice input {
+      position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer;
+    }
+    .choice-face {
+      display: grid; grid-template-columns: 48px 1fr; gap: var(--space-s);
+      align-items: start; min-height: 88px; padding: 14px 16px;
+      border: 1px solid var(--color-line); background: var(--color-bg);
+      transition: background var(--dur-base) var(--ease-out),
+                  border-color var(--dur-base) var(--ease-out),
+                  color var(--dur-base) var(--ease-out),
+                  transform var(--dur-fast) var(--ease-out);
+    }
+    .card-grid .choice-face, .stack-cards .choice-face { align-items: center; }
+    .choice-face svg { width: 48px; height: 48px; color: var(--color-text); }
+    .choice-face strong {
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.15rem;
+      letter-spacing: 0;
+      word-spacing: 0.08em;
+      line-height: 1.25;
+      font-optical-sizing: auto;
+      font-variation-settings: "opsz" 36, "wght" 600;
+    }
+    .choice-face small {
+      display: block; margin-top: 4px; color: var(--color-muted);
+      font-size: var(--step--1); line-height: 1.4;
+    }
+    .choice:hover .choice-face { border-color: var(--color-line-strong); }
+    .choice:has(input:checked) .choice-face {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      color: var(--color-on-primary);
+      animation: settle 280ms var(--ease-out);
+    }
+    .choice:has(input:checked) .choice-face small { color: rgb(231 235 231 / 0.85); }
+    .choice:has(input:checked) .choice-face svg { color: var(--color-on-primary); }
+    .choice:has(input:focus-visible) .choice-face {
+      outline: 3px solid var(--color-focus); outline-offset: 3px;
+    }
+    @keyframes settle {
+      0% { transform: scale(0.975); }
+      55% { transform: scale(1.012); }
+      100% { transform: scale(1); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .choice:has(input:checked) .choice-face { animation: none; }
+      .choice-face, .chip-face { transition: none; }
+    }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { position: relative; display: block; margin: 0; cursor: pointer; }
+    .chip input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+    .chip-face {
+      display: inline-flex; align-items: center; gap: 8px;
+      min-height: 44px; padding: 8px 14px;
+      border: 1px solid var(--color-line); background: var(--color-bg);
+      transition: background var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out);
+    }
+    .chip-face svg { width: 28px; height: 28px; flex: none; }
+    .chip:hover .chip-face { border-color: var(--color-line-strong); }
+    .chip:has(input:checked) .chip-face {
+      background: var(--color-primary); border-color: var(--color-primary); color: var(--color-on-primary);
+      animation: settle 280ms var(--ease-out);
+    }
+    .chip:has(input:focus-visible) .chip-face { outline: 3px solid var(--color-focus); outline-offset: 3px; }
+
+    .seg { display: flex; flex-wrap: wrap; gap: 8px; }
+    .size-grid { display: grid; gap: var(--space-m); }
+    @media (width >= 700px) { .size-grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .slider-wrap { margin-top: var(--space-s); }
+    .sqft-row { display: flex; align-items: center; gap: var(--space-s); flex-wrap: wrap; }
+    .sqft-readout { min-width: 13.5em; font-variant-numeric: tabular-nums;
+      font-family: var(--font-display); font-weight: 600;
+      font-variation-settings: "opsz" 36, "wght" 600;
+      font-size: var(--step-1); letter-spacing: 0; word-spacing: 0.06em;
+    }
+    input[type="range"] {
+      width: 100%; accent-color: var(--color-primary); height: 32px; margin: 8px 0 0;
+    }
+    input[type="number"], input[type="text"], input[type="url"], input[type="tel"], input[type="email"] {
+      width: 100%; min-height: var(--input-h); padding: 0 14px;
+      border: 1px solid var(--color-line-strong); background: var(--color-bg); border-radius: 0;
+    }
+    input[type="number"] { width: 7rem; }
+    .field { margin: 0 0 var(--space-s); }
+    .field label, .util-row > span { display: block; font-weight: var(--weight-bold); margin-bottom: 6px; }
+    .helper { color: var(--color-muted); font-size: var(--step--1); margin: 6px 0 0; max-width: 34rem; }
+    .field .opt { font-weight: var(--weight-body); color: var(--color-muted); }
+
+    /* Reserved slot: both states occupy the same grid cell, so nothing below ever moves */
+    .reserve { display: grid; margin: 0 0 var(--space-l); }
+    .reserve > * {
+      grid-area: 1 / 1; transition: opacity var(--dur-base) var(--ease-out), visibility var(--dur-base);
+    }
+    .reserve > [aria-hidden="true"] { opacity: 0; visibility: hidden; }
+    .reserve-note {
+      border: 1px dashed var(--color-line); padding: 18px 20px; color: var(--color-muted);
+      display: flex; align-items: center; gap: 14px; font-size: var(--step--1);
+    }
+    .reserve-note svg { width: 28px; height: 28px; flex: none; color: var(--color-line-strong); }
+    .attach { border: 1px solid var(--color-line); background: var(--color-bg); padding: 16px 18px; display: grid; gap: 14px; }
+    @media (width >= 800px) { .attach { grid-template-columns: 1fr 1fr; align-items: start; } }
+    .attach .field > label, .attach .field > .group-label { display: block; font-weight: var(--weight-bold); margin: 0 0 6px; line-height: 1.6; }
+    .size-grid { margin-bottom: var(--space-l); }
+    .brief-sketch { align-items: flex-start !important; }
+    .brief-sketch .scene { position: sticky; top: calc(var(--header-h) + 24px); }
+    .brief-copy > .lede { margin-bottom: var(--space-m); }
+    .attach .field { margin: 0; }
+    .upload { display: flex; align-items: center; gap: 12px; min-height: var(--input-h); flex-wrap: nowrap; }
+    .upload input[type="file"] { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
+    .field .upload-btn, .upload-btn {
+      margin: 0; display: inline-flex; align-items: center; gap: 10px; min-height: var(--input-h); padding: 0 18px;
+      border: 1px solid var(--color-primary); color: var(--color-primary); background: var(--color-bg);
+      font-weight: var(--weight-bold); cursor: pointer; white-space: nowrap;
+      transition: background var(--dur-fast), color var(--dur-fast);
+    }
+    .upload-btn svg { width: 20px; height: 20px; }
+    .upload-btn:hover { background: var(--color-primary); color: var(--color-on-primary); }
+    .upload input:focus-visible + .upload-btn { outline: 3px solid var(--color-focus); outline-offset: 3px; }
+    .upload-name { color: var(--color-muted); font-size: var(--step--1); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+
+    /* Steppers */
+    .stepper { display: inline-grid; grid-template-columns: 48px 4.5rem 48px; align-items: stretch; border: 1px solid var(--color-line-strong); background: var(--color-bg); }
+    .stepper button {
+      appearance: none; border: 0; background: var(--color-primary-tint); color: var(--color-primary);
+      display: grid; place-items: center; cursor: pointer; min-height: 48px;
+      transition: background var(--dur-fast), color var(--dur-fast);
+    }
+    .stepper button svg { width: 18px; height: 18px; }
+    .stepper button:hover:not(:disabled) { background: var(--color-primary); color: var(--color-on-primary); }
+    .stepper button:disabled { color: var(--color-line-strong); background: var(--color-surface); cursor: default; }
+    .stepper button:focus-visible { outline: 3px solid var(--color-focus); outline-offset: -3px; }
+    .stepper output {
+      display: grid; place-items: center; font-family: var(--font-display); font-weight: 600;
+      font-variation-settings: "opsz" 36, "wght" 600; font-size: 1.35rem; font-variant-numeric: tabular-nums;
+      border-left: 1px solid var(--color-line); border-right: 1px solid var(--color-line);
+    }
+    .stepper[data-set="0"] output { color: var(--color-muted); }
+    .stepper-hint { font-size: var(--step--1); color: var(--color-muted); margin: 6px 0 0; min-height: 1.4em; }
+
+    /* Even must-have grid */
+    .need-grid { display: grid; gap: 8px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (width >= 700px) { .need-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    .need-grid .chip, .need-grid .chip-face { height: 100%; width: 100%; }
+    .need-grid .chip-face { min-height: 56px; line-height: 1.25; }
+
+    /* Budget cards */
+    .budget-grid { display: grid; gap: 8px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (width >= 900px) { .budget-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+    .budget-grid .chip, .budget-grid .chip-face { height: 100%; width: 100%; }
+    .budget-grid .chip-face { flex-direction: column; align-items: flex-start; gap: 2px; padding: 12px 14px; }
+    .budget-grid .chip-face b { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; font-variation-settings: "opsz" 36, "wght" 600; }
+    .budget-grid .chip-face small { font-size: var(--step--1); color: var(--color-muted); line-height: 1.35; }
+    .budget-grid .chip:has(input:checked) small { color: rgb(231 235 231 / 0.85); }
+
+    .util-row {
+      display: grid; gap: 8px; margin-bottom: var(--space-m);
+      align-items: center;
+    }
+    @media (width >= 700px) {
+      .util-row { grid-template-columns: 10rem 1fr; }
+    }
+
+
+    .actions { display: flex; flex-wrap: wrap; gap: var(--space-s); margin-top: var(--space-xl); }
+    .talk-exit { margin: var(--space-m) 0 0; font-size: var(--step--1); }
+    .talk-exit a { color: var(--color-muted); text-underline-offset: 3px; }
+
+    .sketch-rail {
+      margin: 0 0 var(--space-l);
+      border: 1px solid var(--color-line);
+      background: var(--color-primary-tint);
+      padding: 16px 16px 18px;
+    }
+    .sketch-rail[hidden], .layout.is-wide .sketch-rail { display: none !important; }
+    @media (width < 1024px) {
+      .wrap:has(.layout:not(.is-wide)) { padding-bottom: 188px; }
+      .sketch-rail {
+        position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+        margin: 0; border-left: 0; border-right: 0; border-bottom: 0;
+        display: grid; grid-template-columns: 58% 1fr;
+        column-gap: 12px; align-items: center;
+        padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+        box-shadow: 0 -1px 0 var(--color-line);
+      }
+      .sketch-rail h3 { font-size: 1.05rem; margin: 0; grid-column: 2; grid-row: 1; }
+      .sketch-rail > p {
+        display: block; grid-column: 2; grid-row: 2; margin: 0;
+        font-size: 13px; line-height: 1.35;
+      }
+      .sketch-stage { grid-column: 1; grid-row: 1 / span 2; margin: 0; }
+      .sketch-stage { aspect-ratio: 520 / 256; height: auto; }
+      .sketch-stage svg { width: 100%; height: auto; }
+      .sketch-list { display: none; }
+    }
+    @media (width >= 1024px) {
+      .sketch-rail { position: sticky; top: calc(var(--header-h) + 16px); margin: 0; }
+    }
+    .sketch-rail h3 { font-size: var(--step-1); font-weight: 600; margin: 0 0 4px; }
+    .sketch-list { list-style: none; padding: 0; margin: 8px 0 0; font-size: var(--step--1); color: var(--color-muted); }
+    .sketch-list li { padding: 1px 0; }
+    #sketch-caption { min-height: calc(1.45em * 2); line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .sketch-stage { margin: 8px 0 0; }
+    .sketch-stage svg, .brief-sketch svg { width: 100%; height: auto; display: block; color: var(--color-text); }
+    /* Layered scene (scene-lake.svg). Layers start hidden; GSAP reveals them. */
+    .scene { color: var(--color-text); overflow: visible; }
+    .scene [data-layer] { visibility: hidden; }
+    .scene .s2 { stroke: var(--color-line-strong); stroke-width: 1.2; }
+    .scene .fine { stroke-width: 0.8; }
+    .scene .dash.long { stroke-dasharray: 5 4; }
+    .scene .dash.dots { stroke-dasharray: 0.1 4.2; stroke-width: 2.2; }
+    .scene .glass { fill: #EFE4CC; }
+    .scene .dot { fill: currentColor; }
+    .scene .lbl { font: 600 9px var(--font-body); fill: var(--color-muted); stroke: none; letter-spacing: 0.04em; }
+    .sketch-stage .scene .lbl { display: none; }
+    @media (width >= 1024px) { .sketch-stage { aspect-ratio: 520 / 256; } }
+    .brief-sketch .scene { width: 100%; height: auto; }
+
+    .brief-card {
+      border: 1px solid var(--color-line); background: var(--color-bg);
+      display: grid;
+    }
+    @media (width >= 800px) { .brief-card { grid-template-columns: 1fr 1fr; } }
+    .brief-copy { padding: var(--space-l); }
+    .brief-copy h1 { margin-bottom: var(--space-s); }
+    .brief-dl { margin: 0 0 var(--space-m); }
+    .brief-dl div { padding: 8px 0; border-top: 1px solid var(--color-line); }
+    .brief-dl dt {
+      font-size: var(--step--1); letter-spacing: 0.04em;
+      color: var(--color-muted); font-weight: var(--weight-bold);
+    }
+    .brief-dl dd { margin: 2px 0 0; }
+    .brief-sketch { background: var(--color-primary-tint); padding: var(--space-m); display: flex; align-items: center; }
+
+    .look-first, .email-block, .similar, .contact-band, .extra-prompt { margin-top: var(--space-2xl); }
+    .look-first h2, .email-block h2, .similar h2, .contact-band h2, .extra-prompt h2 {
+      font-size: var(--step-2); max-width: none; margin-bottom: var(--space-s);
+    }
+    .look-first ol { margin: 0; padding: 0 0 0 1.2em; max-width: 42rem; }
+    .look-first li { margin: 0 0 8px; }
+
+    .email-frame {
+      border: 1px solid var(--color-line); background: var(--color-bg);
+      max-width: 46rem;
+    }
+    .email-meta { padding: 14px 18px; border-bottom: 1px solid var(--color-line); font-size: var(--step--1); }
+    .email-meta div { margin: 2px 0; }
+    .email-meta b { font-weight: var(--weight-bold); color: var(--color-muted); margin-right: 8px; }
+    .email-body { padding: 18px; }
+    .email-body h3 {
+      font-size: var(--step-1); font-weight: 600; margin: 0 0 10px;
+      font-variation-settings: "opsz" 36, "wght" 600;
+    }
+    .email-body p { margin: 0 0 10px; }
+    .email-body ul { margin: 0 0 10px; padding: 0 0 0 1.1em; }
+
+    .similar-grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
+    @media (width >= 700px) { .similar-grid { grid-template-columns: 1fr 1fr; } }
+    .house-link { display: block; color: inherit; text-decoration: none; border: 1px solid var(--color-line); }
+    .house-link img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+    .house-link .cap { padding: 14px 16px; }
+    .house-link .cap strong {
+      font-family: var(--font-display); font-weight: 600; font-size: 1.25rem;
+      letter-spacing: 0; word-spacing: 0.06em;
+      font-variation-settings: "opsz" 36, "wght" 600; display: block;
+    }
+    .house-link .cap span { color: var(--color-muted); font-size: var(--step--1); }
+    .house-link:hover { border-color: var(--color-line-strong); }
+
+    .fields { display: grid; gap: var(--space-s); max-width: 32rem; margin: var(--space-l) 0; }
+    .carried { margin: 0 0 var(--space-l); max-width: 42rem; color: var(--color-muted); }
+    .visually-hidden {
+      position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+  
+    @view-transition { navigation: auto; }
+
+    /* v5: step 1 land cards. Equal heights; 3 across from 760px, stacked rows below. */
+    .land-grid { display: grid; gap: 12px; grid-template-columns: 1fr; }
+    .land-grid .choice { height: 100%; }
+    .land-grid .choice-face { height: 100%; align-items: center; }
+    .land-grid .choice-face svg { width: 44px; height: 44px; }
+    @media (width >= 760px) {
+      .land-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .land-grid .choice-face { grid-template-columns: 1fr; align-content: start; align-items: start; gap: 12px; padding: 18px 16px 20px; }
+    }
+    .land-grid small { display: block; margin-top: 4px; }
+    /* Step 1 never shows a cheer line (the card notes carry it), so it reserves no space for one. */
+    #panel-land .cheer { display: none; }
+    #panel-land .lede { margin-bottom: var(--space-l); }
+    /* Header nav at the live site's size */
+    .nav-desktop a { font-size: var(--step--1); }
+    /* Focus target for step headings (moved programmatically, so no ring for mouse users). */
+    .panel h1[tabindex="-1"]:focus { outline: none; }
+    .panel h1[tabindex="-1"]:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; }
+  </style>
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to the questions</a>
+  <header class="site-header">
+    <div class="header-bar">
+      <a class="logo" href="/" aria-label="Heartwood Homes, Chattanooga">
+        <img src="img/logo.webp" alt="Heartwood Homes" width="160" height="64">
+      </a>
+      <nav class="nav-desktop" aria-label="Primary">
+        <a href="/custom-homes/">Custom homes</a>
+        <a href="/projects/">Projects</a>
+        <a href="/our-process/">Our process</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a class="header-phone" href="tel:+14239944911">(423) 994-4911</a>
+        <a class="header-start" href="/plan/" aria-current="page" data-plan-here>Plan your home</a>
+      </div>
+      <button class="menu-toggle" type="button" aria-label="Open the menu">Menu</button>
+    </div>
+  </header>
+
+  <main id="main" class="wrap">
+    <div class="progress">
+      <div class="progress-top">
+        <p class="progress-label" id="progress-label">Step 1 of 7 <span class="sec">· Your land</span></p>
+        <p class="progress-time" id="progress-time">About 2 minutes</p>
+      </div>
+      <div class="progress-rail" aria-hidden="true" id="progress-rail"></div>
+    </div>
+
+    <div class="layout" id="layout">
+      <div class="panels">
+
+        <section class="panel is-on" id="panel-land" aria-labelledby="land-title">
+          <p class="kicker">Plan your home</p>
+          <h1 id="land-title" tabindex="-1">Do you have land?</h1>
+          <p class="lede">If you don’t have land yet, that’s fine.</p>
+          <p class="cheer" data-cheer></p>
+          <div class="land-grid">
+            <label class="choice">
+              <input type="radio" name="land" value="yes">
+              <span class="choice-face"><svg class="" viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 35 L19 27 L41 30 L31 40 Z"/><path d="M7 35 V30 M41 30 V25 M31 40 V35"/><path d="M19 27 V11"/><path d="M19 11 L27 13.5 L19 16"/></svg><span><strong>I have land.</strong><small>A lot you own, or one under contract.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="land" value="no">
+              <span class="choice-face"><svg class="" viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 41 C 24 41 12 29.5 12 20 A 12 12 0 0 1 36 20 C 36 29.5 24 41 24 41 Z"/><path d="M20.6 17.4 A 3.6 3.6 0 1 1 25.4 20.8 C 24.4 21.3 24 22 24 23.2 V24"/><circle cx="24" cy="28" r="1.1" fill="currentColor" stroke="none"/></svg><span><strong>Still looking.</strong><small>Come back when you find a spot, or talk to us now. Daniel can often walk a lot with you before you buy.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="land" value="unsure">
+              <span class="choice-face"><svg class="" viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 43 V7"/><path d="M24 11 H36 L40 14.5 L36 18 H24"/><path d="M24 22 H12 L8 25.5 L12 29 H24"/><path d="M17 43 H31"/></svg><span><strong>I’m not sure.</strong><small>We can start either way.</small></span></span>
+            </label>
+          </div>
+          <div class="actions">
+            <button class="btn-ghost btn" type="button" data-go="back" disabled>Back</button>
+            <button class="btn" type="button" data-go="next">Continue</button>
+          </div>
+          <p class="talk-exit"><a href="#contact" data-go="contact">Rather just talk? Contact Heartwood</a></p>
+        </section>
+
+        <section class="panel" id="panel-place" aria-labelledby="place-title" hidden>
+          <p class="kicker">The lot</p>
+          <h1 id="place-title" tabindex="-1">Where is it?</h1>
+          <p class="lede">A town or a county is enough to start.</p>
+          <p class="cheer" data-cheer></p>
+          <div class="field">
+            <label for="place">Town or county</label>
+            <input id="place" name="place" type="text" autocomplete="address-level2" placeholder="Ten Mile, Meigs County">
+          </div>
+          <div class="field">
+            <label for="parcel">Address, Google Maps link, or parcel number <span class="opt">(optional)</span></label>
+            <input id="parcel" name="parcel" type="text" autocomplete="street-address" placeholder="Paste whatever you have">
+            <p class="helper">Any one of these lets us look up the lot before we call. Skip it if it’s not handy.</p>
+          </div>
+          <fieldset class="group" style="margin-top:28px">
+            <legend class="group-label">About how much land?</legend>
+            <div class="chips">
+            <label class="chip">
+              <input type="radio" name="acres" value="under1">
+              <span class="chip-face">Under 1 acre</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="acres" value="1-3">
+              <span class="chip-face">1–3 acres</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="acres" value="3-10">
+              <span class="chip-face">3–10 acres</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="acres" value="10+">
+              <span class="chip-face">10 or more</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="acres" value="unsure">
+              <span class="chip-face">Not sure</span>
+            </label>
+            </div>
+          </fieldset>
+          <div class="actions">
+            <button class="btn-ghost btn" type="button" data-go="back">Back</button>
+            <button class="btn" type="button" data-go="next">Continue</button>
+          </div>
+          <p class="talk-exit"><a href="#contact" data-go="contact">Rather just talk? Contact Heartwood</a></p>
+        </section>
+
+        <section class="panel" id="panel-terrain" aria-labelledby="terrain-title" hidden>
+          <p class="kicker">The lot</p>
+          <h1 id="terrain-title" tabindex="-1">What’s the ground like?</h1>
+          <p class="lede">Pick what you know. Leave the rest.</p>
+          <p class="cheer" data-cheer></p>
+          <fieldset class="group">
+            <legend class="group-label">The lay of the land</legend>
+            <div class="card-grid cols-4">
+            <label class="choice">
+              <input type="radio" name="terrain" value="flat">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 30 H42"/><path d="M14 30 V26 M24 30 V24 M34 30 V27"/></svg><span><strong>Flat.</strong><small>A fairly even lot.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="terrain" value="gentle">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 34 L42 20"/><path d="M16 29 V25 M28 24 V20"/></svg><span><strong>A gentle slope.</strong><small>Enough to sit a walkout, maybe.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="terrain" value="steep">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 38 L28 12 L42 16"/><path d="M20 24 V18"/></svg><span><strong>Steep or mountain.</strong><small>We’ll plan how the house sits.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="terrain" value="water">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 24 L42 30"/><path d="M10 30 C 16 28, 20 32, 26 30 C 32 28, 36 32, 42 30"/><path d="M14 36 C 20 34, 24 38, 30 36"/></svg><span><strong>Waterfront.</strong><small>A lake, a river, or a long view of the water.</small></span></span>
+            </label>
+            </div>
+          </fieldset>
+          <fieldset class="group">
+            <legend class="group-label">What’s on it now?</legend>
+            <div class="card-grid cols-3">
+            <label class="choice">
+              <input type="radio" name="cover" value="cleared">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 34 H42"/><path d="M24 34 V30"/></svg><span><strong>Cleared.</strong><small>Open, or mostly open.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="cover" value="partly">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 36 H42"/><path d="M18 36 V22"/><path d="M18 24 c-6 0-8-6-5-10 5 1 7 1 11 0 1 5-1 10-6 10 z"/><path d="M32 36 V26"/><path d="M32 27 c-4 0-6-4-3-8 3 1 5 1 8 0 1 4-1 8-5 8 z"/></svg><span><strong>Partly wooded.</strong><small>Some trees you’d like to keep.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="cover" value="heavy">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 38 H42"/><path d="M12 38 V24"/><path d="M12 25 c-5 0-6-5-4-8 4 1 6 1 9 0 1 4-1 8-5 8 z"/><path d="M24 38 V18"/><path d="M24 20 c-6 0-8-6-5-11 5 1 8 1 12 0 1 6-2 11-7 11 z"/><path d="M36 38 V26"/><path d="M36 27 c-4 0-6-4-4-8 3 1 6 1 9 0 1 4-1 8-5 8 z"/></svg><span><strong>Heavily wooded.</strong><small>We’ll plan around the trees you want to keep.</small></span></span>
+            </label>
+            </div>
+          </fieldset>
+          <div class="actions">
+            <button class="btn-ghost btn" type="button" data-go="back">Back</button>
+            <button class="btn" type="button" data-go="next">Continue</button>
+          </div>
+          <p class="talk-exit"><a href="#contact" data-go="contact">Rather just talk? Contact Heartwood</a></p>
+        </section>
+
+        <section class="panel" id="panel-utilities" aria-labelledby="utilities-title" hidden>
+          <p class="kicker">The lot</p>
+          <h1 id="utilities-title" tabindex="-1">How do you get there, and what’s already in?</h1>
+          <p class="lede">If you don’t know, say so. We’ll find it out with you.</p>
+          <p class="cheer" data-cheer></p>
+          <fieldset class="group">
+            <legend class="group-label">Road access</legend>
+            <div class="card-grid cols-4">
+            <label class="choice">
+              <input type="radio" name="access" value="paved">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 18 L18 30 H30 L40 18"/><path d="M22 18 V30"/></svg><span><strong>A paved road.</strong><small>You can already drive to the lot.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="access" value="gravel">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 18 L18 30 H30 L40 18" stroke-dasharray="3 2"/><path d="M22 18 V30" stroke-dasharray="3 2"/></svg><span><strong>A gravel road.</strong><small>In, and serviceable.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="access" value="needs">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 34 H20" stroke-dasharray="3 3"/><path d="M28 34 H40"/><path d="M24 28 v6"/></svg><span><strong>It needs a drive.</strong><small>We’ll plan how you get in.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="access" value="unsure">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 32 H38"/><path d="M24 20 v6"/><circle cx="24" cy="16" r="1.2" fill="currentColor" stroke="none"/></svg><span><strong>Not sure.</strong><small>We’ll look at that on the lot.</small></span></span>
+            </label>
+            </div>
+          </fieldset>
+          <fieldset class="group">
+            <legend class="group-label">Utilities</legend>
+            <div class="util-row"><span>Power at the road</span><div class="chips">
+            <label class="chip">
+              <input type="radio" name="power" value="yes">
+              <span class="chip-face">Yes</span>
+            </label>            <label class="chip">
+              <input type="radio" name="power" value="no">
+              <span class="chip-face">Not yet</span>
+            </label>            <label class="chip">
+              <input type="radio" name="power" value="unsure">
+              <span class="chip-face">Not sure</span>
+            </label>
+            </div></div>
+            <div class="util-row"><span>Water</span><div class="chips">
+            <label class="chip">
+              <input type="radio" name="water" value="public">
+              <span class="chip-face">Public water</span>
+            </label>            <label class="chip">
+              <input type="radio" name="water" value="well">
+              <span class="chip-face">A well</span>
+            </label>            <label class="chip">
+              <input type="radio" name="water" value="unsure">
+              <span class="chip-face">Not sure</span>
+            </label>
+            </div></div>
+            <div class="util-row"><span>Sewer</span><div class="chips">
+            <label class="chip">
+              <input type="radio" name="sewer" value="public">
+              <span class="chip-face">Public sewer</span>
+            </label>            <label class="chip">
+              <input type="radio" name="sewer" value="septic">
+              <span class="chip-face">Septic</span>
+            </label>            <label class="chip">
+              <input type="radio" name="sewer" value="unsure">
+              <span class="chip-face">Not sure</span>
+            </label>
+            </div></div>
+            <div class="util-row"><span>Internet</span><div class="chips">
+            <label class="chip">
+              <input type="radio" name="internet" value="yes">
+              <span class="chip-face">At the road</span>
+            </label>            <label class="chip">
+              <input type="radio" name="internet" value="no">
+              <span class="chip-face">Not yet</span>
+            </label>            <label class="chip">
+              <input type="radio" name="internet" value="unsure">
+              <span class="chip-face">Not sure</span>
+            </label>
+            </div></div>
+          </fieldset>
+          <fieldset class="group">
+            <legend class="group-label">Is there a structure to take down?</legend>
+            <div class="chips">
+            <label class="chip">
+              <input type="radio" name="structure" value="yes">
+              <span class="chip-face">Yes</span>
+            </label>            <label class="chip">
+              <input type="radio" name="structure" value="no">
+              <span class="chip-face">No</span>
+            </label>            <label class="chip">
+              <input type="radio" name="structure" value="unsure">
+              <span class="chip-face">Not sure</span>
+            </label>
+            </div>
+          </fieldset>
+          <div class="actions">
+            <button class="btn-ghost btn" type="button" data-go="back">Back</button>
+            <button class="btn" type="button" data-go="next">Continue</button>
+          </div>
+          <p class="talk-exit"><a href="#contact" data-go="contact">Rather just talk? Contact Heartwood</a></p>
+        </section>
+
+        <section class="panel" id="panel-type" aria-labelledby="type-title" hidden>
+          <p class="kicker">The house</p>
+          <h1 id="type-title" tabindex="-1">What kind of house?</h1>
+          <p class="lede">Tell us the house you have in mind. If you’re not sure, that’s fine.</p>
+          <p class="cheer" data-cheer></p>
+          <div class="type-grid">
+            <label class="choice">
+              <input type="radio" name="type" value="family">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40 V22 L24 10 l16 12 v18"/><path d="M8 40 h32"/><path d="M20 40 V28 h8 v12"/><path d="M12 26 h6 v6 h-6 z M30 26 h6 v6 h-6 z"/></svg><span><strong>A house for your family.</strong><small>A custom home you plan to stay in.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="type" value="lake">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 32 V20 L24 10 l16 10 v12"/><path d="M8 32 h32"/><path d="M20 32 V24 h8 v8"/><path d="M8 36 h32"/><path d="M8 36 V40 H40 V36"/></svg><span><strong>A lake or mountain house.</strong><small>Built for the lot and the view.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="type" value="cabin">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 40 V24 L24 8 l14 16 v16"/><path d="M10 40 h28"/><path d="M22 40 V28 h6 v12"/></svg><span><strong>A cabin.</strong><small>A smaller house, or one for the woods.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="type" value="aframe">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40 L24 8 L40 40"/><path d="M14 40 H34"/><path d="M21 40 V30 h6 v10"/><path d="M22 22 h4 v5 h-4 z"/></svg><span><strong>An A-frame.</strong><small>A steep roof, and a simple shape.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="type" value="rental">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40 V24 H40 V40"/><path d="M8 24 H40"/><path d="M8 24 V20 H40 V24"/><path d="M18 24 L24 14 L30 24"/><path d="M20 40 V30 h8 v10"/></svg><span><strong>A short-term rental.</strong><small>A house people can book a stay in.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="type" value="townhome">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 40 V22 L16 12 l10 10 v18"/><path d="M26 40 V22 L36 12 l10 10 v18"/><path d="M6 40 h20 M26 40 h20"/><path d="M12 40 V30 h6 v10 M32 40 V30 h6 v10"/></svg><span><strong>Townhomes or a small investment.</strong><small>More than one unit, or a house you don’t plan to live in.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="type" value="else">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 40 V22 L24 12 l14 10 v18"/><path d="M10 40 h28"/><path d="M24 22 v10 M19 27 h10"/></svg><span><strong>Something else.</strong><small>Tell us in your own words.</small></span></span>
+            </label>
+          </div>
+          <div class="field else-field" id="else-field" style="margin-top: var(--space-m)">
+            <label for="else-text">Anything else about the house? <span class="opt">(optional)</span></label>
+            <input id="else-text" name="else-text" type="text">
+          </div>
+          <div class="actions">
+            <button class="btn-ghost btn" type="button" data-go="back">Back</button>
+            <button class="btn" type="button" data-go="next">Continue</button>
+          </div>
+          <p class="talk-exit"><a href="#contact" data-go="contact">Rather just talk? Contact Heartwood</a></p>
+        </section>
+
+        <section class="panel" id="panel-size" aria-labelledby="size-title" hidden>
+          <p class="kicker">The house</p>
+          <h1 id="size-title" tabindex="-1">How big should it be?</h1>
+          <p class="lede">A starting size is enough. You can change this later, once the plans are drawn.</p>
+          <p class="cheer" data-cheer></p>
+          <div class="size-grid">
+            <div>
+              <span class="group-label" id="beds-label">Bedrooms</span>
+              <div class="stepper" data-stepper="beds" data-min="1" data-max="6" data-step="1" data-start="3" data-set="0" role="group" aria-labelledby="beds-label">
+                <button type="button" data-dir="-1" aria-label="One fewer bedroom"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 10 H16"/></svg></button>
+                <output aria-live="polite">–</output>
+                <button type="button" data-dir="1" aria-label="One more bedroom"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 10 H16 M10 4 V16"/></svg></button>
+              </div>
+              <input type="hidden" name="beds" id="beds" value="">
+              <p class="stepper-hint" data-hint="beds">Tap + or − to set it</p>
+            </div>
+            <div>
+              <span class="group-label" id="baths-label">Baths</span>
+              <div class="stepper" data-stepper="baths" data-min="1" data-max="5" data-step="0.5" data-start="2.5" data-set="0" role="group" aria-labelledby="baths-label">
+                <button type="button" data-dir="-1" aria-label="Half a bath fewer"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 10 H16"/></svg></button>
+                <output aria-live="polite">–</output>
+                <button type="button" data-dir="1" aria-label="Half a bath more"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 10 H16 M10 4 V16"/></svg></button>
+              </div>
+              <input type="hidden" name="baths" id="baths" value="">
+              <p class="stepper-hint" data-hint="baths">Half baths count</p>
+            </div>
+            <fieldset>
+              <legend class="group-label">Stories</legend>
+              <div class="chips">
+            <label class="chip">
+              <input type="radio" name="stories" value="1">
+              <span class="chip-face">1</span>
+            </label>            <label class="chip">
+              <input type="radio" name="stories" value="2">
+              <span class="chip-face">2</span>
+            </label>            <label class="chip">
+              <input type="radio" name="stories" value="3">
+              <span class="chip-face">3</span>
+            </label>            <label class="chip">
+              <input type="radio" name="stories" value="unsure">
+              <span class="chip-face">Not sure</span>
+            </label>
+              </div>
+            </fieldset>
+          </div>
+          <fieldset class="group">
+            <legend class="group-label">About how many square feet?</legend>
+            <div class="sqft-row">
+              <p class="sqft-readout" id="sqft-readout">About 2,400 square feet</p>
+              <label class="visually-hidden" for="sqft-num">Square feet</label>
+              <input id="sqft-num" name="sqft-num" type="number" min="800" max="8000" step="50" value="2400">
+            </div>
+            <div class="slider-wrap">
+              <label class="visually-hidden" for="sqft">Square-foot range</label>
+              <input id="sqft" name="sqft" type="range" min="800" max="6000" step="50" value="2400">
+            </div>
+          </fieldset>
+          <div class="actions">
+            <button class="btn-ghost btn" type="button" data-go="back">Back</button>
+            <button class="btn" type="button" data-go="next">Continue</button>
+          </div>
+          <p class="talk-exit"><a href="#contact" data-go="contact">Rather just talk? Contact Heartwood</a></p>
+        </section>
+
+        <section class="panel" id="panel-people" aria-labelledby="people-title" hidden>
+          <p class="kicker">The house</p>
+          <h1 id="people-title" tabindex="-1">Who is it for?</h1>
+          <p class="lede">This helps us plan how the house is used, not just how it looks.</p>
+          <p class="cheer" data-cheer></p>
+          <fieldset class="group">
+            <legend class="group-label">Who will live there? Pick all that apply.</legend>
+            <div class="chips">
+            <label class="chip">
+              <input type="checkbox" name="who" value="us">
+              <span class="chip-face">Just us</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="who" value="kids">
+              <span class="chip-face">Kids at home</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="who" value="aging">
+              <span class="chip-face">Aging in place</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="who" value="multi">
+              <span class="chip-face">More than one generation</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="who" value="guests">
+              <span class="chip-face">Guests, often</span>
+            </label>
+            </div>
+          </fieldset>
+          <fieldset class="group">
+            <legend class="group-label">How will you use it?</legend>
+            <div class="chips">
+            <label class="chip">
+              <input type="radio" name="use" value="full">
+              <span class="chip-face">Full-time</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="use" value="second">
+              <span class="chip-face">A second home</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="use" value="rental">
+              <span class="chip-face">A short-term rental</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="use" value="unsure">
+              <span class="chip-face">Not sure</span>
+            </label>
+            </div>
+          </fieldset>
+          <div class="actions">
+            <button class="btn-ghost btn" type="button" data-go="back">Back</button>
+            <button class="btn" type="button" data-go="next">Continue</button>
+          </div>
+          <p class="talk-exit"><a href="#contact" data-go="contact">Rather just talk? Contact Heartwood</a></p>
+        </section>
+
+        <section class="panel" id="panel-plans" aria-labelledby="plans-title" hidden>
+          <p class="kicker">The house</p>
+          <h1 id="plans-title" tabindex="-1">Where are you with plans?</h1>
+          <p class="lede">Most people we work with are starting fresh. If you have something already, you can show us.</p>
+          <p class="cheer" data-cheer></p>
+          <div class="type-grid cols-3-at-wide">
+            <label class="choice">
+              <input type="radio" name="plans" value="have">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40 V22 L24 10 l16 12 v18"/><path d="M8 40 h32"/><path d="M20 40 V28 h8 v12"/><path d="M12 26 h6 v6 h-6 z M30 26 h6 v6 h-6 z"/></svg><span><strong>I have plans.</strong><small>A set we can read against the lot.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="plans" value="sketch">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 40 V22 L24 12 l14 10 v18"/><path d="M10 40 h28"/><path d="M24 22 v10 M19 27 h10"/></svg><span><strong>A sketch, or a Pinterest board.</strong><small>A starting point, not a finished set.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="plans" value="fresh">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 34 H42"/><path d="M24 34 V30"/></svg><span><strong>Starting fresh.</strong><small>We’ll begin with how you want to live, and with the lot.</small></span></span>
+            </label>
+          </div>
+          <div class="reserve" id="plans-reserve">
+            <div class="reserve-note" id="plans-note-empty">
+              <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4 H17 L22 9 V24 H7 Z"/><path d="M17 4 V9 H22"/><path d="M11 15 H18 M11 19 H16"/></svg>
+              <span>If you have plans, a sketch, or a board, you can add it here. Nothing to add is fine too.</span>
+            </div>
+            <div class="attach" id="plans-attach" aria-hidden="true">
+              <div class="field">
+                <label for="plans-link">A link, if you have one</label>
+                <input id="plans-link" name="plans-link" type="url" placeholder="Pinterest, Dropbox, Google Drive" tabindex="-1">
+              </div>
+              <div class="field">
+                <span class="group-label">Or a file</span>
+                <div class="upload">
+                  <input id="plans-file" name="plans-file" type="file" accept=".pdf,.jpg,.jpeg,.png,.heic,.dwg" tabindex="-1">
+                  <label class="upload-btn" for="plans-file"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13 V3 M6 7 l4 -4 4 4"/><path d="M3 13 v4 h14 v-4"/></svg>Choose a file</label>
+                  <span class="upload-name" id="plans-file-note">PDF or photos</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <fieldset class="group">
+            <legend class="group-label">Must-haves, if you already know them</legend>
+            <div class="need-grid">
+            <label class="chip">
+              <input type="checkbox" name="need" value="porch">
+              <span class="chip-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40 V22 L24 10 l16 12 v18"/><path d="M8 40 h32"/><path d="M14 22 h20"/><path d="M16 40 V22 M32 40 V22"/><path d="M14 22 l10-6 10 6"/></svg>A porch</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="need" value="screened">
+              <span class="chip-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40 V22 h32 v18"/><path d="M8 22 L24 12 L40 22"/><path d="M16 40 V22 M24 40 V16 M32 40 V22"/></svg>A screened porch</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="need" value="deck">
+              <span class="chip-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 30 H42"/><path d="M6 20 H42"/><path d="M12 20 V30 M20 20 V30 M28 20 V30 M36 20 V30"/><path d="M10 30 V40 M38 30 V40"/></svg>A deck</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="need" value="garage">
+              <span class="chip-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 40 V24 L20 14 l14 10 v16"/><path d="M34 40 V28 L40 24 l6 4 v12"/><path d="M6 40 h28 M34 40 h12"/><path d="M12 40 V28 h16 v12"/><path d="M12 32 h16"/></svg>A garage</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="need" value="basement">
+              <span class="chip-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 20 L24 8 l18 12"/><path d="M10 20 v10 h28 V20"/><path d="M10 30 v10 h28"/><path d="M6 40 h36"/><path d="M28 40 v-8 h8 v8"/><path d="M14 34 h6 v4 h-6 z"/></svg>A walkout or basement</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="need" value="bedroom">
+              <span class="chip-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 34 H40 V20 H28 L24 14 H8 Z"/><path d="M8 38 H40"/></svg>A main-level bedroom</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="need" value="fireplace">
+              <span class="chip-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 40 V22 H36 V40"/><path d="M18 40 V28 h12 v12"/><path d="M22 18 V10 h4 v8"/></svg>A fireplace</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="need" value="office">
+              <span class="chip-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 38 V18 H38 V38"/><path d="M10 24 H38"/><path d="M16 38 V30 h8 v8"/><path d="M28 20 h6 v4 h-6 z"/></svg>A home office</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="need" value="shop">
+              <span class="chip-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40 V24 H40 V40"/><path d="M8 24 L24 12 L40 24"/><path d="M20 40 V30 h8 v10"/></svg>A shop or outbuilding</span>
+            </label>
+            </div>
+          </fieldset>
+          <div class="actions">
+            <button class="btn-ghost btn" type="button" data-go="back">Back</button>
+            <button class="btn" type="button" data-go="next">Continue</button>
+          </div>
+          <p class="talk-exit"><a href="#contact" data-go="contact">Rather just talk? Contact Heartwood</a></p>
+        </section>
+
+        <section class="panel" id="panel-money" aria-labelledby="money-title" hidden>
+          <p class="kicker">A word about the money</p>
+          <h1 id="money-title" tabindex="-1">If you have a range for the house, you can tell us.</h1>
+          <p class="lede">This is for the house itself. Land and site work sit beside that, not in it. If you don’t have a number yet, that’s fine.</p>
+          <p class="cheer" data-cheer></p>
+          <fieldset class="group">
+            <legend class="group-label">A budget for the house</legend>
+            <div class="budget-grid">
+            <label class="chip"><input type="radio" name="budget" value="simple"><span class="chip-face"><b>Simple</b><small>Good, durable basics</small></span></label>
+            <label class="chip"><input type="radio" name="budget" value="comfortable"><span class="chip-face"><b>Comfortable</b><small>Room for a few upgrades</small></span></label>
+            <label class="chip"><input type="radio" name="budget" value="premium"><span class="chip-face"><b>Premium</b><small>The finishes you really want</small></span></label>
+            <label class="chip"><input type="radio" name="budget" value="unsure"><span class="chip-face"><b>Not sure yet</b><small>We’ll talk it through</small></span></label>
+            </div>
+          </fieldset>
+          <fieldset class="group">
+            <legend class="group-label">How are you paying?</legend>
+            <div class="chips">
+            <label class="chip">
+              <input type="radio" name="pay" value="cash">
+              <span class="chip-face">Cash</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="pay" value="loan">
+              <span class="chip-face">A construction loan</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="pay" value="unsure">
+              <span class="chip-face">Not sure</span>
+            </label>
+            </div>
+          </fieldset>
+          <div class="actions">
+            <button class="btn-ghost btn" type="button" data-go="back">Back</button>
+            <button class="btn" type="button" data-go="next">Continue</button>
+          </div>
+          <p class="talk-exit"><a href="#contact" data-go="contact">Rather just talk? Contact Heartwood</a></p>
+        </section>
+
+        <section class="panel" id="panel-timing" aria-labelledby="timing-title" hidden>
+          <p class="kicker">Timing</p>
+          <h1 id="timing-title" tabindex="-1">When do you want to be in?</h1>
+          <p class="lede">A window is enough. We’ll talk through what the lot and the season will allow.</p>
+          <p class="cheer" data-cheer></p>
+          <fieldset class="group">
+            <legend class="group-label">Move-in window</legend>
+            <div class="chips">
+            <label class="chip">
+              <input type="radio" name="timing" value="ready">
+              <span class="chip-face">Ready to start</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="timing" value="year">
+              <span class="chip-face">This year</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="timing" value="next">
+              <span class="chip-face">Next year</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="timing" value="looking">
+              <span class="chip-face">Just looking</span>
+            </label>
+            </div>
+          </fieldset>
+          <fieldset class="group">
+            <legend class="group-label">Do you need to sell a house first?</legend>
+            <div class="chips">
+            <label class="chip">
+              <input type="radio" name="sell" value="yes">
+              <span class="chip-face">Yes, we do</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="sell" value="no">
+              <span class="chip-face">No</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="sell" value="unsure">
+              <span class="chip-face">Not sure</span>
+            </label>
+            </div>
+          </fieldset>
+          <div class="actions">
+            <button class="btn-ghost btn" type="button" data-go="back">Back</button>
+            <button class="btn" type="button" data-go="brief">See your brief</button>
+          </div>
+          <p class="talk-exit"><a href="#contact" data-go="contact">Rather just talk? Contact Heartwood</a></p>
+        </section>
+
+        <section class="panel" id="panel-brief" aria-labelledby="brief-title" hidden>
+          <article class="brief-card">
+            <div class="brief-copy">
+              <p class="kicker">Your build brief</p>
+              <h1 id="brief-title" tabindex="-1">What you’ve told us so far.</h1>
+              <p class="lede">Plans, then an estimate, then we build.</p>
+              <dl class="brief-dl" id="brief-dl"></dl>
+              <div class="actions">
+                <button class="btn-ghost btn" type="button" id="btn-save">Save this brief</button>
+                <a class="btn" href="#reach">Send this to Heartwood</a>
+              </div>
+            </div>
+            <div class="brief-sketch" id="brief-sketch-slot"></div>
+          </article>
+
+          <div class="look-first">
+            <h2>What Heartwood will look at first</h2>
+            <ol id="look-first-list"></ol>
+          </div>
+
+          <div class="similar" id="similar">
+            <h2>Houses like this one</h2>
+            <p class="lede">Two we’ve built, for a sense of the size and the lot.</p>
+            <div class="similar-grid">
+              <a class="house-link" href="#">
+                <img src="img/ten-mile.jpg" alt="The Ten Mile lake house, with a porch looking into the trees." width="700" height="525">
+                <span class="cap"><strong>Ten Mile Lake House</strong><span>2025–2026 · See the house</span></span>
+              </a>
+              <a class="house-link" href="#">
+                <img src="img/spring-city.jpg" alt="The Spring City lake house, a blue house with a porch on an open lot." width="700" height="525">
+                <span class="cap"><strong>Spring City Lake House</strong><span>2024 · See the house</span></span>
+              </a>
+            </div>
+          </div>
+
+          <div class="email-block">
+            <h2>The note Heartwood would get</h2>
+            <p class="lede">A short, scannable version of the brief, sent to the office.</p>
+            <div class="email-frame" id="email-frame"></div>
+          </div>
+
+          <div class="extra-prompt">
+            <h2>A few more details?</h2>
+            <p class="lede">These can wait. If you already know them, they help the first conversation.</p>
+            <div class="actions">
+              <button class="btn-ghost btn" type="button" data-go="extra">Add a few details</button>
+              <a class="btn" href="#reach">I’m done — send this</a>
+            </div>
+          </div>
+
+          <div class="contact-band" id="reach">
+            <h2>How should we reach you?</h2>
+            <p class="lede">A phone number or an email is enough. We’ll call or write you back.</p>
+            <form class="fields" action="#" method="post">
+              <div class="field"><label for="name">Name</label><input id="name" name="name" type="text" autocomplete="name"></div>
+              <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel"></div>
+              <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email"></div>
+              <div class="actions"><button class="btn" type="submit">Send this brief</button></div>
+              <p class="muted">Or call <a href="tel:+14239944911">(423) 994-4911</a>.</p>
+            </form>
+          </div>
+          <div class="actions">
+            <button class="btn-ghost btn" type="button" data-go="timing">Back</button>
+          </div>
+          <p class="talk-exit"><a href="tel:+14239944911">Or just call (423) 994-4911</a></p>
+        </section>
+
+        <section class="panel" id="panel-extra" aria-labelledby="extra-title" hidden>
+          <p class="kicker">A few more details</p>
+          <h1 id="extra-title" tabindex="-1">Only if you already know.</h1>
+          <p class="lede">Skip anything you don’t. None of this is required to send the brief.</p>
+          <p class="cheer" data-cheer></p>
+          <fieldset class="group">
+            <legend class="group-label">A survey, a perc test, or a soil test?</legend>
+            <div class="chips">
+            <label class="chip">
+              <input type="radio" name="survey" value="have">
+              <span class="chip-face">We have one</span>
+            </label>            <label class="chip">
+              <input type="radio" name="survey" value="none">
+              <span class="chip-face">Not yet</span>
+            </label>            <label class="chip">
+              <input type="radio" name="survey" value="unsure">
+              <span class="chip-face">Not sure</span>
+            </label>
+            </div>
+          </fieldset>
+          <fieldset class="group">
+            <legend class="group-label">An HOA, or covenants on the lot?</legend>
+            <div class="chips">
+            <label class="chip">
+              <input type="radio" name="hoa" value="yes">
+              <span class="chip-face">Yes</span>
+            </label>            <label class="chip">
+              <input type="radio" name="hoa" value="no">
+              <span class="chip-face">No</span>
+            </label>            <label class="chip">
+              <input type="radio" name="hoa" value="unsure">
+              <span class="chip-face">Not sure</span>
+            </label>
+            </div>
+          </fieldset>
+          <div class="field">
+            <label for="other-person">Is there someone else we should include?</label>
+            <input id="other-person" name="other-person" type="text" autocomplete="name" placeholder="A name, if you like">
+          </div>
+          <fieldset class="group">
+            <legend class="group-label">Best time to call</legend>
+            <div class="chips">
+            <label class="chip">
+              <input type="radio" name="call" value="morning">
+              <span class="chip-face">Morning</span>
+            </label>            <label class="chip">
+              <input type="radio" name="call" value="afternoon">
+              <span class="chip-face">Afternoon</span>
+            </label>            <label class="chip">
+              <input type="radio" name="call" value="evening">
+              <span class="chip-face">Evening</span>
+            </label>            <label class="chip">
+              <input type="radio" name="call" value="anytime">
+              <span class="chip-face">Anytime</span>
+            </label>
+            </div>
+          </fieldset>
+          <fieldset class="group">
+            <legend class="group-label">How did you find Heartwood?</legend>
+            <div class="chips">
+            <label class="chip">
+              <input type="radio" name="source" value="web">
+              <span class="chip-face">The website</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="source" value="house">
+              <span class="chip-face">A house we stayed in or drove past</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="source" value="friend">
+              <span class="chip-face">A friend</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="source" value="instagram">
+              <span class="chip-face">Instagram</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="source" value="other">
+              <span class="chip-face">Somewhere else</span>
+            </label>
+            </div>
+          </fieldset>
+          <div class="actions">
+            <button class="btn-ghost btn" type="button" data-go="brief">Back to the brief</button>
+            <a class="btn" href="#reach" data-go="brief">Return and send</a>
+          </div>
+          <p class="talk-exit"><a href="#contact" data-go="contact">Rather just talk? Contact Heartwood</a></p>
+        </section>
+
+        <section class="panel" id="panel-contact" aria-labelledby="contact-title" hidden>
+          <p class="kicker">Contact Heartwood</p>
+          <h1 id="contact-title" tabindex="-1">We’ll take it from here.</h1>
+          <p class="lede">A phone number or an email is enough. What you’ve already told us comes along, so you don’t have to repeat it.</p>
+          <div class="carried" id="carried"></div>
+          <form class="fields" action="#" method="post">
+            <div class="field"><label for="cname">Name</label><input id="cname" name="cname" type="text" autocomplete="name"></div>
+            <div class="field"><label for="cphone">Phone</label><input id="cphone" name="cphone" type="tel" autocomplete="tel" inputmode="tel"></div>
+            <div class="field"><label for="cemail">Email</label><input id="cemail" name="cemail" type="email" autocomplete="email"></div>
+            <div class="actions"><button class="btn" type="submit">Send to Heartwood</button></div>
+            <p class="muted">Or call <a href="tel:+14239944911">(423) 994-4911</a>.</p>
+          </form>
+          <div class="actions">
+            <button class="btn-ghost btn" type="button" id="btn-contact-back">Back to the questions</button>
+          </div>
+        </section>
+      </div>
+
+      <aside class="sketch-rail" id="sketch-rail" aria-label="A house sketch that updates as you answer">
+        <h3>The house so far</h3>
+        <p class="muted" id="sketch-caption" style="font-size: var(--step--1);">Answer a few questions, and the lot and the house will fill in.</p>
+        <div class="sketch-stage" id="sketch-stage"><svg class="scene" viewBox="0 32 520 256" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" role="img" aria-labelledby="scene-title"><title id="scene-title">A line drawing of the lot and the house, built from your answers</title><g data-layer="ridge" class=""><path class="s2" d="M20 88 C 44 78, 70 84, 96 74 C 116 66, 136 70, 160 62"/><path class="s2" d="M356 66 C 380 56, 404 70, 430 60 C 452 52, 476 62, 500 56"/></g><g data-layer="ground-flat" class="ground"><path d="M20 204 H500"/></g><g data-layer="ground-gentle" class="ground"><path d="M20 194 L96 204 H446 C 466 204, 480 212, 500 220"/></g><g data-layer="ground-steep" class="ground"><path d="M20 182 L96 204 H446 C 462 204, 482 222, 500 244"/></g><g data-layer="ground-water" class="ground"><path d="M20 204 H446 C 458 204, 466 222, 476 230"/></g><g data-layer="ground-gentle-wo" class="ground"><path d="M20 194 L96 204 H268 V238 H446 C 466 238, 482 242, 500 248"/></g><g data-layer="ground-steep-wo" class="ground"><path d="M20 182 L96 204 H268 V238 H446 C 462 238, 482 250, 500 262"/></g><g data-layer="ground-water-wo" class="ground"><path d="M20 204 H268 V238 H446 C 456 238, 462 248, 470 252"/></g><g data-layer="ground-water-open" class="ground"><path d="M20 204 H396 C 408 204, 414 222, 424 230"/></g><g data-layer="ground-water-open-wo" class="ground"><path d="M20 204 H268 V238 H396 C 406 238, 412 248, 420 252"/></g><g data-layer="water" class=""><path d="M470 232 H500"/><path class="s2" d="M478 240 c4 -2.4 8 2.4 12 0 s8 2.4 10 0.8"/><path class="s2" d="M486 248 c3 -2 6 2 9 0 s4 1.4 5 0.6"/></g><g data-layer="water-wo" class=""><path d="M466 254 H500"/><path class="s2" d="M474 261 c4 -2.4 8 2.4 12 0 s8 2.4 12 0"/><path class="s2" d="M484 268 c3 -2 6 2 9 0 s4 1.4 7 0.6"/></g><g data-layer="water-open" class=""><path d="M418 232 H500"/><path class="s2" d="M430 240 c5 -2.6 10 2.6 15 0 s10 2.6 15 0 s10 2.6 15 0"/><path class="s2" d="M446 248 c4 -2.2 8 2.2 12 0 s8 2.2 12 0 s8 2.2 12 0"/><path class="s2" d="M470 256 c3 -2 6 2 9 0 s6 2 9 0"/></g><g data-layer="water-open-wo" class=""><path d="M416 254 H500"/><path class="s2" d="M428 262 c5 -2.6 10 2.6 15 0 s10 2.6 15 0 s10 2.6 15 0"/><path class="s2" d="M446 270 c4 -2.2 8 2.2 12 0 s8 2.2 12 0 s8 2.2 12 0"/></g><g data-layer="drive-paved-flat" class=""><path d="M20 208 H172"/><path d="M20 213 H172"/><path d="M172 208 V213"/></g><g data-layer="drive-gravel-flat" class=""><path class="dash dots" d="M20 208 H172"/><path class="dash dots" d="M20 213 H172"/><path class="dash dots fine s2" d="M20 210.5 H172"/></g><g data-layer="drive-needs-flat" class=""><path class="dash long s2" d="M20 208 H172"/><path class="dash long s2" d="M20 213 H172"/></g><g data-layer="drive-paved-gentle" class=""><path d="M20 198 L96 208 H172"/><path d="M20 203 L96 213 H172"/><path d="M172 208 V213"/></g><g data-layer="drive-gravel-gentle" class=""><path class="dash dots" d="M20 198 L96 208 H172"/><path class="dash dots" d="M20 203 L96 213 H172"/><path class="dash dots fine s2" d="M20 200.5 L96 210.5 H172"/></g><g data-layer="drive-needs-gentle" class=""><path class="dash long s2" d="M20 198 L96 208 H172"/><path class="dash long s2" d="M20 203 L96 213 H172"/></g><g data-layer="drive-paved-steep" class=""><path d="M20 186 L96 208 H172"/><path d="M20 191 L96 213 H172"/><path d="M172 208 V213"/></g><g data-layer="drive-gravel-steep" class=""><path class="dash dots" d="M20 186 L96 208 H172"/><path class="dash dots" d="M20 191 L96 213 H172"/><path class="dash dots fine s2" d="M20 188.5 L96 210.5 H172"/></g><g data-layer="drive-needs-steep" class=""><path class="dash long s2" d="M20 186 L96 208 H172"/><path class="dash long s2" d="M20 191 L96 213 H172"/></g><g data-layer="pole" data-dy='{"gentle": -8.7, "steep": -19.1}' class=""><path d="M30 204 V118"/><path d="M20 126 H40"/><path d="M22 126 V121 M38 126 V121"/><rect x="32" y="136" width="6" height="10" rx="2"/></g><g data-layer="mailbox" data-dy='{"gentle": -6.6, "steep": -14.5}' class=""><path d="M46 204 V188"/><path d="M39 188 V182 a7 6 0 0 1 14 0 V188 Z"/><path d="M53 184 h3 v-6"/></g><g data-layer="stake" data-dy='{"gentle": -6.6, "steep": -14.5}' class=""><path d="M46 204 V180"/><path class="s2" d="M46 180 L55 183.5 L46 187"/></g><g data-layer="tree-l1" data-dy='{"gentle": -3.7, "steep": -8.1}' class="tree"><path d="M68 204 V194"/><path d="M59 194 L68 176 L77 194 Z"/><path d="M60.5 182 L68 164 L75.5 182"/><path d="M62.5 170 L68 152 L73.5 170"/></g><g data-layer="tree-l2" data-dy='{"gentle": -0.8, "steep": -1.7}' class="tree"><path d="M90 204 V180"/><path d="M82 180 C 78 170, 83 156, 90 156 C 97 156, 102 170, 98 180 Z"/><path class="s2" d="M90 174 l-4 -5 M90 168 l4 -5"/></g><g data-layer="tree-r1" data-dy='{"gentle": 2.8, "steep": 7.3, "gentle-wo": 35.4, "steep-wo": 38.7, "flat-wo": 0}' class="tree"><path d="M466 204 V194"/><path d="M457 194 L466 176 L475 194 Z"/><path d="M458.5 182 L466 164 L473.5 182"/><path d="M460.5 170 L466 152 L471.5 170"/></g><g data-layer="tree-r2" data-dy='{"gentle": 11.0, "steep": 26.3, "gentle-wo": 40.3, "steep-wo": 50.3, "flat-wo": 0}' class="tree"><path d="M488 204 V180"/><path d="M480 180 C 476 170, 481 156, 488 156 C 495 156, 500 170, 496 180 Z"/><path class="s2" d="M488 174 l-4 -5 M488 168 l4 -5"/></g><g data-layer="well" class=""><path d="M106 204 V194 H118 V204"/><path d="M104 190 L112 182 L120 190"/><path d="M106 190 V194 M118 190 V194"/><path class="s2" d="M110 199 h4"/></g><g data-layer="tie-water-flat" class=""><circle cx="24" cy="230.0" r="3"/><path class="dash long s2" d="M24 230 H184 V204"/><text class="lbl" x="124" y="227">water</text></g><g data-layer="tie-sewer-flat" class=""><circle cx="24" cy="242.0" r="3"/><path class="dash long s2" d="M24 242 H188 V204"/><text class="lbl" x="124" y="239">sewer</text></g><g data-layer="tie-water-gentle" class=""><circle cx="24" cy="220.5" r="3"/><path class="dash long s2" d="M24 220.5 L96 230 H184 V204"/><text class="lbl" x="124" y="227">water</text></g><g data-layer="tie-sewer-gentle" class=""><circle cx="24" cy="232.5" r="3"/><path class="dash long s2" d="M24 232.5 L96 242 H188 V204"/><text class="lbl" x="124" y="239">sewer</text></g><g data-layer="tie-water-steep" class=""><circle cx="24" cy="209.2" r="3"/><path class="dash long s2" d="M24 209.2 L96 230 H184 V204"/><text class="lbl" x="124" y="227">water</text></g><g data-layer="tie-sewer-steep" class=""><circle cx="24" cy="221.2" r="3"/><path class="dash long s2" d="M24 221.2 L96 242 H188 V204"/><text class="lbl" x="124" y="239">sewer</text></g><g data-layer="septic" class=""><rect x="340" y="212" width="22" height="13" rx="4"/><path d="M347 212 V204"/><path class="dash long s2" d="M366 215 H386 M366 220 H386 M366 225 H386"/><text class="lbl" x="340" y="235">septic</text></g><g data-layer="septic-low" class=""><rect x="340" y="246" width="22" height="13" rx="4"/><path class="dash long s2" d="M366 249 H386 M366 254 H386 M366 259 H386"/><text class="lbl" x="340" y="269">septic</text></g><g data-layer="garage" class=""><path d="M130 204 V168 H182 V204"/><path d="M126 170 L156 148 L186 170"/><path d="M140 204 V178 H172 V204"/><path class="s2" d="M140 185 H172 M140 192 H172 M140 198 H172"/></g><g data-type="lake"><g data-layer="house" class=""><path d="M190 204 V150 H330 V204 H190"/><rect class="glass" x="200" y="162" width="22" height="26"/><path class="s2" d="M211 162 V188 M200 175 H222"/><path d="M242 204 V170 H262 V204"/><circle cx="257" cy="188" r="0.9" class="dot"/><rect class="glass" x="284" y="158" width="36" height="38"/><path class="s2" d="M296 158 V196 M308 158 V196 M284 168 H320"/></g><g data-layer="roof1" class=""><path d="M182 152 L260 108 L338 152"/><path class="s2" d="M252 136 L260 128 L268 136 Z"/><path d="M296 128.3 V112 H308 V135"/><path d="M294 112 H310"/></g><g data-layer="second" class=""><path d="M190 150 V106 H330 V150"/><rect class="glass" x="202" y="116" width="20" height="22"/><path class="s2" d="M212 116 V138"/><rect class="glass" x="240" y="116" width="24" height="22"/><path class="s2" d="M252 116 V138"/><rect class="glass" x="288" y="116" width="28" height="22"/><path class="s2" d="M302 116 V138"/></g><g data-layer="roof2" class=""><path d="M182 108 L260 64 L338 108"/><circle class="s2" cx="260" cy="88" r="5"/><path d="M296 84.3 V68 H308 V91"/><path d="M294 68 H310"/></g><g data-layer="porch" class=""><path d="M226 166 L232 158 H272 L278 166 Z"/><path d="M232 166 V198 M272 166 V198"/><path d="M228 198 H276"/><path d="M244 201 H260"/><path class="s2" d="M232 186 H242 M262 186 H272 M236 186 V198 M239 186 V198 M265 186 V198 M268 186 V198"/></g><g data-layer="link" class=""><path d="M182 178 H190"/></g></g><g data-type="family"><g data-layer="house" class=""><path d="M190 204 V150 H330 V204 H190"/><rect class="glass" x="200" y="162" width="22" height="26"/><path class="s2" d="M211.0 162 V188 M200 175.0 H222"/><path d="M198 190 H224"/><rect class="glass" x="298" y="162" width="22" height="26"/><path class="s2" d="M309.0 162 V188 M298 175.0 H320"/><path d="M296 190 H322"/><path d="M242 204 V172 H262 V204"/><path class="s2" d="M246 176 H258 V188 H246 Z"/><circle cx="257" cy="194" r="0.9" class="dot"/></g><g data-layer="roof1" class=""><path d="M182 152 L260 118 L338 152"/><path d="M206 141.5 V122 H216 V137.2"/><path d="M204 122 H218"/></g><g data-layer="second" class=""><path d="M190 150 V106 H330 V150"/><rect class="glass" x="200" y="116" width="22" height="24"/><path class="s2" d="M211.0 116 V140 M200 128.0 H222"/><path d="M198 142 H224"/><rect class="glass" x="249" y="116" width="22" height="24"/><path class="s2" d="M260.0 116 V140 M249 128.0 H271"/><path d="M247 142 H273"/><rect class="glass" x="298" y="116" width="22" height="24"/><path class="s2" d="M309.0 116 V140 M298 128.0 H320"/><path d="M296 142 H322"/></g><g data-layer="roof2" class=""><path d="M182 108 L218 80 H302 L338 108"/><path d="M206 89.3 V66 H216 V81.6"/><path d="M204 66 H218"/></g><g data-layer="porch" class=""><path d="M224 168 L252 152 L280 168 Z"/><path class="s2" d="M244 164 L252 159.5 L260 164"/><path d="M230 168 V198 M274 168 V198"/><path d="M226 198 H278"/><path d="M244 201 H260"/><path class="s2" d="M230 186 H242 M262 186 H274 M234 186 V198 M238 186 V198 M266 186 V198 M270 186 V198"/></g><g data-layer="link" class=""><path d="M182 178 H190"/></g></g><g data-type="cabin"><g data-layer="house" class=""><path d="M190 204 V164 H330 V204 H190"/><path class="s2 fine" d="M190 170 H225 M279 170 H330"/><path class="s2 fine" d="M190 178 H202 M222 178 H225 M279 178 H292 M318 178 H330"/><path class="s2 fine" d="M190 186 H202 M222 186 H225 M279 186 H292 M318 186 H330"/><path class="s2 fine" d="M190 198 H225 M279 198 H330"/><rect class="glass" x="202" y="174" width="20" height="18"/><path class="s2" d="M212 174 V192"/><path d="M242 204 V178 H262 V204"/><circle cx="257" cy="192" r="0.9" class="dot"/><rect class="glass" x="292" y="174" width="26" height="18"/><path class="s2" d="M305 174 V192"/></g><g data-layer="roof1" class=""><path d="M182 166 L260 96 L338 166"/><path d="M300 131.9 V100 H312 V142.7"/><path d="M298 100 H314"/><rect class="glass" x="252" y="130" width="16" height="12"/><path class="s2" d="M260 130 V142"/></g><g data-layer="second" class=""><rect class="glass" x="246" y="118" width="12" height="18"/><rect class="glass" x="262" y="118" width="12" height="18"/><path d="M240 146 H280"/><path d="M240 139 H280"/><path class="s2" d="M246 139 V146 M252 139 V146 M258 139 V146 M264 139 V146 M270 139 V146 M276 139 V146"/><path class="s2" d="M242 146 l4 4 M278 146 l-4 4"/></g><g data-layer="roof2" class=""><path d="M182 166 L260 96 L338 166"/><path d="M300 131.9 V100 H312 V142.7"/><path d="M298 100 H314"/></g><g data-layer="porch" class=""><path d="M225 176 L232 168 H272 L279 176 Z"/><path d="M230 176 V198 M274 176 V198"/><path d="M226 198 H278"/><path d="M244 201 H260"/><path class="s2" d="M230 188 H242 M262 188 H274 M234 188 V198 M238 188 V198 M266 188 V198 M270 188 V198"/></g><g data-layer="link" class=""><path d="M182 180 H190"/></g><g data-layer="screened" class=""><path d="M330 172 L388 178"/><path d="M334 174.4 V194 M358 176.9 V194 M382 179.4 V194"/><path d="M330 194 H384"/><path class="s2 fine" d="M338 180 V192 M342 180 V192 M346 180 V192 M350 180 V192 M354 180 V192 M362 180 V192 M366 180 V192 M370 180 V192 M374 180 V192 M378 180 V192"/><path d="M334 194 V204 M382 194 V204"/></g></g><g data-type="aframe"><g data-layer="house" class=""><path d="M190 204 L260 70 L330 204"/><path class="glass" d="M208 204 L260 104 L312 204 Z"/><path class="s2" d="M260 104 V172 M232 157.8 V204 M288 157.8 V204 M224.6 172 H295.4"/><path d="M242 204 V176 H262 V204"/><circle cx="257" cy="192" r="0.9" class="dot"/></g><g data-layer="roof1" class=""><path d="M300 146.6 V126"/><path d="M297 126 H303"/></g><g data-layer="second" class=""><path d="M241.3 140 H278.7"/><path d="M246 132 H274"/><path class="s2" d="M251 132 V140 M256 132 V140 M264 132 V140 M269 132 V140"/></g><g data-layer="roof2" class=""><path d="M300 146.6 V126"/><path d="M297 126 H303"/></g><g data-layer="porch" class=""><path d="M194.2 196 H325.8"/><path d="M200 196 V204 M320 196 V204"/><path d="M200.4 184 H242 M262 184 H319.6"/><path class="s2" d="M206 184 V196 M211 184 V196 M216 184 V196 M221 184 V196 M226 184 V196 M231 184 V196 M236 184 V196 M266 184 V196 M271 184 V196 M276 184 V196 M281 184 V196 M286 184 V196 M291 184 V196 M296 184 V196 M301 184 V196 M306 184 V196 M311 184 V196 M316 184 V196"/></g><g data-layer="link" class=""><path d="M182 192 H196.3"/></g><g data-layer="screened" class=""><path d="M338 174 L364 158 L390 174"/><path d="M342 174 V194 M364 174 V194 M386 174 V194"/><path d="M324 194 H390"/><path class="s2 fine" d="M346 178 V192 M350 178 V192 M354 178 V192 M358 178 V192 M366 178 V192 M370 178 V192 M374 178 V192 M378 178 V192 M382 178 V192"/><path d="M342 194 V204 M386 194 V204"/></g><g data-layer="screened-wo" class=""><path d="M338 184 L364 168 L390 184"/><path d="M342 184 V204 M364 184 V204 M386 184 V204"/><path d="M330 204 H390"/><path class="s2 fine" d="M346 188 V202 M350 188 V202 M354 188 V202 M358 188 V202 M366 188 V202 M370 188 V202 M374 188 V202 M378 188 V202 M382 188 V202"/><path d="M342 204 V234 M386 204 V234"/></g></g><g data-type="townhome"><g data-layer="house" class=""><path d="M190 204 V150 H330 V204 H190"/><path d="M236 150 V204 M284 150 V204"/><path d="M198 204 V174 H212 V204"/><rect class="glass" x="218" y="162" width="12" height="22"/><path d="M244 204 V174 H258 V204"/><rect class="glass" x="264" y="162" width="12" height="22"/><path d="M290 204 V174 H304 V204"/><rect class="glass" x="310" y="162" width="12" height="22"/></g><g data-layer="roof1" class=""><path d="M182 152 L213 128 L236 144 L260 126 L284 144 L307 128 L338 152"/></g><g data-layer="second" class=""><path d="M190 150 V106 H330 V150"/><path d="M236 106 V150 M284 106 V150"/><rect class="glass" x="204" y="116" width="18" height="22"/><rect class="glass" x="251" y="116" width="18" height="22"/><rect class="glass" x="298" y="116" width="18" height="22"/></g><g data-layer="roof2" class=""><path d="M182 108 L213 84 L236 100 L260 82 L284 100 L307 84 L338 108"/></g><g data-layer="porch" class=""><path d="M195 170 H215"/><path class="s2" d="M196 170 l3 3 M214 170 l-3 3"/><path d="M241 170 H261"/><path class="s2" d="M242 170 l3 3 M260 170 l-3 3"/><path d="M287 170 H307"/><path class="s2" d="M288 170 l3 3 M306 170 l-3 3"/></g><g data-layer="link" class=""><path d="M182 178 H190"/></g></g><g data-layer="walkout" class=""><path d="M268 204 V238 H330 V204"/><rect class="glass" x="282" y="214" width="34" height="24"/><path class="s2" d="M299 214 V238"/><path class="s2 fine" d="M202 214 l5 -5 M210 214 l5 -5 M218 214 l5 -5 M226 214 l5 -5 M234 214 l5 -5 M242 214 l5 -5 M250 214 l5 -5 M258 214 l5 -5"/></g><g data-layer="basement" class=""><path class="dash long s2" d="M198 208 V232 H322 V208"/><path d="M210 204 a6 5 0 0 0 12 0 M298 204 a6 5 0 0 0 12 0"/></g><g data-layer="deck" class=""><path d="M330 194 H382"/><path d="M330 182 H382"/><path d="M382 182 V194"/><path class="s2" d="M338 182 V194 M346 182 V194 M354 182 V194 M362 182 V194 M370 182 V194 M378 182 V194"/><path d="M334 194 V204 M378 194 V204"/></g><g data-layer="deck-wo" class=""><path d="M330 204 H382"/><path d="M330 192 H382"/><path d="M382 192 V204"/><path class="s2" d="M338 192 V204 M346 192 V204 M354 192 V204 M362 192 V204 M370 192 V204 M378 192 V204"/><path d="M336 204 V234 M378 204 V234"/><path class="s2" d="M336 210 L378 228"/></g><g data-layer="screened" class=""><path d="M330 162 L388 170"/><path d="M334 166 V194 M358 167.5 V194 M382 169.5 V194"/><path d="M330 194 H384"/><path class="s2 fine" d="M338 172 V192 M342 172 V192 M346 172 V192 M350 172 V192 M354 172 V192 M362 172 V192 M366 172 V192 M370 172 V192 M374 172 V192 M378 172 V192"/><path d="M334 194 V204 M382 194 V204"/></g><g data-layer="screened-wo" class=""><path d="M330 172 L388 180"/><path d="M334 176 V204 M358 177.5 V204 M382 179.5 V204"/><path d="M330 204 H384"/><path class="s2 fine" d="M338 182 V202 M342 182 V202 M346 182 V202 M350 182 V202 M354 182 V202 M362 182 V202 M366 182 V202 M370 182 V202 M374 182 V202 M378 182 V202"/><path d="M336 204 V234 M378 204 V234"/></g><g data-layer="patio" class=""><path d="M332 234 H390 V238 H332 Z"/><path class="s2" d="M342 234 V238 M352 234 V238 M362 234 V238 M372 234 V238 M382 234 V238"/></g><g data-layer="shop" data-dy='{"low": 34}' class=""><path d="M398 204 V176 H442 V204"/><path d="M394 178 L420 158 L446 178"/><path d="M410 204 V184 H430 V204"/><path class="s2" d="M410 184 L430 204 M430 184 L410 204"/><rect class="glass" x="416" y="166" width="8" height="6"/></g><g data-layer="oldshed" data-dy='{"low": 34}' class=""><path class="dash long" d="M404 204 V186 H436 V204"/><path class="dash long" d="M400 188 L420 174 L440 188"/><path class="s2" d="M414 192 l8 8 M422 192 l-8 8"/></g></svg></div>
+        <ul class="sketch-list" id="sketch-list" aria-live="polite"></ul>
+      </aside>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/DrawSVGPlugin.min.js"></script>
+  <script type="module">
+    import { syncScene, initScene } from "./scene.js";
+    // CDN first; fall back to the vendored copy if the CDN is unreachable
+    async function loadLocal(src) { await new Promise((ok, no) => { const t = document.createElement("script"); t.src = src; t.onload = ok; t.onerror = no; document.head.appendChild(t); }); }
+    if (!window.gsap) await loadLocal("vendor/gsap.min.js");
+    if (!window.DrawSVGPlugin) await loadLocal("vendor/DrawSVGPlugin.min.js");
+    gsap.registerPlugin(DrawSVGPlugin);
+
+    const TYPE_LABELS = {
+      family: "A house for your family",
+      lake: "A lake or mountain house",
+      cabin: "A cabin",
+      aframe: "An A-frame",
+      rental: "A short-term rental",
+      townhome: "Townhomes or a small investment",
+      else: "Something else"
+    };
+    const ACRE_LABELS = { under1: "Under 1 acre", "1-3": "1–3 acres", "3-10": "3–10 acres", "10+": "10 or more acres", unsure: "Acreage still to confirm" };
+    const TERRAIN_LABELS = { flat: "A fairly flat lot", gentle: "A gentle slope", steep: "Steep or mountain ground", water: "Waterfront" };
+    const COVER_LABELS = { cleared: "Cleared", partly: "Partly wooded", heavy: "Heavily wooded" };
+    const ACCESS_LABELS = { paved: "Paved access", gravel: "Gravel access", needs: "A drive still to build", unsure: "Access still to confirm" };
+    const NEED_LABELS = {
+      porch: "A porch",
+      screened: "A screened porch",
+      deck: "A deck",
+      garage: "A garage",
+      basement: "A walkout or basement",
+      bedroom: "A main-level bedroom",
+      fireplace: "A fireplace",
+      office: "A home office",
+      shop: "A shop or outbuilding"
+    };
+    const BUDGET_LABELS = { simple: "Simple: good, durable basics", comfortable: "Comfortable: room for a few upgrades", premium: "Premium: the finishes they really want", unsure: "Budget still to talk through" };
+    const PAY_LABELS = { cash: "Paying cash", loan: "A construction loan", unsure: "Still deciding how to pay" };
+    const TIMING_LABELS = { ready: "Ready to start", year: "This year", next: "Next year", looking: "Just looking" };
+    const WHO_LABELS = { us: "Just us", kids: "Kids at home", aging: "Aging in place", multi: "More than one generation", guests: "Guests, often" };
+    const USE_LABELS = { full: "A full-time home", second: "A second home", rental: "A short-term rental", unsure: "Use still to confirm" };
+
+    const state = {
+      land: "", place: "", parcel: "", acres: "",
+      terrain: "", cover: "", access: "",
+      power: "", water: "", sewer: "", internet: "", structure: "",
+      type: "", typeOther: "",
+      beds: "", baths: "", stories: "", sqft: 2400,
+      who: [], use: "",
+      plans: "", plansLink: "", plansFile: "",
+      needs: [],
+      budget: "", pay: "",
+      timing: "", sell: "",
+      survey: "", hoa: "", otherPerson: "", callTime: "", source: ""
+    };
+
+    const stage = document.getElementById("sketch-stage");
+    const briefSlot = document.getElementById("brief-sketch-slot");
+    const stageSvg = stage.querySelector("svg");
+    const pristine = stageSvg.cloneNode(true);
+    initScene(stageSvg);
+    const SECTION = { land: "Your land", place: "The lot", terrain: "The lot", utilities: "The lot", type: "The house", size: "The house", people: "The house", plans: "The house", money: "The money", timing: "Timing" };
+
+    const LAST_PANEL = { contact: true, brief: true, extra: true };
+    let lastQuestion = "land";
+
+    function flow() {
+      const steps = ["land"];
+      if (state.land === "yes") steps.push("place", "terrain", "utilities");
+      steps.push("type", "size", "people", "plans", "money", "timing");
+      return steps;
+    }
+
+    function readForm() {
+      const val = (name) => document.querySelector(`input[name="${name}"]:checked`)?.value || "";
+      const vals = (name) => [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(i => i.value);
+      state.land = val("land");
+      state.place = document.getElementById("place").value.trim();
+      state.parcel = document.getElementById("parcel").value.trim();
+      state.acres = val("acres");
+      state.terrain = val("terrain");
+      state.cover = val("cover");
+      state.access = val("access");
+      state.power = val("power");
+      state.water = val("water");
+      state.sewer = val("sewer");
+      state.internet = val("internet");
+      state.structure = val("structure");
+      state.type = val("type");
+      state.typeOther = document.getElementById("else-text").value.trim();
+      state.beds = document.getElementById("beds").value;
+      state.baths = document.getElementById("baths").value;
+      state.stories = val("stories");
+      state.sqft = Number(document.getElementById("sqft").value) || 2400;
+      state.who = vals("who");
+      state.use = val("use");
+      state.plans = val("plans");
+      state.plansLink = document.getElementById("plans-link").value.trim();
+      state.needs = vals("need");
+      state.budget = val("budget");
+      state.pay = val("pay");
+      state.timing = val("timing");
+      state.sell = val("sell");
+      state.survey = val("survey");
+      state.hoa = val("hoa");
+      state.otherPerson = document.getElementById("other-person").value.trim();
+      state.callTime = val("call");
+      state.source = val("source");
+    }
+
+    const esc = (t) => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    const fmtBaths = (b) => { const n = Number(b); const w = Math.floor(n); return (n >= 5 ? "5 or more" : (w + (n % 1 ? "½" : ""))); };
+    function typeLabel() {
+      if (state.type === "else" && state.typeOther) return state.typeOther;
+      return TYPE_LABELS[state.type] || "";
+    }
+
+    function sqftLabel() {
+      return "About " + Number(state.sqft).toLocaleString("en-US") + " square feet";
+    }
+
+    function cheerFor(name) {
+      if (name === "land") {
+        return "";
+      }
+      if (name === "place" && state.place) return `We’ll check where ${state.place.split(",")[0]} sits for us.`;
+      if (name === "place" && (state.parcel || state.acres)) return "That’s enough to start.";
+      if (name === "terrain") {
+        if (state.terrain === "water") return "We’ll plan for the view and the bank.";
+        if (state.terrain === "steep") return "We’ve built on ground like this.";
+        if (state.cover === "heavy" || state.cover === "partly") return "We’ll plan around the trees you want to keep.";
+        if (state.terrain === "gentle") return "A little slope is often a gift for the house.";
+      }
+      if (name === "utilities") {
+        if (state.sewer === "unsure" || state.sewer === "septic") return "A perc test comes early, if you go that way.";
+        if (state.power === "unsure" || state.water === "unsure") return "We’ll find that out with you.";
+        if (state.structure === "yes") return "We’ll look at what’s already there, and whether it comes down.";
+      }
+      if (name === "type" && state.type === "townhome") return "We’ll talk through whether this is a fit for us.";
+      if (name === "type" && state.type) return "The lot will have a say in the final shape.";
+      if (name === "size") return "A starting size is all we need for now.";
+      if (name === "people") {
+        if (state.who.includes("aging")) return "We’ll keep the main floor easy to live on.";
+        if (state.who.includes("multi")) return "We’ll plan for how you all live together.";
+        if (state.use === "second") return "A house you come home to, when you can.";
+      }
+      if (name === "plans") {
+        if (state.plans === "fresh") return "That’s most of the people we work with.";
+        if (state.plans === "have") return "We’ll read the plans against the lot.";
+        if (state.plans === "sketch") return "A starting point is plenty.";
+      }
+      if (name === "money") {
+        if (state.budget === "unsure" || (!state.budget && state.pay === "unsure")) return "That’s fine. We’ll talk through it.";
+        if (state.pay === "cash") return "That keeps the path simple.";
+        if (state.pay === "loan") return "We’ll work with your lender.";
+      }
+      if (name === "timing") {
+        if (state.sell === "yes") return "We’ll time the work around the house you need to sell.";
+        if (state.timing === "looking") return "No rush. The brief still helps the first conversation.";
+        if (state.timing === "ready") return "We’ll start with the lot.";
+      }
+      return "";
+    }
+
+    function lookAtFirst() {
+      const items = [];
+      if (state.land === "yes") {
+        items.push("Walk the lot with you.");
+        if (state.terrain === "water") items.push("The bank, the view, and what the water setbacks will allow.");
+        if (state.terrain === "steep") items.push("How to sit the house on the slope, and how you get to it.");
+        if (state.cover === "heavy" || state.cover === "partly") items.push("Which trees to keep.");
+        if (state.sewer === "unsure" || state.sewer === "septic") items.push("A perc test, before anything is settled.");
+        if (state.water === "unsure" || state.water === "well") items.push("Water — a well, or a public line, if one is close.");
+        if (state.power === "no" || state.power === "unsure") items.push("Power to the lot.");
+        if (state.access === "needs") items.push("A drive in, and whether the road can take construction traffic.");
+        if (state.parcel) items.splice(1, 0, "The parcel you sent, pulled up before the first call.");
+        if (state.structure === "yes") items.push("The structure that’s already there, and whether it comes down.");
+        if (state.survey === "none" || state.survey === "unsure") items.push("Whether a survey is already in hand.");
+      } else if (state.land === "no") {
+        items.push("The house you want, so it’s ready when you find a spot. Daniel can often walk a lot with you before you buy.");
+      } else {
+        items.push("Whether you already have land, or are still looking.");
+      }
+      if (state.plans === "have") items.push("The plans you have, read against the lot.");
+      else if (state.plans === "sketch") items.push("The sketches or pictures you’ve saved.");
+      else if (state.type) items.push("How you want to live in the house, then a plan that fits the lot.");
+      if (state.who.includes("aging")) items.push("A main floor that’s easy to stay on.");
+      if (state.who.includes("multi")) items.push("How more than one generation will use the house.");
+      if (state.sell === "yes") items.push("Timing around the house you need to sell first.");
+      // keep the most useful, in order, capped
+      const seen = new Set();
+      return items.filter(x => { if (seen.has(x)) return false; seen.add(x); return true; }).slice(0, 5);
+    }
+
+    function briefRows() {
+      const rows = [];
+      const type = typeLabel();
+      if (type) rows.push(["The house", type + "."]);
+      const sizeBits = [];
+      if (state.sqft) sizeBits.push(sqftLabel());
+      if (state.beds) sizeBits.push(state.beds === "6" ? "6 or more bedrooms" : state.beds === "1" ? "1 bedroom" : state.beds + " bedrooms");
+      if (state.baths) sizeBits.push(fmtBaths(state.baths) + (state.baths === "1" ? " bath" : " baths"));
+      if (state.stories && state.stories !== "unsure") sizeBits.push(state.stories === "1" ? "One story" : state.stories + " stories");
+      if (sizeBits.length) rows.push(["Size", sizeBits.join(". ") + "."]);
+      if (state.who.length || state.use) {
+        const bits = [...state.who.map(w => WHO_LABELS[w]), USE_LABELS[state.use] || ""].filter(Boolean);
+        rows.push(["Who it’s for", bits.join(". ") + "."]);
+      }
+      if (state.needs.length) {
+        const labels = state.needs.map(n => NEED_LABELS[n].replace(/^A /, "a "));
+        let phrase;
+        if (labels.length === 1) phrase = labels[0];
+        else if (labels.length === 2) phrase = labels[0] + " and " + labels[1];
+        else phrase = labels.slice(0, -1).join(", ") + ", and " + labels[labels.length - 1];
+        rows.push(["Must-haves", phrase.charAt(0).toUpperCase() + phrase.slice(1) + "."]);
+      }
+      if (state.plans === "have") rows.push(["Plans", "They have a set of plans."]);
+      else if (state.plans === "sketch") rows.push(["Plans", "A sketch or a board, as a starting point."]);
+      else if (state.plans === "fresh") rows.push(["Plans", "Starting fresh."]);
+      if (state.land === "yes") {
+        const lot = [];
+        if (state.place) lot.push(state.place);
+        const lotBits = [];
+        if (state.acres && ACRE_LABELS[state.acres]) lotBits.push(ACRE_LABELS[state.acres].replace(/^A/, "a").replace("Acreage still to confirm", "acreage still to confirm"));
+        if (state.terrain) lotBits.push(TERRAIN_LABELS[state.terrain].replace(/^A /, "a ").replace(/^Steep/, "steep").replace(/^Waterfront/, "waterfront"));
+        if (state.cover) lotBits.push(COVER_LABELS[state.cover].toLowerCase());
+        if (state.access && state.access !== "unsure") lotBits.push(ACCESS_LABELS[state.access].toLowerCase().replace(/^a /, ""));
+        let lotText = state.place || "They have land";
+        if (lotBits.length) lotText += ". " + lotBits[0].charAt(0).toUpperCase() + lotBits[0].slice(1) + (lotBits.length > 1 ? ", " + lotBits.slice(1).join(", ") : "");
+        rows.push(["The lot", lotText + "."]);
+        if (state.parcel) rows.push(["Where to look", esc(state.parcel)]);
+        const util = [];
+        if (state.power === "yes") util.push("Power at the road");
+        if (state.power === "no") util.push("Power not yet at the road");
+        if (state.water === "well") util.push("A well, or plans for one");
+        if (state.water === "public") util.push("Public water");
+        if (state.water === "unsure") util.push("Water still to confirm");
+        if (state.sewer === "septic") util.push("Septic");
+        if (state.sewer === "public") util.push("Public sewer");
+        if (state.sewer === "unsure") util.push("Sewer still to confirm");
+        if (state.internet === "yes") util.push("Internet at the road");
+        if (state.structure === "yes") util.push("A structure to take down");
+        if (util.length) rows.push(["On the lot", util.join(". ") + "."]);
+      } else if (state.land === "no") {
+        rows.push(["The lot", "Still looking for land."]);
+      } else if (state.land === "unsure") {
+        rows.push(["The lot", "Land situation still to confirm."]);
+      }
+      const money = [];
+      if (state.budget) money.push(BUDGET_LABELS[state.budget]);
+      if (state.pay) money.push(PAY_LABELS[state.pay]);
+      if (money.length) rows.push(["The house budget", money.join(". ") + "."]);
+      const time = [];
+      if (state.timing) time.push(TIMING_LABELS[state.timing]);
+      if (state.sell === "yes") time.push("They need to sell a house first");
+      if (state.sell === "no") time.push("They don’t need to sell first");
+      if (time.length) rows.push(["Timing", time.join(". ") + "."]);
+      return rows;
+    }
+
+    function updateBrief() {
+      const dl = document.getElementById("brief-dl");
+      dl.innerHTML = briefRows().map(([dt, dd]) => `<div><dt>${dt}</dt><dd>${dd}</dd></div>`).join("");
+      document.getElementById("look-first-list").innerHTML = lookAtFirst().map(i => `<li>${i}</li>`).join("");
+      const type = typeLabel() || "a custom house";
+      const where = state.place ? " in " + state.place : "";
+      const rows = briefRows();
+      const first = lookAtFirst();
+      document.getElementById("email-frame").innerHTML = `
+        <div class="email-meta">
+          <div><b>To</b> Heartwood Homes</div>
+          <div><b>Subject</b> Build brief — ${type.charAt(0).toLowerCase() + type.slice(1)}${where}</div>
+        </div>
+        <div class="email-body">
+          <h3>Build brief</h3>
+          ${rows.map(([, dd]) => `<p>${dd}</p>`).join("")}
+          <p><b>Look at first</b></p>
+          <ul>${first.map(i => `<li>${i}</li>`).join("")}</ul>
+        </div>`;
+    }
+
+    function sketchList() {
+      const items = [];
+      const t = typeLabel();
+      if (t) items.push(t);
+      if (state.sqft && t) items.push(sqftLabel());
+      if (state.terrain) items.push(TERRAIN_LABELS[state.terrain]);
+      if (state.cover) items.push(COVER_LABELS[state.cover]);
+      if (state.needs.length) state.needs.forEach(n => items.push(NEED_LABELS[n]));
+      return items;
+    }
+
+    function refresh() {
+      readForm();
+      const attachOn = state.plans === "have" || state.plans === "sketch";
+      document.getElementById("plans-attach").setAttribute("aria-hidden", attachOn ? "false" : "true");
+      document.getElementById("plans-note-empty").setAttribute("aria-hidden", attachOn ? "true" : "false");
+      document.querySelectorAll("#plans-attach input").forEach(i => i.tabIndex = attachOn ? 0 : -1);
+      const n = Number(document.getElementById("sqft").value);
+      document.getElementById("sqft-readout").textContent = "About " + n.toLocaleString("en-US") + " square feet";
+      if (document.activeElement !== document.getElementById("sqft-num")) {
+        document.getElementById("sqft-num").value = n;
+      }
+      syncScene(stageSvg, state);
+      if (!document.getElementById("panel-brief").hidden) {
+        const b = briefSlot.querySelector("svg");
+        if (b) syncScene(b, state);
+        updateBrief();
+      }
+      const items = sketchList();
+      const caption = items.slice(0, 2).join(". ") + (items.length ? "." : "Answer a few questions, and the lot and the house will fill in.");
+      document.getElementById("sketch-caption").textContent = items.length ? items.slice(0, 2).join(". ") + "." : "Answer a few questions, and the lot and the house will fill in.";
+      document.getElementById("sketch-list").innerHTML = items.map(i => `<li>${i}</li>`).join("");
+      const panel = document.querySelector(".panel.is-on");
+      if (panel) {
+        const cheer = panel.querySelector("[data-cheer]");
+        if (cheer) cheer.textContent = cheerFor(panel.id.replace("panel-", ""));
+      }
+    }
+
+    // Scroll rule: option picks never scroll. On a step change (Continue, Back, a deep link),
+    // if the new heading is hidden under the sticky header or below the fold, jump (no smooth
+    // scroll) so it sits just under the header, then move focus to it without a second scroll.
+    function bringQuestionIntoView() {
+      const h = document.querySelector(".panel.is-on h1");
+      if (!h) return;
+      const headerH = document.querySelector(".site-header").offsetHeight;
+      const top = h.getBoundingClientRect().top;
+      const kicker = h.previousElementSibling && h.previousElementSibling.matches(".kicker") ? h.previousElementSibling : h;
+      const progress = document.querySelector(".progress");
+      if (top < headerH + 8 || top > window.innerHeight * 0.6) {
+        const anchor = progress || kicker;
+        window.scrollTo({ top: Math.max(0, anchor.getBoundingClientRect().top + window.scrollY - headerH - 16), behavior: "instant" });
+      }
+      h.focus({ preventScroll: true });
+    }
+
+    function showPanel(name, opts = {}) {
+      readForm();
+      const steps = flow();
+      if (name === "next") {
+        const cur = document.querySelector(".panel.is-on")?.id.replace("panel-", "");
+        const i = steps.indexOf(cur);
+        name = i >= 0 && i < steps.length - 1 ? steps[i + 1] : "brief";
+      }
+      if (name === "back") {
+        const cur = document.querySelector(".panel.is-on")?.id.replace("panel-", "");
+        const i = steps.indexOf(cur);
+        name = i > 0 ? steps[i - 1] : steps[0];
+      }
+      if (!document.getElementById("panel-" + name)) return;
+      if (!LAST_PANEL[name]) lastQuestion = name;
+
+      document.querySelectorAll(".panel").forEach(el => {
+        const on = el.id === "panel-" + name;
+        el.classList.toggle("is-on", on);
+        el.hidden = !on;
+      });
+
+      const wide = name === "brief" || name === "contact" || name === "extra";
+      document.getElementById("layout").classList.toggle("is-wide", wide);
+      document.getElementById("sketch-rail").hidden = wide;
+
+      const stepsAll = flow();
+      const idx = stepsAll.indexOf(name);
+      const total = stepsAll.length;
+      const label = document.getElementById("progress-label");
+      const rail = document.getElementById("progress-rail");
+      const timeEl = document.getElementById("progress-time");
+      if (rail.children.length !== total) {
+        rail.style.gridTemplateColumns = `repeat(${total}, 1fr)`;
+        rail.replaceChildren(...stepsAll.map(() => document.createElement("span")));
+      }
+      const done = name === "brief" || name === "extra" || name === "contact";
+      const n = done ? total + 1 : idx + 1;
+      [...rail.children].forEach((sp, i) => {
+        sp.classList.toggle("is-done", i + 1 < n);
+        sp.classList.toggle("is-on", i + 1 === n);
+      });
+      if (done) {
+        label.innerHTML = name === "brief" ? "Your brief <span class=\"sec\">· All done</span>" : name === "extra" ? "A few more details <span class=\"sec\">· Optional</span>" : "Contact Heartwood";
+        timeEl.textContent = "";
+      } else {
+        label.innerHTML = `Step ${n} of ${total} <span class="sec">· ${SECTION[name] || ""}</span>`;
+        const left = Math.max(1, Math.ceil((total - n + 1) * 15 / 60));
+        timeEl.textContent = left <= 1 ? "Under a minute left" : `About ${left} minutes left`;
+      }
+
+      if (name === "brief") {
+        const fresh = pristine.cloneNode(true);
+        fresh.querySelector("title").id = "scene-title-brief";
+        fresh.setAttribute("aria-labelledby", "scene-title-brief");
+        briefSlot.replaceChildren(fresh);
+        initScene(fresh);
+        syncScene(fresh, state);
+        updateBrief();
+      }
+      if (name === "contact") {
+        const rows = briefRows();
+        document.getElementById("carried").innerHTML = rows.length
+          ? "<p>What you’ve already told us:</p><ul>" + rows.map(([, dd]) => `<li>${dd}</li>`).join("") + "</ul>"
+          : "<p>You can tell us the rest when we talk.</p>";
+      }
+      history.replaceState(null, "", "#q-" + name);
+      refresh();
+      if (opts.focus !== false) bringQuestionIntoView();
+    }
+
+    document.querySelectorAll("input, textarea").forEach(el => {
+      el.addEventListener("change", refresh);
+      el.addEventListener("input", () => {
+        if (el.id === "sqft" || el.id === "sqft-num" || el.id === "place" || el.id === "parcel" || el.id === "else-text") {
+          if (el.id === "sqft-num") document.getElementById("sqft").value = el.value;
+          refresh();
+        }
+      });
+    });
+    document.getElementById("plans-file").addEventListener("change", ev => {
+      const f = ev.target.files?.[0];
+      document.getElementById("plans-file-note").textContent = f ? f.name : "PDF or photos";
+      state.plansFile = f ? f.name : "";
+    });
+
+    document.querySelectorAll("[data-go]").forEach(el => {
+      el.addEventListener("click", ev => {
+        const go = el.getAttribute("data-go");
+        if (go === "contact" || go === "brief" || go === "extra" || go === "timing" || go === "next" || go === "back") {
+          ev.preventDefault();
+          showPanel(go);
+        }
+      });
+    });
+    document.getElementById("btn-contact-back").addEventListener("click", () => showPanel(lastQuestion));
+    document.getElementById("btn-save").addEventListener("click", ev => {
+      ev.preventDefault();
+      const btn = ev.currentTarget;
+      btn.textContent = "Saved on this computer";
+      setTimeout(() => { btn.textContent = "Save this brief"; }, 2200);
+    });
+    document.querySelectorAll("form").forEach(f => f.addEventListener("submit", ev => ev.preventDefault()));
+
+    // Steppers
+    document.querySelectorAll("[data-stepper]").forEach(st => {
+      const key = st.dataset.stepper, min = +st.dataset.min, max = +st.dataset.max, step = +st.dataset.step;
+      const out = st.querySelector("output"), input = document.getElementById(key);
+      const show = (v) => {
+        out.textContent = st.dataset.set !== "1" ? "–" : key === "baths" ? fmtBaths(v) : (v >= max ? max + "+" : String(v));
+        st.querySelector('[data-dir="-1"]').disabled = v <= min;
+        st.querySelector('[data-dir="1"]').disabled = v >= max;
+      };
+      st.setValue = (v) => { v = Math.min(max, Math.max(min, v)); st.dataset.value = v; st.dataset.set = "1"; input.value = String(v); show(v);
+        const hint = document.querySelector(`[data-hint="${key}"]`); if (hint && key === "beds") hint.textContent = v >= max ? "Six or more" : ""; };
+      st.dataset.value = st.dataset.start; show(+st.dataset.start);
+      st.querySelectorAll("button").forEach(b => b.addEventListener("click", () => {
+        const dir = +b.dataset.dir, start = +st.dataset.start;
+        // untouched: + lands on the usual size, − one below it; after that it steps normally
+        st.setValue(st.dataset.set === "1" ? +st.dataset.value + step * dir : (dir > 0 ? start : start - step));
+        refresh();
+      }));
+    });
+
+    function applyFromLocation() {
+      const params = new URLSearchParams(location.search);
+      const setRadio = (name, v) => {
+        const el = document.querySelector(`input[name="${name}"][value="${v}"]`);
+        if (el) el.checked = true;
+      };
+      const map = {
+        land:"land", acres:"acres", terrain:"terrain", cover:"cover", access:"access",
+        power:"power", water:"water", sewer:"sewer", internet:"internet", structure:"structure",
+        type:"type", stories:"stories",
+        use:"use", plans:"plans", budget:"budget", pay:"pay", timing:"timing", sell:"sell",
+        survey:"survey", hoa:"hoa", call:"call", source:"source"
+      };
+      Object.entries(map).forEach(([q, name]) => { if (params.get(q)) setRadio(name, params.get(q)); });
+      if (params.get("place")) document.getElementById("place").value = params.get("place");
+      if (params.get("parcel")) document.getElementById("parcel").value = params.get("parcel");
+      ["beds", "baths"].forEach(k => { if (params.get(k)) document.querySelector(`[data-stepper="${k}"]`).setValue(+params.get(k)); });
+      if (params.get("sqft")) {
+        document.getElementById("sqft").value = params.get("sqft");
+        document.getElementById("sqft-num").value = params.get("sqft");
+      }
+      if (params.get("needs")) {
+        const set = new Set(params.get("needs").split(",").filter(Boolean));
+        document.querySelectorAll("input[name=need]").forEach(i => { i.checked = set.has(i.value); });
+      }
+      if (params.get("who")) {
+        const set = new Set(params.get("who").split(",").filter(Boolean));
+        document.querySelectorAll("input[name=who]").forEach(i => { i.checked = set.has(i.value); });
+      }
+      const hash = location.hash ? location.hash.slice(1).replace(/^q-/, "") : (params.get("step") || "land");
+      refresh();
+      showPanel(hash || "land", { focus: hash !== "land" });
+    }
+
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    // The site sets html { scroll-behavior: smooth }, so every programmatic jump says "instant".
+    window.scrollTo({ top: 0, behavior: "instant" });
+    applyFromLocation();
+    window.addEventListener("pageshow", (e) => { if (e.persisted) window.scrollTo({ top: 0, behavior: "instant" }); });
+    document.querySelector("[data-plan-here]").addEventListener("click", (e) => { e.preventDefault(); bringQuestionIntoView(); });
+    window.addEventListener("hashchange", () => {
+      const hash = (location.hash || "#land").slice(1).replace(/^q-/, "");
+      if (hash) showPanel(hash);
+    });
+  </script>
+</body>
+</html>

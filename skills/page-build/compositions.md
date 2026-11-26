@@ -415,8 +415,14 @@ dock on question steps, clear of any sticky call bar, hidden on the brief.
 must not move existing content. Reserve every box that fills in later (sketch stage via
 `aspect-ratio`, 2-line cheer and caption, fixed-width readouts and "minutes left", the plans upload
 cell, which crossfades with its empty state); keep optional fields visible instead of popping them
-open; preload fonts with `font-display: optional` or metric-matched fallbacks; scroll on a step change
-only if the new heading is under the sticky header. Branded controls only: +/− steppers, a custom
+open; preload fonts with `font-display: optional` or metric-matched fallbacks. **No unrequested scroll
+on option picks; on step change, bring the new question into view**: if the new heading is under the
+sticky header or below the fold, jump (`behavior: "instant"`, so a site-wide smooth scroll can't
+animate it) until it sits just under the header, then focus it (`tabindex="-1"`,
+`focus({ preventScroll: true })`). `/plan/` always opens at the top: `history.scrollRestoration =
+"manual"`, an instant scroll to top on load and on a back/forward-cache `pageshow` (and on
+`astro:after-swap` if the site uses `<ClientRouter />`). Never keep the step in a URL hash that matches
+an element id (the browser scrolls to and focuses that element). Branded controls only: +/− steppers, a custom
 "Choose a file" button, an even must-have chip grid, a segmented progress bar with "Step N of M".
 Prove it with `templates/scripts/qa/cls-run.mjs` (desktop, mobile, reduced motion: **CLS 0, zero
 entries**) and the scene with `templates/scripts/qa/scene-collisions.mjs` (0 collisions across

@@ -153,7 +153,8 @@ Open the images. The script can't judge taste, so check:
   sketch is the layered scene + GSAP, not runtime geometry (each house type distinct, rental /
   something else borrow lake or family, deck only when picked, walkout a stepped grade inside the
   frame, garage on grade, `scene-collisions.mjs` reports 0 collisions); **zero layout shift**
-  (`cls-run.mjs`: CLS 0 with zero entries at desktop, mobile, and reduced motion; branded steppers,
+  (`cls-run.mjs`: CLS 0 with zero entries at desktop, mobile, and reduced motion; no unrequested scroll
+  on option picks, a step change brings the new question into view and focuses it, `/plan/` opens at the top; branded steppers,
   upload, chip grid, and progress bar; no map picker, no service-area promise); "Rather just talk?" carries answers into the
   Contact qualifier; the path picker's "Start your home" goes to `/plan/` and `?path=` / `?work=` /
   `?land=` / `?timeline=` are applied on load; localStorage resumes a draft (no contact fields
