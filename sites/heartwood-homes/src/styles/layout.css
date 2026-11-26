@@ -263,6 +263,8 @@ p a, .letter a, .measure a { text-decoration: underline; text-underline-offset: 
 
 /* Qualifier */
 .qualifier { display: grid; gap: var(--space-m); }
+.qualifier .carried { color: var(--color-muted); max-width: 42rem; }
+.qualifier .carried ul { margin: 8px 0 0; padding-left: 1.2em; }
 .choice-list { display: grid; gap: var(--space-xs); }
 .choice {
   display: flex;

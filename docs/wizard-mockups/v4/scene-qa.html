@@ -1,0 +1,82 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"Source Sans 3";src:url("fonts/SourceSans3[wght].woff2") format("woff2");font-weight:200 900}
+body{margin:0;background:#E7EBE7;font:14px "Source Sans 3",sans-serif;color:#1A1E18;padding:20px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+figure{margin:0;background:#E4E8DD;border:1px solid #B7BEB4;padding:10px}
+figcaption{font-weight:600;margin-bottom:4px}
+.scene{width:100%;height:auto;display:block;color:#1A1E18}
+.scene .s2{stroke:#6A7264;stroke-width:1.2}
+.scene .fine{stroke-width:.8}
+.scene .dash.long{stroke-dasharray:5 4}
+.scene .dash.dots{stroke-dasharray:0.1 4.2;stroke-width:2.2}
+.scene .glass{fill:#EFE4CC}
+.scene .dot{fill:currentColor}
+.scene .lbl{font:600 7px "Source Sans 3",sans-serif;fill:#6A7264;stroke:none;letter-spacing:.04em}
+.scene.frame{outline:1px dashed #c33;outline-offset:-1px}
+</style></head><body>
+<div class="grid" id="grid"></div>
+<script src="vendor/gsap.min.js"></script><script src="vendor/DrawSVGPlugin.min.js"></script>
+<script type="module">
+import { syncScene, initScene } from "./scene.js";
+gsap.registerPlugin(DrawSVGPlugin);
+const svgText = await (await fetch("scene-lake.svg")).text();
+const params = new URLSearchParams(location.search);
+const mode = params.get("mode") || "real";
+const TYPE = params.get("type") || "lake";
+const NAMES = { lake: "Lake / mountain house", family: "Family house", cabin: "Cabin (1½ story)", aframe: "A-frame (with loft)", townhome: "Townhomes (row of three)" };
+const base = { land:"yes", type:TYPE, stories:"2", cover:"heavy", access:"paved", power:"yes", structure:"no" };
+const combos = [];
+for (const terrain of ["flat","gentle","steep","water"]) for (const wo of [false,true]) {
+  const needs = ["porch","garage", (terrain==="water"&&!wo)?null:"shop", wo?"basement":null, "screened"].filter(Boolean);
+  combos.push({ title:`${terrain}${wo?(terrain==="flat"?" + basement":" + walkout"):""}`, state:{...base, terrain, needs, water:"well", sewer:"septic"} });
+}
+const grid = document.getElementById("grid");
+if (mode === "buildup") {
+  grid.style.gridTemplateColumns = "repeat(3, 1fr)";
+  combos.length = 0;
+  const L = { land: "yes" };
+  const seq = [
+    ["1 · Before any answers", { ...L }],
+    ["2 · Waterfront", { ...L, terrain: "water" }],
+    ["3 · Heavily wooded", { ...L, terrain: "water", cover: "heavy" }],
+    ["4 · Paved drive, power, a well, septic", { ...L, terrain: "water", cover: "heavy", access: "paved", power: "yes", water: "well", sewer: "septic" }],
+    ["5 · " + NAMES[TYPE] + " appears", { ...L, terrain: "water", cover: "heavy", access: "paved", power: "yes", water: "well", sewer: "septic", type: TYPE }],
+    ["6 · Two stories", { ...L, terrain: "water", cover: "heavy", access: "paved", power: "yes", water: "well", sewer: "septic", type: TYPE, stories: "2" }],
+    ["7 · Porch, a deck, garage", { ...L, terrain: "water", cover: "heavy", access: "paved", power: "yes", water: "well", sewer: "septic", type: TYPE, stories: "2", needs: ["porch", "deck", "garage"] }],
+    ["8 · Walkout: stepped grade, patio below", { ...L, terrain: "water", cover: "heavy", access: "paved", power: "yes", water: "well", sewer: "septic", type: TYPE, stories: "2", needs: ["porch", "deck", "garage", "basement"] }],
+    ["9 · A shop on the lower grade", { ...L, terrain: "water", cover: "heavy", access: "paved", power: "yes", water: "well", sewer: "septic", type: TYPE, stories: "2", needs: ["porch", "deck", "garage", "basement", "shop"] }],
+  ];
+  seq.forEach(([title, state]) => combos.push({ title, state }));
+}
+if (mode === "types") {
+  grid.style.gridTemplateColumns = "repeat(2, 1fr)";
+  combos.length = 0;
+  for (const t of ["lake", "family", "cabin", "aframe", "townhome"]) for (const stories of ["2", "1"])
+    combos.push({ title: `${NAMES[t]} · ${stories === "2" ? (t === "cabin" ? "1½ story" : t === "aframe" ? "with loft" : "two stories") : "one story"} · every slot on`, state: { ...base, type: t, stories, terrain: "gentle", needs: ["porch","garage","shop","basement","screened"], water: "well", sewer: "septic" } });
+}
+if (mode === "hero") {
+  grid.style.gridTemplateColumns = "1fr";
+  combos.length = 0;
+  combos.push({ title: NAMES[TYPE] + ". Every slot filled: gentle slope with a walkout, heavily wooded, paved drive, power, a well, septic, garage, two stories, front porch, screened porch, patio, shop", state: { ...base, terrain: "gentle", needs: ["porch","garage","shop","basement","screened"], water: "well", sewer: "septic" } });
+}
+window.__results = [];
+for (const c of combos) {
+  const fig = document.createElement("figure");
+  fig.innerHTML = `<figcaption>${c.title}</figcaption>${svgText}`;
+  grid.appendChild(fig);
+  const svg = fig.querySelector("svg");
+  initScene(svg);
+  syncScene(svg, c.state, { instant: true });
+  if (mode === "buildup" && !c.state.terrain) { const g = svg.querySelector('[data-layer="ground-flat"]'); }
+  if (mode === "stress") {
+    // everything that does not share a slot: both tie-ins + well + septic + stake swapped for mailbox
+    const shape = c.state.terrain === "water" ? "flat" : c.state.terrain;
+    for (const n of [`tie-water-${shape}`, `tie-sewer-${shape}`]) {
+      const g = svg.querySelector(`[data-layer="${n}"]`); gsap.set(g,{autoAlpha:1}); g.dataset.on="1";
+      gsap.set(g.querySelectorAll("path,circle,text"),{opacity:1});
+    }
+  }
+}
+window.__ready = true;
+</script></body></html>

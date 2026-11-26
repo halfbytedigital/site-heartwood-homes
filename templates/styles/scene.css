@@ -1,0 +1,63 @@
+/* C33 layered build-brief scene + sketch rail. Pair with templates/scenes/house-scene.svg and
+   templates/scripts/scene.js. Expects the site tokens (--color-text, --color-line,
+   --color-line-strong, --color-muted, --color-primary-tint, --font-body, --header-h, --step-1,
+   --step--1, --space-*). Lifted from the approved Heartwood v4 mock. */
+
+/* Layout: questions + rail. Rail grows to 556px (≈522px drawing) at 1280+. */
+.layout { display: grid; grid-template-columns: 1fr; gap: 0; }
+@media (width >= 1024px) {
+  .layout { grid-template-columns: minmax(0, 1fr) 400px; gap: var(--space-2xl); align-items: start; }
+  .layout.is-wide { grid-template-columns: 1fr; }
+}
+@media (width >= 1280px) {
+  .layout { grid-template-columns: minmax(0, 1fr) 556px; gap: var(--space-xl); align-items: start; }
+  .layout.is-wide { grid-template-columns: 1fr; }
+}
+
+/* Rail ("The house so far") */
+.sketch-rail {
+  margin: 0 0 var(--space-l);
+  border: 1px solid var(--color-line);
+  background: var(--color-primary-tint);
+  padding: 16px 16px 18px;
+}
+.sketch-rail[hidden], .layout.is-wide .sketch-rail { display: none !important; }
+@media (width < 1024px) {
+  /* Bottom dock on question steps. Reserve page padding so it never covers Continue.
+     If the site has a sticky call bar, raise `bottom` above it. */
+  .wrap:has(.layout:not(.is-wide)) { padding-bottom: 188px; }
+  .sketch-rail {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+    margin: 0; border-left: 0; border-right: 0; border-bottom: 0;
+    display: grid; grid-template-columns: 58% 1fr; column-gap: 12px; align-items: center;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+    box-shadow: 0 -1px 0 var(--color-line);
+  }
+  .sketch-rail h3 { font-size: 1.05rem; margin: 0; grid-column: 2; grid-row: 1; }
+  .sketch-rail > p { display: block; grid-column: 2; grid-row: 2; margin: 0; font-size: 13px; line-height: 1.35; }
+  .sketch-stage { grid-column: 1; grid-row: 1 / span 2; margin: 0; }
+  .sketch-list { display: none; }
+}
+@media (width >= 1024px) {
+  .sketch-rail { position: sticky; top: calc(var(--header-h) + 16px); margin: 0; }
+}
+.sketch-rail h3 { font-size: var(--step-1); font-weight: 600; margin: 0 0 4px; }
+.sketch-list { list-style: none; padding: 0; margin: 8px 0 0; font-size: var(--step--1); color: var(--color-muted); }
+.sketch-list li { padding: 1px 0; }
+/* No layout shift: the caption is clamped to two lines and reserves them. */
+.sketch-caption { min-height: calc(1.45em * 2); line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.sketch-stage { margin: 8px 0 0; aspect-ratio: 520 / 256; }   /* box reserved before any layer draws */
+.sketch-stage svg, .brief-sketch svg { width: 100%; height: auto; display: block; color: var(--color-text); }
+
+/* The scene. Layers start hidden; scene.js reveals them. */
+.scene { color: var(--color-text); overflow: visible; }
+.scene [data-layer] { visibility: hidden; }
+.scene .s2 { stroke: var(--color-line-strong); stroke-width: 1.2; }
+.scene .fine { stroke-width: 0.8; }
+.scene .dash.long { stroke-dasharray: 5 4; }
+.scene .dash.dots { stroke-dasharray: 0.1 4.2; stroke-width: 2.2; }
+.scene .glass { fill: #EFE4CC; }              /* warm window fill; swap for a client tint */
+.scene .dot { fill: currentColor; }
+.scene .lbl { font: 600 9px var(--font-body); fill: var(--color-muted); stroke: none; letter-spacing: 0.04em; }
+.sketch-stage .scene .lbl { display: none; }  /* labels only in the brief */
+.brief-sketch .scene { width: 100%; height: auto; }

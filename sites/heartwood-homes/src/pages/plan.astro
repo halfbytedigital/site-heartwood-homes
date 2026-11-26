@@ -1,0 +1,797 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import { getProject, projectPath } from '../data/projects';
+import '../styles/plan.css';
+
+const tenMile = getProject('ten-mile-lake-house');
+const springCity = getProject('spring-city-lake-house');
+---
+<Base
+  title="Plan your home | Heartwood Homes"
+  description="Tell us about the lot and the house. Next is plans, then an estimate, then we build."
+>
+<div class="plan wrap" data-plan>
+    <div class="progress">
+      <p class="progress-label" id="progress-label">Step 1 of 7</p>
+      <div class="progress-rail" aria-hidden="true" id="progress-rail"></div>
+    </div>
+
+        <p class="resume" data-resume hidden>Picking up where you left off. <button type="button" data-start-over>Start over</button></p>
+    <div class="layout" id="layout">
+      <div class="panels">
+
+        <section class="panel is-on" id="panel-land" aria-labelledby="land-title">
+          <p class="kicker">Plan your home</p>
+          <h1 tabindex="-1" id="land-title">Do you have land?</h1>
+          <p class="lede">If you don’t, that’s fine. We can start there, or just talk.</p>
+          <p class="cheer" data-cheer></p>
+          <div class="type-grid">
+            <label class="choice">
+              <input type="radio" name="land" value="yes">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 36 L14 18 L24 26 L34 12 L40 36 Z"/><path d="M8 36 H40"/></svg><span><strong>I have land.</strong><small>A lot you already own, or one under contract.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="land" value="no">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 32 C 16 28, 20 22, 28 24 C 34 26, 38 22, 42 20"/><path d="M6 38 H42"/></svg><span><strong>Not yet.</strong><small>We’ll talk about where you want to be.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="land" value="unsure">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 36 V16 H38 V36"/><path d="M10 36 H38"/><path d="M24 22 v6"/><circle cx="24" cy="18" r="1.2" fill="currentColor" stroke="none"/></svg><span><strong>I’m not sure.</strong><small>We can start either way.</small></span></span>
+            </label>
+          </div>
+          <div class="actions">
+            <button class="btn-ghost btn" type="button" data-go="back" disabled>Back</button>
+            <button class="btn" type="button" data-go="next">Continue</button>
+          </div>
+          <p class="talk-exit"><a href="/contact/" data-exit>Rather just talk? Contact Heartwood</a></p>
+        </section>
+
+        <section class="panel" id="panel-place" aria-labelledby="place-title" hidden>
+          <p class="kicker">The lot</p>
+          <h1 tabindex="-1" id="place-title">Where is it?</h1>
+          <p class="lede">A town or a county is enough. You can pin it if you like, or leave that for later.</p>
+          <p class="cheer" data-cheer></p>
+          <div class="field">
+            <label for="place">Town or county</label>
+            <input id="place" name="place" type="text" autocomplete="address-level2" placeholder="Ten Mile, Meigs County">
+          </div>
+          <p><button class="btn-ghost btn" type="button" id="btn-pin" style="min-height:44px;padding:0 16px">Pin it on a map</button></p>
+          <div class="map-box" id="map-box">
+            <p class="muted" style="margin-bottom:8px">Tap the map to drop a pin. You don’t have to.</p>
+            <div class="map-frame" id="map-frame" role="application" aria-label="A simple map. Click to drop a pin.">
+              <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2">
+                <path d="M0 80 C 60 60, 120 90, 180 70 C 240 50, 300 80, 400 60"/>
+                <path d="M0 120 C 80 140, 140 110, 220 130 C 300 150, 350 120, 400 140"/>
+                <path d="M40 150 C 120 130, 200 170, 360 150" stroke-width="1.6"/>
+              </svg>
+            </div>
+            <p class="muted" id="pin-note" style="margin-top:8px"></p>
+          </div>
+          <fieldset class="group" style="margin-top:28px">
+            <legend class="group-label">About how much land?</legend>
+            <div class="chips">
+            <label class="chip">
+              <input type="radio" name="acres" value="under1">
+              <span class="chip-face">Under 1 acre</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="acres" value="1-3">
+              <span class="chip-face">1–3 acres</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="acres" value="3-10">
+              <span class="chip-face">3–10 acres</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="acres" value="10+">
+              <span class="chip-face">10 or more</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="acres" value="unsure">
+              <span class="chip-face">Not sure</span>
+            </label>
+            </div>
+          </fieldset>
+          <div class="actions">
+            <button class="btn-ghost btn" type="button" data-go="back">Back</button>
+            <button class="btn" type="button" data-go="next">Continue</button>
+          </div>
+          <p class="talk-exit"><a href="/contact/" data-exit>Rather just talk? Contact Heartwood</a></p>
+        </section>
+
+        <section class="panel" id="panel-terrain" aria-labelledby="terrain-title" hidden>
+          <p class="kicker">The lot</p>
+          <h1 tabindex="-1" id="terrain-title">What’s the ground like?</h1>
+          <p class="lede">Pick what you know. Leave the rest.</p>
+          <p class="cheer" data-cheer></p>
+          <fieldset class="group">
+            <legend class="group-label">The lay of the land</legend>
+            <div class="card-grid cols-4">
+            <label class="choice">
+              <input type="radio" name="terrain" value="flat">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 30 H42"/><path d="M14 30 V26 M24 30 V24 M34 30 V27"/></svg><span><strong>Flat.</strong><small>A fairly even lot.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="terrain" value="gentle">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 34 L42 20"/><path d="M16 29 V25 M28 24 V20"/></svg><span><strong>A gentle slope.</strong><small>Enough to sit a walkout, maybe.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="terrain" value="steep">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 38 L28 12 L42 16"/><path d="M20 24 V18"/></svg><span><strong>Steep or mountain.</strong><small>We’ll plan how the house sits.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="terrain" value="water">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 24 L42 30"/><path d="M10 30 C 16 28, 20 32, 26 30 C 32 28, 36 32, 42 30"/><path d="M14 36 C 20 34, 24 38, 30 36"/></svg><span><strong>Waterfront.</strong><small>A lake, a river, or a long view of the water.</small></span></span>
+            </label>
+            </div>
+          </fieldset>
+          <fieldset class="group">
+            <legend class="group-label">What’s on it now?</legend>
+            <div class="card-grid cols-3">
+            <label class="choice">
+              <input type="radio" name="cover" value="cleared">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 34 H42"/><path d="M24 34 V30"/></svg><span><strong>Cleared.</strong><small>Open, or mostly open.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="cover" value="partly">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 36 H42"/><path d="M18 36 V22"/><path d="M18 24 c-6 0-8-6-5-10 5 1 7 1 11 0 1 5-1 10-6 10 z"/><path d="M32 36 V26"/><path d="M32 27 c-4 0-6-4-3-8 3 1 5 1 8 0 1 4-1 8-5 8 z"/></svg><span><strong>Partly wooded.</strong><small>Some trees you’d like to keep.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="cover" value="heavy">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 38 H42"/><path d="M12 38 V24"/><path d="M12 25 c-5 0-6-5-4-8 4 1 6 1 9 0 1 4-1 8-5 8 z"/><path d="M24 38 V18"/><path d="M24 20 c-6 0-8-6-5-11 5 1 8 1 12 0 1 6-2 11-7 11 z"/><path d="M36 38 V26"/><path d="M36 27 c-4 0-6-4-4-8 3 1 6 1 9 0 1 4-1 8-5 8 z"/></svg><span><strong>Heavily wooded.</strong><small>We’ll plan around the trees you want to keep.</small></span></span>
+            </label>
+            </div>
+          </fieldset>
+          <div class="actions">
+            <button class="btn-ghost btn" type="button" data-go="back">Back</button>
+            <button class="btn" type="button" data-go="next">Continue</button>
+          </div>
+          <p class="talk-exit"><a href="/contact/" data-exit>Rather just talk? Contact Heartwood</a></p>
+        </section>
+
+        <section class="panel" id="panel-utilities" aria-labelledby="utilities-title" hidden>
+          <p class="kicker">The lot</p>
+          <h1 tabindex="-1" id="utilities-title">How do you get there, and what’s already in?</h1>
+          <p class="lede">If you don’t know, say so. We’ll find it out with you.</p>
+          <p class="cheer" data-cheer></p>
+          <fieldset class="group">
+            <legend class="group-label">Road access</legend>
+            <div class="card-grid cols-4">
+            <label class="choice">
+              <input type="radio" name="access" value="paved">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 18 L18 30 H30 L40 18"/><path d="M22 18 V30"/></svg><span><strong>A paved road.</strong><small>You can already drive to the lot.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="access" value="gravel">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 18 L18 30 H30 L40 18" stroke-dasharray="3 2"/><path d="M22 18 V30" stroke-dasharray="3 2"/></svg><span><strong>A gravel road.</strong><small>In, and serviceable.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="access" value="needs">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 34 H20" stroke-dasharray="3 3"/><path d="M28 34 H40"/><path d="M24 28 v6"/></svg><span><strong>It needs a drive.</strong><small>We’ll plan how you get in.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="access" value="unsure">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 32 H38"/><path d="M24 20 v6"/><circle cx="24" cy="16" r="1.2" fill="currentColor" stroke="none"/></svg><span><strong>Not sure.</strong><small>We’ll look at that on the lot.</small></span></span>
+            </label>
+            </div>
+          </fieldset>
+          <fieldset class="group">
+            <legend class="group-label">Utilities</legend>
+            <div class="util-row"><span>Power at the road</span><div class="chips">
+            <label class="chip">
+              <input type="radio" name="power" value="yes">
+              <span class="chip-face">Yes</span>
+            </label>            <label class="chip">
+              <input type="radio" name="power" value="no">
+              <span class="chip-face">Not yet</span>
+            </label>            <label class="chip">
+              <input type="radio" name="power" value="unsure">
+              <span class="chip-face">Not sure</span>
+            </label>
+            </div></div>
+            <div class="util-row"><span>Water</span><div class="chips">
+            <label class="chip">
+              <input type="radio" name="water" value="public">
+              <span class="chip-face">Public water</span>
+            </label>            <label class="chip">
+              <input type="radio" name="water" value="well">
+              <span class="chip-face">A well</span>
+            </label>            <label class="chip">
+              <input type="radio" name="water" value="unsure">
+              <span class="chip-face">Not sure</span>
+            </label>
+            </div></div>
+            <div class="util-row"><span>Sewer</span><div class="chips">
+            <label class="chip">
+              <input type="radio" name="sewer" value="public">
+              <span class="chip-face">Public sewer</span>
+            </label>            <label class="chip">
+              <input type="radio" name="sewer" value="septic">
+              <span class="chip-face">Septic</span>
+            </label>            <label class="chip">
+              <input type="radio" name="sewer" value="unsure">
+              <span class="chip-face">Not sure</span>
+            </label>
+            </div></div>
+            <div class="util-row"><span>Internet</span><div class="chips">
+            <label class="chip">
+              <input type="radio" name="internet" value="yes">
+              <span class="chip-face">At the road</span>
+            </label>            <label class="chip">
+              <input type="radio" name="internet" value="no">
+              <span class="chip-face">Not yet</span>
+            </label>            <label class="chip">
+              <input type="radio" name="internet" value="unsure">
+              <span class="chip-face">Not sure</span>
+            </label>
+            </div></div>
+          </fieldset>
+          <fieldset class="group">
+            <legend class="group-label">Is there a structure to take down?</legend>
+            <div class="chips">
+            <label class="chip">
+              <input type="radio" name="structure" value="yes">
+              <span class="chip-face">Yes</span>
+            </label>            <label class="chip">
+              <input type="radio" name="structure" value="no">
+              <span class="chip-face">No</span>
+            </label>            <label class="chip">
+              <input type="radio" name="structure" value="unsure">
+              <span class="chip-face">Not sure</span>
+            </label>
+            </div>
+          </fieldset>
+          <div class="actions">
+            <button class="btn-ghost btn" type="button" data-go="back">Back</button>
+            <button class="btn" type="button" data-go="next">Continue</button>
+          </div>
+          <p class="talk-exit"><a href="/contact/" data-exit>Rather just talk? Contact Heartwood</a></p>
+        </section>
+
+        <section class="panel" id="panel-type" aria-labelledby="type-title" hidden>
+          <p class="kicker">The house</p>
+          <h1 tabindex="-1" id="type-title">What kind of house?</h1>
+          <p class="lede">Tell us the house you have in mind. If you’re not sure, that’s fine.</p>
+          <p class="cheer" data-cheer></p>
+          <div class="type-grid">
+            <label class="choice">
+              <input type="radio" name="type" value="family">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40 V22 L24 10 l16 12 v18"/><path d="M8 40 h32"/><path d="M20 40 V28 h8 v12"/><path d="M12 26 h6 v6 h-6 z M30 26 h6 v6 h-6 z"/></svg><span><strong>A house for your family.</strong><small>A custom home you plan to stay in.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="type" value="lake">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 32 V20 L24 10 l16 10 v12"/><path d="M8 32 h32"/><path d="M20 32 V24 h8 v8"/><path d="M8 36 h32"/><path d="M8 36 V40 H40 V36"/></svg><span><strong>A lake or mountain house.</strong><small>Built for the lot and the view.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="type" value="cabin">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 40 V24 L24 8 l14 16 v16"/><path d="M10 40 h28"/><path d="M22 40 V28 h6 v12"/></svg><span><strong>A cabin.</strong><small>A smaller house, or one for the woods.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="type" value="aframe">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40 L24 8 L40 40"/><path d="M14 40 H34"/><path d="M21 40 V30 h6 v10"/><path d="M22 22 h4 v5 h-4 z"/></svg><span><strong>An A-frame.</strong><small>A steep roof, and a simple shape.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="type" value="rental">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40 V24 H40 V40"/><path d="M8 24 H40"/><path d="M8 24 V20 H40 V24"/><path d="M18 24 L24 14 L30 24"/><path d="M20 40 V30 h8 v10"/></svg><span><strong>A short-term rental.</strong><small>A house people can book a stay in.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="type" value="townhome">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 40 V22 L16 12 l10 10 v18"/><path d="M26 40 V22 L36 12 l10 10 v18"/><path d="M6 40 h20 M26 40 h20"/><path d="M12 40 V30 h6 v10 M32 40 V30 h6 v10"/></svg><span><strong>Townhomes or a small investment.</strong><small>More than one unit, or a house you don’t plan to live in.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="type" value="else">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 40 V22 L24 12 l14 10 v18"/><path d="M10 40 h28"/><path d="M24 22 v10 M19 27 h10"/></svg><span><strong>Something else.</strong><small>Tell us in your own words.</small></span></span>
+            </label>
+          </div>
+          <div class="else-field" id="else-field">
+            <label for="else-text">What do you have in mind?</label>
+            <input id="else-text" name="else-text" type="text">
+          </div>
+          <div class="actions">
+            <button class="btn-ghost btn" type="button" data-go="back">Back</button>
+            <button class="btn" type="button" data-go="next">Continue</button>
+          </div>
+          <p class="talk-exit"><a href="/contact/" data-exit>Rather just talk? Contact Heartwood</a></p>
+        </section>
+
+        <section class="panel" id="panel-size" aria-labelledby="size-title" hidden>
+          <p class="kicker">The house</p>
+          <h1 tabindex="-1" id="size-title">How big should it be?</h1>
+          <p class="lede">A starting size is enough. You can change this later, once the plans are drawn.</p>
+          <p class="cheer" data-cheer></p>
+          <div class="size-grid">
+            <fieldset>
+              <legend class="group-label">Bedrooms</legend>
+              <div class="chips">
+            <label class="chip">
+              <input type="radio" name="beds" value="2">
+              <span class="chip-face">2</span>
+            </label>            <label class="chip">
+              <input type="radio" name="beds" value="3">
+              <span class="chip-face">3</span>
+            </label>            <label class="chip">
+              <input type="radio" name="beds" value="4">
+              <span class="chip-face">4</span>
+            </label>            <label class="chip">
+              <input type="radio" name="beds" value="5">
+              <span class="chip-face">5+</span>
+            </label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend class="group-label">Baths</legend>
+              <div class="chips">
+            <label class="chip">
+              <input type="radio" name="baths" value="2">
+              <span class="chip-face">2</span>
+            </label>            <label class="chip">
+              <input type="radio" name="baths" value="2.5">
+              <span class="chip-face">2½</span>
+            </label>            <label class="chip">
+              <input type="radio" name="baths" value="3">
+              <span class="chip-face">3</span>
+            </label>            <label class="chip">
+              <input type="radio" name="baths" value="4">
+              <span class="chip-face">4+</span>
+            </label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend class="group-label">Stories</legend>
+              <div class="chips">
+            <label class="chip">
+              <input type="radio" name="stories" value="1">
+              <span class="chip-face">1</span>
+            </label>            <label class="chip">
+              <input type="radio" name="stories" value="2">
+              <span class="chip-face">2</span>
+            </label>            <label class="chip">
+              <input type="radio" name="stories" value="3">
+              <span class="chip-face">3</span>
+            </label>            <label class="chip">
+              <input type="radio" name="stories" value="unsure">
+              <span class="chip-face">Not sure</span>
+            </label>
+              </div>
+            </fieldset>
+          </div>
+          <fieldset class="group">
+            <legend class="group-label">About how many square feet?</legend>
+            <div class="sqft-row">
+              <p class="sqft-readout" id="sqft-readout">About 2,400 square feet</p>
+              <label class="visually-hidden" for="sqft-num">Square feet</label>
+              <input id="sqft-num" name="sqft-num" type="number" min="800" max="8000" step="50" value="2400">
+            </div>
+            <div class="slider-wrap">
+              <label class="visually-hidden" for="sqft">Square-foot range</label>
+              <input id="sqft" name="sqft" type="range" min="800" max="6000" step="50" value="2400">
+            </div>
+          </fieldset>
+          <div class="actions">
+            <button class="btn-ghost btn" type="button" data-go="back">Back</button>
+            <button class="btn" type="button" data-go="next">Continue</button>
+          </div>
+          <p class="talk-exit"><a href="/contact/" data-exit>Rather just talk? Contact Heartwood</a></p>
+        </section>
+
+        <section class="panel" id="panel-people" aria-labelledby="people-title" hidden>
+          <p class="kicker">The house</p>
+          <h1 tabindex="-1" id="people-title">Who is it for?</h1>
+          <p class="lede">This helps us plan how the house is used, not just how it looks.</p>
+          <p class="cheer" data-cheer></p>
+          <fieldset class="group">
+            <legend class="group-label">Who will live there? Pick all that apply.</legend>
+            <div class="chips">
+            <label class="chip">
+              <input type="checkbox" name="who" value="us">
+              <span class="chip-face">Just us</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="who" value="kids">
+              <span class="chip-face">Kids at home</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="who" value="aging">
+              <span class="chip-face">Aging in place</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="who" value="multi">
+              <span class="chip-face">More than one generation</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="who" value="guests">
+              <span class="chip-face">Guests, often</span>
+            </label>
+            </div>
+          </fieldset>
+          <fieldset class="group">
+            <legend class="group-label">How will you use it?</legend>
+            <div class="chips">
+            <label class="chip">
+              <input type="radio" name="use" value="full">
+              <span class="chip-face">Full-time</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="use" value="second">
+              <span class="chip-face">A second home</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="use" value="rental">
+              <span class="chip-face">A short-term rental</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="use" value="unsure">
+              <span class="chip-face">Not sure</span>
+            </label>
+            </div>
+          </fieldset>
+          <div class="actions">
+            <button class="btn-ghost btn" type="button" data-go="back">Back</button>
+            <button class="btn" type="button" data-go="next">Continue</button>
+          </div>
+          <p class="talk-exit"><a href="/contact/" data-exit>Rather just talk? Contact Heartwood</a></p>
+        </section>
+
+        <section class="panel" id="panel-plans" aria-labelledby="plans-title" hidden>
+          <p class="kicker">The house</p>
+          <h1 tabindex="-1" id="plans-title">Where are you with plans?</h1>
+          <p class="lede">Most people we work with are starting fresh. If you have something already, you can show us.</p>
+          <p class="cheer" data-cheer></p>
+          <div class="type-grid cols-3-at-wide">
+            <label class="choice">
+              <input type="radio" name="plans" value="have">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40 V22 L24 10 l16 12 v18"/><path d="M8 40 h32"/><path d="M20 40 V28 h8 v12"/><path d="M12 26 h6 v6 h-6 z M30 26 h6 v6 h-6 z"/></svg><span><strong>I have plans.</strong><small>A set we can read against the lot.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="plans" value="sketch">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 40 V22 L24 12 l14 10 v18"/><path d="M10 40 h28"/><path d="M24 22 v10 M19 27 h10"/></svg><span><strong>A sketch, or a Pinterest board.</strong><small>A starting point, not a finished set.</small></span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="plans" value="fresh">
+              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 34 H42"/><path d="M24 34 V30"/></svg><span><strong>Starting fresh.</strong><small>We’ll begin with how you want to live, and with the lot.</small></span></span>
+            </label>
+          </div>
+          <div class="plans-attach" id="plans-attach">
+            <div class="field">
+              <label for="plans-link">A link, if you have one</label>
+              <input id="plans-link" name="plans-link" type="url" placeholder="https://">
+            </div>
+            <div class="field">
+              <label for="plans-file">Or upload a file</label>
+              <input id="plans-file" name="plans-file" type="file">
+              <p class="muted" id="plans-file-note" style="margin-top:6px"></p>
+            </div>
+          </div>
+          <fieldset class="group">
+            <legend class="group-label">Must-haves, if you already know them</legend>
+            <div class="chips">
+            <label class="chip">
+              <input type="checkbox" name="need" value="porch">
+              <span class="chip-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40 V22 L24 10 l16 12 v18"/><path d="M8 40 h32"/><path d="M14 22 h20"/><path d="M16 40 V22 M32 40 V22"/><path d="M14 22 l10-6 10 6"/></svg>A porch</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="need" value="screened">
+              <span class="chip-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40 V22 h32 v18"/><path d="M8 22 L24 12 L40 22"/><path d="M16 40 V22 M24 40 V16 M32 40 V22"/></svg>A screened porch</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="need" value="garage">
+              <span class="chip-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 40 V24 L20 14 l14 10 v16"/><path d="M34 40 V28 L40 24 l6 4 v12"/><path d="M6 40 h28 M34 40 h12"/><path d="M12 40 V28 h16 v12"/><path d="M12 32 h16"/></svg>A garage</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="need" value="basement">
+              <span class="chip-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 20 L24 8 l18 12"/><path d="M10 20 v10 h28 V20"/><path d="M10 30 v10 h28"/><path d="M6 40 h36"/><path d="M28 40 v-8 h8 v8"/><path d="M14 34 h6 v4 h-6 z"/></svg>A walkout or basement</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="need" value="bedroom">
+              <span class="chip-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 34 H40 V20 H28 L24 14 H8 Z"/><path d="M8 38 H40"/></svg>A main-level bedroom</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="need" value="fireplace">
+              <span class="chip-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 40 V22 H36 V40"/><path d="M18 40 V28 h12 v12"/><path d="M22 18 V10 h4 v8"/></svg>A fireplace</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="need" value="office">
+              <span class="chip-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 38 V18 H38 V38"/><path d="M10 24 H38"/><path d="M16 38 V30 h8 v8"/><path d="M28 20 h6 v4 h-6 z"/></svg>A home office</span>
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="need" value="shop">
+              <span class="chip-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40 V24 H40 V40"/><path d="M8 24 L24 12 L40 24"/><path d="M20 40 V30 h8 v10"/></svg>A shop or outbuilding</span>
+            </label>
+            </div>
+          </fieldset>
+          <div class="actions">
+            <button class="btn-ghost btn" type="button" data-go="back">Back</button>
+            <button class="btn" type="button" data-go="next">Continue</button>
+          </div>
+          <p class="talk-exit"><a href="/contact/" data-exit>Rather just talk? Contact Heartwood</a></p>
+        </section>
+
+        <section class="panel" id="panel-money" aria-labelledby="money-title" hidden>
+          <p class="kicker">A word about the money</p>
+          <h1 tabindex="-1" id="money-title">If you have a range for the house, you can tell us.</h1>
+          <p class="lede">This is for the house itself. Land and site work sit beside that, not in it. If you don’t have a number yet, that’s fine.</p>
+          <p class="cheer" data-cheer></p>
+          <fieldset class="group">
+            <legend class="group-label">A budget for the house</legend>
+            <div class="chips">
+            <label class="chip">
+              <input type="radio" name="budget" value="modest">
+              <span class="chip-face">A modest budget</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="budget" value="mid">
+              <span class="chip-face">A mid-range budget</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="budget" value="higher">
+              <span class="chip-face">A higher-end budget</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="budget" value="unsure">
+              <span class="chip-face">Not sure yet</span>
+            </label>
+            </div>
+          </fieldset>
+          <fieldset class="group">
+            <legend class="group-label">How are you paying?</legend>
+            <div class="chips">
+            <label class="chip">
+              <input type="radio" name="pay" value="cash">
+              <span class="chip-face">Cash</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="pay" value="loan">
+              <span class="chip-face">A construction loan</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="pay" value="unsure">
+              <span class="chip-face">Not sure</span>
+            </label>
+            </div>
+          </fieldset>
+          <div class="actions">
+            <button class="btn-ghost btn" type="button" data-go="back">Back</button>
+            <button class="btn" type="button" data-go="next">Continue</button>
+          </div>
+          <p class="talk-exit"><a href="/contact/" data-exit>Rather just talk? Contact Heartwood</a></p>
+        </section>
+
+        <section class="panel" id="panel-timing" aria-labelledby="timing-title" hidden>
+          <p class="kicker">Timing</p>
+          <h1 tabindex="-1" id="timing-title">When do you want to be in?</h1>
+          <p class="lede">A window is enough. We’ll talk through what the lot and the season will allow.</p>
+          <p class="cheer" data-cheer></p>
+          <fieldset class="group">
+            <legend class="group-label">Move-in window</legend>
+            <div class="chips">
+            <label class="chip">
+              <input type="radio" name="timing" value="ready">
+              <span class="chip-face">Ready to start</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="timing" value="year">
+              <span class="chip-face">This year</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="timing" value="next">
+              <span class="chip-face">Next year</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="timing" value="looking">
+              <span class="chip-face">Just looking</span>
+            </label>
+            </div>
+          </fieldset>
+          <fieldset class="group">
+            <legend class="group-label">Do you need to sell a house first?</legend>
+            <div class="chips">
+            <label class="chip">
+              <input type="radio" name="sell" value="yes">
+              <span class="chip-face">Yes, we do</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="sell" value="no">
+              <span class="chip-face">No</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="sell" value="unsure">
+              <span class="chip-face">Not sure</span>
+            </label>
+            </div>
+          </fieldset>
+          <div class="actions">
+            <button class="btn-ghost btn" type="button" data-go="back">Back</button>
+            <button class="btn" type="button" data-go="brief">See your brief</button>
+          </div>
+          <p class="talk-exit"><a href="/contact/" data-exit>Rather just talk? Contact Heartwood</a></p>
+        </section>
+
+        <section class="panel" id="panel-brief" aria-labelledby="brief-title" hidden>
+          <article class="brief-card">
+            <div class="brief-copy">
+              <p class="kicker">Your build brief</p>
+              <h1 tabindex="-1" id="brief-title">What you’ve told us so far.</h1>
+              <p class="lede">Next is plans, then an estimate, then we build.</p>
+              <dl class="brief-dl" id="brief-dl"></dl>
+              <div class="actions">
+                <button class="btn-ghost btn" type="button" id="btn-print">Save as PDF / Print</button>
+                <button class="btn-ghost btn" type="button" id="btn-copy">Copy link</button>
+                <a class="btn" href="#reach">Send this to Heartwood</a>
+              </div>
+              <p class="copied" id="copied" role="status" hidden>Link copied</p>
+            </div>
+            <div class="brief-sketch" id="brief-sketch-slot"></div>
+          </article>
+
+          <div class="look-first">
+            <h2>What Heartwood will look at first</h2>
+            <ol id="look-first-list"></ol>
+          </div>
+
+          <div class="similar" id="similar">
+            <h2>Houses like this one</h2>
+            <p class="lede">Two we’ve built, for a sense of the size and the lot.</p>
+            <div class="similar-grid">
+              {tenMile && (
+                <a class="house-link" href={projectPath(tenMile.slug)}>
+                  <Image src={tenMile.image} alt={tenMile.imageAlt} widths={[480, 800]} sizes="(min-width: 700px) 40vw, 100vw" />
+                  <span class="cap"><strong>{tenMile.name}</strong><span>{tenMile.dates} · See the house</span></span>
+                </a>
+              )}
+              {springCity && (
+                <a class="house-link" href={projectPath(springCity.slug)}>
+                  <Image src={springCity.image} alt={springCity.imageAlt} widths={[480, 800]} sizes="(min-width: 700px) 40vw, 100vw" />
+                  <span class="cap"><strong>{springCity.name}</strong><span>{springCity.dates} · See the house</span></span>
+                </a>
+              )}
+            </div>
+          </div>
+
+          <div class="email-block">
+            <h2>The note Heartwood would get</h2>
+            <p class="lede">A short, scannable version of the brief, sent to the office.</p>
+            <div class="email-frame" id="email-frame"></div>
+          </div>
+
+          <div class="extra-prompt">
+            <h2>A few more details?</h2>
+            <p class="lede">These can wait. If you already know them, they help the first conversation.</p>
+            <div class="actions">
+              <button class="btn-ghost btn" type="button" data-go="extra">Add a few details</button>
+              <a class="btn" href="#reach">I’m done — send this</a>
+            </div>
+          </div>
+
+          <div class="contact-band" id="reach">
+            <h2>How should we reach you?</h2>
+            <p class="lede">A phone number or an email is enough. We’ll call or write you back.</p>
+            <form class="fields" action="/api/quote" method="post" data-brief-form novalidate>
+              <p class="visually-hidden"><label>Company<input name="company" tabindex="-1" autocomplete="off"></label></p>
+              <input type="hidden" name="kind" value="brief">
+              <input type="hidden" name="work" value="custom-home" data-brief-work>
+              <input type="hidden" name="subject" value="" data-brief-subject>
+              <input type="hidden" name="message" value="" data-brief-message>
+              <input type="hidden" name="path" value="" data-brief-path>
+              <label class="field" data-saved-wrap hidden>
+                Houses you liked
+                <input name="houses" data-saved-houses-field readonly>
+              </label>
+              <div class="field"><label for="name">Name</label><input id="name" name="name" type="text" autocomplete="name"></div>
+              <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel"></div>
+              <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email"></div>
+              <p class="form-status" data-brief-status hidden></p>
+              <div class="actions"><button class="btn" type="submit">Send this brief</button></div>
+              <p class="muted">Or call <a href="tel:+14239944911" data-event="call_click" data-event-placement="plan">(423) 994-4911</a>.</p>
+            </form>
+          </div>
+          <div class="actions">
+            <button class="btn-ghost btn" type="button" data-go="timing">Back</button>
+          </div>
+          <p class="talk-exit"><a href="tel:+14239944911">Or just call (423) 994-4911</a></p>
+        </section>
+
+        <section class="panel" id="panel-extra" aria-labelledby="extra-title" hidden>
+          <p class="kicker">A few more details</p>
+          <h1 tabindex="-1" id="extra-title">Only if you already know.</h1>
+          <p class="lede">Skip anything you don’t. None of this is required to send the brief.</p>
+          <p class="cheer" data-cheer></p>
+          <fieldset class="group">
+            <legend class="group-label">A survey, a perc test, or a soil test?</legend>
+            <div class="chips">
+            <label class="chip">
+              <input type="radio" name="survey" value="have">
+              <span class="chip-face">We have one</span>
+            </label>            <label class="chip">
+              <input type="radio" name="survey" value="none">
+              <span class="chip-face">Not yet</span>
+            </label>            <label class="chip">
+              <input type="radio" name="survey" value="unsure">
+              <span class="chip-face">Not sure</span>
+            </label>
+            </div>
+          </fieldset>
+          <fieldset class="group">
+            <legend class="group-label">An HOA, or covenants on the lot?</legend>
+            <div class="chips">
+            <label class="chip">
+              <input type="radio" name="hoa" value="yes">
+              <span class="chip-face">Yes</span>
+            </label>            <label class="chip">
+              <input type="radio" name="hoa" value="no">
+              <span class="chip-face">No</span>
+            </label>            <label class="chip">
+              <input type="radio" name="hoa" value="unsure">
+              <span class="chip-face">Not sure</span>
+            </label>
+            </div>
+          </fieldset>
+          <div class="field">
+            <label for="other-person">Is there someone else we should include?</label>
+            <input id="other-person" name="other-person" type="text" autocomplete="name" placeholder="A name, if you like">
+          </div>
+          <fieldset class="group">
+            <legend class="group-label">Best time to call</legend>
+            <div class="chips">
+            <label class="chip">
+              <input type="radio" name="call" value="morning">
+              <span class="chip-face">Morning</span>
+            </label>            <label class="chip">
+              <input type="radio" name="call" value="afternoon">
+              <span class="chip-face">Afternoon</span>
+            </label>            <label class="chip">
+              <input type="radio" name="call" value="evening">
+              <span class="chip-face">Evening</span>
+            </label>            <label class="chip">
+              <input type="radio" name="call" value="anytime">
+              <span class="chip-face">Anytime</span>
+            </label>
+            </div>
+          </fieldset>
+          <fieldset class="group">
+            <legend class="group-label">How did you find Heartwood?</legend>
+            <div class="chips">
+            <label class="chip">
+              <input type="radio" name="source" value="web">
+              <span class="chip-face">The website</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="source" value="house">
+              <span class="chip-face">A house we stayed in or drove past</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="source" value="friend">
+              <span class="chip-face">A friend</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="source" value="instagram">
+              <span class="chip-face">Instagram</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="source" value="other">
+              <span class="chip-face">Somewhere else</span>
+            </label>
+            </div>
+          </fieldset>
+          <div class="actions">
+            <button class="btn-ghost btn" type="button" data-go="brief">Back to the brief</button>
+            <a class="btn" href="#reach" data-go="brief">Return and send</a>
+          </div>
+          <p class="talk-exit"><a href="/contact/" data-exit>Rather just talk? Contact Heartwood</a></p>
+        </section>
+      </div>
+
+      <aside class="sketch-rail" id="sketch-rail" aria-label="A house sketch that updates as you answer">
+        <h2>The house so far</h2>
+        <p class="muted" id="sketch-caption" style="font-size: var(--step--1);">Answer a few questions, and the lot and the house will fill in.</p>
+        <div class="sketch-stage" id="sketch-stage"></div>
+        <ul class="sketch-list" id="sketch-list" aria-live="polite"></ul>
+      </aside>
+    </div>
+  </div>
+
+  
+  <script>
+    import '../scripts/plan';
+  </script>
+</Base>

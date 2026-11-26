@@ -1,5 +1,6 @@
 interface Env {
   GHL_WEBHOOK_URL?: string;
+  QUOTE_TO?: string;
 }
 
 function json(body: Record<string, unknown>, status = 200) {
@@ -27,9 +28,12 @@ export async function onRequestPost(context: { request: Request; env: Env }) {
   const chapter = String(form.get('chapter') ?? '').trim();
   const houses = String(form.get('houses') ?? '').trim().slice(0, 500);
   const path = String(form.get('path') ?? '').trim().slice(0, 40);
+  const kind = String(form.get('kind') ?? '').trim().slice(0, 40);
+  const subject = String(form.get('subject') ?? '').trim().slice(0, 200);
 
   const allowed = ['custom-home', 'renovation', 'site-prep'];
-  if (!name || (!phone && !email)) return json({ ok: false }, 400);
+  const brief = kind === 'brief';
+  if (brief ? !name && !phone && !email : !name || (!phone && !email)) return json({ ok: false }, 400);
   if (work && !allowed.includes(work)) return json({ ok: false }, 400);
 
   const webhook = context.env.GHL_WEBHOOK_URL;
@@ -38,7 +42,10 @@ export async function onRequestPost(context: { request: Request; env: Env }) {
   const response = await fetch(webhook, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ name, phone, email, work, budget, message, project, chapter, area, land, timeline, houses, path }),
+    body: JSON.stringify({
+      name, phone, email, work, budget, message, project, chapter, area, land, timeline, houses, path,
+      ...(brief ? { kind, subject, ...(context.env.QUOTE_TO ? { to: context.env.QUOTE_TO } : {}) } : {}),
+    }),
   });
 
   if (!response.ok) return json({ ok: false }, 502);

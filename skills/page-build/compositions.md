@@ -380,24 +380,47 @@ The short Contact qualifier stays on `/contact/` for people who just want to tal
 services (renovation, site prep).
 
 **Flow.** About 8–10 branched steps (10 with land, 7 without). Land details (place, terrain, cover,
-access, utilities, a structure to remove) only if they have land. House type, size, who it's for,
+access, utilities, a structure to remove) only if they have land. **No map or pin picker.** Where-is-it
+is a town/county field, acreage, and one optional "Address, Google Maps link, or parcel number"
+field that flows into the brief ("Where to look"), the office email, and look-at-first ("The parcel
+you sent, pulled up before the first call."). Keep it out of the copy link and analytics. Never
+promise a service area ("We'll check where {town} sits for us," not "We build there"). House type, size, who it's for,
 plans status, **one** money screen, timing, then the brief. Optional extra details after the brief
 are skippable. A quiet "Rather just talk? Contact Heartwood" (or the client's name) exit on every
 question step carries answers so far into the Contact qualifier.
 
-**Money.** Qualitative only — modest / mid-range / higher-end / not sure, and cash / construction
-loan / not sure. **No dollar figures**, no ranges, no invented prices. If the client later supplies
+**Money.** Qualitative only — Simple ("Good, durable basics") / Comfortable ("Room for a few
+upgrades") / Premium ("The finishes you really want") / Not sure yet, and cash / construction loan /
+not sure. **No dollar figures**, no ranges, no invented prices. If the client later supplies
 real cost-per-sq-ft ranges, that belongs in a separate budget planner, not in this wizard.
 
-**Sketch.** A line-drawn house that reacts to terrain, cover, utilities, type, stories, and
-must-haves, using `templates/scripts/sketch-lib.js` and `templates/styles/sketch-lib.css`. Types
-must stay visually distinct. When a walkout or basement is on, the house sits on a high pad and
-the grade **steps** down after the right wall to a lower patio — a hard step, not a curve through
-the porch or deck. The garage stays on the high pad. Trees, septic, and the well must not overlap
-the walkout, the patio, or each other. Water is drawn only to the right of the bank. The
-first-floor lake deck is hidden when the walkout is on. `prefers-reduced-motion`: the sketch
-appears instantly, no draw-in. On small screens the sketch sits in a bottom dock on question
-steps and is hidden on the brief.
+**Sketch: layered scene + GSAP.** One hand-composed, layered SVG (`templates/scenes/house-scene.svg`)
+plus a small controller (`templates/scripts/scene.js`) and `templates/styles/scene.css`. The art is
+drawn on a fixed slot map (`templates/scenes/README.md`); the controller only switches named layers
+on and off and moves grade-dependent pieces by pre-measured `data-dy` offsets. **No runtime geometry**
+(the retired procedural sketch-lib is what overflowed the walkout and overlapped pieces). House types
+are `<g data-type>` groups sharing layer names (`house`, `roof1`, `second`, `roof2`, `porch`, `link`),
+so a type change redraws only the house. Starter types: lake/mountain, family, cabin (1½ story = loft),
+A-frame (2 stories = loft, no box), townhome (minimal row of three; add a "we'll talk through whether
+this is a fit" note unless the builder confirms they build them). Types without art (short-term
+rental, something else) borrow the lake house on waterfront, else the family house. Deck and screened
+porch share one side slot and are **opt-in** (a must-have chip each; no default deck). Walkout or
+basement: the grade steps down after the right wall to a lower patio; the garage stays on the pad.
+Animate with GSAP 3.13+ DrawSVGPlugin (npm `gsap`, loaded only on `/plan/`, no CDN): solid strokes
+draw in, dashed strokes / labels / glass fade, removed layers fade out. `prefers-reduced-motion`:
+set instantly. Rail: about 520px of drawing at 1440 (556px rail at 1280+); on small screens a bottom
+dock on question steps, clear of any sticky call bar, hidden on the brief.
+
+**Zero layout shift (hard rule).** Answering, changing steps, loading fonts, or animating the sketch
+must not move existing content. Reserve every box that fills in later (sketch stage via
+`aspect-ratio`, 2-line cheer and caption, fixed-width readouts and "minutes left", the plans upload
+cell, which crossfades with its empty state); keep optional fields visible instead of popping them
+open; preload fonts with `font-display: optional` or metric-matched fallbacks; scroll on a step change
+only if the new heading is under the sticky header. Branded controls only: +/− steppers, a custom
+"Choose a file" button, an even must-have chip grid, a segmented progress bar with "Step N of M".
+Prove it with `templates/scripts/qa/cls-run.mjs` (desktop, mobile, reduced motion: **CLS 0, zero
+entries**) and the scene with `templates/scripts/qa/scene-collisions.mjs` (0 collisions across
+every type and answer combination).
 
 **The brief.** A summary of what they told us, the finished sketch, "What [the builder] will look
 at first" (rule-driven, capped at five), a couple of similar houses from the harvest, a scannable
@@ -418,4 +441,6 @@ the step changes; `:focus-visible` obvious; reduced motion instant; no inner scr
 `wizard_exit_contact`, through `templates/scripts/analytics.ts`. Copy is A24. Do not invent
 headlines or prices.
 
-Templates: `templates/scripts/sketch-lib.js`, `templates/styles/sketch-lib.css`.
+Templates: `templates/scenes/house-scene.svg` (+ `build_scene.py`, `README.md`), `templates/scripts/scene.js`,
+`templates/styles/scene.css`, `templates/scripts/qa/cls-run.mjs` (+ `plan-steps.example.mjs`),
+`templates/scripts/qa/scene-collisions.mjs`.

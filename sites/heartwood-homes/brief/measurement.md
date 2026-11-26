@@ -39,6 +39,12 @@ and confirm each one in the dashboard before launch.
 | `qualifier_start` | First step of a multi-step qualifier | form | Engagement |
 | `qualifier_complete` | Qualifier submitted | form | Primary conversion |
 | `directions_click`, `email_click` | Map or mailto tapped | page | Minor |
+| `wizard_start` | First answer on `/plan/`, or a deep link that already has answers | page | Engagement |
+| `wizard_step` | A question step is shown | step, index | Engagement |
+| `wizard_complete` | The brief is shown | page | Engagement |
+| `brief_save` | Print / PDF, or the brief link is copied | method (`print` or `link`) | Engagement |
+| `brief_send` | The brief is submitted and `/api/quote` succeeds | page | Primary conversion |
+| `wizard_exit_contact` | “Rather just talk?” leaves for the contact qualifier | step | Lead intent |
 
 ## Call tracking
 

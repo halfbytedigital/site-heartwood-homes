@@ -12,6 +12,8 @@ const landChoice = params.get('land') ?? (path === 'have-land' ? 'Yes' : path ==
 const timelineChoice = params.get('timeline') ?? (path === 'dreaming' ? 'Just looking' : '');
 ---
 <form class="qualifier" method="post" action="/api/quote" data-qualifier novalidate>
+  <div class="carried" data-carried hidden></div>
+  <p data-plan-return hidden><a href="/plan/">Back to your brief</a></p>
   <p data-progress>Step 1 of 5</p>
   <div class="step" data-step="0">
     <h2>What are you planning?</h2>
@@ -118,6 +120,42 @@ const timelineChoice = params.get('timeline') ?? (path === 'dreaming' ? 'Just lo
     setHidden('path', pathValue);
     setHidden('project', params.get('project') ?? '');
     setHidden('chapter', params.get('chapter') ?? '');
+    if (params.get('from') === 'plan') {
+      const said = params.get('said') ?? '';
+      const carried = form.querySelector<HTMLElement>('[data-carried]');
+      if (carried && said) {
+        carried.hidden = false;
+        const intro = document.createElement('p');
+        intro.textContent = 'What you’ve already told us:';
+        const list = document.createElement('ul');
+        said.split(' · ').filter(Boolean).forEach((line) => {
+          const item = document.createElement('li');
+          item.textContent = line;
+          list.append(item);
+        });
+        carried.append(intro, list);
+        setHidden('message', said);
+      }
+      const back = form.querySelector<HTMLElement>('[data-plan-return]');
+      const link = back?.querySelector<HTMLAnchorElement>('a');
+      if (back && link) {
+        back.hidden = false;
+        const backParams = new URLSearchParams(params);
+        backParams.delete('from');
+        backParams.delete('said');
+        const step = backParams.get('step') || 'land';
+        backParams.delete('step');
+        link.href = `/plan/?${backParams.toString()}#${step}`;
+      }
+      const place = params.get('place') ?? '';
+      const note = form.querySelector<HTMLInputElement>('input[name="area-note"]');
+      if (place && note && !note.value) note.value = place;
+      ['place', 'acres', 'terrain', 'cover', 'access', 'power', 'water', 'sewer', 'internet', 'structure', 'type', 'beds', 'baths', 'stories', 'sqft', 'who', 'use', 'plans', 'needs', 'budget', 'pay', 'sell', 'survey', 'timing'].forEach((key) => {
+        const value = params.get(key);
+        if (value) setHidden(key, value);
+      });
+      if ((params.get('timeline') ?? '') === 'Next year') setHidden('timeline', 'Next year');
+    }
     const steps = [...form.querySelectorAll<HTMLElement>('[data-step]')];
     const progress = form.querySelector<HTMLElement>('[data-progress]');
     const status = form.querySelector<HTMLElement>('[data-status]');

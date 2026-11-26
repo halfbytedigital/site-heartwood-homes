@@ -1,0 +1,20 @@
+{
+  "combos": 10368,
+  "perType": {
+    "lake": 1728,
+    "family": 1728,
+    "cabin": 1728,
+    "aframe": 1728,
+    "townhome": 1728,
+    "rental": 1728
+  },
+  "collisions": 0,
+  "sample": [],
+  "worstMargins": {
+    "l": 19,
+    "t": 23.5,
+    "r": 19.5,
+    "b": 17.5
+  },
+  "masks": 102
+}

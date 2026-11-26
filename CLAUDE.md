@@ -106,8 +106,11 @@ templates/
   styles/project-filters.css  ← C29 pill chips
   styles/project-rail.css     ← C32 horizontal portrait rail
   scripts/project-rail.ts     ← C32 counter, 1:1 scrollbar, prev/next
-  styles/sketch-lib.css       ← C33 build-brief sketch
-  scripts/sketch-lib.js       ← C33 houseSVG + syncSketch
+  styles/scene.css            ← C33 build-brief scene + rail / dock (no layout shift)
+  scripts/scene.js            ← C33 layered-scene controller (GSAP DrawSVG)
+  scenes/house-scene.svg      ← C33 hand-drawn layered scene: 5 house types (+ build_scene.py, README slot map)
+  scripts/qa/cls-run.mjs      ← C33 Playwright CLS check (target 0) + plan-steps.example.mjs
+  scripts/qa/scene-collisions.mjs ← C33 pixel collision check across every answer combination
   styles/fonts.css            ← Newsreader + Source Sans 3 @font-face (A26)
   fonts/                      ← self-hosted woff2 + OFL files
   components/ProjectHero.astro, WalkRail.astro, ProjectShot.astro, SaveHouse.astro, NextHouse.astro, PhotoViewer.astro

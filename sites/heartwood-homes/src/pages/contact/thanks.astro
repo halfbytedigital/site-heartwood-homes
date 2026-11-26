@@ -10,9 +10,12 @@ const work = Astro.url.searchParams.get('work');
 const area = Astro.url.searchParams.get('area');
 const land = Astro.url.searchParams.get('land');
 const timeline = Astro.url.searchParams.get('timeline');
+const house = Astro.url.searchParams.get('house');
+const place = Astro.url.searchParams.get('place');
 const rows = [
+  ['The house', house],
+  ['Where', place || area],
   ['Planning', work],
-  ['Where', area],
   ['Land', land],
   ['Timing', timeline],
   ['Name', name],

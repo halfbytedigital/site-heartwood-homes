@@ -62,11 +62,13 @@ npm i -D @playwright/test
 - **Home lot-to-finish scrubber (C31):** when phase photos of the same house exist, use the overlay
   scrubber (photo-as-control, glass bar on the media, branded track, no scroll-jacking, primary CTA
   only at the last chapter). Do not put the controls in a panel below a tall photograph.
-- **Build-brief wizard (C33):** when the site uses a build brief, copy `templates/styles/sketch-lib.css`
-  and `templates/scripts/sketch-lib.js`, and ship the wizard only on `/plan/`. Follow compositions.md
-  C33 (branched 8–10 steps, qualitative money only, growing sketch, brief with look-at-first, PDF /
-  copy-link / send, localStorage resume, path-picker deep links, "Rather just talk?" into the
-  qualifier). Do not paste the wizard onto Home or Custom Homes.
+- **Build-brief wizard (C33):** when the site uses a build brief, inline `templates/scenes/house-scene.svg`
+  (rail and brief), copy `templates/scripts/scene.js` and `templates/styles/scene.css`, add `gsap`
+  (npm; register DrawSVGPlugin; `/plan/` only), and ship the wizard only on `/plan/`. Follow
+  compositions.md C33 (branched 8–10 steps, qualitative money only, layered sketch, brief with
+  look-at-first, PDF / copy-link / send, localStorage resume, path-picker deep links, "Rather just
+  talk?" into the qualifier, **zero layout shift**). Run `templates/scripts/qa/cls-run.mjs` and
+  `scene-collisions.mjs` before review. Do not paste the wizard onto Home or Custom Homes.
   Import the CSS from Base (hearts also appear on the work index). Import the script once after `analytics.ts`.
   Mark the primary CTA with `data-start-cta` (optional inner `data-start-cta-label`) and add a
   `data-saved-count` element in the header. On the qualifier, include a `data-saved-houses-field` input
@@ -83,8 +85,9 @@ src/
   styles/project-page.css  ← from templates/styles/project-page.css
   styles/project-rail.css  ← from templates/styles/project-rail.css (C32)
   scripts/project-rail.ts  ← from templates/scripts/project-rail.ts
-  styles/sketch-lib.css    ← from templates/styles/sketch-lib.css (C33)
-  scripts/sketch-lib.js    ← from templates/scripts/sketch-lib.js (C33)
+  styles/scene.css         ← from templates/styles/scene.css (C33)
+  scripts/scene.js         ← from templates/scripts/scene.js (C33; + npm gsap)
+  assets/plan/scene.svg    ← from templates/scenes/house-scene.svg (C33; inline with ?raw)
   styles/fonts.css         ← from templates/styles/fonts.css (adjust font urls)
   data/site.ts             ← facts (null-config, from templates/site.ts)
   data/services.ts, reviews.ts, projects.ts, nav.ts

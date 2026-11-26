@@ -213,6 +213,9 @@ pattern.
 - Easing: `--ease-out: cubic-bezier(.2,.7,.2,1)`; `--ease-reveal: cubic-bezier(.22,1,.36,1)` for the signature.
   Never linear for UI.
 - Animate only `transform`, `opacity`, `filter` and `clip-path`. No layout-shifting animation.
+  Interactive tools (C33 wizard and similar): **zero layout shift** — reserve every box that fills in
+  later, never pop open content above existing content, and prove CLS 0 with `templates/scripts/qa/cls-run.mjs`.
+  SVG line drawing (GSAP DrawSVG on `stroke-dashoffset`) is fine inside a reserved box.
 - **Content is visible without JS and under reduced motion.** Gate pending states with `html.js`.
   `@media (prefers-reduced-motion: reduce)`: no load-in, no signature motion, no view transitions; **final
   states shown immediately** (no element left at `opacity: 0`, no loader that hides content). Interactions
