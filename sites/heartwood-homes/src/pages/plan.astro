@@ -2,6 +2,9 @@
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import PlanScene from '../components/PlanScene.astro';
+import landYes from '../assets/icons/land-yes.svg?raw';
+import landLooking from '../assets/icons/land-looking.svg?raw';
+import landUnsure from '../assets/icons/land-unsure.svg?raw';
 import { getProject, projectPath } from '../data/projects';
 import '../styles/plan.css';
 
@@ -28,20 +31,20 @@ const springCity = getProject('spring-city-lake-house');
         <section class="panel is-on" id="panel-land" aria-labelledby="land-title">
           <p class="kicker">Plan your home</p>
           <h1 tabindex="-1" id="land-title">Do you have land?</h1>
-          <p class="lede">If you don’t, that’s fine. We can start there, or just talk.</p>
+          <p class="lede">If you don’t have land yet, that’s fine.</p>
           <p class="cheer" data-cheer></p>
-          <div class="type-grid">
+          <div class="land-grid">
             <label class="choice">
               <input type="radio" name="land" value="yes">
-              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 36 L14 18 L24 26 L34 12 L40 36 Z"/><path d="M8 36 H40"/></svg><span><strong>I have land.</strong><small>A lot you already own, or one under contract.</small></span></span>
+              <span class="choice-face"><Fragment set:html={landYes} /><span><strong>I have land.</strong><small>A lot you own, or one under contract.</small></span></span>
             </label>
             <label class="choice">
               <input type="radio" name="land" value="no">
-              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 32 C 16 28, 20 22, 28 24 C 34 26, 38 22, 42 20"/><path d="M6 38 H42"/></svg><span><strong>Not yet.</strong><small>We’ll talk about where you want to be.</small></span></span>
+              <span class="choice-face"><Fragment set:html={landLooking} /><span><strong>Still looking.</strong><small>Come back when you find a spot, or talk to us now. Daniel can often walk a lot with you before you buy.</small></span></span>
             </label>
             <label class="choice">
               <input type="radio" name="land" value="unsure">
-              <span class="choice-face"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 36 V16 H38 V36"/><path d="M10 36 H38"/><path d="M24 22 v6"/><circle cx="24" cy="18" r="1.2" fill="currentColor" stroke="none"/></svg><span><strong>I’m not sure.</strong><small>We can start either way.</small></span></span>
+              <span class="choice-face"><Fragment set:html={landUnsure} /><span><strong>I’m not sure.</strong><small>We can start either way.</small></span></span>
             </label>
           </div>
           <div class="actions">

@@ -1,6 +1,6 @@
 ---
 import { site } from '../data/site';
-import { ctaLabel, contactHref } from '../data/nav';
+import { planHref, planLabel } from '../data/nav';
 const quotePage = Astro.url.pathname.startsWith('/contact');
 ---
 {!quotePage && (
@@ -8,7 +8,7 @@ const quotePage = Astro.url.pathname.startsWith('/contact');
     {site.phone && site.phoneE164 && (
       <a href={`tel:${site.phoneE164}`} data-event="call_click" data-event-placement="bar">Call</a>
     )}
-    <a href={contactHref} data-start-cta><span data-start-cta-label>{ctaLabel}</span></a>
+    <a href={planHref} data-start-cta><span data-start-cta-label>{planLabel}</span></a>
   </nav>
 )}
 

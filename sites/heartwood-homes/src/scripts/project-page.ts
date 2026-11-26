@@ -62,8 +62,12 @@ export function syncSaveUI(root: ParentNode = document) {
       el.textContent = String(n);
     }
   });
-  const label = n === 0 ? "Start your home" : n === 1 ? "Start your home (1 saved)" : `Start your home (${n} saved)`;
   root.querySelectorAll<HTMLElement>("[data-start-cta]").forEach((el) => {
+    const href = el.getAttribute("href") || "";
+    const base = href === "/plan/" || href.startsWith("/plan?") || href.startsWith("/plan/")
+      ? "Plan your home"
+      : "Start your home";
+    const label = n === 0 ? base : n === 1 ? `${base} (1 saved)` : `${base} (${n} saved)`;
     const text = el.querySelector("[data-start-cta-label]") || el;
     if (text.childNodes.length === 1 && text.childNodes[0].nodeType === 3) {
       text.textContent = label;

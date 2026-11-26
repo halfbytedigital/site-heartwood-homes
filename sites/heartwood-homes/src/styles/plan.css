@@ -228,6 +228,20 @@
 @media (width >= 700px) { .plan .util-row { grid-template-columns: 10rem 1fr; } }
 .plan .actions { display: flex; flex-wrap: wrap; gap: var(--space-s); margin-top: var(--space-xl); }
 .plan .contact-band .actions + p,
+.plan .land-grid { display: grid; gap: 12px; grid-template-columns: 1fr; }
+.plan .land-grid .choice { height: 100%; }
+.plan .land-grid .choice-face { height: 100%; align-items: center; }
+.plan .land-grid .choice-face svg { width: 44px; height: 44px; }
+@media (width >= 760px) {
+  .plan .land-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .plan .land-grid .choice-face { grid-template-columns: 1fr; align-content: start; align-items: start; gap: 12px; padding: 18px 16px 20px; }
+}
+.plan .land-grid small { display: block; margin-top: 4px; }
+.plan #panel-land .cheer { display: none; }
+.plan #panel-land .lede { margin-bottom: var(--space-l); }
+.plan .panel h1[tabindex="-1"]:focus { outline: none; }
+.plan .panel h1[tabindex="-1"]:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; }
+
 .plan .talk-exit { margin-top: var(--space-m); font-size: var(--step--1); }
 .plan .talk-exit a { color: var(--color-muted); text-underline-offset: 3px; }
 .plan .copied { margin: var(--space-s) 0 0; color: var(--color-muted); }

@@ -40,7 +40,6 @@ const chapters = [
   },
 ];
 
-const hrefFor = (id: string) => `/contact/?project=${house.slug}&chapter=${id}&work=custom-home`;
 const pad = (n: number) => String(n).padStart(2, '0');
 ---
 <section class="scrub" data-scrubber data-showing="lot" aria-labelledby="scrubber-title">
@@ -90,15 +89,15 @@ const pad = (n: number) => String(n).padStart(2, '0');
             aria-valuetext="The lot"
           />
         </div>
-        <a class="scrub-quiet" href={hrefFor('lot')} data-scrub-quiet>Start your home</a>
-        <a class="btn scrub-cta" href={hrefFor('finish')} data-scrubber-cta data-start-cta>
-          <span data-start-cta-label>Start your home</span>
+        <a class="scrub-quiet" href="/plan/" data-scrub-quiet>Plan your home</a>
+        <a class="btn scrub-cta" href="/plan/" data-scrubber-cta data-start-cta>
+          <span data-start-cta-label>Plan your home</span>
         </a>
       </div>
     </figure>
     <div class="scrub-cta-slot">
-      <a class="btn scrub-cta" href={hrefFor('finish')} data-scrubber-cta data-start-cta>
-        <span data-start-cta-label>Start your home</span>
+      <a class="btn scrub-cta" href="/plan/" data-scrubber-cta data-start-cta>
+        <span data-start-cta-label>Plan your home</span>
       </a>
     </div>
   </div>
@@ -154,13 +153,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
         if (animate) roll(caption);
       }
       if (live) live.textContent = `${label}. ${lines[index] ?? ''}`;
-      ctas.forEach((cta) => {
-        const url = new URL(cta.href, location.origin);
-        url.searchParams.set('project', 'flat-top-mountain');
-        url.searchParams.set('chapter', id);
-        url.searchParams.set('work', 'custom-home');
-        cta.href = `${url.pathname}${url.search}`;
-      });
+      ctas.forEach((cta) => { cta.href = '/plan/'; });
     };
 
     const place = (progress: number) => {

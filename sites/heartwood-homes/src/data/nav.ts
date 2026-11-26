@@ -13,4 +13,6 @@ export const moreNav: NavItem[] = [
 ];
 
 export const contactHref = '/contact/';
+export const planHref = '/plan/';
 export const ctaLabel = 'Start your home';
+export const planLabel = 'Plan your home';

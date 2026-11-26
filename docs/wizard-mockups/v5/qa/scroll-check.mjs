@@ -66,7 +66,7 @@ if (!video) {
   check('plain visit does not steal focus', s.focus !== 'land-title', s.focus);
   // 4. Header "Plan your home" on /plan/ does not restart
   await p.locator('label:has(input[name="land"][value="no"])').click(); await p.locator('.panel.is-on [data-go="next"]').click(); await wait(600);
-  if (W > 1000) { await smoothTo(400); await p.locator('.site-header [data-plan-here]').click(); await wait(500);
+  if (W > 1000) { await smoothTo(400); await p.locator('.site-header a.header-start[data-plan-here]').click(); await wait(500);
   s = await state(); check('header Plan your home on /plan/ keeps the step, brings it into view', s.panel === 'panel-type' && inView(s), JSON.stringify(s)); }
   // 5. Entry points and copy (site pages)
   await p.goto(B + '/', { waitUntil: 'networkidle' });

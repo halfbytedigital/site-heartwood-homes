@@ -1,0 +1,132 @@
+[
+  {
+    "name": "teaser -> /plan/ opens at top on step 2",
+    "ok": true,
+    "extra": "{\"y\":0,\"panel\":\"panel-place\",\"top\":227,\"header\":81,\"vh\":900,\"focus\":\"place-title\",\"shifts\":0}"
+  },
+  {
+    "name": "deep link focuses the step heading",
+    "ok": true,
+    "extra": "place-title"
+  },
+  {
+    "name": "Continue -> step 3 heading in view + focused",
+    "ok": true,
+    "extra": "{\"y\":0,\"panel\":\"panel-terrain\",\"top\":227,\"header\":81,\"vh\":900,\"focus\":\"terrain-title\",\"shifts\":0}"
+  },
+  {
+    "name": "pick terrain=gentle does not scroll",
+    "ok": true,
+    "extra": "0->0"
+  },
+  {
+    "name": "pick cover=partly does not scroll",
+    "ok": true,
+    "extra": "404->404"
+  },
+  {
+    "name": "pick access=gravel does not scroll",
+    "ok": true,
+    "extra": "186->186"
+  },
+  {
+    "name": "pick power=yes does not scroll",
+    "ok": true,
+    "extra": "186->186"
+  },
+  {
+    "name": "pick water=well does not scroll",
+    "ok": true,
+    "extra": "186->186"
+  },
+  {
+    "name": "pick sewer=septic does not scroll",
+    "ok": true,
+    "extra": "591->591"
+  },
+  {
+    "name": "scrolled down on the utilities step",
+    "ok": true,
+    "extra": "y=591"
+  },
+  {
+    "name": "Continue from the bottom -> new heading brought into view + focused",
+    "ok": true,
+    "extra": "{\"y\":16,\"panel\":\"panel-type\",\"top\":211,\"header\":81,\"vh\":900,\"focus\":\"type-title\",\"shifts\":0}"
+  },
+  {
+    "name": "Back -> previous heading in view + focused",
+    "ok": true,
+    "extra": "{\"y\":16,\"panel\":\"panel-utilities\",\"top\":211,\"header\":81,\"vh\":900,\"focus\":\"utilities-title\",\"shifts\":0}"
+  },
+  {
+    "name": "Continue again -> type step in view",
+    "ok": true,
+    "extra": "{\"y\":16,\"panel\":\"panel-type\",\"top\":211,\"header\":81,\"vh\":900,\"focus\":\"type-title\",\"shifts\":0}"
+  },
+  {
+    "name": "CLS 0 on /plan/ through the run",
+    "ok": true,
+    "extra": "cls=0"
+  },
+  {
+    "name": "history back/forward -> /plan/ at top",
+    "ok": true,
+    "extra": "{\"y\":0,\"panel\":\"panel-type\",\"top\":227,\"header\":81,\"vh\":900,\"focus\":\"type-title\",\"shifts\":0}"
+  },
+  {
+    "name": "reload while scrolled -> top",
+    "ok": true,
+    "extra": "{\"y\":0,\"panel\":\"panel-type\",\"top\":227,\"header\":81,\"vh\":900,\"focus\":\"type-title\",\"shifts\":0}"
+  },
+  {
+    "name": "project CTA -> /plan/?type=lake at top, step 1, lake preselected",
+    "ok": true,
+    "extra": "{\"y\":0,\"panel\":\"panel-land\",\"top\":227,\"header\":81,\"vh\":900,\"focus\":\"\",\"shifts\":0,\"type\":\"lake\"}"
+  },
+  {
+    "name": "plain visit does not steal focus",
+    "ok": true,
+    "extra": ""
+  },
+  {
+    "name": "header Plan your home on /plan/ keeps the step, brings it into view",
+    "ok": true,
+    "extra": "{\"y\":16,\"panel\":\"panel-type\",\"top\":211,\"header\":81,\"vh\":900,\"focus\":\"type-title\",\"shifts\":0}"
+  },
+  {
+    "name": "home: header, phone bottom bar and scrubber Finish go to /plan/",
+    "ok": true,
+    "extra": "{\"header\":\"/plan/\",\"bar\":\"/plan/\",\"scrub\":\"/plan/\"}"
+  },
+  {
+    "name": "custom homes: land teaser (3 cards + Rather just talk), old short form removed",
+    "ok": true,
+    "extra": "{\"teaser\":3,\"talk\":true,\"oldForm\":false}"
+  },
+  {
+    "name": "project ten-mile-lake-house: closing CTA -> /plan/?type=lake",
+    "ok": true,
+    "extra": "/plan/?type=lake"
+  },
+  {
+    "name": "project spring-city-lake-house: closing CTA -> /plan/?type=lake",
+    "ok": true,
+    "extra": "/plan/?type=lake"
+  },
+  {
+    "name": "project a-frame-cabin-airbnb: closing CTA -> /plan/?type=aframe",
+    "ok": true,
+    "extra": "/plan/?type=aframe"
+  },
+  {
+    "name": "no land-finding wording on any page (incl. Our process, About, Projects)",
+    "ok": true,
+    "extra": ""
+  },
+  {
+    "name": "no console errors",
+    "ok": true,
+    "extra": ""
+  }
+]

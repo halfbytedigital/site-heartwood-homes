@@ -8,7 +8,7 @@ import ProjectShot from '../../components/ProjectShot.astro';
 import NextHouse from '../../components/NextHouse.astro';
 import PhotoViewer from '../../components/PhotoViewer.astro';
 import { getGallery, openingShot, roomGroups, shotWidths, type Shot } from '../../data/galleries';
-import { featuredFirst, projectPath, projects } from '../../data/projects';
+import { featuredFirst, planTypeFor, projectPath, projects } from '../../data/projects';
 
 export function getStaticPaths() {
   return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
@@ -18,7 +18,6 @@ const { project } = Astro.props;
 const gallery = getGallery(project.slug);
 const hero = gallery ? openingShot(gallery) : null;
 const description = `${project.name}. ${project.type}. ${project.status}, ${project.dates}.`.slice(0, 155);
-const work = project.kind === 'renovation' ? 'renovation' : 'custom-home';
 const order = featuredFirst(projects.filter((item) => item.kind === project.kind));
 const index = Math.max(0, order.findIndex((item) => item.slug === project.slug));
 const next = order.length > 1 ? order[(index + 1) % order.length] : undefined;
@@ -143,6 +142,12 @@ function pairs(shots: Shot[]) {
     )}
 
     <PhotoViewer />
-    <CloseBand href={`/contact/?work=${work}&project=${project.slug}`} />
+    <CloseBand
+      href={`/plan/?type=${planTypeFor(project.slug)}`}
+      title="Want something like this?"
+      line="A few easy questions, and you get a brief and a sketch of your house."
+      label="Plan yours"
+      startCta={false}
+    />
   </article>
 </Base>

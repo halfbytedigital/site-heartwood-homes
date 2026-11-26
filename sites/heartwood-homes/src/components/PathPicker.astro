@@ -1,90 +1,36 @@
 ---
-const paths = [
-  {
-    id: 'have-land',
-    label: 'I have land',
-    href: '/plan/?work=custom-home&path=have-land&land=yes',
-    steps: [
-      'We walk the lot with you.',
-      'The house is drawn, or you bring plans you already have.',
-      'The estimate is built from those plans.',
-    ],
-  },
-  {
-    id: 'find-land',
-    label: 'I need help finding land',
-    href: '/plan/?work=custom-home&path=find-land&land=no',
-    steps: [
-      'Tell us the house you want, and the part of town you have in mind.',
-      'When a lot comes up, we look at the clearing, the excavation, and the septic before a house goes on it.',
-      'Once you have the land, we draw the plans and the estimate.',
-    ],
-  },
-  {
-    id: 'dreaming',
-    label: "I'm just dreaming",
-    href: '/plan/?work=custom-home&path=dreaming&timeline=looking',
-    steps: [
-      'Look through the houses we have built.',
-      'When you want to talk, we start with the plans.',
-      'The estimate comes after the plans.',
-    ],
-  },
-];
+import newHome from '../assets/icons/path-new-home.svg?raw';
+import renovate from '../assets/icons/path-renovate.svg?raw';
+import lotReady from '../assets/icons/path-lot-ready.svg?raw';
 ---
-<div class="path-picker" data-path-picker>
-  <h2>Build your path</h2>
-  <div class="path-choices" role="group" aria-label="Build your path">
-    {paths.map((item) => (
-      <button type="button" data-path={item.id} aria-pressed="false">{item.label}</button>
-    ))}
+<section class="section" aria-labelledby="path-title">
+  <div class="container stack">
+    <h2 id="path-title">What are you looking to do?</h2>
+    <ul class="path-cards" role="list">
+      <li>
+        <a class="path-card" href="/plan/">
+          <Fragment set:html={newHome} />
+          <span class="path-card-title">Build a new home</span>
+          <span class="path-card-note">A few easy questions, then a brief and a sketch of the house.</span>
+          <span class="path-card-go">Plan your home<span aria-hidden="true"> →</span></span>
+        </a>
+      </li>
+      <li>
+        <a class="path-card" href="/contact/?work=renovation">
+          <Fragment set:html={renovate} />
+          <span class="path-card-title">Renovate or add on</span>
+          <span class="path-card-note">A short form about the house and what you want to change.</span>
+          <span class="path-card-go">Tell us about it<span aria-hidden="true"> →</span></span>
+        </a>
+      </li>
+      <li>
+        <a class="path-card" href="/contact/?work=site-prep">
+          <Fragment set:html={lotReady} />
+          <span class="path-card-title">Get a lot ready</span>
+          <span class="path-card-note">Clearing, grading, a drive, a pad.</span>
+          <span class="path-card-go">Tell us about it<span aria-hidden="true"> →</span></span>
+        </a>
+      </li>
+    </ul>
   </div>
-  {paths.map((item) => (
-    <div class="path-panel" data-path-panel={item.id}>
-      <ol>
-        {item.steps.map((step) => <li>{step}</li>)}
-      </ol>
-      <a class="btn" href={item.href} data-start-cta><span data-start-cta-label>Start your home</span></a>
-    </div>
-  ))}
-  <p class="path-fallback">Or <a href="/contact/?work=custom-home">start your home</a> and tell us where you are.</p>
-</div>
-
-<script>
-  import { track } from '../scripts/analytics';
-
-  document.querySelectorAll<HTMLElement>('[data-path-picker]').forEach((root) => {
-    const buttons = [...root.querySelectorAll<HTMLButtonElement>('[data-path]')];
-    const panels = [...root.querySelectorAll<HTMLElement>('[data-path-panel]')];
-    const show = (id: string) => {
-      buttons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.path === id)));
-      panels.forEach((panel) => { panel.hidden = panel.dataset.pathPanel !== id; });
-    };
-    panels.forEach((panel) => { panel.hidden = true; });
-    root.addEventListener('click', (event) => {
-      const button = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-path]');
-      if (!button || !root.contains(button)) return;
-      const id = button.dataset.path || '';
-      show(id);
-      track('path_select', { path: id });
-      const form = document.querySelector<HTMLFormElement>('[data-qualifier]');
-      if (!form) return;
-      const setRadio = (name: string, value: string) => {
-        form.querySelectorAll<HTMLInputElement>(`input[type="radio"][name="${name}"]`).forEach((radio) => {
-          radio.checked = value !== '' && radio.value === value;
-        });
-      };
-      let field = form.querySelector<HTMLInputElement>('input[type="hidden"][name="path"]');
-      if (!field) {
-        field = document.createElement('input');
-        field.type = 'hidden';
-        field.name = 'path';
-        form.append(field);
-      }
-      field.value = id;
-      setRadio('work', 'custom-home');
-      setRadio('land', id === 'have-land' ? 'Yes' : id === 'find-land' ? 'Not yet' : '');
-      setRadio('timeline', id === 'dreaming' ? 'Just looking' : '');
-    });
-  });
-</script>
+</section>

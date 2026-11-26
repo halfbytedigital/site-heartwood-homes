@@ -1,14 +1,14 @@
 ---
 import { Image } from "astro:assets";
 import Base from "../layouts/Base.astro";
-import { site } from "../data/site";
 import { customProjects, getProject, projectPath } from "../data/projects";
-import Button from "../components/Button.astro";
 import ProjectIndex from "../components/ProjectIndex.astro";
 import CloseBand from "../components/CloseBand.astro";
 import AskProof from "../components/AskProof.astro";
-import Qualifier from "../components/Qualifier.astro";
 import PathPicker from "../components/PathPicker.astro";
+import landYes from "../assets/icons/land-yes.svg?raw";
+import landLooking from "../assets/icons/land-looking.svg?raw";
+import landUnsure from "../assets/icons/land-unsure.svg?raw";
 import LineIcon from "../components/LineIcon.astro";
 import lot from "../assets/projects/flat-top-mountain/03-DJI_0960.jpg";
 import trench from "../assets/projects/flat-top-mountain/05-IMG_0296.jpg";
@@ -140,25 +140,15 @@ const questions = [
           {house?.credit && <p class="muted">{house.credit}</p>}
         </div>
         <div class="stack" data-hero-step>
-          <Button href="/plan/?work=custom-home" cta>
-            Start your home
-          </Button>
-          {site.phone && site.phoneE164 && (
-            <Button href={`tel:${site.phoneE164}`} variant="ghost">
-              {site.phone}
-            </Button>
-          )}
+          <a class="btn" href="/plan/" data-start-cta><span data-start-cta-label>Plan your home</span></a>
+          <a class="btn btn-ghost" href="/projects/" data-see-work>See our work</a>
           <AskProof />
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container stack">
-      <PathPicker />
-    </div>
-  </section>
+  <PathPicker />
 
   <section class="section band-mist">
     <div class="container stack">
@@ -202,6 +192,42 @@ const questions = [
             <span>{beat.text}</span>
           </a>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section plan-teaser" aria-labelledby="teaser-title">
+    <div class="container">
+      <div class="teaser-frame">
+        <div class="teaser-copy">
+          <p class="label">Plan your home</p>
+          <h2 id="teaser-title">Do you have land?</h2>
+          <p class="measure">If you don’t have land yet, that’s fine. Pick one and the plan opens with it already answered.</p>
+        </div>
+        <ul class="land-cards" role="list">
+          <li>
+            <a class="land-card" href="/plan/?land=yes&amp;step=place">
+              <Fragment set:html={landYes} />
+              <span class="land-card-title">I have land.</span>
+              <span class="land-card-note">A lot you own, or one under contract.</span>
+            </a>
+          </li>
+          <li>
+            <a class="land-card" href="/plan/?land=no&amp;step=type">
+              <Fragment set:html={landLooking} />
+              <span class="land-card-title">Still looking.</span>
+              <span class="land-card-note">Come back when you find a spot, or talk to us now. Daniel can often walk a lot with you before you buy.</span>
+            </a>
+          </li>
+          <li>
+            <a class="land-card" href="/plan/?land=unsure&amp;step=type">
+              <Fragment set:html={landUnsure} />
+              <span class="land-card-title">I’m not sure.</span>
+              <span class="land-card-note">We can start either way.</span>
+            </a>
+          </li>
+        </ul>
+        <p class="talk-exit"><a href="/contact/?work=custom-home">Rather just talk? Contact Heartwood</a></p>
       </div>
     </div>
   </section>
@@ -258,23 +284,11 @@ const questions = [
     </div>
   </section>
 
-  <section class="section">
-    <div class="container split ask-split">
-      <div class="stack">
-        <h2>Tell us about the house.</h2>
-        <p class="measure">
-          A few questions first. Then we'll call or write you back.
-        </p>
-        <AskProof />
-      </div>
-      <Qualifier />
-    </div>
-  </section>
-
   <CloseBand
-    href="/contact/?work=custom-home"
+    href="/plan/"
     title="When you want to talk."
     line="Plans, then an estimate, then we build."
+    label="Plan your home"
   />
 </Base>
 

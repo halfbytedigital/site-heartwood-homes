@@ -1,10 +1,12 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.png';
-import { nav, moreNav, contactHref, ctaLabel } from '../data/nav';
+import { nav, moreNav, planHref, planLabel } from '../data/nav';
 import { site } from '../data/site';
 const path = Astro.url.pathname;
-const items = [...nav, ...moreNav];
+const onPlan = path === '/plan/' || path.startsWith('/plan/');
+const onContact = path === '/contact/' || path.startsWith('/contact/');
+const items = [...nav, ...moreNav, { href: '/contact/', label: 'Contact' }];
 ---
 <header class="site-header" data-header-sticky>
   <div class="header-bar">
@@ -15,24 +17,25 @@ const items = [...nav, ...moreNav];
       {nav.map((item) => (
         <a href={item.href} aria-current={path === item.href ? 'page' : undefined}>{item.label}</a>
       ))}
+      <a href="/contact/" aria-current={onContact ? 'page' : undefined}>Contact</a>
     </nav>
     <div class="header-actions">
       {site.phone && site.phoneE164 && (
         <a class="header-phone" href={`tel:${site.phoneE164}`} data-event="call_click" data-event-placement="header">{site.phone}</a>
       )}
       <span data-saved-count hidden></span>
-      <a class="header-start" href={contactHref} data-start-cta><span data-start-cta-label>{ctaLabel}</span></a>
+      <a class="header-start" href={planHref} data-start-cta data-plan-here={onPlan ? true : undefined} aria-current={onPlan ? 'page' : undefined}><span data-start-cta-label>{planLabel}</span></a>
     </div>
     <button class="menu-toggle nav-mobile" type="button" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
   </div>
   <nav class="menu-panel" id="mobile-nav" aria-label="Primary" hidden>
     {items.map((item) => (
-      <a href={item.href} aria-current={path === item.href ? 'page' : undefined}>{item.label}</a>
+      <a href={item.href} aria-current={path === item.href || (item.href === '/contact/' && onContact) ? 'page' : undefined}>{item.label}</a>
     ))}
     {site.phone && site.phoneE164 && (
       <a href={`tel:${site.phoneE164}`} data-event="call_click" data-event-placement="menu">{site.phone}</a>
     )}
-    <a href={contactHref} data-start-cta><span data-start-cta-label>{ctaLabel}</span></a>
+    <a href={planHref} data-start-cta data-plan-here={onPlan ? true : undefined} aria-current={onPlan ? 'page' : undefined}><span data-start-cta-label>{planLabel}</span></a>
   </nav>
 </header>
 

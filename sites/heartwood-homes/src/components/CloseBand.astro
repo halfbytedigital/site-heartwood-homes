@@ -1,25 +1,31 @@
 ---
 import { site } from '../data/site';
-import { ctaLabel, contactHref } from '../data/nav';
+import { ctaLabel, contactHref, planLabel } from '../data/nav';
 import AskProof from './AskProof.astro';
 
 interface Props {
   title?: string;
   line?: string;
   href?: string;
+  label?: string;
+  /** False for a fixed label such as “Plan yours”, which must not pick up the saved-house count. */
+  startCta?: boolean;
 }
 const {
   title = 'Tell us about the house.',
   line = "A few questions first. Then we'll call or write you back.",
   href = contactHref,
+  label,
+  startCta = true,
 } = Astro.props;
+const text = label ?? (href === '/plan/' || href.startsWith('/plan?') || href.startsWith('/plan/') ? planLabel : ctaLabel);
 ---
 <section class="close-band">
   <div class="container stack">
     <h2>{title}</h2>
     <p class="measure">{line}</p>
     <div class="btn-row">
-      <a class="btn" href={href} data-start-cta><span data-start-cta-label>{ctaLabel}</span></a>
+      <a class="btn" href={href} data-start-cta={startCta ? '' : undefined}>{startCta ? <span data-start-cta-label>{text}</span> : text}</a>
     </div>
     <AskProof />
     {site.phone && site.phoneE164 && (

@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import { site } from '../data/site';
 import { getProject, customProjects } from '../data/projects';
-import { ctaLabel, contactHref } from '../data/nav';
+import { planHref, planLabel } from '../data/nav';
 import AskProof from '../components/AskProof.astro';
 import TrustStrip from '../components/TrustStrip.astro';
 import FeaturedHome from '../components/FeaturedHome.astro';
@@ -37,10 +37,8 @@ const founders = site.team?.map((person) => person.name).join(' and ');
           {house?.credit && <p class="muted">{house.credit}</p>}
         </div>
         <div class="stack" data-hero-step>
-          <a class="btn" href={contactHref} data-start-cta><span data-start-cta-label>{ctaLabel}</span></a>
-          {site.phone && site.phoneE164 && (
-            <a class="btn btn-ghost" href={`tel:${site.phoneE164}`} data-event="call_click" data-event-placement="hero">{site.phone}</a>
-          )}
+          <a class="btn" href={planHref} data-start-cta><span data-start-cta-label>{planLabel}</span></a>
+          <a class="btn btn-ghost" href="/projects/" data-see-work>See our work</a>
           <AskProof />
         </div>
       </div>

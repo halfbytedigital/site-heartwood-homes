@@ -82,7 +82,7 @@ const USE_LABELS: Record<string, string> = {
   rental: "A short-term rental",
   unsure: "Use still to confirm",
 };
-const LAND_OUT: Record<string, string> = { yes: "Yes", no: "Not yet", unsure: "Not sure" };
+const LAND_OUT: Record<string, string> = { yes: "Yes", no: "Still looking", unsure: "Not sure" };
 const TIMING_OUT: Record<string, string> = {
   ready: "Ready to start",
   year: "This year",
@@ -231,8 +231,8 @@ if (root) {
   const normLand = (value: string) => {
     const v = value.toLowerCase();
     if (v === "yes" || v === "have-land") return "yes";
-    if (v === "no" || v === "not yet" || v === "find-land") return "no";
-    if (v === "unsure" || v === "not sure") return "unsure";
+    if (v === "no" || v === "not yet" || v === "find-land" || v === "still looking") return "no";
+    if (v === "unsure" || v === "not sure" || v === "not-sure") return "unsure";
     return "";
   };
   const normTiming = (value: string) => {
@@ -251,11 +251,7 @@ if (root) {
   const sqftLabel = () => "About " + Number(state.sqft).toLocaleString("en-US") + " square feet";
 
   const cheerFor = (name: string) => {
-    if (name === "land") {
-      if (state.land === "yes") return "We’ll walk it with you.";
-      if (state.land === "no") return "We can help you look.";
-      if (state.land === "unsure") return "We can start either way.";
-    }
+    if (name === "land") return "";
     if (name === "place" && state.place) return `We’ll check where ${state.place.split(",")[0]} sits for us.`;
     if (name === "place" && (state.parcel || state.acres)) return "That’s enough to start.";
     if (name === "terrain") {
@@ -310,9 +306,9 @@ if (root) {
       if (state.structure === "yes") items.push("The structure that’s already there, and whether it comes down.");
       if (state.survey === "none" || state.survey === "unsure") items.push("Whether a survey is already in hand.");
     } else if (state.land === "no") {
-      items.push("Where you want to be, and what kind of lot will carry this house.");
+      items.push("The house you want, so it’s ready when you find a spot. Daniel can often walk a lot with you before you buy.");
     } else {
-      items.push("Whether you already have land, or still need to find it.");
+      items.push("Whether you already have land, or are still looking.");
     }
     if (state.plans === "have") items.push("The plans you have, read against the lot.");
     else if (state.plans === "sketch") items.push("The sketches or pictures you’ve saved.");
@@ -380,7 +376,7 @@ if (root) {
       if (state.internet === "yes") util.push("Internet at the road");
       if (state.structure === "yes") util.push("A structure to take down");
       if (util.length) rows.push(["On the lot", util.join(". ") + "."]);
-    } else if (state.land === "no") rows.push(["The lot", "Land still to find."]);
+    } else if (state.land === "no") rows.push(["The lot", "Still looking for land."]);
     else if (state.land === "unsure") rows.push(["The lot", "Land situation still to confirm."]);
     const money: string[] = [];
     if (state.budget) money.push(BUDGET_LABELS[state.budget]);
@@ -600,17 +596,26 @@ if (root) {
     if (opts.trackStep !== false && steps.includes(name)) {
       track("wizard_step", { step: name, index: String(steps.indexOf(name) + 1) });
     }
-    history.replaceState(null, "", "#" + name);
-    const heading = root.querySelector<HTMLElement>(".panel.is-on h1");
-    const headerH = document.querySelector<HTMLElement>(".site-header")?.offsetHeight || 0;
-    if (heading && heading.getBoundingClientRect().top < headerH + 8) {
-      window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
-    }
+    history.replaceState(null, "", "#q-" + name);
     refresh();
     persist(name);
-    if (opts.focus !== false) {
-      document.getElementById(name === "brief" ? "brief-title" : name + "-title")?.focus();
+    if (opts.focus !== false) bringQuestionIntoView();
+  };
+
+  const bringQuestionIntoView = () => {
+    const heading = root.querySelector<HTMLElement>(".panel.is-on h1");
+    if (!heading) return;
+    const headerH = document.querySelector<HTMLElement>(".site-header")?.offsetHeight || 0;
+    const top = heading.getBoundingClientRect().top;
+    const progress = root.querySelector(".progress");
+    if (top < headerH + 8 || top > window.innerHeight * 0.6) {
+      const anchor = progress || heading;
+      window.scrollTo({
+        top: Math.max(0, anchor.getBoundingClientRect().top + window.scrollY - headerH - 16),
+        behavior: "instant" as ScrollBehavior,
+      });
     }
+    heading.focus({ preventScroll: true });
   };
 
   const applyStateToForm = () => {
@@ -716,13 +721,19 @@ if (root) {
     }
   };
 
+  const hashStep = () => (location.hash || "").replace(/^#/, "").replace(/^q-/, "");
+
   const startStep = (params: URLSearchParams) => {
-    const hash = (location.hash || "").replace("#", "");
-    if (hash && document.getElementById("panel-" + hash)) return hash;
-    const land = normLand(params.get("land") || "") || (params.get("path") === "have-land" ? "yes" : params.get("path") === "find-land" ? "no" : "");
-    if (land === "yes" && (params.has("path") || params.has("land"))) return "place";
-    if (land === "no" && (params.has("path") || params.has("land"))) return "type";
-    return "land";
+    const steps = flow();
+    const fromHash = hashStep();
+    if (fromHash && steps.includes(fromHash)) return fromHash;
+    const requested = params.get("step") || "";
+    if (requested && steps.includes(requested)) return requested;
+    if (!fromHash && !requested) {
+      if (params.get("path") === "have-land" && state.land === "yes") return steps.includes("place") ? "place" : steps[0];
+      if (params.get("path") === "find-land" && state.land === "no") return steps.includes("type") ? "type" : steps[0];
+    }
+    return steps[0] || "land";
   };
 
   const clearForm = () => {
@@ -944,14 +955,18 @@ if (root) {
     showPanel("land");
   });
 
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+
   const params = new URLSearchParams(location.search);
-  const queryKeys = ["work", "path", "land", "timeline", "place", "acres", "terrain", "cover", "access", "power", "water", "sewer", "internet", "structure", "type", "beds", "baths", "stories", "sqft", "who", "use", "plans", "needs", "budget", "pay", "timing", "sell", "survey", "hoa", "call", "source", "pin", "else", "plansLink", "person"];
+  const queryKeys = ["work", "path", "land", "step", "timeline", "place", "acres", "terrain", "cover", "access", "power", "water", "sewer", "internet", "structure", "type", "beds", "baths", "stories", "sqft", "who", "use", "plans", "needs", "budget", "pay", "timing", "sell", "survey", "hoa", "call", "source", "pin", "else", "plansLink", "person"];
   const hasQuery = queryKeys.some((key) => params.get(key));
   if (hasQuery) {
     applyQuery(params);
     refresh();
     if (answered() || params.get("work") && (params.get("path") || params.get("land") || params.get("timeline"))) markStart();
-    showPanel(startStep(params));
+    const step = startStep(params);
+    showPanel(step, { focus: step !== "land" });
   } else {
     const draft = loadDraft();
     if (draft?.state) {
@@ -961,18 +976,29 @@ if (root) {
       delete (state as State & { pinned?: boolean; pinX?: number; pinY?: number }).pinned;
       if (draft.path) entryPath = draft.path;
       applyStateToForm();
+      refresh();
       const note = root.querySelector<HTMLElement>("[data-resume]");
       if (note) note.hidden = false;
-      const hash = (location.hash || "").replace("#", "");
-      const step = hash && document.getElementById("panel-" + hash) ? hash : (draft.step || "land");
-      showPanel(step);
+      const hash = hashStep();
+      const steps = flow();
+      const step = hash && steps.includes(hash) ? hash : (draft.step && steps.includes(draft.step) ? draft.step : "land");
+      showPanel(step, { focus: step !== "land" });
     } else {
-      showPanel("land");
+      showPanel("land", { focus: false });
     }
   }
 
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+  });
+  document.querySelectorAll<HTMLAnchorElement>("[data-plan-here]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      bringQuestionIntoView();
+    });
+  });
   window.addEventListener("hashchange", () => {
-    const hash = (location.hash || "").replace("#", "");
-    if (hash) showPanel(hash);
+    const hash = hashStep();
+    if (hash && document.getElementById("panel-" + hash)) showPanel(hash);
   });
 }
