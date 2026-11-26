@@ -328,13 +328,11 @@ const springCity = getProject('spring-city-lake-house');
               <input type="radio" name="stories" value="2">
               <span class="chip-face">2</span>
             </label>            <label class="chip">
-              <input type="radio" name="stories" value="3">
-              <span class="chip-face">3</span>
-            </label>            <label class="chip">
               <input type="radio" name="stories" value="unsure">
               <span class="chip-face">Not sure</span>
             </label>
               </div>
+              <p class="stepper-hint">More than two? Tell us under “Anything else about the house?”</p>
             </fieldset>
           </div>
           <fieldset class="group">
@@ -446,7 +444,7 @@ const springCity = getProject('spring-city-lake-house');
               <div class="field">
                 <span class="group-label">Or a file</span>
                 <div class="upload">
-                  <input id="plans-file" name="plans-file" type="file" accept=".pdf,.jpg,.jpeg,.png,.heic,.dwg" tabindex="-1">
+                  <input id="plans-file" class="visually-hidden" name="plans-file" type="file" accept=".pdf,.jpg,.jpeg,.png,.heic,.dwg">
                   <label class="upload-btn" for="plans-file"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13 V3 M6 7 l4 -4 4 4"/><path d="M3 13 v4 h14 v-4"/></svg>Choose a file</label>
                   <span class="upload-name" id="plans-file-note">PDF or photos</span>
                 </div>

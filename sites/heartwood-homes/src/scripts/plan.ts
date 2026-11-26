@@ -2,9 +2,11 @@
  * C33 build brief on /plan/. Copy and flow follow the approved v2 mock.
  * Contact details are never written to localStorage.
  */
+import { gsap } from "gsap";
+import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 import { track } from "./analytics";
 import { loadSaved } from "./project-page";
-import { initScene, syncScene } from "./plan-scene";
+import { initScene, syncScene } from "./scene.js";
 
 const DRAFT_KEY = "heartwood-build-brief";
 
@@ -140,10 +142,20 @@ if (root) {
     survey: "", hoa: "", otherPerson: "", callTime: "", source: "",
   };
 
+  gsap.registerPlugin(DrawSVGPlugin);
+  (window as Window & { gsap: typeof gsap }).gsap = gsap;
+
   const railSvg = document.querySelector("#sketch-stage svg");
   const briefSvg = document.querySelector("#brief-sketch-slot svg");
   if (railSvg) initScene(railSvg);
   if (briefSvg) initScene(briefSvg);
+  if (import.meta.env.DEV && new URLSearchParams(location.search).has("scene-qa") && railSvg) {
+    (window as Window & { sceneQA: { svg: Element; initScene: typeof initScene; syncScene: typeof syncScene } }).sceneQA = {
+      svg: railSvg,
+      initScene,
+      syncScene,
+    };
+  }
   let briefDrawn = false;
   const SECTION: Record<string, string> = {
     land: "Your land", place: "The lot", terrain: "The lot", utilities: "The lot",
@@ -187,7 +199,7 @@ if (root) {
     state.typeOther = field("else-text")?.value.trim() || "";
     state.beds = field("beds")?.value || "";
     state.baths = field("baths")?.value || "";
-    state.stories = val("stories");
+    state.stories = val("stories") === "3" ? "2" : val("stories");
     state.sqft = Number(field("sqft")?.value) || 2400;
     state.who = vals("who");
     state.use = val("use");
@@ -469,6 +481,12 @@ if (root) {
     const n = Number(field("sqft")?.value) || 2400;
     const readout = document.getElementById("sqft-readout");
     if (readout) readout.textContent = "About " + n.toLocaleString("en-US") + " square feet";
+    const range = field("sqft");
+    if (range) {
+      const min = Number(range.min) || 0;
+      const max = Number(range.max) || 1;
+      range.style.setProperty("--fill", `${((n - min) / (max - min)) * 100}%`);
+    }
     const num = field("sqft-num");
     if (num && document.activeElement !== num) num.value = String(n);
     if (railSvg) syncScene(railSvg, state);
@@ -661,8 +679,10 @@ if (root) {
     if (land) setRadio("land", land);
     const timing = normTiming(params.get("timing") || params.get("timeline") || "");
     if (timing) setRadio("timing", timing);
-    const radios = ["acres", "terrain", "cover", "access", "power", "water", "sewer", "internet", "structure", "type", "stories", "use", "plans", "pay", "sell", "survey", "hoa", "call", "source"];
+    const radios = ["acres", "terrain", "cover", "access", "power", "water", "sewer", "internet", "structure", "type", "use", "plans", "pay", "sell", "survey", "hoa", "call", "source"];
     radios.forEach((name) => { const v = params.get(name); if (v) setRadio(name, v); });
+    const stories = params.get("stories");
+    if (stories) setRadio("stories", stories === "3" ? "2" : stories);
     const budget = params.get("budget");
     if (budget) setRadio("budget", normBudget(budget));
     if (params.get("place") && field("place")) field("place")!.value = params.get("place") || "";
@@ -936,6 +956,7 @@ if (root) {
     const draft = loadDraft();
     if (draft?.state) {
       Object.assign(state, draft.state);
+      if (state.stories === "3") state.stories = "2";
       state.budget = normBudget(state.budget);
       delete (state as State & { pinned?: boolean; pinX?: number; pinY?: number }).pinned;
       if (draft.path) entryPath = draft.path;

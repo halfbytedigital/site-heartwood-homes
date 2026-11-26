@@ -1,0 +1,11 @@
+{
+  "combos": 10368,
+  "collisions": 0,
+  "sample": [],
+  "worstMargins": {
+    "l": 19,
+    "t": 23.5,
+    "r": 19.5,
+    "b": 17.5
+  }
+}
